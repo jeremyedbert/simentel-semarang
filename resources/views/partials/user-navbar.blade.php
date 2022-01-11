@@ -40,24 +40,12 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
+                        aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                        <li><a class="dropdown-item" href="doctor.html">Doctors</a></li>
-                        <li><a class="dropdown-item" href="doctor-single.html">Doctor Single</a></li>
-                        <li><a class="dropdown-item" href="appoinment.html">Appoinment</a></li>
-
-                        <li class="dropdown dropdown-submenu dropleft">
-                            <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdown0501">
-                                <li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-                                <li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-                            </ul>
-                        </li>
+                        <li><a class="dropdown-item" href="doctor.html">Login sebagai Admin</a></li>
+                        <li><a class="dropdown-item" href="doctor-single.html">Login sebagai Pemohon</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </div>
