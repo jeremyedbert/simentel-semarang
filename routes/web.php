@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.welcome');
+    return view('user.welcome');
 });
 
-Route::get('/user', function(){
-    return view('user.welcome');
+Route::get('/peta-menara', function () {
+    return view('user.peta-menara');
+});
+
+Route::get('/peta-microcell', function () {
+    return view('user.peta-microcell');
+});
+
+Route::get('/admin', function () {
+    return view('admin.welcome');
 });

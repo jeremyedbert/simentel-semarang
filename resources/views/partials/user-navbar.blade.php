@@ -1,4 +1,4 @@
-<div class="header-top-bar">
+{{-- <div class="header-top-bar">
     <div class="container">
         <div class="row align-items-center">
             <ul class="top-bar-info list-inline-item pl-0 mb-0">
@@ -12,7 +12,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div> --}}
 <nav class="navbar navbar-expand-lg navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -26,15 +26,15 @@
 
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/">Beranda</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.html">Pendaftaran</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                        <li><a class="dropdown-item" href="department.html">Peta Menara</a></li>
-                        <li><a class="dropdown-item" href="department-single.html">Peta Microcell</a></li>
+                        <li><a class="dropdown-item" href="/peta-menara">Peta Menara</a></li>
+                        <li><a class="dropdown-item" href="/peta-microcell">Peta Microcell</a></li>
                     </ul>
                 </li>
 
