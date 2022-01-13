@@ -24,9 +24,10 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 <head>
     @include('partials.user-header')
+    
 </head>
 
-<body id="top">
+<body id="top" onload="initialize();">
 
     <header>
         @include('partials.user-navbar')
@@ -46,8 +47,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <script src="assets/user/plugins/shuffle/shuffle.min.js"></script>
 
     <!-- Google Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA"></script>
-    <script src="assets/user/plugins/google-map/gmap.js"></script>
+    {{-- <script src="assets/user/plugins/google-map/gmap.js"></script> --}}
 
     <script src="assets/user/js/script.js"></script>
 

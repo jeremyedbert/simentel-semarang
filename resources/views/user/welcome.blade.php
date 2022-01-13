@@ -3,7 +3,6 @@
     <style>
         .background {
             background: url("/images/tower-landing.jpg") no-repeat;
-            width: 
         }
 
     </style>

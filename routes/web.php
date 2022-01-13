@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('admin.welcome');
 });
 
-Route::get('/user', function(){
+Route::get('/user', function () {
     return view('user.welcome');
+});
+
+Route::get('/daftar-menara', function () {
+    return view('user.form-menara');
+});
+
+Route::get('/daftar-microcell', function () {
+    return view('user.form-microcell');
 });
