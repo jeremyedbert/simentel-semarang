@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
+Route::get('/daftar-menara', function () {
+    return view('user.form-menara');
+});
+
+Route::get('/daftar-microcell', function () {
+    return view('user.form-microcell');
+=======
 Route::get('/peta-menara', function () {
     return view('user.peta-menara');
 });
