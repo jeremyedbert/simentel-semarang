@@ -32,6 +32,26 @@ Route::get('/peta-microcell', function () {
     return view('user.peta-microcell');
 });
 
+Route::get('/login-user', function () {
+    return view('user.login-user');
+});
+
+Route::get('/login-admin', function () {
+    return view('user.login-admin');
+});
+
+Route::get('/login-admin', function () {
+    return view('user.login-admin');
+});
+
+Route::get('/daftar-menara', function () {
+    return view('user.form-menara');
+});
+
+Route::get('/daftar-microcell', function () {
+    return view('user.form-microcell');
+});
+
 Route::get('/admin', function () {
     return view('admin.welcome');
 });

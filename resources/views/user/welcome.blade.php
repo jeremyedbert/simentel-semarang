@@ -20,7 +20,7 @@
                         <div class="btn-container ">
                             {{-- <div class="mb-2"> --}}
                                 <a href="/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
-                                    Lihat Peta Menara<i class="icofont-simple-right ml-2  "></i>
+                                    Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
                                 </a>
                             {{-- </div>
                             <div> --}}
@@ -49,7 +49,7 @@
                             <a href="https://www.google.com/maps/place/Dinas+Kominfo+Kota+Semarang/@-6.9837516,110.4118455,17z/data=!4m5!3m4!1s0x2e708b4fd277d06b:0x4056bfa9e8303c06!8m2!3d-6.9836393!4d110.413617"
                                 target="blank" class="btn btn-main btn-round-full">
                                 <i class="icofont-search-map"></i>
-                                Lihat lokasi di GMaps
+                                Lihat lokasi di Maps
                             </a>
                         </div>
 
@@ -109,11 +109,11 @@
                         <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang. 
                             Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
                         </p>
-                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Menara
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
-                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Microcell
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
