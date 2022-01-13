@@ -328,6 +328,12 @@ a:focus {
   outline: none;
 }
 
+@media (max-width: 400px) {
+  h1{
+    font-size: 12pt;
+  }
+}
+
 @media (max-width: 480px) {
   h2, .h2 {
     font-size: 1.3rem;
@@ -513,7 +519,7 @@ a:focus {
   background: #fff;
   /* background: url("../images/bg/slider-bg-1.jpg") no-repeat; */
   background-size: cover;
-  min-height: 550px;
+  /* min-height: 550px; */
 }
 .banner .block {
   padding: 80px 0px 160px;
@@ -568,8 +574,8 @@ a:focus {
 }
 @media (max-width: 768px) {
   .banner .block h1 {
-    font-size: 56px;
-    line-height: 70px;
+    font-size: 48px;
+    line-height: 60px;
   }
 
   .banner {
@@ -585,6 +591,11 @@ a:focus {
   border-radius: 5px;
   box-shadow: 0px 0px 30px 0px rgba(0, 42, 106, 0.1);
 }
+ @media (max-width: 425px){
+  .tower-img {
+    max-width: 80%;
+  }
+ }
 
 .award-img {
   height: 120px;

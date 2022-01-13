@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.welcome');
-});
-
-Route::get('/user', function () {
     return view('user.welcome');
 });
 
@@ -27,4 +23,15 @@ Route::get('/daftar-menara', function () {
 
 Route::get('/daftar-microcell', function () {
     return view('user.form-microcell');
+=======
+Route::get('/peta-menara', function () {
+    return view('user.peta-menara');
+});
+
+Route::get('/peta-microcell', function () {
+    return view('user.peta-microcell');
+});
+
+Route::get('/admin', function () {
+    return view('admin.welcome');
 });
