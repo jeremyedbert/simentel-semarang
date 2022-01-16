@@ -1,7 +1,9 @@
 @extends('layouts.main-user')
 @section('content')
     <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"></script>
+        {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8"> //punya willy
+    </script>
     <script type="text/javascript">
         function initialize() {
             // Creating map object
@@ -110,7 +112,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{-- <div id="map_canvas" style="width: auto; height: 400px;"></div> --}}
+                        <div id="map_canvas" style="width: auto; height: 400px;"></div>
                     </div>
                     <div class="form-group">
                         <p>Luas Menara<span style="color: #e12454"><b> * </b></span></p>
