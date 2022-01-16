@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a class="nav-link" href="/">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">Pendaftaran</a></li>
+                <li class="nav-item"><a class="nav-link" href="daftar-menara">Pendaftaran</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
