@@ -23,7 +23,8 @@ Route::get('/daftar-menara', function () {
 
 Route::get('/daftar-microcell', function () {
     return view('user.form-microcell');
-=======
+});
+
 Route::get('/peta-menara', function () {
     return view('user.peta-menara');
 });
