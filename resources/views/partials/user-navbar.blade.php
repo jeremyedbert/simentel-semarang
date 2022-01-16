@@ -42,8 +42,8 @@
                     <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                        <li><a class="dropdown-item" href="doctor.html">Login sebagai Admin</a></li>
-                        <li><a class="dropdown-item" href="doctor-single.html">Login sebagai Pemohon</a></li>
+                        <li><a class="dropdown-item" href="/login-user">Login sebagai Pemohon</a></li>
+                        <li><a class="dropdown-item" href="/login-admin">Login sebagai Admin</a></li>
                     </ul>
                 </li>
             </ul>
