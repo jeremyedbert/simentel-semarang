@@ -26,10 +26,12 @@
 
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a class="nav-link" href="/">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="daftar-menara">Pendaftaran</a></li>
+                <li class="nav-item {{ $active === 'beranda' ? 'active' : '' }}"><a class="nav-link"
+                        href="/">Beranda</a></li>
+                <li class="nav-item {{ $active === 'pendaftaran' ? 'active' : '' }}"><a class="nav-link"
+                        href="daftar-menara">Pendaftaran</a></li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown  {{ $active === 'peta' ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown02">
@@ -38,14 +40,25 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                        <li><a class="dropdown-item" href="/login-user">Login sebagai Pemohon</a></li>
-                        <li><a class="dropdown-item" href="/login-admin">Login sebagai Admin</a></li>
-                    </ul>
-                </li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Halo<i
+                                class="icofont-thin-down"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                            <li><a class="dropdown-item" href="/logout-user">Logout</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item dropdown  {{ $active === 'login' ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                            <li><a class="dropdown-item" href="/login-user">Login sebagai Pemohon</a></li>
+                            <li><a class="dropdown-item" href="/login-admin">Login sebagai Admin</a></li>
+                        </ul>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>
