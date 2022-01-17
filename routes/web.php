@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,40 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
-});
+/* Untuk User */
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/login-user', [LoginUserController::class, 'index'])->name('login-user')->middleware('guest');
 
-Route::get('/daftar-menara', function () {
-    return view('user.form-menara');
-});
+Route::post('/login-user', [LoginUserController::class, 'authenticate']);
 
-Route::get('/daftar-microcell', function () {
-    return view('user.form-microcell');
-});
+Route::get('/daftar-menara', [FormController::class, 'index']);
 
-Route::get('/peta-menara', function () {
-    return view('user.peta-menara');
-});
+Route::get('/peta-menara', [UserController::class, 'peta_menara']);
 
-Route::get('/peta-microcell', function () {
-    return view('user.peta-microcell');
-});
-
-Route::get('/login-user', function () {
-    return view('user.login');
-});
+Route::get('/peta-microcell', [UserController::class, 'peta_microcell']);
 
 Route::get('/login-admin', function () {
     return view('admin.login');
-});
-
-Route::get('/daftar-menara', function () {
-    return view('user.form-menara');
-});
-
-Route::get('/daftar-microcell', function () {
-    return view('user.form-microcell');
 });
 
 Route::get('/admin', function () {
