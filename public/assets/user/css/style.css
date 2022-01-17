@@ -629,7 +629,7 @@ a:focus {
 }
 
 .appoinment-form {
-  margin-top: 40px;
+  margin-top: 36px;
 }
 .appoinment-form .form-control {
   background: #f4f9fc;
@@ -805,6 +805,7 @@ a:focus {
   margin-bottom: 10px;
   color: #222;
 }
+
 .doctor-info li i {
   margin-right: 20px;
   color: #e12454;
