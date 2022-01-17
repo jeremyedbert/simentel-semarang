@@ -13,7 +13,7 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="block">
                         <div class="divider mb-3"></div>
-                        <span class="text-uppercase text-sm letter-spacing ">Selamat datang di</span>
+                        <span class="text-uppercase letter-spacing" style="color: #e12454"><b>Selamat datang di</b></span>
                         <h1 class="mb-3 mt-2">Sistem Informasi<br> Menara Telekomunikasi<br> Kota Semarang</h1>
 
                         {{-- <p class="mb-4 pr-5">Tentukan lokasi. Daftar. Selesai.</p> --}}
