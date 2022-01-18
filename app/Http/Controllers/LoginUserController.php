@@ -10,7 +10,6 @@ class LoginUserController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:applicant')->except('logout');
     }
 
     public function index()
@@ -23,10 +22,38 @@ class LoginUserController extends Controller
     public function authenticate(Request $request)
     {
         // dd($request->all());
-        if(Auth::guard('applicant')->attempt(['email'=>$request->email, "password" => $request->password])){
+        // $credentials = $request->validate([
+        //     'email' => 'required|email:dns',
+        //     'password' => 'required'
+        // ]);
+
+        // if (Auth::guard('applicant')->attempt($credentials)) {
+        //     $request->session()->regenerate();
+
+        //     return redirect()->intended('/');
+        // }
+
+        // return back()->with('loginError', 'Login failed!');
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $request->session()->regenerate();
             return redirect()->intended('/');
         }
 
+
         return back()->with('loginError', 'Login gagal!');
+
+        // $this->validate()
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
