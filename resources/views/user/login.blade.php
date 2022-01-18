@@ -6,6 +6,11 @@
             <div class="col-lg-6 d-flex justify-content-center">
 
                 <div class="col-lg-8 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <h2 class="title-color mb-3 mx-3">Login sebagai Pemohon</h2>
                     <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.login') }}">
                         @csrf
@@ -19,9 +24,9 @@
                             <input name="password" id="password" type="password" class="form-control" placeholder="">
                         </div>
                         <div>
-                          <p>Belum punya akun? 
-                            <a href="{{ route('user.register') }}"><b>Daftar akun pemohon</b></a>
-                          </p>
+                            <p>Belum punya akun?
+                                <a href="{{ route('user.register') }}"><b>Daftar akun pemohon</b></a>
+                            </p>
                         </div>
 
                         {{-- <a class="btn btn-main btn-round" href="#">Submit</a> --}}
