@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ $active === 'beranda' ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('user.home') }}">Beranda</a></li>
+                        href="{{ route('home') }}">Beranda</a></li>
                 <li class="nav-item {{ $active === 'pendaftaran' ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginUserController;
+use App\Http\Controllers\RegisterUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,14 @@ use App\Http\Controllers\LoginUserController;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 /* Untuk User */
 
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/peta-menara', [UserController::class, 'peta_menara'])->name('peta-menara');
     Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
     Route::middleware(['guest'])->group(function () {
+        Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
         Route::get('/login', [LoginUserController::class, 'index'])->name('login');
         Route::post('/login', [LoginUserController::class, 'authenticate']);
     });
