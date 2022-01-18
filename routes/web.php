@@ -27,6 +27,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
     Route::middleware(['guest'])->group(function () {
         Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
+        Route::post('/create', [UserController::class, 'create'])->name('create');
         Route::get('/login', [LoginUserController::class, 'index'])->name('login');
         Route::post('/login', [LoginUserController::class, 'authenticate']);
     });

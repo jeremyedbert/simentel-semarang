@@ -7,30 +7,55 @@
 
                 <div class="col-lg-8 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
                     <h2 class="title-color mb-3 mx-3">Daftar Akun Pemohon</h2>
-                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.login') }}">
+                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.create') }}">
                         @csrf
                         <div class="form-group">
-                          <p>Nama<span style="color: #e12454"><b> * </b></span></p>
-                          <input name="name" id="name" type="text" class="form-control" placeholder="" autofocus
-                              value={{ old('name') }}>
+                            <p>Nama<span style="color: #e12454"><b> * </b></span></p>
+                            <input name="name" id="name" type="text" class="form-control" placeholder="" autofocus
+                                value={{ old('name') }}>
+                            <span class="text-danger">
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="form-group">
-                          <p>Email<span style="color: #e12454"><b> * </b></span></p>
-                          <input name="email" id="email" type="email" class="form-control" placeholder="" autofocus
-                              value={{ old('email') }}>
+                            <p>Email<span style="color: #e12454"><b> * </b></span></p>
+                            <input name="email" id="email" type="email" class="form-control" placeholder=""
+                                value={{ old('email') }}>
+                            <span class="text-danger">
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="form-group">
-                          <p>Nomor HP<span style="color: #e12454"><b> * </b></span></p>
-                          <input name="nohp" id="nohp" type="text" class="form-control" placeholder="" autofocus
-                              value={{ old('HP') }}>
+                            <p>Nomor HP<span style="color: #e12454"><b> * </b></span></p>
+                            <input name="phone" id="phone" type="text" class="form-control" placeholder=""
+                                value={{ old('phone') }}>
+                            <span class="text-danger">
+                                @error('phone')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="form-group">
-                          <p>Password<span style="color: #e12454"><b> * </b></span></p>
-                          <input name="password" id="password" type="password" class="form-control" placeholder="">
+                            <p>Password<span style="color: #e12454"><b> * </b></span></p>
+                            <input name="password" id="password" type="password" class="form-control" placeholder="">
+                            <span class="text-danger">
+                                @error('password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="form-group">
-                          <p>Konfirmasi Password<span style="color: #e12454"><b> * </b></span></p>
-                          <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder="">
+                            <p>Konfirmasi Password<span style="color: #e12454"><b> * </b></span></p>
+                            <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder="">
+                            <span class="text-danger">
+                                @error('cpassword')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         @if (session()->has('loginError'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
