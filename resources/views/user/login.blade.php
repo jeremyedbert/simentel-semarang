@@ -18,6 +18,11 @@
                             <p>Password<span style="color: #e12454"><b> * </b></span></p>
                             <input name="password" id="password" type="password" class="form-control" placeholder="">
                         </div>
+                        <div>
+                          <p>Belum punya akun? 
+                            <a href="{{ route('user.register') }}"><b>Daftar akun pemohon</b></a>
+                          </p>
+                        </div>
 
                         {{-- <a class="btn btn-main btn-round" href="#">Submit</a> --}}
                         {{-- <div class="row">
