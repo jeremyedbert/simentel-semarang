@@ -18,21 +18,34 @@ use App\Http\Controllers\LoginUserController;
 */
 
 /* Untuk User */
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/login-user', [LoginUserController::class, 'index'])->name('login-user')->middleware('guest');
 
-Route::post('/login-user', [LoginUserController::class, 'authenticate']);
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/peta-menara', [UserController::class, 'peta_menara'])->name('peta-menara');
+    Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
+    Route::middleware(['guest'])->group(function () {
+        Route::get('/login', [LoginUserController::class, 'index'])->name('login');
+        Route::post('/login', [LoginUserController::class, 'authenticate']);
+    });
 
-Route::get('/daftar-menara', [FormController::class, 'index']);
-
-Route::get('/peta-menara', [UserController::class, 'peta_menara']);
-
-Route::get('/peta-microcell', [UserController::class, 'peta_microcell']);
-
-Route::get('/login-admin', function () {
-    return view('admin.login');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
+        Route::post('/logout', [LoginUserController::class, 'logout']);
+    });
 });
 
-Route::get('/admin', function () {
-    return view('admin.welcome');
+/* Untuk Admin */
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['guest'])->group(function () {
+        // Route::get('/login', [LoginUserController::class, 'index'])->name('login');
+    });
 });
+
+
+// Route::get('/login-admin', function () {
+//     return view('admin.login');
+// });
+
+// Route::get('/admin', function () {
+//     return view('admin.welcome');
+// });

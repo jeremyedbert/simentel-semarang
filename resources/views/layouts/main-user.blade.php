@@ -41,15 +41,15 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- 
     Essential Scripts
     =====================================-->
-    <script src="assets/user/plugins/jquery/jquery.js"></script>
-    <script src="assets/user/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="assets/user/plugins/slick-carousel/slick/slick.min.js"></script>
-    <script src="assets/user/plugins/shuffle/shuffle.min.js"></script>
+    <script src="{{ url('assets/user/plugins/jquery/jquery.js') }}"></script>
+    <script src="{{ url('assets/user/plugins/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ url('assets/user/plugins/slick-carousel/slick/slick.min.js') }}"></script>
+    <script src="{{ url('assets/user/plugins/shuffle/shuffle.min.js') }}"></script>
 
     <!-- Google Map -->
     {{-- <script src="assets/user/plugins/google-map/gmap.js"></script> --}}
 
-    <script src="assets/user/js/script.js"></script>
+    <script src="{{ url('assets/user/js/script.js') }}"></script>
 
 </body>
 
