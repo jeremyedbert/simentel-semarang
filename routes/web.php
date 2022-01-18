@@ -19,8 +19,8 @@ use App\Http\Controllers\LoginUserController;
 
 /* Untuk User */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/peta-menara', [UserController::class, 'peta_menara'])->name('peta-menara');
     Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
     Route::middleware(['guest'])->group(function () {
