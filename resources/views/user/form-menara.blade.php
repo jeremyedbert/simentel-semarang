@@ -37,10 +37,13 @@
         }
     </script>
     <style>
-        p{
-            margin-top:0;
-            margin-bottom:0rem
-        }
+      label{
+        margin-top: 5px;
+        margin-bottom: 0;
+      }
+      .text-danger{
+        margin-top: 0;
+      }
     </style>
     <section class="section appoinment">
         <div class="container">
@@ -48,11 +51,11 @@
             <form id="#" class="appoinment-form" method="post" action="#">
                 <div class="col">
                     <div class="form-group">
-                        <p>Nama Operator <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Nama Operator <span style="color: #e12454"><b> * </b></span></label>
                         <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
                     </div>
                     <div class="form-group">
-                        <p>Kecamatan <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="kecamatan">
                             <option value=""> -- Pilih kecamatan -- </option>
                             <option value="">Kecamatan 1</option>
@@ -62,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <p>Kelurahan <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="kelurahan">
                             <option value=""> -- Pilih kelurahan -- </option>
                             <option value="">Kelurahan 1</option>
@@ -72,7 +75,7 @@
                     </div>
 
                     <div class="form-group">
-                        <p>Tipe Site <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="site">
                             <option value="none"> -- Pilih tipe site -- </option>
                             <option value="greenfield">Greenfield</option>
@@ -83,7 +86,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <p>Tipe Jalan <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="site">
                             <option value="none"> -- Pilih tipe site -- </option>
                             <option value="greenfield">Greenfield</option>
@@ -94,18 +97,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <p>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
                         <input name="tinggi" type="text" class="form-control" placeholder="contoh: 12">
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <p>Latitude <span style="color: #e12454"><b> * </b></span></p>
+                            <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                             <div class="form-group">
                                 <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p>Longitude <span style="color: #e12454"><b> * </b></span></p>
+                            <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
                             <div class="form-group">
                                 <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
@@ -115,19 +118,19 @@
                         <div id="map_canvas" style="width: auto; height: 400px;"></div>
                     </div>
                     <div class="form-group">
-                        <p>Luas Menara<span style="color: #e12454"><b> * </b></span></p>
+                        <label>Luas Menara<span style="color: #e12454"><b> * </b></span></label>
                         <input name="pemilik" type="text" class="form-control" placeholder="contoh: 16 x 16 meter2">
                     </div>
                     <div class="form-group">
-                        <p>Pemilik Menara <span style="color: #e12454"><b> * </b></span></p>
+                        <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
                         <input name="pemilik" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
-                        <p>Penyewa Menara</p>
+                        <label>Penyewa Menara</label>
                         <input name="pemilik" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
-                        <p>Nomor IMB</p>
+                        <label>Nomor IMB</label>
                         <input name="pemilik" type="text" class="form-control" placeholder="">
                     </div>
                     
