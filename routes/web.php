@@ -25,14 +25,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/peta-menara', [UserController::class, 'peta_menara'])->name('peta-menara');
     Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
-    Route::middleware(['guest'])->group(function () {
+    Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
         Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
         Route::post('/create', [UserController::class, 'create'])->name('create');
         Route::get('/login', [LoginUserController::class, 'index'])->name('login');
         Route::post('/login', [LoginUserController::class, 'authenticate']);
     });
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
         Route::post('/logout', [LoginUserController::class, 'logout']);
     });

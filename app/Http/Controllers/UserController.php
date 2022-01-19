@@ -16,6 +16,8 @@ class UserController extends Controller
             'phone' => 'required|unique:users',
             'password' => 'required|min:5|max:30',
             'cpassword' => 'required|min:5|max:30|same:password',
+        ],[
+            'cpassword.same' => 'Your password confirmation does not match.'
         ]);
 
         $user = new User();

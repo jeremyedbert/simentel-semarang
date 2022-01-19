@@ -22,10 +22,12 @@ class LoginUserController extends Controller
     public function authenticate(Request $request)
     {
         // dd($request->all());
-        // $credentials = $request->validate([
-        //     'email' => 'required|email:dns',
-        //     'password' => 'required'
-        // ]);
+        $credentials = $request->validate([
+            'email' => 'required|email:dns|exists:users,email',
+            'password' => 'required|min:5|max:30'
+        ],[
+            'email.exists' => "We can't find your email."
+        ]);
 
         // if (Auth::guard('applicant')->attempt($credentials)) {
         //     $request->session()->regenerate();
@@ -35,7 +37,7 @@ class LoginUserController extends Controller
 
         // return back()->with('loginError', 'Login failed!');
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
