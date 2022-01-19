@@ -61,7 +61,7 @@
                             aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown03">
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login sebagai Pemohon</a></li>
-                            <li><a class="dropdown-item" href="#">Login sebagai Admin</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.login') }}">Login sebagai Admin</a></li>
                             
                         </ul>
                     </li>
