@@ -17,12 +17,22 @@
                         <div class="form-group">
                             <p>Email<span style="color: #e12454"><b> * </b></span></p>
                             <input name="email" id="email" type="email" class="form-control" placeholder="" autofocus
-                                value={{ old('email') }}>
+                                value='{{ old('email') }}' autocomplete="off">
                         </div>
+                        <span class="text-danger">
+                            @error('email')
+                                {{ $message }}
+                            @enderror
+                        </span>
                         <div class="form-group">
                             <p>Password<span style="color: #e12454"><b> * </b></span></p>
-                            <input name="password" id="password" type="password" class="form-control" placeholder="">
+                            <input name="password" id="password" type="password" class="form-control" placeholder="" autocomplete="off">
                         </div>
+                        <span class="text-danger">
+                            @error('password')
+                                {{ $message }}
+                            @enderror
+                        </span>
                         <div>
                             <p>Belum punya akun?
                                 <a href="{{ route('user.register') }}"><b>Daftar akun pemohon</b></a>

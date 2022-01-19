@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <p>Nama<span style="color: #e12454"><b> * </b></span></p>
                             <input name="name" id="name" type="text" class="form-control" placeholder="" autofocus
-                                value={{ old('name') }}>
+                                value='{{ old('name') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('name')
                                     {{ $message }}
@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <p>Email<span style="color: #e12454"><b> * </b></span></p>
                             <input name="email" id="email" type="email" class="form-control" placeholder=""
-                                value={{ old('email') }}>
+                                value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('email')
                                     {{ $message }}
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <p>Nomor HP<span style="color: #e12454"><b> * </b></span></p>
                             <input name="phone" id="phone" type="text" class="form-control" placeholder=""
-                                value={{ old('phone') }}>
+                                value='{{ old('phone') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('phone')
                                     {{ $message }}
@@ -41,7 +41,8 @@
                         </div>
                         <div class="form-group">
                             <p>Password<span style="color: #e12454"><b> * </b></span></p>
-                            <input name="password" id="password" type="password" class="form-control" placeholder="">
+                            <input name="password" id="password" type="password" class="form-control" placeholder=""
+                                autocomplete="off">
                             <span class="text-danger">
                                 @error('password')
                                     {{ $message }}
@@ -50,7 +51,8 @@
                         </div>
                         <div class="form-group">
                             <p>Konfirmasi Password<span style="color: #e12454"><b> * </b></span></p>
-                            <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder="">
+                            <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder=""
+                                autocomplete="off">
                             <span class="text-danger">
                                 @error('cpassword')
                                     {{ $message }}
