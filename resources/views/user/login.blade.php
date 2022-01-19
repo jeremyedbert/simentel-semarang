@@ -1,6 +1,14 @@
 @extends('layouts.main-user')
 @section('content')
-
+    <style>
+      label{
+        margin-top: 5px;
+        margin-bottom: 0;
+      }
+      /* .text-danger{
+        margin-top: 0;
+      } */
+    </style>
     <section>
         <div class="d-flex row h-100 d-inline-block">
             <div class="col-lg-6 d-flex justify-content-center">
@@ -15,24 +23,26 @@
                     <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.login') }}">
                         @csrf
                         <div class="form-group">
-                            <p>Email<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
                             <input name="email" id="email" type="email" class="form-control" placeholder="" autofocus
                                 value='{{ old('email') }}' autocomplete="off">
-                        </div>
-                        <span class="text-danger">
-                            @error('email')
+                            <span class="text-danger">
+                              @error('email')
                                 {{ $message }}
-                            @enderror
-                        </span>
+                              @enderror
+                            </span>
+                        </div>
+                        
                         <div class="form-group">
-                            <p>Password<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="password">Password<span style="color: #e12454"><b> * </b></span></label>
                             <input name="password" id="password" type="password" class="form-control" placeholder="" autocomplete="off">
+                            <span class="text-danger">
+                              @error('password')
+                                  {{ $message }}
+                              @enderror
+                            </span>
                         </div>
-                        <span class="text-danger">
-                            @error('password')
-                                {{ $message }}
-                            @enderror
-                        </span>
+                        
                         <div>
                             <p>Belum punya akun?
                                 <a href="{{ route('user.register') }}"><b>Daftar akun pemohon</b></a>

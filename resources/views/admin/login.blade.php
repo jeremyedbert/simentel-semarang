@@ -1,6 +1,11 @@
 @extends('layouts.main-user')
 @section('content')
-
+  <style>
+    label{
+        margin-top: 5px;
+        margin-bottom: 0;
+      }
+  </style>
   <section>
     <div class="d-flex row h-100 d-inline-block">
       <div class="col-lg-6 d-flex justify-content-center">
@@ -14,11 +19,11 @@
           <h2 class="title-color mb-3 mx-3">Login sebagai Admin</h2>
           <form id="#" class="appoinment-form mx-3 mb-3" method="post" action="#">
             <div class="form-group">
-              <p>Email<span style="color: #e12454"><b> * </b></span></p>
+              <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
               <input name="email" type="email" class="form-control" placeholder="">
             </div>
             <div class="form-group">
-              <p>Password<span style="color: #e12454"><b> * </b></span></p>
+              <label for="password">Password<span style="color: #e12454"><b> * </b></span></label>
               <input name="password" type="password" class="form-control" placeholder="">
             </div>
             

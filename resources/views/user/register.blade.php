@@ -1,6 +1,14 @@
 @extends('layouts.main-user')
 @section('content')
-
+    <style>
+      label{
+        margin-top: 5px;
+        margin-bottom: 0;
+      }
+      /* .text-danger{
+        margin-top: 0;
+      } */
+    </style>
     <section>
         <div class="d-flex row h-100 d-inline-block">
             <div class="col-lg-6 d-flex justify-content-center">
@@ -10,7 +18,7 @@
                     <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.create') }}">
                         @csrf
                         <div class="form-group">
-                            <p>Nama<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="name">Nama<span style="color: #e12454"><b> * </b></span></label>
                             <input name="name" id="name" type="text" class="form-control" placeholder="" autofocus
                                 value='{{ old('name') }}' autocomplete="off">
                             <span class="text-danger">
@@ -20,7 +28,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <p>Email<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
                             <input name="email" id="email" type="email" class="form-control" placeholder=""
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
@@ -30,7 +38,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <p>Nomor HP<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="phone">Nomor HP<span style="color: #e12454"><b> * </b></span></label>
                             <input name="phone" id="phone" type="text" class="form-control" placeholder=""
                                 value='{{ old('phone') }}' autocomplete="off">
                             <span class="text-danger">
@@ -40,7 +48,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <p>Password<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="password">Password<span style="color: #e12454"><b> * </b></span></label>
                             <input name="password" id="password" type="password" class="form-control" placeholder=""
                                 autocomplete="off">
                             <span class="text-danger">
@@ -50,7 +58,7 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <p>Konfirmasi Password<span style="color: #e12454"><b> * </b></span></p>
+                            <label for="cpassword">Konfirmasi Password<span style="color: #e12454"><b> * </b></span></label>
                             <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder=""
                                 autocomplete="off">
                             <span class="text-danger">
