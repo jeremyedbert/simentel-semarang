@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Applicant;
+use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Admin;
@@ -24,10 +25,23 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('jeremy')
         ]);
 
+        User::create([
+          'name' => 'Willy',
+          'email' => 'willy@gmail.com',
+          'phone' => '082313758289',
+          'password' => bcrypt('willy')
+        ]);
+
         Admin::create([
             'name' => 'Kevin Julio',
             'email' => 'kevin@gmail.com',
             'password' => bcrypt('kevin'),
         ]);
+
+        Admin::create([
+          'name' => 'Willy Adiguno',
+          'email' => 'willyadiguno@gmail.com',
+          'password' => bcrypt('willyadiguno'),
+      ]);
     }
 }
