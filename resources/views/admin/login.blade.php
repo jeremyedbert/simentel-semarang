@@ -6,6 +6,11 @@
             margin-bottom: 0;
         }
 
+        .form-control::placeholder {
+            color: #9e9e9e;
+            opacity: 1;
+        }
+
     </style>
     <section>
         <div class="d-flex row h-100 d-inline-block">
@@ -17,7 +22,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" type="email" class="form-control" placeholder=""
+                            <input name="email" type="email" class="form-control" placeholder="contoh: johndoe@example.com"
                                 value="{{ old('email') }}">
                             <span class="text-danger">
                                 @error('email')
