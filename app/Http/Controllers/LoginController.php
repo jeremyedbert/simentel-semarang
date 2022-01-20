@@ -14,4 +14,9 @@ class LoginController extends Controller
         ]);
     }
    
+    public function index_admin(){
+        return view('admin.login', [
+            'active' => 'login',
+        ]);
+    }
 }

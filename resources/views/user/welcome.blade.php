@@ -109,11 +109,11 @@
                         <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang. 
                             Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
                         </p>
-                        <a href="/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="{{ route('user.peta-menara') }}" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Menara
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
-                        <a href="/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="{{ route('user.peta-microcell') }}" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Microcell
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
@@ -169,8 +169,8 @@
                         <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara/microcell
                             menjadi lebih mudah. Cukup ikuti beberapa langkah berikut.</p>
                         <ol class="mb-4">
-                            <li><a href="/login-pemohon"><b>Login</b></a> sebagai pemohon atau <a href="register-pemohon"><b>buat akun</b></a>  terlebih dahulu bila belum memilikinya</li>
-                            <li>Pilih tab <a href="/pendaftaran"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda dapat mengisi detail menara, 
+                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau <a href="{{ route('user.register') }}"><b>buat akun</b></a>  terlebih dahulu bila belum memilikinya</li>
+                            <li>Pilih tab <a href="{{ route('user.') }}"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda dapat mengisi detail menara, 
                                 menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung</li>
                             <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan</li>
                             <li>Tunggu verifikasi dari kami. Notifikasi akan kami kirimkan melalui email Anda</li>
@@ -240,7 +240,7 @@
 
                             
                         </form> --}}
-                        <a class="btn btn-main btn-round-full" href="appoinment.html">Daftarkan Menara <i
+                        <a class="btn btn-main btn-round-full" href="{{ route('user.daftar-menara') }}">Daftarkan Menara <i
                             class="icofont-simple-right ml-2"></i></a>
                     </div>
                 </div>

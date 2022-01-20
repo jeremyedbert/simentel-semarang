@@ -7,6 +7,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
         Route::post('/create', [UserController::class, 'create'])->name('create');
         Route::get('/login', [LoginController::class, 'index'])->name('login');
-        Route::post('/login', [UserController::class, 'authenticate']);
+        Route::post('/login', [UserController::class, 'authenticate'])->name('check');
     });
 
     // Authenticated User
@@ -43,12 +44,13 @@ Route::prefix('user')->name('user.')->group(function () {
 
 /* Untuk Admin */
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware(['guest:admin'])->group(function () {
-        Route::get('/login', [AdminController::class, 'index'])->name('login');
+    Route::middleware(['guest:admin','PreventBackHistory'])->group(function () {
+        Route::get('/login', [LoginController::class, 'index_admin'])->name('login');
+        Route::post('/login', [AdminController::class, 'authenticate'])->name('check');
     });
 
-    Route::middleware(['auth:admin'])->group(function () {
-        Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['auth:admin','PreventBackHistory'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     });
 });
 

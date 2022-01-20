@@ -5,6 +5,11 @@
         margin-top: 5px;
         margin-bottom: 0;
       }
+
+      .form-control::placeholder{
+          color: #9e9e9e;
+          opacity: 1;
+      }
       /* .text-danger{
         margin-top: 0;
       } */
@@ -20,11 +25,11 @@
                         </div>
                     @endif
                     <h2 class="title-color mb-3 mx-3">Login sebagai Pemohon</h2>
-                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.login') }}">
+                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.check') }}">
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="" autofocus
+                            <input name="email" id="email" type="email" class="form-control" placeholder="contoh: johndoe@example.com" autofocus
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                               @error('email')
