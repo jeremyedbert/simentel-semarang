@@ -5,6 +5,11 @@
         margin-top: 5px;
         margin-bottom: 0;
       }
+
+      .form-control::placeholder{
+          color: #9e9e9e;
+          opacity: 1;
+      }
       /* .text-danger{
         margin-top: 0;
       } */
@@ -24,7 +29,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="" autofocus
+                            <input name="email" id="email" type="email" class="form-control" placeholder="contoh: johndoe@example.com" autofocus
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                               @error('email')

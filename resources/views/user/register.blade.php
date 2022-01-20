@@ -5,6 +5,11 @@
         margin-top: 5px;
         margin-bottom: 0;
       }
+
+      .form-control::placeholder{
+          color: #9e9e9e;
+          opacity: 1;
+      }
       /* .text-danger{
         margin-top: 0;
       } */
@@ -19,7 +24,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="name" id="name" type="text" class="form-control" placeholder="" autofocus
+                            <input name="name" id="name" type="text" class="form-control" placeholder="contoh: John Doe" autofocus
                                 value='{{ old('name') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('name')
@@ -29,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder=""
+                            <input name="email" id="email" type="email" class="form-control" placeholder="contoh: johndoe@example.com"
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('email')
@@ -39,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Nomor HP<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="phone" id="phone" type="text" class="form-control" placeholder=""
+                            <input name="phone" id="phone" type="text" class="form-control" placeholder="contoh: 08123456789"
                                 value='{{ old('phone') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('phone')
