@@ -53,7 +53,7 @@
                     <h4 class="text-section">Components</h4>
                 </li>
                 <li class="nav-item">
-                    <a href="widgets.html">
+                    <a href="{{ route('admin.list') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>Permohonan</p>
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
@@ -81,7 +81,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="widgets.html">
+                    <a href="{{ route('admin.history') }}">
                         <i class="fas fa-history"></i>
                         <p>Riwayat</p>
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
