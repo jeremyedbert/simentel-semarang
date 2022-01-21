@@ -38,6 +38,8 @@ Route::prefix('user')->name('user.')->group(function () {
     // Authenticated User
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
+        Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
+        
         Route::post('/logout', [UserController::class, 'logout']);
     });
 });

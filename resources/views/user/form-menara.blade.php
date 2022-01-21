@@ -56,24 +56,20 @@
                     </div>
                     <div class="form-group">
                         <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" id="kecamatan">
-                            <option value=""> -- Pilih kecamatan -- </option>
-                            <option value="">Kecamatan 1</option>
-                            <option value="">Kecamatan 2</option>
-                            <option value="">Kecamatan 3</option>
+                        <select class="form-control input-lg dynamic" name="kecamatan" id="kecamatan" data-dependent="kelurahan">
+                            <option value="none"> -- Pilih kecamatan -- </option>
+                            @foreach ($kecamatan as $key => $kec)
+                              <option value="{{ $key }}"> {{ $kec }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" id="kelurahan">
-                            <option value=""> -- Pilih kelurahan -- </option>
-                            <option value="">Kelurahan 1</option>
-                            <option value="">Kelurahan 2</option>
-                            <option value="">Kelurahan 3</option>
+                        <select class="form-control input-lg dynamic" name="kelurahan" id="kelurahan">
+                            <option value="none"> -- Pilih kelurahan -- </option>    
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="site">
@@ -139,6 +135,35 @@
                     <a class="btn btn-main btn-round" href="#">Submit</a>
                 </div>
             </form>
+            
         </div>
     </section>
+    <script type="text/javascript">
+      $(document).ready(function() {
+            $('#kecamatan').change(function() {
+               var kecamatanID = $(this).val();
+               if(kecamatanID) {
+                   $.ajax({
+                       type: "GET",
+                       url: "{{ url('user/daftar-menara/getKelurahan') }}?idKec="+kecamatanID,
+                       success:function(res)
+                       {
+                         if(res){
+                            $('#kelurahan').empty();
+                            $('#kelurahan').append('<option value="none"> -- Pilih kelurahan -- </option>'); 
+                            $.each(res, function(key, value){
+                                $('#kelurahan').append('<option value="'+ key +'">' + value+ '</option>');
+                            });
+                        }else{
+                            $('#kelurahan').empty();
+                        }
+                     }
+                   });
+               }else{
+                 $('#kelurahan').empty();
+               }
+            });
+            });
+      
+    </script>
 @endsection
