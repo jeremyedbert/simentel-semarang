@@ -11,7 +11,9 @@ class FormController extends Controller
     public function index()
     {
       $kecamatan = DB::table('kecamatans')->pluck("name", "id");
-      return view('user.form-menara', compact('kecamatan'), ['active' => 'pendaftaran']);
+      $tipejalan = DB::table('tipe_jalans')->get();
+      $tipesite = DB::table('tipe_sites')->get();
+      return view('user.form-menara', compact('kecamatan', 'tipejalan', 'tipesite'), ['active' => 'pendaftaran']);
     }
 
     public function getKelurahan(Request $request)
