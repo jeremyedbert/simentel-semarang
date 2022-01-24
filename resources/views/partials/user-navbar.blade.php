@@ -15,7 +15,7 @@
 </div> --}}
 <nav class="navbar navbar-expand-lg navigation" id="navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img src="images/logo.png" alt="" class="img-fluid">
         </a>
 
@@ -32,7 +32,7 @@
                         href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li>
 
                 <li class="nav-item dropdown  {{ $active === 'peta' ? 'active' : '' }}">
-                    <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown02">
                         <li><a class="dropdown-item" href="{{ route('user.peta-menara') }}">Peta Menara</a></li>
@@ -43,10 +43,11 @@
 
                 @auth
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown02" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Halo, {{ auth()->user()->name }}<i
                                 class="icofont-thin-down"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                            <li><a class="dropdown-item" href="{{ route('user.cekstatus') }}">Cek Status Permohonan</a></li>
                             <li>
                                 <form action="/user/logout" method="post">
                                     @csrf
@@ -57,12 +58,11 @@
                     </li>
                 @else
                     <li class="nav-item dropdown  {{ $active === 'login' ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                        <ul class="dropdown-menu" aria-labelledby="dropdown02">
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login sebagai Pemohon</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.login') }}">Login sebagai Admin</a></li>
-                            
                         </ul>
                     </li>
                 @endauth
