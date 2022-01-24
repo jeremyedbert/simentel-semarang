@@ -20,7 +20,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 /* Untuk User */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -39,7 +39,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
         Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
         Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
-        
+        Route::get('/cekstatus', [UserController::class, 'cekStatus'])->name('cekstatus');
         Route::post('/logout', [UserController::class, 'logout']);
     });
 });

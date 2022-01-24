@@ -5,7 +5,7 @@
     @include('partials.admin-header')
 </head>
 
-<body>
+<body onload="initialize()">
     <script src={{ url("assets/admin/js/core/jquery.3.2.1.min.js") }}></script>
     <script src={{ url("assets/admin/js/core/popper.min.js") }}></script>
     <script src={{ url("assets/admin/js/core/bootstrap.min.js") }}></script>

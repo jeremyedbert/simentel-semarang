@@ -1,5 +1,42 @@
 @extends('layouts.main-admin')
 @section('content')
+    <script type="text/javascript" {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
+        //punya willy
+    </script>
+    <script type="text/javascript">
+        function initialize() {
+            // Creating map object
+            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+                zoom: 12,
+                center: new google.maps.LatLng(-7.09275, 110.32743),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            // creates a draggable marker to the given coords
+            var vMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(-7.09275, 110.32743),
+                draggable: true
+            });
+
+            // adds a listener to the marker
+            // gets the coords when drag event ends
+            // then updates the input with the new coords
+            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
+                $("#txtLat").val(evt.latLng.lat().toFixed(6));
+                $("#txtLng").val(evt.latLng.lng().toFixed(6));
+
+                map.panTo(evt.latLng);
+            });
+
+            // centers the map on markers coords
+            map.setCenter(vMarker.position);
+
+            // adds the marker on the map
+            vMarker.setMap(map);
+        }
+    </script>
+
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -15,11 +52,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Id Tower</th>
-                                                <th>Operator</th>
+                                                <th>Pemilik</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
                                                 <th>Jenis Menara</th>
-                                                <th>Tinggi</th>
                                                 <th>Info Lengkap</th>
                                                 <th>Lampiran</th>
                                             </tr>
@@ -31,8 +67,8 @@
                                                 <td>-7.09275</td>
                                                 <td>110.32743</td>
                                                 <td>Makro</td>
-                                                <td>52</td>
-                                                <td><a href="#" data-toggle="modal" data-target="#modalPermohonan">Detail <i class="fas fa-chevron-right"></i></a></td>
+                                                <td><a href="#" data-toggle="modal" data-target="#modalPermohonan">Detail <i
+                                                            class="fas fa-chevron-right"></i></a></td>
                                                 <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
                                             </tr>
                                         </tbody>
@@ -47,24 +83,71 @@
     </div>
 
     {{-- Modal --}}
-    <div class="modal fade" id="modalPermohonan" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="modalPermohonan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h3 class="modal-title" id="exampleModalLongTitle"><b>SMG454</b></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
-                    quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"><b>Pemilik Menara <span style="color: #e12454"> *
+                                    </span></b></label>
+                            <p>PT Dayamitra Telekomunikasi</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1"><b>Jenis Menara <span style="color: #e12454"> *
+                                    </span></b></label>
+                            <p>Makro</p>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"><b>Latitude <span style="color: #e12454"> *
+                                            </span></b></label>
+                                    <input id="txtLat" type="text" class="form-control" value="-7.09275">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"><b>Longitude <span style="color: #e12454"> *
+                                            </span></b></label>
+                                    <input id="txtLng" type="text" class="form-control" value="110.32743">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="map_canvas" style="width: auto; height: 300px;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipemenara"><b>Tipe Menara <span style="color: #e12454"> * </span></b></label>
+                            <select class="form-control input-square" id="site">
+                                <option value="none"> -- Pilih tipe site -- </option>
+                                <option value="greenfield" selected>Greenfield</option>
+                                <option value="monopole">Monopole</option>
+                                <option value="rooftop">Rooftop Pole</option>
+                                <option value="sst">SST</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tinggi"><b>Tinggi Menara <span style="color: #e12454"> * </span></b></label>
+                            <p>52 meter</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="tinggi"><b>Tinggi Menara <span style="color: #e12454"> * </span></b></label>
+                            <p>52 meter</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@
 </div> --}}
 <nav class="navbar navbar-expand-lg navigation" id="navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img src="images/logo.png" alt="" class="img-fluid">
         </a>
 
@@ -47,7 +47,7 @@
                             aria-haspopup="true" aria-expanded="false">Halo, {{ auth()->user()->name }}<i
                                 class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">
-                            <li><a class="dropdown-item" href="#">Daftar Permohonan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.cekstatus') }}">Cek Status Permohonan</a></li>
                             <li>
                                 <form action="/user/logout" method="post">
                                     @csrf

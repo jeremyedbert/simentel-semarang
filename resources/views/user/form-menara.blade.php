@@ -102,7 +102,6 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                          
                             <div class="form-group">
                               <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                               <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
