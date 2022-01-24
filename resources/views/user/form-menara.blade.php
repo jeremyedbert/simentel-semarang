@@ -47,16 +47,24 @@
     </style>
     <section class="section appoinment">
         <div class="container">
-            <h2 class="title-color mb-4">Pendaftaran Menara Utama</h2>
+            <h2 class="title-color mb-4">Pendaftaran Menara</h2>
             <form id="#" class="appoinment-form" method="post" action="#">
                 <div class="col">
                     <div class="form-group">
-                        <label>Nama Operator <span style="color: #e12454"><b> * </b></span></label>
-                        <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
+                      <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
+                      <input name="pemilik" type="text" class="form-control input-sm" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label>Jenis Menara <span style="color: #e12454"><b> * </b></span></label>
+                      <select class="form-control" name="jenismenara" id="jenismenara">
+                          <option value="none"> -- Pilih jenis menara -- </option>
+                          <option value="1"> Menara Utama (Macrocell) </option>
+                          <option value="2"> Menara Kecil (Microcell) </option>   
+                      </select>
                     </div>
                     <div class="form-group">
                         <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control input-lg dynamic" name="kecamatan" id="kecamatan" data-dependent="kelurahan">
+                        <select class="form-control" name="kecamatan" id="kecamatan" data-dependent="kelurahan">
                             <option value="none"> -- Pilih kecamatan -- </option>
                             @foreach ($kecamatan as $key => $kec)
                               <option value="{{ $key }}"> {{ $kec }}</option>
@@ -66,7 +74,7 @@
 
                     <div class="form-group">
                         <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control input-lg dynamic" name="kelurahan" id="kelurahan">
+                        <select class="form-control" name="kelurahan" id="kelurahan">
                             <option value="none"> -- Pilih kelurahan -- </option>    
                         </select>
                     </div>
@@ -74,22 +82,18 @@
                         <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" id="site">
                             <option value="none"> -- Pilih tipe site -- </option>
-                            <option value="greenfield">Greenfield</option>
-                            <option value="monopole">Monopole</option>
-                            <option value="rooftop">Rooftop Pole</option>
-                            <option value="sst">SST</option>
-                            <option value="lainnya">Lainnya</option>
+                            @foreach ($tipesite as $site)
+                              <option value="{{ $site->id }}"> {{ $site->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" id="site">
-                            <option value="none"> -- Pilih tipe site -- </option>
-                            <option value="greenfield">Greenfield</option>
-                            <option value="monopole">Monopole</option>
-                            <option value="rooftop">Rooftop Pole</option>
-                            <option value="sst">SST</option>
-                            <option value="lainnya">Lainnya</option>
+                        <select class="form-control" id="jalan">
+                            <option value="none"> -- Pilih tipe jalan -- </option>
+                            @foreach ($tipejalan as $key => $jalan)
+                              <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -99,14 +103,14 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
-                                <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
+                              <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
+                              <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
-                                <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
+                              <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
+                              <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -118,8 +122,8 @@
                         <input name="pemilik" type="text" class="form-control" placeholder="contoh: 16 x 16 meter2">
                     </div>
                     <div class="form-group">
-                        <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
-                        <input name="pemilik" type="text" class="form-control" placeholder="">
+                      <label>Nama Operator <span style="color: #e12454"><b> * </b></span></label>
+                      <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
                     </div>
                     <div class="form-group">
                         <label>Penyewa Menara</label>
@@ -132,7 +136,7 @@
                     
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
-                    <a class="btn btn-main btn-round" href="#">Submit</a>
+                    <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
                 </div>
             </form>
             

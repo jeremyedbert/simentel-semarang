@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Admin;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,6 +40,13 @@ class DatabaseSeeder extends Seeder
           'name' => 'Willy Adiguno',
           'email' => 'willyadiguno@gmail.com',
           'password' => bcrypt('willyadiguno'),
+        ]);
+
+        $this->call([
+          KecamatanSeeder::class,
+          KelurahanSeeder::class,
+          TipeJalanSeeder::class,
+          TipeSiteSeeder::class,
       ]);
     }
 }
