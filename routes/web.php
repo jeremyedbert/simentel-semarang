@@ -53,6 +53,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/list', [DashboardController::class, 'list'])->name('list');
+        Route::get('/history', [DashboardController::class, 'history'])->name('history');
     });
 });
 

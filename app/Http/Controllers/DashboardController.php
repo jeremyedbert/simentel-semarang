@@ -9,4 +9,12 @@ class DashboardController extends Controller
     public function index(){
         return view('admin.welcome');
     }
+
+    public function list(){
+        return view('admin.list');
+    }
+
+    public function history(){
+        return view('admin.history');
+    }
 }
