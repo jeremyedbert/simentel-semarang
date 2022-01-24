@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Tower;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -47,6 +48,9 @@ class DatabaseSeeder extends Seeder
           KelurahanSeeder::class,
           TipeJalanSeeder::class,
           TipeSiteSeeder::class,
+          TipeMenaraSeeder::class,
+          TowerSeeder::class,
+          StatusSeeder::class,
       ]);
     }
 }

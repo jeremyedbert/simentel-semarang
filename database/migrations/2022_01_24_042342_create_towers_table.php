@@ -15,20 +15,20 @@ class CreateTowersTable extends Migration
     {
         Schema::create('towers', function (Blueprint $table) {
             $table->id();
-            $table->string('idmenara');
-            $table->string('nama');
-            $table->string('operator');
-            $table->string('kecamatan');
-            $table->string('kelurahan');
-            $table->string('tipeSite');
-            $table->string('tipeJalan');
+            $table->string('idMenara')->unique(); // bukan primary
+            $table->string('operator')->nullable();
+            $table->foreignId('idTipeMenara')->constrained('tipe_menaras');
+            $table->foreignId('idKec')->constrained('kecamatans');
+            $table->foreignId('idKel')->constrained('kelurahans');
+            $table->foreignId('idSite')->constrained('tipe_sites');
+            $table->foreignId('idJalan')->constrained('tipe_jalans');
             $table->float('tinggi',4,1);
             $table->float('latitude',10,7);
             $table->float('longitude',10,7);
             $table->string('luas');
             $table->string('pemilik');
-            $table->string('penyewa');
-            $table->string('nomorIMB');
+            $table->string('penyewa')->nullable();
+            $table->string('nomorIMB')->nullable();
             $table->timestamps();
         });
     }
