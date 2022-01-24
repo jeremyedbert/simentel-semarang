@@ -21,4 +21,5 @@ class FormController extends Controller
                     ->pluck("name", "id"); 
       return response()->json($kelurahan);
     }
+
 }

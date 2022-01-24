@@ -32,7 +32,7 @@
                                                 <td>110.32743</td>
                                                 <td>Makro</td>
                                                 <td>52</td>
-                                                <td><a href="#" data-toggle="modal" data-target="#modalPermohonan">Detail <i class="fas fa-chevron-right"></i></a></td>
+                                                <td><a href="#" data-toggle="modal" data-target="#modalRiwayat">Detail <i class="fas fa-chevron-right"></i></a></td>
                                                 <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
                                             </tr>
                                         </tbody>
@@ -47,12 +47,12 @@
     </div>
 
     {{-- Modal --}}
-    <div class="modal fade" id="modalPermohonan" tabindex="-1" role="dialog"
+    <div class="modal fade" id="modalRiwayat" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h1 class="modal-title" id="exampleModalLongTitle">Modal title</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

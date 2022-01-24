@@ -79,4 +79,11 @@ class UserController extends Controller
             'active' => 'peta',
         ]);
     }
+
+    public function cekStatus(Request $request)
+    {
+        return view('user.daftar',[
+            'active' => 'none',
+        ]);
+    }
 }

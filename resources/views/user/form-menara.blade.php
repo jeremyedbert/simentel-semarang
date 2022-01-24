@@ -98,14 +98,14 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                             <div class="form-group">
+                                <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                                 <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
                             <div class="form-group">
+                                <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
                                 <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
                         </div>
