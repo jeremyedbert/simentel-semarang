@@ -24,5 +24,11 @@ class TipeJalanSeeder extends Seeder
         TipeJalan::create([
           'name' => 'Concrete'
         ]);
+        TipeJalan::create([
+          'name' => 'Asphalt'
+        ]);
+        TipeJalan::create([
+          'name' => 'Lainnya'
+        ]);
     }
 }
