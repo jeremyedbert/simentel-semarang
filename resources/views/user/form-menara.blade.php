@@ -47,20 +47,58 @@
     </style>
     <section class="section appoinment">
         <div class="container">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
             <h2 class="title-color mb-4">Pendaftaran Menara</h2>
-            <form id="#" class="appoinment-form" method="post" action="#">
+            <form id="#" class="appoinment-form" method="post" action="{{ route('user.daftar-menara.createTower') }}">
                 <div class="col">
+                  @csrf
                     <div class="form-group">
                       <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
                       <input name="pemilik" type="text" class="form-control input-sm" placeholder="">
                     </div>
                     <div class="form-group">
-                      <label>Jenis Menara <span style="color: #e12454"><b> * </b></span></label>
-                      <select class="form-control" name="jenismenara" id="jenismenara">
-                          <option value="none"> -- Pilih jenis menara -- </option>
-                          <option value="1"> Menara Utama (Macrocell) </option>
-                          <option value="2"> Menara Kecil (Microcell) </option>   
+                      <label>ID Menara <span style="color: #e12454"><b> * </b></span></label>
+                      <input name="idMenara" type="text" class="form-control input-sm" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label>Tipe Menara <span style="color: #e12454"><b> * </b></span></label>
+                      <select class="form-control" name="tipeMenara" id="tipeMenara">
+                          <option value="none"> -- Pilih tipe menara -- </option>
+                          @foreach ($tipemenara as $menara)
+                              <option value="{{ $menara->id }}"> {{ $menara->name }}</option>
+                          @endforeach   
                       </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
+                      <select class="form-control" name="tipeSite" id="tipeSite">
+                          <option value="none"> -- Pilih tipe site -- </option>
+                          @foreach ($tipesite as $site)
+                            <option value="{{ $site->id }}"> {{ $site->name }}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
+                        <select class="form-control" name="tipeJalan" id="jalan">
+                            <option value="none"> -- Pilih tipe jalan -- </option>
+                            @foreach ($tipejalan as $jalan)
+                              <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
+                        <input name="tinggi" type="text" class="form-control" placeholder="contoh: 12">
                     </div>
                     <div class="form-group">
                         <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
@@ -77,28 +115,6 @@
                         <select class="form-control" name="kelurahan" id="kelurahan">
                             <option value="none"> -- Pilih kelurahan -- </option>    
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" id="site">
-                            <option value="none"> -- Pilih tipe site -- </option>
-                            @foreach ($tipesite as $site)
-                              <option value="{{ $site->id }}"> {{ $site->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" id="jalan">
-                            <option value="none"> -- Pilih tipe jalan -- </option>
-                            @foreach ($tipejalan as $key => $jalan)
-                              <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
-                        <input name="tinggi" type="text" class="form-control" placeholder="contoh: 12">
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
@@ -118,20 +134,20 @@
                         <div id="map_canvas" style="width: auto; height: 400px;"></div>
                     </div>
                     <div class="form-group">
-                        <label>Luas Menara<span style="color: #e12454"><b> * </b></span></label>
-                        <input name="pemilik" type="text" class="form-control" placeholder="contoh: 16 x 16 meter2">
+                        <label>Luas<span style="color: #e12454"><b> * </b></span></label>
+                        <input name="luas" type="text" class="form-control" placeholder="contoh: 16 x 16 meter2">
                     </div>
                     <div class="form-group">
-                      <label>Nama Operator <span style="color: #e12454"><b> * </b></span></label>
+                      <label>Operator</label>
                       <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
                     </div>
                     <div class="form-group">
                         <label>Penyewa Menara</label>
-                        <input name="pemilik" type="text" class="form-control" placeholder="">
+                        <input name="penyewa" type="text" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <label>Nomor IMB</label>
-                        <input name="pemilik" type="text" class="form-control" placeholder="">
+                        <input name="nomorIMB" type="text" class="form-control" placeholder="">
                     </div>
                     
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
