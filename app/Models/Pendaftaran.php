@@ -12,7 +12,12 @@ class Pendaftaran extends Model
     protected $table = "pendaftarans";
     protected $primaryKey = "no_tiket";
 
-    protected $fillable;
+    protected $fillable = [
+      'no_tiket',
+      'idUser',
+      'idTower',
+      
+    ];
 
     public function tower()
     {

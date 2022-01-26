@@ -82,7 +82,7 @@ class UserController extends Controller
 
     public function cekStatus(Request $request)
     {
-        return view('user.daftar',[
+        return view('user.cek-status',[
             'active' => 'none',
         ]);
     }

@@ -10,6 +10,8 @@ class Persetujuan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'idAdmin', 'idStatus'
+        'no_tiket',
+        // 'idAdmin',
+        // 'idStatus'
     ];
 }
