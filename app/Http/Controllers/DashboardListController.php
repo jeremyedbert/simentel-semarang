@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Tower;
 
 class DashboardListController extends Controller
 {
@@ -15,16 +16,23 @@ class DashboardListController extends Controller
      */
     public function index()
     {
-        $data = DB::table('pendaftarans')
-            ->join('persetujuans', 'pendaftarans.no_tiket', '=', 'persetujuans.no_tiket', 'inner')
-            ->join('towers', 'pendaftarans.idTower', '=', 'towers.id')
-            ->where('persetujuans.idStatus', '=', 1)->get();
+        // $data = DB::table('pendaftarans')
+        //     ->join('persetujuans', 'pendaftarans.no_tiket', '=', 'persetujuans.no_tiket', 'inner')
+        //     ->join('towers', 'pendaftarans.idTower', '=', 'towers.id')
+        //     ->join('tipe_menaras', 'tipe_menaras.id', '=', 'towers.idTipeMenara')
+        //     ->join('tipe_sites', 'tipe_sites.id', '=', 'towers.idSite')
+        //     ->join('kecamatans', 'kecamatans.id', '=', 'towers.idKec')
+        //     ->join('kelurahans', 'kelurahans.id', '=', 'towers.idKel')
+        //     ->join('tipe_jalans', 'tipe_jalans.id', '=', 'towers.idJalan')
+        //     ->where('persetujuans.idStatus', '=', 1)->get();
 
-        // return dd($data);
-        return view('admin.list', [
-            'active' => 'list',
-            'data' => $data
-        ]);
+        // $data = Tower::all();
+
+        return dd(Pendaftaran::all());
+        // return view('admin.list', [
+        //     'active' => 'list',
+        //     'data' => $data
+        // ]);
     }
 
     /**
