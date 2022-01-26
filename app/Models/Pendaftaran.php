@@ -12,10 +12,22 @@ class Pendaftaran extends Model
     protected $table = "pendaftarans";
     protected $primaryKey = "no_tiket";
 
-    protected $fillable;
+    protected $fillable = [
+        'no_tiket',
+        'idUser',
+        'idStatus',
+    ];
 
     public function tower()
     {
-        return $this->belongsTo(Tower::class);
+        return $this->hasOne(Tower::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'idUser');
+    }
+
+    public function persetujuan(){
+        return $this->hasOne(Persetujuan::class);
     }
 }
