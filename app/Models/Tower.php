@@ -34,27 +34,27 @@ class Tower extends Model
 
 	public function kecamatan()
 	{
-		return $this->belongsTo(Kecamatan::class);
+		return $this->belongsTo(Kecamatan::class, 'idKec');
 	}
 
 	public function kelurahan()
 	{
-		return $this->belongsTo(Kelurahan::class);
+		return $this->belongsTo(Kelurahan::class, 'idKel');
 	}
 
 	public function tipesite()
 	{
-		return $this->belongsTo(TipeSite::class);
+		return $this->belongsTo(TipeSite::class, 'idSite');
 	}
 
 	public function tipejalan()
 	{
-		return $this->belongsTo(TipeJalan::class);
+		return $this->belongsTo(TipeJalan::class, 'idJalan');
 	}
 
 	public function tipemenara()
 	{
-		return $this->belongsTo(TipeMenara::class);
+		return $this->belongsTo(TipeMenara::class, 'idTipeMenara');
 	}
 
 	public function pendaftaran(){
