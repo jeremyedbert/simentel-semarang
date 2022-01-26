@@ -10,7 +10,9 @@ class Persetujuan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no_tiket', 'idAdmin', 'idStatus'
+        'no_tiket',
+        'idAdmin',
+        'idStatus'
     ];
 
     public function pendaftaran(){

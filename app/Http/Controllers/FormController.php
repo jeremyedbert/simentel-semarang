@@ -64,7 +64,8 @@ class FormController extends Controller
         $save = $tower->save();
 
         if ($save) {
-            return redirect(route('user.daftar-menara'))->with('success', 'Pengajuan pendaftaran/izin menara berhasil. Silakan tunggu persetujuan dari kami.');
+            return redirect(route('user.daftar-menara'))->with('success', 'Pengajuan pendaftaran/izin menara berhasil. 
+            Silakan tunggu persetujuan dari kami.');
         } else {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
         }
