@@ -15,6 +15,8 @@ class CreatePersetujuansTable extends Migration
     {
         Schema::create('persetujuans', function (Blueprint $table) {
             $table->string('no_tiket')->primary();
+            $table->foreign('no_tiket')->references('no_tiket')->on('pendaftarans');
+            // $table->string('no_tiket')->unique();
             $table->foreignId('idAdmin')->nullable()->constrained('admins');
             $table->foreignId('idStatus')->default(1)->constrained('statuses');
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardListController extends Controller
 {
@@ -14,8 +15,15 @@ class DashboardListController extends Controller
      */
     public function index()
     {
+        $data = DB::table('pendaftarans')
+            ->join('persetujuans', 'pendaftarans.no_tiket', '=', 'persetujuans.no_tiket', 'inner')
+            ->join('towers', 'pendaftarans.idTower', '=', 'towers.id')
+            ->where('persetujuans.idStatus', '=', 1)->get();
+
+        // return dd($data);
         return view('admin.list', [
-            'active' => 'list'
+            'active' => 'list',
+            'data' => $data
         ]);
     }
 
@@ -48,7 +56,6 @@ class DashboardListController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-        //
     }
 
     /**
