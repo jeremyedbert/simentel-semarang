@@ -24,6 +24,6 @@ class TipeJalan extends Model
 
   public function tower()
   {
-    return $this->hasMany(Tower::class);
+    return $this->hasMany(Tower::class, 'idJalan');
   }
 }

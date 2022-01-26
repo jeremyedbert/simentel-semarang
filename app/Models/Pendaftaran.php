@@ -10,17 +10,17 @@ class Pendaftaran extends Model
     use HasFactory;
 
     protected $table = "pendaftarans";
-    protected $primaryKey = "no_tiket";
+    protected $primaryKey = "id";
 
     protected $fillable = [
-      'no_tiket',
+      'id',
       'idUser',
       'idTower',
     ];
 
     public function tower()
     {
-        return $this->hasOne(Tower::class);
+        return $this->belongsTo(Tower::class, 'idTower');
     }
 
     public function user(){
@@ -28,6 +28,6 @@ class Pendaftaran extends Model
     }
 
     public function persetujuan(){
-        return $this->hasOne(Persetujuan::class);
+        return $this->hasOne(Persetujuan::class, 'id', 'id');
     }
 }

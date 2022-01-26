@@ -12,6 +12,6 @@ class Status extends Model
     protected $fillable = ['name'];
 
     public function persetujuan(){
-        return $this->hasMany(Persetujuan::class);
+        return $this->hasMany(Persetujuan::class, 'idStatus');
     }
 }
