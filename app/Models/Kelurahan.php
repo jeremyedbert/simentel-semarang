@@ -27,4 +27,9 @@ class Kelurahan extends Model
   {
     return $this->hasMany(Tower::class);
   }
+
+  public function kecamatan()
+  {
+    return $this->belongsTo(Kecamatan::class, 'idKec');
+  }
 }

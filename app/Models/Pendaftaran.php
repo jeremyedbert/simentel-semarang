@@ -16,11 +16,18 @@ class Pendaftaran extends Model
       'no_tiket',
       'idUser',
       'idTower',
-      
     ];
 
     public function tower()
     {
-        return $this->belongsTo(Tower::class);
+        return $this->hasOne(Tower::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'idUser');
+    }
+
+    public function persetujuan(){
+        return $this->hasOne(Persetujuan::class);
     }
 }
