@@ -11,14 +11,24 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Kecamatan extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-      'name'
-    ];
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array<int, string>
+   */
+  protected $fillable = [
+    'name'
+  ];
+
+  public function tower()
+  {
+    return $this->hasMany(Tower::class);
+  }
+
+  public function kelurahan()
+  {
+    return $this->hasMany(Kelurahan::class);
+  }
 }

@@ -11,14 +11,19 @@ use Laravel\Sanctum\HasApiTokens;
 
 class TipeJalan extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-      'name'
-    ];
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array<int, string>
+   */
+  protected $fillable = [
+    'name'
+  ];
+
+  public function tower()
+  {
+    return $this->hasMany(Tower::class);
+  }
 }

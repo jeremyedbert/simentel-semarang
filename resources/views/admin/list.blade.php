@@ -55,22 +55,25 @@
                                                 <th>Pemilik</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                <th>Jenis Menara</th>
+                                                <th>Tipe Menara</th>
                                                 <th>Info Lengkap</th>
                                                 <th>Lampiran</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>SMG454</td>
-                                                <td>System Architect</td>
-                                                <td>-7.09275</td>
-                                                <td>110.32743</td>
-                                                <td>Makro</td>
-                                                <td><a href="#" data-toggle="modal" data-target="#modalPermohonan">Detail <i
-                                                            class="fas fa-chevron-right"></i></a></td>
-                                                <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
-                                            </tr>
+                                            @foreach ($data as $d)
+                                                <tr>
+                                                    <td>{{ $d->idMenara }}</td>
+                                                    <td>{{ $d->pemilik }}</td>
+                                                    <td>{{ $d->latitude }}</td>
+                                                    <td>{{ $d->longitude }}</td>
+                                                    <td>{{ $d->idTipeMenara }}</td>
+                                                    <td><a href="#" data-toggle="modal"
+                                                            data-target="#modalPermohonan">Detail <i
+                                                                class="fas fa-chevron-right"></i></a></td>
+                                                    <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

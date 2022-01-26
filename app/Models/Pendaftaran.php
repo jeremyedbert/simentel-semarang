@@ -11,5 +11,11 @@ class Pendaftaran extends Model
 
     protected $table = "pendaftarans";
     protected $primaryKey = "no_tiket";
-    
+
+    protected $fillable;
+
+    public function tower()
+    {
+        return $this->belongsTo(Tower::class);
+    }
 }
