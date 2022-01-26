@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
+use App\Models\Persetujuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tower;
@@ -26,13 +27,13 @@ class DashboardListController extends Controller
         //     ->join('tipe_jalans', 'tipe_jalans.id', '=', 'towers.idJalan')
         //     ->where('persetujuans.idStatus', '=', 1)->get();
 
-        // $data = Tower::all();
+        $data = Persetujuan::all();
 
-        return dd(Pendaftaran::all());
-        // return view('admin.list', [
-        //     'active' => 'list',
-        //     'data' => $data
-        // ]);
+        // return dd(Pendaftaran::all());
+        return view('admin.list', [
+            'active' => 'list',
+            'data' => $data
+        ]);
     }
 
     /**

@@ -63,11 +63,11 @@
                                         <tbody>
                                             @foreach ($data as $d)
                                                 <tr>
-                                                    <td>{{ $d->idMenara }}</td>
-                                                    <td>{{ $d->pemilik }}</td>
-                                                    <td>{{ $d->latitude }}</td>
-                                                    <td>{{ $d->longitude }}</td>
-                                                    <td>{{ $d->idTipeMenara }}</td>
+                                                    <td>{{ $d->pendaftaran->tower->idMenara }}</td>
+                                                    <td>{{ $d->pendaftaran->tower->pemilik }}</td>
+                                                    <td>{{ $d->pendaftaran->tower->latitude }}</td>
+                                                    <td>{{ $d->pendaftaran->tower->longitude }}</td>
+                                                    <td>{{ $d->pendaftaran->tower->tipemenara->name }}</td>
                                                     <td><a href="#" data-toggle="modal"
                                                             data-target="#modalPermohonan">Detail <i
                                                                 class="fas fa-chevron-right"></i></a></td>

@@ -15,16 +15,18 @@ class PendaftaranSeeder extends Seeder
      */
     public function run()
     {
-        $config = ['table' => 'pendaftarans', 'length' => 20, 'prefix' => time()*2, 'field' => 'no_tiket'];
+        $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => time()*2, 'field' => 'id'];
         $no_tiket = IdGenerator::generate($config);
 
         Pendaftaran::create([
-            'no_tiket' => $no_tiket,
+            // 'id' => $no_tiket,
+            'id' => 200200,
             'idUser' => 2,
             'idTower' => 1,
         ]); 
         Pendaftaran::create([
-            'no_tiket' => time()*3,
+            // 'id' => time()*3,
+            'id' => 300300,
             'idUser' => 1,
             'idTower' => 2,
         ]); 

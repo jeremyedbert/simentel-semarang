@@ -24,11 +24,11 @@ class Kecamatan extends Model
 
   public function tower()
   {
-    return $this->hasMany(Tower::class);
+    return $this->hasMany(Tower::class, 'idKec');
   }
 
   public function kelurahan()
   {
-    return $this->hasMany(Kelurahan::class);
+    return $this->hasMany(Kelurahan::class, 'idKec');
   }
 }
