@@ -24,6 +24,11 @@
                             {{ session('success') }}
                         </div>
                     @endif
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <h2 class="title-color mb-3 mx-3">Login sebagai Pemohon</h2>
                     <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.check') }}">
                         @csrf
