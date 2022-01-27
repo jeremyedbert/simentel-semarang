@@ -14,7 +14,8 @@ class CreatePendaftaransTable extends Migration
     public function up()
     {
         Schema::create('pendaftarans', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
+            // $table->id();
             $table->foreignId('idUser')->constrained('users');
             $table->foreignId('idTower')->constrained('towers');
             $table->timestamps();
