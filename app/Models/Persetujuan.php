@@ -10,13 +10,13 @@ class Persetujuan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no_tiket',
+        'id',
         'idAdmin',
         'idStatus'
     ];
 
     public function pendaftaran(){
-        return $this->belongsTo(Pendaftaran::class, 'no_tiket', 'no_tiket');
+        return $this->belongsTo(Pendaftaran::class, 'id', 'id');
     }
 
     public function admin(){

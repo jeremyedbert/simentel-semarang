@@ -43,6 +43,6 @@ class Admin extends Authenticatable
     ];
 
     public function persetujuan(){
-        return $this->hasMany(Persetujuan::class);
+        return $this->hasMany(Persetujuan::class, 'idAdmin');
     }
 }
