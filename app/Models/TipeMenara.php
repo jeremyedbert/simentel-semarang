@@ -15,7 +15,7 @@ class TipeMenara extends Model
 	 * @var array<int, string>
 	 */
 
-	public $timelapse = false;
+	public $timestamps = false;
 	protected $fillable = [
 		'name'
 	];

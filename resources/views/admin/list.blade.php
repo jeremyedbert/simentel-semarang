@@ -135,22 +135,13 @@
                                                                         <label for="tipemenara"><b>Tipe Menara <span
                                                                                     style="color: #e12454"> *
                                                                                 </span></b></label>
-                                                                        <select class="form-control input-square" id="site">
-                                                                            <option value="none"> -- Pilih tipe site --
-                                                                            </option>
-                                                                            <option value="greenfield">Greenfield
-                                                                            </option>
-                                                                            <option value="monopole">Monopole</option>
-                                                                            <option value="rooftop">Rooftop Pole</option>
-                                                                            <option value="sst">SST</option>
-                                                                            <option value="lainnya">Lainnya</option>
-                                                                        </select>
+                                                                        <p></p>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="tinggi"><b>Tinggi Menara <span
+                                                                        <label for="tinggi"><b>Kondisi <span
                                                                                     style="color: #e12454"> *
                                                                                 </span></b></label>
-                                                                        <p>52 meter</p>
+                                                                                <textarea id="kondisi" type="text" class="form-control"></textarea>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="tinggi"><b>Tinggi Menara <span

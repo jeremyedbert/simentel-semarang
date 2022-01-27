@@ -10,7 +10,7 @@ class Status extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    public $timelapse = false;
+    public $timestamps = false;
 
     public function persetujuan(){
         return $this->hasMany(Persetujuan::class, 'idStatus');
