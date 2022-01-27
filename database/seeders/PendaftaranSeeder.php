@@ -19,12 +19,12 @@ class PendaftaranSeeder extends Seeder
         $no_tiket = IdGenerator::generate($config);
 
         Pendaftaran::create([
-            'no_tiket' => $no_tiket,
+            'no_tiket' => '300300',
             'idUser' => 2,
             'idTower' => 1,
         ]); 
         Pendaftaran::create([
-            'no_tiket' => time()*3,
+            'no_tiket' => '200200',
             'idUser' => 1,
             'idTower' => 2,
         ]); 

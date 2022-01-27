@@ -19,10 +19,10 @@ class PersetujuanSeeder extends Seeder
         $no_tiket = IdGenerator::generate($config);
 
         Persetujuan::create([
-            'no_tiket' => $no_tiket,
+            'no_tiket' => '300300',
         ]);
         Persetujuan::create([
-            'no_tiket' => time()*3
+            'no_tiket' => '200200'
         ]);
     }
 }

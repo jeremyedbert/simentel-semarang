@@ -23,11 +23,13 @@ class Pendaftaran extends Model
         return $this->hasOne(Tower::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'idUser');
     }
 
-    public function persetujuan(){
+    public function persetujuan()
+    {
         return $this->hasOne(Persetujuan::class);
     }
 }
