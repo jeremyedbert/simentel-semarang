@@ -61,9 +61,19 @@ class FormController extends Controller
         $tower->nomorIMB = $request->nomorIMB;
 
         $pendaftaran = new Pendaftaran();
-        $save = $tower->save();
+        $pendaftaran->no_tiket = '500500';
+        $pendaftaran->idUser = auth()->user()->id;
+        $pendaftaran->idTower = $tower->id;
 
-        if ($save) {
+        $persetujuan = new Persetujuan();
+        $persetujuan->no_tiket = '500500';
+        $persetujuan->idStatus = 1;
+
+        $saveTower = $tower->save();
+        $savePendaftaran = $pendaftaran->save();
+        $savePersetujuan = $persetujuan->save();
+
+        if ($saveTower && $savePendaftaran && $savePersetujuan) {
             return redirect(route('user.daftar-menara'))->with('success', 'Pengajuan pendaftaran/izin menara berhasil. 
             Silakan tunggu persetujuan dari kami.');
         } else {

@@ -23,7 +23,8 @@ class Pendaftaran extends Model
         return $this->belongsTo(Tower::class, 'idTower');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'idUser');
     }
 
