@@ -42,5 +42,18 @@ class TowerSeeder extends Seeder
             'operator' => 'INDOSAT',
             'tinggi' => 18,
         ]);
+        Tower::create([
+            'idMenara' => 'BY.U PROVIDER',
+            'pemilik' => 'PT TELKOMSEL',
+            'latitude' => -6.990189,
+            'longitude' => 110.782676,
+            'idKec' => 5,
+            'idKel' => 4,
+            'idTipeMenara' => 2,
+            'idSite' => 3,
+            'idJalan' => 1,
+            'luas' => '18 meter persegi',
+            'tinggi' => 29,
+        ]);
     }
 }

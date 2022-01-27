@@ -15,16 +15,20 @@ class PersetujuanSeeder extends Seeder
      */
     public function run()
     {
-        $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => time() * 2, 'field' => 'id'];
-        $no_tiket = IdGenerator::generate($config);
+        $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => time(), 'field' => 'id'];
+        $id = IdGenerator::generate($config);
 
         Persetujuan::create([
             // 'id' => $no_tiket,
-            'id' => 200200,
+            'id' => $id,
         ]);
         Persetujuan::create([
             // 'id' => time() * 3
-            'id' => 300300
+            'id' => time()*2
+        ]);
+        Persetujuan::create([
+            // 'id' => time() * 3
+            'id' => time()*3
         ]);
     }
 }
