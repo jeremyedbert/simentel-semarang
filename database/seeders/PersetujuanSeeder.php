@@ -20,15 +20,15 @@ class PersetujuanSeeder extends Seeder
 
         Persetujuan::create([
             // 'id' => $no_tiket,
-            'id' => $id,
+            // 'id' => $id,
+            'id' => '100',
         ]);
         Persetujuan::create([
-            // 'id' => time() * 3
-            'id' => time()*2
+            // 'id' => time()*2
+            'id' => '100100'
         ]);
         Persetujuan::create([
-            // 'id' => time() * 3
-            'id' => time()*3
+            'id' => '200200'
         ]);
     }
 }
