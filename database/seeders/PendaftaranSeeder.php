@@ -21,18 +21,21 @@ class PendaftaranSeeder extends Seeder
 
         Pendaftaran::create([
             // 'id' => $no_tiket,
-            'id' => $id,
+            // 'id' => $id,
+            'id' => '100',
             'idUser' => 2,
             'idTower' => 1,
         ]); 
         Pendaftaran::create([
             // 'id' => time()*3,
-            'id' => time()*2,
+            // 'id' => time()*2,
+            'id' => '100100',
             'idUser' => 1,
             'idTower' => 2,
         ]); 
         Pendaftaran::create([
-            'id' => time()*3,
+            // 'id' => time()*3,
+            'id' => '200200',
             'idUser' => 2,
             'idTower' => 3
         ]);

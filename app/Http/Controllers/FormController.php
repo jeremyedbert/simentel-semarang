@@ -59,18 +59,17 @@ class FormController extends Controller
         $tower->operator = $request->operator;
         $tower->penyewa = $request->penyewa;
         $tower->nomorIMB = $request->nomorIMB;
+        $saveTower = $tower->save();
 
         $pendaftaran = new Pendaftaran();
-        $pendaftaran->no_tiket = '500500';
+        $pendaftaran->id = '500500';
         $pendaftaran->idUser = auth()->user()->id;
         $pendaftaran->idTower = $tower->id;
+        $savePendaftaran = $pendaftaran->save();
 
         $persetujuan = new Persetujuan();
-        $persetujuan->no_tiket = '500500';
+        $persetujuan->id = '500500';
         $persetujuan->idStatus = 1;
-
-        $saveTower = $tower->save();
-        $savePendaftaran = $pendaftaran->save();
         $savePersetujuan = $persetujuan->save();
 
         if ($saveTower && $savePendaftaran && $savePersetujuan) {
