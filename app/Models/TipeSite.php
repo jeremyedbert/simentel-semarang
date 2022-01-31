@@ -26,6 +26,6 @@ class TipeSite extends Model
 
   public function tower()
   {
-    return $this->hasMany(Tower::class, 'idSite');
+    return $this->hasMany(Tower::class);
   }
 }

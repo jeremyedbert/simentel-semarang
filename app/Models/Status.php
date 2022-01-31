@@ -12,7 +12,7 @@ class Status extends Model
     protected $fillable = ['name'];
     public $timestamps = false;
 
-    public function persetujuan(){
-        return $this->hasMany(Persetujuan::class, 'idStatus');
+    public function pendaftaran(){
+        return $this->hasMany(Pendaftaran::class);
     }
 }

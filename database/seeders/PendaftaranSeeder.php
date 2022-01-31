@@ -23,21 +23,24 @@ class PendaftaranSeeder extends Seeder
             // 'id' => $no_tiket,
             // 'id' => $id,
             'id' => '100',
-            'idUser' => 2,
-            'idTower' => 1,
+            'user_id' => 2,
+            'tower_id' => 1,
+            'status_id' => 1,
         ]); 
         Pendaftaran::create([
             // 'id' => time()*3,
             // 'id' => time()*2,
             'id' => '100100',
-            'idUser' => 1,
-            'idTower' => 2,
+            'user_id' => 1,
+            'tower_id' => 2,
+            'status_id' => 1,
         ]); 
         Pendaftaran::create([
             // 'id' => time()*3,
             'id' => '200200',
-            'idUser' => 2,
-            'idTower' => 3
+            'user_id' => 2,
+            'tower_id' => 3,
+            'status_id' => 1,
         ]);
     }
 }

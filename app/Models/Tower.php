@@ -7,57 +7,59 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tower extends Model
 {
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array<int, string>
-   */
-  
-  protected $fillable = [
-    'idMenara',
-    'operator',
-    'idTipeMenara',
-    'idKec',
-    'idKel',
-    'idSite',
-    'idJalan',
-    'tinggi',
-    'latitude',
-    'longitude',
-    'luas',
-    'pemilik',
-    'penyewa',
-    'nomorIMB'
-  ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+
+	protected $fillable = [
+		'idMenara',
+		'operator',
+		'tipe_menara_id',
+		'kecamatan_id',
+		'kelurahan_id',
+		'tipe_site_id',
+		'tipe_jalan_id',
+		'tinggi',
+		'latitude',
+		'longitude',
+		'kondisi',
+		'luas',
+		'pemilik',
+		'penyewa',
+		'nomorIMB'
+	];
 
 	use HasFactory;
 
 	public function kecamatan()
 	{
-		return $this->belongsTo(Kecamatan::class, 'idKec', 'id');
+		return $this->belongsTo(Kecamatan::class);
 	}
 
 	public function kelurahan()
 	{
-		return $this->belongsTo(Kelurahan::class, 'idKel', 'id');
+		return $this->belongsTo(Kelurahan::class);
 	}
 
 	public function tipesite()
 	{
-		return $this->belongsTo(TipeSite::class, 'idSite', 'id');
+		return $this->belongsTo(TipeSite::class, 'tipe_site_id');
 	}
 
 	public function tipejalan()
 	{
-		return $this->belongsTo(TipeJalan::class, 'idJalan');
+		return $this->belongsTo(TipeJalan::class, 'tipe_jalan_id');
 	}
 
 	public function tipemenara()
 	{
-		return $this->belongsTo(TipeMenara::class, 'idTipeMenara');
+		return $this->belongsTo(TipeMenara::class, 'tipe_menara_id');
 	}
 
-	public function pendaftaran(){
-		return $this->hasOne(Pendaftaran::class, 'idTower');
+	public function pendaftaran()
+	{
+		return $this->hasOne(Pendaftaran::class);
 	}
 }

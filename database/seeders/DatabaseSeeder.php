@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
           TowerSeeder::class,
           StatusSeeder::class,
           PendaftaranSeeder::class,
-          PersetujuanSeeder::class,
       ]);
     }
 }

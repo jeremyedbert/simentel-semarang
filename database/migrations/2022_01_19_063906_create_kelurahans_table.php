@@ -16,7 +16,10 @@ class CreateKelurahansTable extends Migration
         Schema::create('kelurahans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('idKec')->constrained('kecamatans');
+
+            $table->unsignedBigInteger('kecamatan_id');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatans');
+            
             $table->timestamps();
         });
     }
