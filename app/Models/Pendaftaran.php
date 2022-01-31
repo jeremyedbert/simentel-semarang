@@ -14,21 +14,30 @@ class Pendaftaran extends Model
 
     protected $fillable = [
       'id',
-      'idUser',
-      'idTower',
+      'user_id',
+      'tower_id',
+      'status_id',
+      'admin_id',
     ];
 
     public function tower()
     {
-        return $this->belongsTo(Tower::class, 'idTower');
+        return $this->belongsTo(Tower::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'idUser');
+        return $this->belongsTo(User::class);
+    }
+    
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
-    public function persetujuan(){
-        return $this->hasOne(Persetujuan::class, 'id', 'id');
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
     }
+
 }

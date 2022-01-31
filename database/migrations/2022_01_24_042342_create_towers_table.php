@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\TipeJalan;
+use App\Models\TipeMenara;
+use App\Models\TipeSite;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,11 +22,26 @@ class CreateTowersTable extends Migration
             $table->id();
             $table->string('idMenara')->unique(); // bukan primary
             $table->string('operator')->nullable();
-            $table->foreignId('idTipeMenara')->constrained('tipe_menaras');
-            $table->foreignId('idKec')->constrained('kecamatans');
-            $table->foreignId('idKel')->constrained('kelurahans');
-            $table->foreignId('idSite')->constrained('tipe_sites');
-            $table->foreignId('idJalan')->constrained('tipe_jalans');
+
+            $table->unsignedBigInteger('kecamatan_id');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatans');
+
+            $table->unsignedBigInteger('kelurahan_id');
+            $table->foreign('kelurahan_id')->references('id')->on('kelurahans');
+            
+            $table->unsignedBigInteger('tipe_menara_id');
+            $table->foreign('tipe_menara_id')->references('id')->on('tipe_menaras');
+            
+            $table->unsignedBigInteger('tipe_site_id');
+            $table->foreign('tipe_site_id')->references('id')->on('tipe_sites');
+            
+            $table->unsignedBigInteger('tipe_jalan_id');
+            $table->foreign('tipe_jalan_id')->references('id')->on('tipe_jalans');
+            // $table->foreignId('kecamatan_id');
+            // $table->foreignId('kelurahan_id');
+            // $table->foreignId('tipe_site_id');
+            // $table->foreignId('tipe_jalan_id');
+            // $table->foreignId('tipe_menara_id');
             $table->float('tinggi',4,1);
             $table->float('latitude',10,7);
             $table->float('longitude',10,7);
@@ -29,6 +49,7 @@ class CreateTowersTable extends Migration
             $table->string('pemilik');
             $table->string('penyewa')->nullable();
             $table->string('nomorIMB')->nullable();
+            $table->date('accDate')->nullable();
             $table->timestamps();
         });
     }

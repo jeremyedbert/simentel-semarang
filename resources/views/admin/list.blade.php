@@ -66,16 +66,16 @@
                                                     }
                                                 </script>
                                                 <tr>
-                                                    <td>{{ $d->pendaftaran->tower->idMenara }}</td>
-                                                    <td>{{ $d->pendaftaran->tower->pemilik }}</td>
-                                                    <td>{{ $d->pendaftaran->created_at->format('d F Y') }}</td>
-                                                    <td>{{ $d->pendaftaran->tower->tipemenara->name }}</td>
+                                                    <td>{{ $d->tower->idMenara }}</td>
+                                                    <td>{{ $d->tower->pemilik }}</td>
+                                                    <td>{{ $d->created_at->format('d F Y') }}</td>
+                                                    <td>{{ $d->tower->tipemenara->name }}</td>
                                                     <td><a href="#" data-toggle="modal"
-                                                            data-target="#{{ $d->pendaftaran->id }}">Detail <i
+                                                            data-target="#{{ $d->id }}">Detail <i
                                                                 class="fas fa-chevron-right"></i></a></td>
                                                     <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
                                                 </tr>
-                                                <div class="modal fade" id="{{ $d->pendaftaran->id }}" tabindex="-1"
+                                                <div class="modal fade" id="{{ $d->id }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-lg modal-dialog-centered"
@@ -83,7 +83,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h3 class="modal-title" id="exampleModalLongTitle">
-                                                                    <b>{{ $d->pendaftaran->tower->idMenara }}</b>
+                                                                    <b>{{ $d->tower->idMenara }}</b>
                                                                 </h3>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
@@ -96,13 +96,13 @@
                                                                         <label for="exampleInputEmail1"><b>Pemilik Menara
                                                                                 <span style="color: #e12454"> *
                                                                                 </span></b></label>
-                                                                        <p>{{ $d->pendaftaran->tower->pemilik }}</p>
+                                                                        <p>{{ $d->tower->pemilik }}</p>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputPassword1"><b>Jenis Menara
                                                                                 <span style="color: #e12454"> *
                                                                                 </span></b></label>
-                                                                        <p>{{ $d->pendaftaran->tower->tipemenara->name }}
+                                                                        <p>{{ $d->tower->tipemenara->name }}
                                                                         </p>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -113,7 +113,7 @@
                                                                                         </span></b></label>
                                                                                 <input id="txtLat" type="text"
                                                                                     class="form-control"
-                                                                                    value="{{ $d->pendaftaran->tower->latitude }}">
+                                                                                    value="{{ $d->tower->latitude }}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -123,7 +123,7 @@
                                                                                         </span></b></label>
                                                                                 <input id="txtLng" type="text"
                                                                                     class="form-control"
-                                                                                    value="{{ $d->pendaftaran->tower->longitude }}">
+                                                                                    value="{{ $d->tower->longitude }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>

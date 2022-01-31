@@ -161,11 +161,11 @@
     <script type="text/javascript">
       $(document).ready(function() {
             $('#kecamatan').change(function() {
-               var kecamatanID = $(this).val();
-               if(kecamatanID) {
+               var kecamatan_id = $(this).val();
+               if(kecamatan_id) {
                    $.ajax({
                        type: "GET",
-                       url: "{{ url('user/daftar-menara/getKelurahan') }}?idKec="+kecamatanID,
+                       url: "{{ url('user/daftar-menara/getKelurahan') }}?kecamatan_id="+kecamatan_id,
                        success:function(res)
                        {
                          if(res){

@@ -28,11 +28,11 @@ class Kelurahan extends Model
 
   public function tower()
   {
-    return $this->hasMany(Tower::class, 'idKel');
+    return $this->hasMany(Tower::class);
   }
 
   public function kecamatan()
   {
-    return $this->belongsTo(Kecamatan::class, 'idKec');
+    return $this->belongsTo(Kecamatan::class);
   }
 }
