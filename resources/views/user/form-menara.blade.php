@@ -149,7 +149,11 @@
                         <label>Nomor IMB</label>
                         <input name="nomorIMB" type="text" class="form-control" placeholder="">
                     </div>
-                    
+                    <div class="form-group ">
+                      <label for="lampiran" class="form-label">Lampiran/Dokumen Pendukung</label>
+                      <input class="form-control pt-2" type="file" id="lampiran" multiple>
+
+                    </div>
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
