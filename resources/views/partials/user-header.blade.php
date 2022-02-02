@@ -14,6 +14,9 @@
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/user/images/favicon.png') }}" />
 
+<!-- Material icon-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 <!-- 
   Essential stylesheets
   =====================================-->
