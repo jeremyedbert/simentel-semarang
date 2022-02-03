@@ -13,8 +13,8 @@ class DashboardRiwayatController extends Controller
      */
     public function index()
     {
-        return view('dashboard.history',[
-            'active' => 'history'
+        return view('admin.riwayat',[
+            'active' => 'riwayat'
         ]);
     }
 

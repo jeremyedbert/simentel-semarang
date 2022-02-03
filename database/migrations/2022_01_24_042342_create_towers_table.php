@@ -49,6 +49,8 @@ class CreateTowersTable extends Migration
             $table->string('pemilik');
             $table->string('penyewa')->nullable();
             $table->string('nomorIMB')->nullable();
+            $table->text('kondisi')->nullable();
+            $table->string('url_file')->nullable();
             $table->date('accDate')->nullable();
             $table->timestamps();
         });

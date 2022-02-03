@@ -63,7 +63,9 @@
                             </div>
 
                             {{-- Form Edit --}}
-                            <form action="post">
+                            <form action="/admin/pendaftaran/{{ $data->id }}" method="post">
+                                @method('put')
+                                @csrf
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -118,16 +120,16 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="pemilik">Latitude</label>
+                                                <label for="latitude">Latitude</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->latitude }}" id="txtLat" name="txtLat">
+                                                    value="{{ $data->tower->latitude }}" id="txtLat" name="latitude">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="pemilik">Longitude</label>
+                                                <label for="longitude">Longitude</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->longitude }}" id="txtLng" name="txtLng">
+                                                    value="{{ $data->tower->longitude }}" id="txtLng" name="longitude">
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +170,7 @@
                                             <div class="form-group">
                                                 <label for="noimb">No IMB</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->noIMB }}" id="noimb" name="noimb">
+                                                    value="{{ $data->tower->noIMB }}" id="nomorIMB" name="nomorIMB">
                                             </div>
                                         </div>
                                     </div>
