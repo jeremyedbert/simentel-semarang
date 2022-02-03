@@ -61,15 +61,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', function () {
             return view('admin.welcome');
         });
+
+        // 
         Route::get('/pendaftaran', [DashboardListController::class, 'index']);
-        // Route::post('/list/{pendaftaran}', [DashboardListController::class, 'destroy']);
-        // Route::resource('list/', DashboardListController::class);
+        Route::post('/pendaftaran/{pendaftaran}/decline', [DashboardListController::class, 'decline']);
+        Route::post('/pendaftaran/{pendaftaran}/accept', [DashboardListController::class, 'accept']);
         Route::resource('/pendaftaran', DashboardListController::class);
         // Delete
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
 
         // Edit menara ketika belum diacc
         // Route::get('/edit', [DashboardListController::class, 'edit'])->name('edit');
-        Route::get('/history', [DashboardRiwayatController::class, 'history'])->name('history');
+        Route::get('/history', [DashboardRiwayatController::class, 'index'])->name('history');
     });
 });

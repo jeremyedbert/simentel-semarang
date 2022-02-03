@@ -39,8 +39,8 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ Request::is('admin/history*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.history') }}">
+                <li class="nav-item {{ Request::is('admin/riwayat*') ? 'active' : '' }}">
+                    <a href="/admin/riwayat">
                         <i class="fas fa-history"></i>
                         <p>Riwayat</p>
                         {{-- <span class="badge badge-count badge-success">4</span> --}}

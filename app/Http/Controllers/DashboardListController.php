@@ -18,7 +18,8 @@ class DashboardListController extends Controller
     {
         // return dd(Pendaftaran::all());
         return view('admin.list', [
-            'data' => Pendaftaran::all(),
+            'data' => Pendaftaran::where('status_id', '=', 1)
+                ->get(),
         ]);
     }
 
@@ -62,7 +63,7 @@ class DashboardListController extends Controller
     public function edit(Pendaftaran $pendaftaran)
     {
         return view('admin.edit', [
-            'data' => $pendaftaran 
+            'data' => $pendaftaran
         ]);
 
         // return dd($pendaftaran);
@@ -77,7 +78,20 @@ class DashboardListController extends Controller
      */
     public function update(Request $request, Pendaftaran $pendaftaran)
     {
-        //
+        $rules = [
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'kondisi' => 'nullable',
+            'penyewa' => 'nullable',
+            'noimb' => 'nullable',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Tower::where('id', $pendaftaran->tower->id)
+            ->update($validatedData);
+
+        return redirect('/admin/pendaftaran')->with('success', 'Data ' . $pendaftaran->id . ' berhasil diupdate');
     }
 
     /**
@@ -94,5 +108,25 @@ class DashboardListController extends Controller
         Tower::destroy($pendaftaran->tower_id);
         return redirect('/admin/pendaftaran')->with('success', 'Record has been deleted!');
         // return dd($pendaftaran);
+    }
+
+    /* Status 
+    2 = disetujui
+    3 = ditolak
+    */
+    public function decline(Pendaftaran $pendaftaran)
+    {
+        Pendaftaran::where('id', $pendaftaran->id)
+            ->update(['status_id' => 3]);
+
+        return redirect('/admin/pendaftaran')->with('decline', 'Permohonan <b>' . $pendaftaran->id . '</b> ditolak. Untuk melihat riwayat, silakan menuju ke <a href="/admin/riwayat">link</a> berikut');
+    }
+
+    public function accept(Pendaftaran $pendaftaran)
+    {
+        Pendaftaran::where('id', $pendaftaran->id)
+            ->update(['status_id' => 2]);
+
+        return redirect('/admin/pendaftaran')->with('accept', 'Permohonan <b>' . $pendaftaran->id . '</b> diterima. Untuk melihat riwayat, silakan menuju ke <a href="/admin/riwayat">link</a> berikut');
     }
 }
