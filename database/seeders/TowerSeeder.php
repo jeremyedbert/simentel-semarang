@@ -56,5 +56,20 @@ class TowerSeeder extends Seeder
             'tinggi' => 29,
             'penyewa' => 'Axis'
         ]);
+        Tower::create([
+          'idMenara' => 'SpaceX-123',
+          'pemilik' => 'Elon Musk',
+          'latitude' => -6.990170,
+          'longitude' => 110.782663,
+          'kecamatan_id' => 5,
+          'kelurahan_id' => 4,
+          'tipe_menara_id' => 2,
+          'tipe_site_id' => 3,
+          'tipe_jalan_id' => 1,
+          'luas' => '18 meter persegi',
+          'tinggi' => 29,
+          'penyewa' => 'Tesla',
+          'operator' => 'Tesla'
+        ]);
     }
 }

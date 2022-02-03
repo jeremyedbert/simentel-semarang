@@ -26,12 +26,12 @@
 
         <div class="collapse navbar-collapse" id="navbarmain">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ $active === 'beranda' ? 'active' : '' }}"><a class="nav-link"
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('home') }}">Beranda</a></li>
-                <li class="nav-item {{ $active === 'pendaftaran' ? 'active' : '' }}"><a class="nav-link"
+                <li class="nav-item {{ Request::is('user/daftar-menara') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li>
 
-                <li class="nav-item dropdown  {{ $active === 'peta' ? 'active' : '' }}">
+                <li class="nav-item dropdown  {{ Request::is('user/peta-menara') OR Request::is('user/peta-microcell') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
@@ -47,7 +47,7 @@
                             aria-haspopup="true" aria-expanded="false">Halo, {{ auth()->user()->name }}<i
                                 class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">
-                            <li><a class="dropdown-item" href="{{ route('user.cekstatus') }}">Cek Status Permohonan</a></li>
+                            <li><a class="dropdown-item" href="/user/cekstatus">Cek Status Permohonan</a></li>
                             <li>
                                 <form action="/user/logout" method="post">
                                     @csrf
