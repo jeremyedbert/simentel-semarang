@@ -9,20 +9,19 @@
   .user-icon{
     font-size: 120pt;
   }
-
   .nama-user{
     color: #fafafa;
   }
   
 </style>
 <section>
-    <div class="d-flex row h-100 d-inline-block">
-        <div class="col-lg-4 d-flex justify-content-lg-end ml-0">
+    <div class="d-flex row d-inline-block mb-5">
+        <div class="col-lg-4 d-flex justify-content-lg-end ml-0" style="height:min-content">
 
             <div class="col-lg-8 user-profile shadow px-3 py-4 mb-5 mx-4 bg-body" style="border-radius: 20px">
                 <div class="material-icons-outlined user-icon d-flex justify-content-center mb-3" id="">account_circle</div>
               {{-- <i class="icofont-business-man-alt-1"></i> --}}
-                <div class="col px-3">
+                <div class="col px-auto">
                   <div class="d-flex justify-content-center">
                     <h3 class="nama-user">
                       {{ auth()->user()->name }}
@@ -45,10 +44,82 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 mx-auto" style="height: 100%">
+        <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
             <div class="col-lg-11 pl-lg-0">
-              <h2 class="title-color mb-3">Status Permohonan</h2>
-              {{-- <img src="/images/login.png" alt="" class="img-fluid mx-auto my-5 d-block" style="max-width: 54%"> --}}
+              <h2 class="title-color mb-2">Status Permohonan</h2>
+              <div class="divider mb-4"></div>
+              
+              @foreach ($data as $d)
+                <div class="permohonan">
+                  <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: #e12454 solid 7px">
+                    <div class="col">
+                      <div class="mb-2 d-flex justify-content-between" style="border-bottom: #bac6d1 solid 2px">
+                        <div class="row">
+                          <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
+                          <div class="ml-3">{{ $d->created_at->format('d F Y') }}</div>
+                        </div>
+                        <h5>
+                          @if ( $d->status->id === 1)
+                            <span class="badge bg-warning text-dark" style="opacity: 0.75">{{ $d->status->name}}</span>
+                          @elseif ( $d->status->id === 2)
+                            <span class="badge bg-success" style="opacity: 0.75; color: white">{{ $d->status->name}}</span>
+                          @else
+                            <span class="badge bg-danger" style="opacity: 0.75; color: white">{{ $d->status->name}}</span>
+                          @endif 
+                        </h5>
+                      </div>
+                      <h3>{{ $d->tower->pemilik }}</h3>
+                      <div class="mb-2 d-flex row justify-content-between">
+                        <div class="col-lg-6">
+                          <i class="icofont-location-pin"></i>
+                          <span>{{ $d->tower->kelurahan->name }},&nbsp;</span>
+                          <span>{{ $d->tower->kecamatan->name }}</span>
+                        </div>
+                        <a href="#" class="mx-3">
+                          <b><i>Detail</i></b>
+                          <i class="icofont-simple-right "></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+              @foreach ($data as $a)
+                <p></p>
+                
+              @endforeach
+
+              
+
+              {{-- <div class="permohonan">
+                <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: #e12454 solid 7px">
+                  <div class="col">
+                    <div class="mb-2 d-flex justify-content-between" style="border-bottom: #bac6d1 solid 2px">
+                      <div class="row">
+                        <div class="ml-3"><b>INDOSAT-360</b></div>
+                        <div class="ml-3">3 Feb 2022</div>
+                      </div>
+                      <h5>
+                        <span class="badge bg-warning text-dark" style="opacity: 0.75">Sedang ditinjau</span>
+                        <span class="badge bg-success" style="opacity: 0.75; color: white">Disetujui</span>
+                        <span class="badge bg-danger" style="opacity: 0.75; color: white">Ditolak</span>
+                      </h5>
+                    </div>
+                    <h3>PT Indo Satelite</h3>
+                    <div class="mb-2 d-flex row justify-content-between">
+                      <div class="col-lg-6">
+                        <i class="icofont-location-pin"></i>
+                        <span>Pandansari,&nbsp;</span>
+                        <span>Semarang Tengah</span>
+                      </div>
+                      <a href="#" class="mx-3">
+                        <b><i>Detail</i></b>
+                        <i class="icofont-simple-right "></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div> --}}
             </div>
         </div>
     </div>
