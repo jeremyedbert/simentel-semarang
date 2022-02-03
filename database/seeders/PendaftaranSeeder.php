@@ -40,7 +40,14 @@ class PendaftaranSeeder extends Seeder
             'id' => 22020223000003,
             'user_id' => 2,
             'tower_id' => 3,
-            'status_id' => 1,
+            'status_id' => 2,
         ]);
+        Pendaftaran::create([
+          // 'id' => time()*3,
+          'id' => 22020223000004,
+          'user_id' => 2,
+          'tower_id' => 4,
+          'status_id' => 3,
+      ]);
     }
 }

@@ -80,10 +80,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function cekStatus(Request $request)
-    {
-        return view('user.cek-status',[
-            'active' => 'none',
-        ]);
-    }
+    // public function cekStatus(Request $request)
+    // {
+    //     return view('user.cek-status',[
+    //         'active' => 'none',
+    //     ]);
+    // }
 }
