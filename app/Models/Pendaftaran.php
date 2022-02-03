@@ -40,4 +40,8 @@ class Pendaftaran extends Model
         return $this->belongsTo(Admin::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }

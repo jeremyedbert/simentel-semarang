@@ -43,8 +43,8 @@ class CreateTowersTable extends Migration
             // $table->foreignId('tipe_jalan_id');
             // $table->foreignId('tipe_menara_id');
             $table->float('tinggi',4,1);
-            $table->float('latitude',10,7);
-            $table->float('longitude',10,7);
+            $table->decimal('latitude',10,7);
+            $table->decimal('longitude',10,7);
             $table->string('luas');
             $table->string('pemilik');
             $table->string('penyewa')->nullable();

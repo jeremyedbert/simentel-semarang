@@ -50,23 +50,24 @@ Route::prefix('user')->name('user.')->group(function () {
 
 /* Untuk Admin */
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware(['guest:admin','PreventBackHistory'])->group(function () {
+    Route::middleware(['guest:admin', 'PreventBackHistory'])->group(function () {
         Route::get('/login', [LoginController::class, 'index_admin'])->name('login');
         Route::post('/login', [AdminController::class, 'authenticate'])->name('check');
     });
 
-    Route::middleware(['auth:admin','PreventBackHistory'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/list', [DashboardListController::class, 'index'])->name('list');
+    Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.welcome');
+        });
+        Route::get('/pendaftaran', [DashboardListController::class, 'index']);
+        // Route::post('/list/{pendaftaran}', [DashboardListController::class, 'destroy']);
+        // Route::resource('list/', DashboardListController::class);
+        Route::resource('/pendaftaran', DashboardListController::class);
+        // Delete
+        // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
+
+        // Edit menara ketika belum diacc
+        // Route::get('/edit', [DashboardListController::class, 'edit'])->name('edit');
         Route::get('/history', [DashboardRiwayatController::class, 'history'])->name('history');
     });
 });
-
-
-// Route::get('/login-admin', function () {
-//     return view('admin.login');
-// });
-
-// Route::get('/admin', function () {
-//     return view('admin.welcome');
-// });

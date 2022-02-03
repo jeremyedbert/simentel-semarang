@@ -54,6 +54,7 @@ class TowerSeeder extends Seeder
             'tipe_jalan_id' => 1,
             'luas' => '18 meter persegi',
             'tinggi' => 29,
+            'penyewa' => 'Axis'
         ]);
     }
 }

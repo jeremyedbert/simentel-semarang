@@ -59,8 +59,8 @@
             <!-- Logo Header -->
             <div class="logo-header">
 
-                <a href="{{ route('admin.dashboard') }}" class="logo">
-                    <img src="../assets/admin/img/logoazzara.svg" alt="navbar brand" class="navbar-brand">
+                <a href="/admin/dashboard" class="logo">
+                    <img src={{ url("assets/admin/img/logoazzara.svg") }} alt="navbar brand" class="navbar-brand">
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +118,7 @@
                                         <div class="notif-center">
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src="../assets/admin/img/jm_denis.jpg" alt="Img Profile">
+                                                    <img src={{ url("assets/admin/img/jm_denis.jpg") }} alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Jimmy Denis</span>
@@ -130,7 +130,7 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src="../assets/admin/img/chadengle.jpg" alt="Img Profile">
+                                                    <img src={{ url("assets/admin/img/chadengle.jpg") }} alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Chad</span>
@@ -142,7 +142,7 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src="../assets/admin/img/mlane.jpg" alt="Img Profile">
+                                                    <img src={{ url("assets/admin/img/mlane.jpg") }} alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Jhon Doe</span>
@@ -154,7 +154,7 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src="../assets/admin/img/talha.jpg" alt="Img Profile">
+                                                    <img src={{ url("assets/admin/img/talha.jpg") }} alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Talha</span>
@@ -208,7 +208,7 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src="../assets/admin/img/profile2.jpg" alt="Img Profile">
+                                                    <img src={{ url("assets/admin/img/profile2.jpg") }} alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="block">
@@ -240,13 +240,13 @@
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src="../assets/admin/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                                    <img src={{ url("assets/admin/img/profile.jpg") }} alt="..." class="avatar-img rounded-circle">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src="../assets/admin/img/profile.jpg"
+                                        <div class="avatar-lg"><img src={{ url("assets/admin/img/profile.jpg") }}
                                                 alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
                                             <h4>Hizrian</h4>
@@ -279,38 +279,6 @@
         <!-- End Sidebar -->
 
         @yield('content')
-
-        <!-- Custom template | don't include it in your project! -->
-        <div class="custom-template">
-            <div class="title">Settings</div>
-            <div class="custom-content">
-                <div class="switcher">
-                    <div class="switch-block">
-                        <h4>Topbar</h4>
-                        <div class="btnSwitch">
-                            <button type="button" class="changeMainHeaderColor" data-color="blue"></button>
-                            <button type="button" class="selected changeMainHeaderColor" data-color="purple"></button>
-                            <button type="button" class="changeMainHeaderColor" data-color="light-blue"></button>
-                            <button type="button" class="changeMainHeaderColor" data-color="green"></button>
-                            <button type="button" class="changeMainHeaderColor" data-color="orange"></button>
-                            <button type="button" class="changeMainHeaderColor" data-color="red"></button>
-                        </div>
-                    </div>
-                    <div class="switch-block">
-                        <h4>Background</h4>
-                        <div class="btnSwitch">
-                            <button type="button" class="changeBackgroundColor" data-color="bg2"></button>
-                            <button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
-                            <button type="button" class="changeBackgroundColor" data-color="bg3"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="custom-toggle">
-                <i class="flaticon-settings"></i>
-            </div> --}}
-        </div>
-        <!-- End Custom template -->
     </div>
     </div>
 
