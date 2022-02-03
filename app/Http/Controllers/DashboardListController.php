@@ -16,22 +16,9 @@ class DashboardListController extends Controller
      */
     public function index()
     {
-        // $data = DB::table('pendaftarans')
-        //     ->join('persetujuans', 'pendaftarans.no_tiket', '=', 'persetujuans.no_tiket', 'inner')
-        //     ->join('towers', 'pendaftarans.idTower', '=', 'towers.id')
-        //     ->join('tipe_menaras', 'tipe_menaras.id', '=', 'towers.idTipeMenara')
-        //     ->join('tipe_sites', 'tipe_sites.id', '=', 'towers.idSite')
-        //     ->join('kecamatans', 'kecamatans.id', '=', 'towers.idKec')
-        //     ->join('kelurahans', 'kelurahans.id', '=', 'towers.idKel')
-        //     ->join('tipe_jalans', 'tipe_jalans.id', '=', 'towers.idJalan')
-        //     ->where('persetujuans.idStatus', '=', 1)->get();
-
-        $data = Pendaftaran::all();
-
         // return dd(Pendaftaran::all());
         return view('admin.list', [
-            'active' => 'list',
-            'data' => $data,
+            'data' => Pendaftaran::all(),
         ]);
     }
 
@@ -74,7 +61,11 @@ class DashboardListController extends Controller
      */
     public function edit(Pendaftaran $pendaftaran)
     {
-        //
+        return view('admin.edit', [
+            'data' => $pendaftaran 
+        ]);
+
+        // return dd($pendaftaran);
     }
 
     /**
@@ -97,6 +88,11 @@ class DashboardListController extends Controller
      */
     public function destroy(Pendaftaran $pendaftaran)
     {
-        //
+        // $data = Pendaftaran::where('id', $id)->firstOrFail();
+        // $data->delete();
+        Pendaftaran::destroy($pendaftaran->id);
+        Tower::destroy($pendaftaran->tower_id);
+        return redirect('/admin/pendaftaran')->with('success', 'Record has been deleted!');
+        // return dd($pendaftaran);
     }
 }

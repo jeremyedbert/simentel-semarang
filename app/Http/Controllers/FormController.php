@@ -45,7 +45,7 @@ class FormController extends Controller
     //     'cpassword.same' => 'Your password confirmation does not match.'
     // ]);
 
-    $config = ['table' => 'pendaftarans', 'length' => 20, 'prefix' => date('dmYH'), 'field' => 'id'];
+    $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => date('ymdH'), 'field' => 'id'];
     $id = IdGenerator::generate($config);
 
     $tower = new Tower();

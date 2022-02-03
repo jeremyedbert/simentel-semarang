@@ -1,8 +1,8 @@
 @extends('layouts.main-user')
 @section('content')
-    <script type="text/javascript"
-        {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8"> //punya willy
+    <script type="text/javascript" {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
+        //punya willy
     </script>
     <script type="text/javascript">
         function initialize() {
@@ -37,13 +37,15 @@
         }
     </script>
     <style>
-      label{
-        margin-top: 5px;
-        margin-bottom: 0;
-      }
-      .text-danger{
-        margin-top: 0;
-      }
+        label {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .text-danger {
+            margin-top: 0;
+        }
+
     </style>
     <section class="section appoinment">
         <div class="container">
@@ -60,39 +62,39 @@
             <h2 class="title-color mb-4">Pendaftaran Menara</h2>
             <form id="#" class="appoinment-form" method="post" action="{{ route('user.daftar-menara.createTower') }}">
                 <div class="col">
-                  @csrf
+                    @csrf
                     <div class="form-group">
-                      <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
-                      <input name="pemilik" type="text" class="form-control input-sm" placeholder="">
+                        <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
+                        <input name="pemilik" type="text" class="form-control input-sm" placeholder="">
                     </div>
                     <div class="form-group">
-                      <label>ID Menara <span style="color: #e12454"><b> * </b></span></label>
-                      <input name="idMenara" type="text" class="form-control input-sm" placeholder="">
+                        <label>ID Menara <span style="color: #e12454"><b> * </b></span></label>
+                        <input name="idMenara" type="text" class="form-control input-sm" placeholder="">
                     </div>
                     <div class="form-group">
-                      <label>Tipe Menara <span style="color: #e12454"><b> * </b></span></label>
-                      <select class="form-control" name="tipeMenara" id="tipeMenara">
-                          <option value="none"> -- Pilih tipe menara -- </option>
-                          @foreach ($tipemenara as $menara)
-                              <option value="{{ $menara->id }}"> {{ $menara->name }}</option>
-                          @endforeach   
-                      </select>
+                        <label>Tipe Menara <span style="color: #e12454"><b> * </b></span></label>
+                        <select class="form-control" name="tipeMenara" id="tipeMenara">
+                            <option value="none"> -- Pilih tipe menara -- </option>
+                            @foreach ($tipemenara as $menara)
+                                <option value="{{ $menara->id }}"> {{ $menara->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                      <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
-                      <select class="form-control" name="tipeSite" id="tipeSite">
-                          <option value="none"> -- Pilih tipe site -- </option>
-                          @foreach ($tipesite as $site)
-                            <option value="{{ $site->id }}"> {{ $site->name }}</option>
-                          @endforeach
-                      </select>
+                        <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
+                        <select class="form-control" name="tipeSite" id="tipeSite">
+                            <option value="none"> -- Pilih tipe site -- </option>
+                            @foreach ($tipesite as $site)
+                                <option value="{{ $site->id }}"> {{ $site->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" name="tipeJalan" id="jalan">
                             <option value="none"> -- Pilih tipe jalan -- </option>
                             @foreach ($tipejalan as $jalan)
-                              <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
+                                <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -105,7 +107,7 @@
                         <select class="form-control" name="kecamatan" id="kecamatan" data-dependent="kelurahan">
                             <option value="none"> -- Pilih kecamatan -- </option>
                             @foreach ($kecamatan as $key => $kec)
-                              <option value="{{ $key }}"> {{ $kec }}</option>
+                                <option value="{{ $key }}"> {{ $kec }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -113,33 +115,33 @@
                     <div class="form-group">
                         <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" name="kelurahan" id="kelurahan">
-                            <option value="none"> -- Pilih kelurahan -- </option>    
+                            <option value="none"> -- Pilih kelurahan -- </option>
                         </select>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                              <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
-                              <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
+                                <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
+                                <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                              <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
-                              <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
+                                <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
+                                <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div id="map_canvas" style="width: auto; height: 400px;"></div>
+                        <div id="map_canvas" style="width: auto; height: 300px;"></div>
                     </div>
                     <div class="form-group">
                         <label>Luas<span style="color: #e12454"><b> * </b></span></label>
                         <input name="luas" type="text" class="form-control" placeholder="contoh: 16 x 16 meter2">
                     </div>
                     <div class="form-group">
-                      <label>Operator</label>
-                      <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
+                        <label>Operator</label>
+                        <input name="operator" type="text" class="form-control" placeholder="contoh: TELKOMSEL">
                     </div>
                     <div class="form-group">
                         <label>Penyewa Menara</label>
@@ -149,45 +151,48 @@
                         <label>Nomor IMB</label>
                         <input name="nomorIMB" type="text" class="form-control" placeholder="">
                     </div>
+
                     <div class="form-group ">
-                      <label for="lampiran" class="form-label">Lampiran/Dokumen Pendukung</label>
+                      <label for="lampiran" class="form-label">Lampiran/Dokumen Pendukung <span style="color: #e12454"><b> * </b></span></label>
                       <input class="form-control pt-2" type="file" id="lampiran" multiple>
 
                     </div>
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
+
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
                 </div>
             </form>
-            
+
         </div>
     </section>
     <script type="text/javascript">
-      $(document).ready(function() {
+        $(document).ready(function() {
             $('#kecamatan').change(function() {
-               var kecamatan_id = $(this).val();
-               if(kecamatan_id) {
-                   $.ajax({
-                       type: "GET",
-                       url: "{{ url('user/daftar-menara/getKelurahan') }}?kecamatan_id="+kecamatan_id,
-                       success:function(res)
-                       {
-                         if(res){
-                            $('#kelurahan').empty();
-                            $('#kelurahan').append('<option value="none"> -- Pilih kelurahan -- </option>'); 
-                            $.each(res, function(key, value){
-                                $('#kelurahan').append('<option value="'+ key +'">' + value+ '</option>');
-                            });
-                        }else{
-                            $('#kelurahan').empty();
+                var kecamatan_id = $(this).val();
+                if (kecamatan_id) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('user/daftar-menara/getKelurahan') }}?kecamatan_id=" +
+                            kecamatan_id,
+                        success: function(res) {
+                            if (res) {
+                                $('#kelurahan').empty();
+                                $('#kelurahan').append(
+                                    '<option value="none"> -- Pilih kelurahan -- </option>');
+                                $.each(res, function(key, value) {
+                                    $('#kelurahan').append('<option value="' + key +
+                                        '">' + value + '</option>');
+                                });
+                            } else {
+                                $('#kelurahan').empty();
+                            }
                         }
-                     }
-                   });
-               }else{
-                 $('#kelurahan').empty();
-               }
+                    });
+                } else {
+                    $('#kelurahan').empty();
+                }
             });
-            });
-      
+        });
     </script>
 @endsection

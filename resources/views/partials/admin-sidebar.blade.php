@@ -3,57 +3,22 @@
     <div class="sidebar-background"></div>
     <div class="sidebar-wrapper scrollbar-inner">
         <div class="sidebar-content">
-            {{-- <div class="user">
-                <div class="avatar-sm float-left mr-2">
-                    <img src="/assets/admin/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                </div>
-                <div class="info">
-                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                        <span>
-                            Hizrian
-                            <span class="user-level">Administrator</span>
-                            <span class="caret"></span>
-                        </span>
-                    </a>
-                    <div class="clearfix"></div>
-
-                    <div class="collapse in" id="collapseExample">
-                        <ul class="nav">
-                            <li>
-                                <a href="#profile">
-                                    <span class="link-collapse">My Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#edit">
-                                    <span class="link-collapse">Edit Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#settings">
-                                    <span class="link-collapse">Settings</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
             <ul class="nav">
-                <li class="nav-item {{ $active === 'dashboard' ? 'active' : '' }}">
-                    <a href={{ route('admin.dashboard') }}>
+                <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                    <a href='/admin/dashboard'>
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                         <span class="badge badge-count">5</span>
                     </a>
                 </li>
-                <li class="nav-item {{ $active === 'list' ? 'active' : '' }}">
-                    <a href="{{ route('admin.list') }}">
+                <li class="nav-item {{ Request::is('admin/pendaftaran*') ? 'active' : '' }}">
+                    <a href="/admin/pendaftaran">
                         <i class="fas fa-file-alt"></i>
                         <p>Permohonan</p>
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ $active === 'peta' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/dashboard/peta*') ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#peta">
                         <i class="fas fa-map-marked-alt"></i>
                         <p>Peta</p>
@@ -74,7 +39,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ $active === 'history' ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/history*') ? 'active' : '' }}">
                     <a href="{{ route('admin.history') }}">
                         <i class="fas fa-history"></i>
                         <p>Riwayat</p>

@@ -22,7 +22,7 @@ class PendaftaranSeeder extends Seeder
         Pendaftaran::create([
             // 'id' => $no_tiket,
             // 'id' => $id,
-            'id' => '100',
+            'id' => 22020223000001,
             'user_id' => 2,
             'tower_id' => 1,
             'status_id' => 1,
@@ -30,14 +30,14 @@ class PendaftaranSeeder extends Seeder
         Pendaftaran::create([
             // 'id' => time()*3,
             // 'id' => time()*2,
-            'id' => '100100',
+            'id' => 22020223000002,
             'user_id' => 1,
             'tower_id' => 2,
             'status_id' => 1,
         ]); 
         Pendaftaran::create([
             // 'id' => time()*3,
-            'id' => '200200',
+            'id' => 22020223000003,
             'user_id' => 2,
             'tower_id' => 3,
             'status_id' => 1,
