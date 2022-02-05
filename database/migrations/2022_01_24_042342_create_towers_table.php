@@ -51,7 +51,7 @@ class CreateTowersTable extends Migration
             $table->string('nomorIMB')->nullable();
             $table->text('kondisi')->nullable();
             $table->string('url_file')->nullable();
-            $table->date('accDate')->nullable();
+            $table->date('acc_date')->nullable();
             $table->timestamps();
         });
     }
