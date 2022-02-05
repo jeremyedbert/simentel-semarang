@@ -1,14 +1,73 @@
 @extends('layouts.main-admin')
 @section('content')
+
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header">
-                    <h4 class="page-title">Permohonan</h4>
+                <div class="page-header d-flex justify-content-between">
+                    <h1><b>Riwayat</b></h1>
+                    {{-- Search bar --}}
+                    <div class="form-group">
+                        {{-- <div class="input-group" >
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                            </div>
+                                <input type="text" class="form-control" id="pillInput" placeholder="Cari...">
+                        </div> --}}
+                        <form action="/admin/riwayat">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" name="search" placeholder="Cari Nomor Tiket" value="{{ request('search') }}">
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        @foreach ($data as $d)
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
+                                            <div class="ml-3">{{ $d->updated_at->format('d F Y') }}</div>
+                                            {{-- <div class="hr"></div> --}}
+                                            {{-- <hr> --}}
+                                            <div class="ml-2 pl-2" style="border-left: 1px solid #575962;">{{ $d->id }}</div>
+                                        </div>
+                                        <div class="row d-flex align-items-center">
+                                            <h2 class="mr-3">
+                                                @if ($d->status->id === 2)
+                                                    <span class="badge badge-success">{{ $d->status->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger">{{ $d->status->name }}</span>
+                                                @endif
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h1>{{ $d->tower->pemilik }}</h1>
+                                    <div class="mb-2 d-flex row justify-content-between">
+                                        <div class="col-lg-6">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span class="ml-1">{{ $d->tower->kelurahan->name }},
+                                                {{ $d->tower->kecamatan->name }}</span>
+                                            {{-- <span>{{ $d->tower->kecamatan->name }}</span> --}}
+                                        </div>
+                                        <a href="#" class="mx-3">
+                                            <b><i>Detail</i></b>
+                                            <i class="icofont-simple-right "></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="basic-datatables" class="display table table-striped table-hover">
@@ -39,31 +98,8 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Modal --}}
-    <div class="modal fade" id="modalRiwayat" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="exampleModalLongTitle">Modal title</h1>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget
-                    quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

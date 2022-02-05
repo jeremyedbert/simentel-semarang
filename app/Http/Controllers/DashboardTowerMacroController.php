@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pendaftaran;
+use App\Models\Tower;
 use Illuminate\Http\Request;
 
-class DashboardRiwayatController extends Controller
+class DashboardTowerMacroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,8 @@ class DashboardRiwayatController extends Controller
      */
     public function index()
     {
-        return view('admin.riwayat', [
-            // 'data' => $data::where('status_id', '=', 2)->orWhere('status_id', '=', 3)
-            //     ->get(),
-            // scopeSearching'
-            'data' => Pendaftaran::whereIn('status_id', [2, 3])->searching()->latest()->get()
+        return view('admin.menara', [
+            'data' => Tower::whereNotNull('acc_date')->get(),
         ]);
     }
 
@@ -29,7 +26,7 @@ class DashboardRiwayatController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -46,10 +43,10 @@ class DashboardRiwayatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pendaftaran  $pendaftaran
+     * @param  \App\Models\Tower  $tower
      * @return \Illuminate\Http\Response
      */
-    public function show(Pendaftaran $pendaftaran)
+    public function show(Tower $tower)
     {
         //
     }
@@ -57,10 +54,10 @@ class DashboardRiwayatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pendaftaran  $pendaftaran
+     * @param  \App\Models\Tower  $tower
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pendaftaran $pendaftaran)
+    public function edit(Tower $tower)
     {
         //
     }
@@ -69,10 +66,10 @@ class DashboardRiwayatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pendaftaran  $pendaftaran
+     * @param  \App\Models\Tower  $tower
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendaftaran $pendaftaran)
+    public function update(Request $request, Tower $tower)
     {
         //
     }
@@ -80,10 +77,10 @@ class DashboardRiwayatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pendaftaran  $pendaftaran
+     * @param  \App\Models\Tower  $tower
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendaftaran $pendaftaran)
+    public function destroy(Tower $tower)
     {
         //
     }

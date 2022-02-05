@@ -54,7 +54,8 @@ class TowerSeeder extends Seeder
             'tipe_jalan_id' => 1,
             'luas' => '18 meter persegi',
             'tinggi' => 29,
-            'penyewa' => 'Axis'
+            'penyewa' => 'Axis',
+            'acc_date' => now()
         ]);
         Tower::create([
           'idMenara' => 'SpaceX-123',

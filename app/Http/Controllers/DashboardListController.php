@@ -117,7 +117,10 @@ class DashboardListController extends Controller
     public function decline(Pendaftaran $pendaftaran)
     {
         Pendaftaran::where('id', $pendaftaran->id)
-            ->update(['status_id' => 3]);
+            ->update([
+                'status_id' => 3,
+                'admin_id' => auth()->user()->id
+            ]);
 
         return redirect('/admin/pendaftaran')->with('decline', 'Permohonan <b>' . $pendaftaran->id . '</b> ditolak. Untuk melihat riwayat, silakan menuju ke <a href="/admin/riwayat">link</a> berikut');
     }
@@ -125,8 +128,12 @@ class DashboardListController extends Controller
     public function accept(Pendaftaran $pendaftaran)
     {
         Pendaftaran::where('id', $pendaftaran->id)
-            ->update(['status_id' => 2]);
+            ->update([
+                'status_id' => 2,
+                'admin_id' => auth()->user()->id
+            ]);
 
+        Tower::where('id', $pendaftaran->tower->id)->update(['acc_date' => now()]);
         return redirect('/admin/pendaftaran')->with('accept', 'Permohonan <b>' . $pendaftaran->id . '</b> diterima. Untuk melihat riwayat, silakan menuju ke <a href="/admin/riwayat">link</a> berikut');
     }
 }
