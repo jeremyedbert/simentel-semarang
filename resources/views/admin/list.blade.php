@@ -50,16 +50,17 @@
                                                     <td>{{ $d->tower->pemilik }}</td>
                                                     <td>{{ $d->created_at->format('d F Y') }}</td>
                                                     <td>{{ $d->tower->tipemenara->name }}</td>
-                                                    <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
+                                                    <td><a href="#"><i class="far fa-file-alt"></i> Dokumen</a></td>
                                                     <td>
                                                         <a href="/admin/pendaftaran/{{ $d->id }}/edit"
                                                             class="btn btn-warning btn-xs my-1 mx-1"><span><i
                                                                     class="fas fa-eye"></i></span> Detail &
                                                             Edit</a>
-                                                        <a href="#" class="btn btn-danger btn-xs my-1 mx-1" data-toggle="modal"
-                                                            data-target="#{{ $d->id }}"><span><i
+                                                        <a href="#" class="btn btn-danger btn-xs my-1 mx-1"
+                                                            data-toggle="modal" data-target="#{{ $d->id }}"><span><i
                                                                     class="fas fa-times"></i></span> Tolak</a>
-                                                        <a href="#" class="btn btn-success btn-xs my-1 mx-1" data-toggle="modal"
+                                                        <a href="#" class="btn btn-success btn-xs my-1 mx-1"
+                                                            data-toggle="modal"
                                                             data-target="#acc{{ $d->id }}"><span><i
                                                                     class="fas fa-check"></i></span> Terima</a>
                                                     </td>
@@ -71,23 +72,31 @@
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="exampleModalLongTitle">
+                                                                    Konfirmasi Penolakan</h2>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
                                                             <div class="modal-body">
-                                                                <div style="text-align: center">
-                                                                    <h3>Setelah Anda menolak, Anda tidak dapat
-                                                                        mengembalikannya lagi.
-                                                                    </h3>
-                                                                    <h3><b>Lanjutkan?</b></h3>
+                                                                <div>
+                                                                    <p class="mb-2"><b>Tolak pendaftaran ini?</b></p>
+                                                                    <p class="mb-0"><small>Setelah Anda menolak, Anda tidak dapat
+                                                                            mengembalikannya lagi. <a href="/admin/pendaftaran/{{ $d->id }}/edit"><small>Cek
+                                                                                kembali detail</small></a></small>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-default btn-border btn-sm"
+                                                                <button type="button" class="btn btn-light btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
                                                                 <form
                                                                     action="/admin/pendaftaran/{{ $d->id }}/decline"
                                                                     method="post" class="d-inline">
                                                                     @csrf
-                                                                    <button class="btn btn-danger btn-sm">Ya</button>
+                                                                    <button class="btn btn-danger btn-sm">Tolak</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -101,22 +110,29 @@
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="exampleModalLongTitle">
+                                                                    Konfirmasi Penerimaan</h2>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
                                                             <div class="modal-body">
-                                                                <div style="text-align: center">
-                                                                    <h3>Yakin untuk menerima?
-                                                                    </h3>
-                                                                    <small><b>Cek kembali detail</b></small>
+                                                                <div>
+                                                                    <b>Terima pendaftaran ini? </b>
+                                                                    <a href="/admin/pendaftaran/{{ $d->id }}/edit"><small>Cek
+                                                                            kembali detail</small></a>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-default btn-border btn-sm"
+                                                                <button type="button" class="btn btn-light btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
                                                                 <form
                                                                     action="/admin/pendaftaran/{{ $d->id }}/accept"
                                                                     method="post" class="d-inline">
                                                                     @csrf
-                                                                    <button class="btn btn-success btn-sm">Ya</button>
+                                                                    <button class="btn btn-success btn-sm">Terima</button>
                                                                 </form>
                                                             </div>
                                                         </div>

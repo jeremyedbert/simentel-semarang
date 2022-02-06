@@ -27,12 +27,12 @@
                     <div class="collapse" id="peta">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="/admin/menara">
+                                <a href="/admin/menara/makro">
                                     <span class="sub-item">Menara Utama</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="components/buttons.html">
+                                <a href="/admin/menara/mikro">
                                     <span class="sub-item">Menara Microcell</span>
                                 </a>
                             </li>

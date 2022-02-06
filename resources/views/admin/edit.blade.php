@@ -51,7 +51,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Edit Form <span><a style="color: #ffa534" data-toggle="tooltip" data-placement="right"
+                    <h4 class="page-title">Edit Form <span><a style="color: grey" data-toggle="tooltip" data-placement="right"
                                 title="Anda hanya bisa mengubah beberapa data."><i class="fas fa-info-circle"></i></a></span></h4>
                 </div>
                 <div class="row">
