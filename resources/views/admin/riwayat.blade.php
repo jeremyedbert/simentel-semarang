@@ -35,8 +35,6 @@
                                         <div class="row d-flex align-items-center">
                                             <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
                                             <div class="ml-3">{{ $d->updated_at->format('d F Y') }}</div>
-                                            {{-- <div class="hr"></div> --}}
-                                            {{-- <hr> --}}
                                             <div class="ml-2 pl-2" style="border-left: 1px solid #575962;">{{ $d->id }}</div>
                                         </div>
                                         <div class="row d-flex align-items-center">
@@ -64,6 +62,9 @@
                                             <i class="icofont-simple-right "></i>
                                         </a>
                                     </div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    {{ $d->status->name }} oleh: {{ $d->admin->name }}
                                 </div>
                             </div>
                         @endforeach

@@ -75,6 +75,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Route::get('/history', [DashboardRiwayatController::class, 'index'])->name('history');
         Route::resource('/riwayat', DashboardRiwayatController::class);
         // Route::resource('/menara', DashboardTowerMacroController::class);
-        Route::resource('/menara', DashboardTowerMacroController::class, ['parameters' => ['menara' => 'tower']]);
+        Route::resource('/menara/makro', DashboardTowerMacroController::class, ['parameters' => ['menara' => 'tower']]);
     });
 });
