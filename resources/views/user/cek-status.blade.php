@@ -13,6 +13,11 @@
     color: #fafafa;
   }
   
+  @media (max-width:425px){
+    .id-tgl{
+      flex-direction: column;
+    }
+  }
 </style>
 <section>
     <div class="d-flex row d-inline-block mb-5">
@@ -51,10 +56,15 @@
               
               @foreach ($data as $d)
                 <div class="permohonan">
-                  <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: #e12454 solid 7px">
+                  <div class="col-lg-12 shadow py-4 mb-3" 
+                    @if ( $d->status->id === 1) style="border-radius: 7px; border-left: #ffc107 solid 7px"
+                    @elseif ( $d->status->id === 2) style="border-radius: 7px; border-left: #28a745 solid 7px"
+                    @else style="border-radius: 7px; border-left: #dc3545 solid 7px"
+                    @endif
+                  >
                     <div class="col">
                       <div class="mb-2 d-flex justify-content-between" style="border-bottom: #bac6d1 solid 2px">
-                        <div class="row">
+                        <div class="row id-tgl">
                           <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
                           <div class="ml-3">{{ $d->created_at->format('d F Y') }}</div>
                         </div>
@@ -68,7 +78,7 @@
                           @endif 
                         </h5>
                       </div>
-                      <h3>{{ $d->tower->pemilik }}</h3>
+                      <h3 class="title-color">{{ $d->tower->pemilik }}</h3>
                       <div class="mb-2 d-flex row justify-content-between">
                         <div class="col-lg-6">
                           <i class="icofont-location-pin"></i>
@@ -84,42 +94,6 @@
                   </div>
                 </div>
               @endforeach
-              @foreach ($data as $a)
-                <p></p>
-                
-              @endforeach
-
-              
-
-              {{-- <div class="permohonan">
-                <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: #e12454 solid 7px">
-                  <div class="col">
-                    <div class="mb-2 d-flex justify-content-between" style="border-bottom: #bac6d1 solid 2px">
-                      <div class="row">
-                        <div class="ml-3"><b>INDOSAT-360</b></div>
-                        <div class="ml-3">3 Feb 2022</div>
-                      </div>
-                      <h5>
-                        <span class="badge bg-warning text-dark" style="opacity: 0.75">Sedang ditinjau</span>
-                        <span class="badge bg-success" style="opacity: 0.75; color: white">Disetujui</span>
-                        <span class="badge bg-danger" style="opacity: 0.75; color: white">Ditolak</span>
-                      </h5>
-                    </div>
-                    <h3>PT Indo Satelite</h3>
-                    <div class="mb-2 d-flex row justify-content-between">
-                      <div class="col-lg-6">
-                        <i class="icofont-location-pin"></i>
-                        <span>Pandansari,&nbsp;</span>
-                        <span>Semarang Tengah</span>
-                      </div>
-                      <a href="#" class="mx-3">
-                        <b><i>Detail</i></b>
-                        <i class="icofont-simple-right "></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
             </div>
         </div>
     </div>
