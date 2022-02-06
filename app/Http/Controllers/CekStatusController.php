@@ -16,7 +16,10 @@ class CekStatusController extends Controller
     {
         //
         return view('user.cek-status', [
-          'data' => Pendaftaran::where('user_id','=',auth()->user()->id)->get()
+          'data' => Pendaftaran::where('user_id','=',auth()->user()->id)
+                                  ->orderBy('status_id')
+                                  ->orderBy('created_at', 'desc')
+                                  ->get()
         ]);
 
         // return dd(Pendaftaran::where('user_id','=',auth()->user()->id));
