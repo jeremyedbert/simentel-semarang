@@ -10,7 +10,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Permohonan <span class="badge badge-warning ml-3">Sedang ditinjau</span></h4>
+                    <h4 class="page-title">Menara</h4>
                 </div>
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -37,31 +37,23 @@
                                             <tr>
                                                 <th>Id Tower</th>
                                                 <th>Pemilik</th>
-                                                <th>Tanggal Daftar</th>
-                                                <th>Tipe Menara</th>
-                                                <th>Lampiran</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $d)
                                                 <tr>
-                                                    <td>{{ $d->tower->idMenara }}</td>
-                                                    <td>{{ $d->tower->pemilik }}</td>
-                                                    <td>{{ $d->created_at->format('d F Y') }}</td>
-                                                    <td>{{ $d->tower->tipemenara->name }}</td>
-                                                    <td><a href="#">Dokumen <i class="fas fa-chevron-right"></i></a></td>
+                                                    <td>{{ $d->idMenara }}</td>
+                                                    <td>{{ $d->pemilik }}</td>
                                                     <td>
-                                                        <a href="/admin/pendaftaran/{{ $d->id }}/edit"
-                                                            class="btn btn-warning btn-xs my-1 mx-1"><span><i
-                                                                    class="fas fa-eye"></i></span> Detail &
-                                                            Edit</a>
-                                                        <a href="#" class="btn btn-danger btn-xs my-1 mx-1" data-toggle="modal"
+                                                        <a href="#" class="btn btn-info btn-xs mx-1 my-1" data-toggle="modal"
+                                                            data-target="#{{ $d->id }}"><span><i class="fas fa-eye"></i></span> Info</a>
+                                                        <a href="#" class="btn btn-warning btn-xs mx-1 my-1" data-toggle="modal"
                                                             data-target="#{{ $d->id }}"><span><i
-                                                                    class="fas fa-times"></i></span> Tolak</a>
-                                                        <a href="#" class="btn btn-success btn-xs my-1 mx-1" data-toggle="modal"
-                                                            data-target="#acc{{ $d->id }}"><span><i
-                                                                    class="fas fa-check"></i></span> Terima</a>
+                                                                    class="fas fa-edit"></i></span> Edit</a>
+                                                        <a href="#" class="btn btn-danger btn-xs mx-1 my-1" data-toggle="modal"
+                                                            data-target="#del{{ $d->id }}"><span><i
+                                                                    class="fas fa-trash-alt"></i></span> Hapus</a>
                                                     </td>
                                                 </tr>
 
@@ -112,8 +104,7 @@
                                                                 <button type="button"
                                                                     class="btn btn-default btn-border btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
-                                                                <form
-                                                                    action="/admin/pendaftaran/{{ $d->id }}/accept"
+                                                                <form action="/admin/pendaftaran/{{ $d->id }}/accept"
                                                                     method="post" class="d-inline">
                                                                     @csrf
                                                                     <button class="btn btn-success btn-sm">Ya</button>
@@ -142,4 +133,19 @@
         })
     </script>
     {{-- <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
+
+    <ul class="nav nav-pills nav-secondary">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
 @endsection

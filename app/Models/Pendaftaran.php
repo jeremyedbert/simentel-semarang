@@ -20,6 +20,12 @@ class Pendaftaran extends Model
       'admin_id',
     ];
 
+    public function scopeSearching($query){
+        if (request('search')) {
+            $query->where('id', 'like', request('search') . '%');
+        }
+    }
+
     public function tower()
     {
         return $this->belongsTo(Tower::class);

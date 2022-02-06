@@ -18,16 +18,16 @@
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/dashboard/peta*') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/menara*') ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#peta">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <p>Peta</p>
+                        <i class="fas fa-broadcast-tower"></i>
+                        <p>Menara</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="peta">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/avatars.html">
+                                <a href="/admin/menara">
                                     <span class="sub-item">Menara Utama</span>
                                 </a>
                             </li>
@@ -39,8 +39,8 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ Request::is('admin/history*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.history') }}">
+                <li class="nav-item {{ Request::is('admin/riwayat*') ? 'active' : '' }}">
+                    <a href="/admin/riwayat">
                         <i class="fas fa-history"></i>
                         <p>Riwayat</p>
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
