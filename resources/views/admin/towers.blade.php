@@ -15,8 +15,9 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header">
-                    <h4 class="page-title">Menara</h4>
+                <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
+                    <h1 style="color: black" class="pb-3"><b>Menara {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
+                    </h1>
                 </div>
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -37,10 +38,10 @@
                     <div class="col-md-12">
                         <ul class="nav nav-pills nav-primary mb-3 justify-content-center">
                             <li class="nav-item submenu">
-                                <a class="nav-link active" href="#">Tabel</a>
+                                <a href="/admin/menara/{{ $routes === 'macro' ? 'makro' : 'mikro' }}" class="nav-link {{ Request::is('admin/menara*') ? 'active' : '' }}" >Tabel</a>
                             </li>
                             <li class="nav-item submenu">
-                                <a class="nav-link" href="#">Peta</a>
+                                <a href="/admin/peta/{{ $routes === 'macro' ? 'makro' : 'mikro' }}" class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
                             </li>
                         </ul>
                         <div class="card">
@@ -60,12 +61,9 @@
                                                     <td>{{ $d->idMenara }}</td>
                                                     <td>{{ $d->pemilik }}</td>
                                                     <td>
-                                                        <a href="/admin/menara/{{ $d->id }}"
+                                                        <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
                                                             class="btn btn-info btn-xs mx-1 my-1"><span><i
                                                                     class="fas fa-eye"></i></span> Info</a>
-                                                        <a href="/admin/menara/{{ $d->id }}/edit"
-                                                            class="btn btn-warning btn-xs mx-1 my-1"><span><i
-                                                                    class="fas fa-edit"></i></span> Edit</a>
                                                         <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
                                                             data-toggle="modal"
                                                             data-target="#del{{ $d->id }}"><span><i

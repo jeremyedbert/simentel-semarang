@@ -79,7 +79,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="tinggi">Tinggi</label>
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <input type="text" class="form-control"
                                                         value="{{ $data->tower->tinggi }}" id="tinggi" name="tinggi"
                                                         readonly>

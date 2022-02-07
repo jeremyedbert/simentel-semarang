@@ -14,8 +14,9 @@ class DashboardTowerMicroController extends Controller
      */
     public function index()
     {
-        return view('admin.menara', [
+        return view('admin.towers', [
             'data' => Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->get(),
+            'routes' => 'micro'
         ]);
     }
 
@@ -82,6 +83,7 @@ class DashboardTowerMicroController extends Controller
      */
     public function destroy(Tower $tower)
     {
-        //
+        Tower::destroy($tower->id);
+        return redirect('/admin/menara/makro')->with('success', 'Menara ' . $tower->idMenara . ' dihapus');
     }
 }
