@@ -49,7 +49,9 @@ class DashboardTowerMacroController extends Controller
      */
     public function show(Tower $tower)
     {
-        //
+        return view('admin.tower', [
+            'data' => $tower
+        ]);
     }
 
     /**

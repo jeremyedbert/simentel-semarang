@@ -76,12 +76,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/riwayat', DashboardRiwayatController::class);
         // Route::resource('/menara', DashboardTowerMacroController::class);
         Route::prefix('/menara')->group(function () {
-            Route::resource('/makro', DashboardTowerMacroController::class);
-            Route::resource('/mikro', DashboardTowerMicroController::class);
+            Route::resource('/makro', DashboardTowerMacroController::class, ['parameters' => ['makro' => 'tower']]);
+            Route::resource('/mikro', DashboardTowerMicroController::class, ['parameters' => ['mikro' => 'tower']]);
         });
         Route::prefix('/peta')->group(function () {
-            Route::resource('/makro', DashboardPetaMacroController::class);
-            Route::resource('/mikro', DashboardPetaMicroController::class);
+            Route::resource('/makro', DashboardPetaMacroController::class, ['parameters' => ['makro' => 'tower']]);
+            Route::resource('/mikro', DashboardPetaMicroController::class, ['parameters' => ['mikro' => 'tower']]);
         });
     });
 });

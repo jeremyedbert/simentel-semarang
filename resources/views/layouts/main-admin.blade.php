@@ -254,11 +254,11 @@
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="#">Profil Saya</a>
                                     <div class="dropdown-divider"></div>
                                     <form action="/admin/logout" method="post">
                                         @csrf
-                                        <button class="dropdown-item" type="submit">Logout</button>
+                                        <button class="dropdown-item" type="submit">Log Out</button>
                                     </form>
                                 </li>
                             </ul>

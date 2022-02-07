@@ -4,112 +4,119 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
         //punya willy
     </script>
-
+    <style>
+        .bld{
+            font-weight: bold
+        }
+    </style>
     {{-- View ini dipakai oleh menara macro dan micro --}}
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header">
-                    <h1 style="color: black"><b>Data Menara {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
-                    </h1>
+                <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
+                    <h1 style="color: black" class="pb-3"><b>Detail Menara&nbsp;</b></h1>
+                    <h1 style="color: #e83e8c" class="pb-3"> <b>{{ $data->idMenara }}</b></h1>
                 </div>
-                @if (session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                @if (session()->has('decline'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {!! session()->get('decline') !!}
-                    </div>
-                @endif
-                @if (session()->has('accept'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {!! session()->get('accept') !!}
-                    </div>
-                @endif
+                <a href="/admin/menara/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
+                        class="fas fa-chevron-left"></i> Kembali ke daftar menara</a>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        {{-- Card --}}
+                        <div class="card mt-3">
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="basic-datatables" class="display table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Id Tower</th>
-                                                <th>Pemilik</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $d)
-                                                <tr>
-                                                    <td>{{ $d->idMenara }}</td>
-                                                    <td>{{ $d->pemilik }}</td>
-                                                    <td>
-                                                        <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
-                                                            class="btn btn-info btn-xs mx-1 my-1"><span><i
-                                                                    class="fas fa-eye"></i></span> Info</a>
-                                                        <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
-                                                            data-toggle="modal"
-                                                            data-target="#del{{ $d->id }}"><span><i
-                                                                    class="fas fa-trash-alt"></i></span> Hapus</a>
-                                                    </td>
-                                                </tr>
+                                {{-- <div class="d-flex justify-content-between align-items-center mb-1 mx-md-3">
+                                    <p>Alamat</p>
+                                    <p>{{ $data['idMenara'] }}</p>
+                                </div> --}}
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="bld">Operator</td>
+                                            <td>
+                                                @if ($data->operator === null)
+                                                    -
+                                                @else
+                                                    {{ $data->operator }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Alamat</td>
+                                            <td>Kelurahan {{ $data->kelurahan->name }}, Kecamatan
+                                                {{ $data->kecamatan->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Tinggi</td>
+                                            <td>{{ $data->tinggi }} meter</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Luas Area</td>
+                                            <td>{{ $data->luas }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Tipe Site</td>
+                                            <td>{{ $data->tipesite->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Tipe Jalan</td>
+                                            <td>{{ $data->tipejalan->name }}</td>
+                                        </tr>
 
-                                                {{-- Modal Hapus --}}
-                                                <div class="modal fade bd-example-modal-sm" id="del{{ $d->id }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h2 class="modal-title" id="exampleModalLongTitle">
-                                                                    Konfirmasi Hapus</h2>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div>
-                                                                    <b>Hapus menara ini? </b><a
-                                                                        href="/admin/menara/{{ $d->id }}/edit"><small>Cek
-                                                                            kembali detail</small></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light btn-sm"
-                                                                    data-dismiss="modal">Tidak</button>
-                                                                <form action="/admin/menara/{{ $d->id }}"
-                                                                    method="post" class="d-inline">
-                                                                    @method('delete')
-                                                                    @csrf
-                                                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- End of modal --}}
-
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <tr>
+                                            <td class="bld">Koordinat</td>
+                                            <td>Latitude: {{ $data->latitude }} &nbsp;|&nbsp; Longitude:
+                                                {{ $data->longitude }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Kondisi Sekitar</td>
+                                            <td>
+                                                @if ($data->kondisi === null)
+                                                    -
+                                                @else
+                                                    {{ $data->kondisi }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Pemilik</td>
+                                            <td>
+                                                @if ($data->pemilik === null)
+                                                    -
+                                                @else
+                                                    {{ $data->pemilik }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Penyewa</td>
+                                            <td>
+                                                @if ($data->penyewa === null)
+                                                    -
+                                                @else
+                                                    {{ $data->penyewa }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bld">Nomor IMB</td>
+                                            <td>
+                                                @if ($data->nomorIMB === null)
+                                                    -
+                                                @else
+                                                    {{ $data->nomorIMB }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable();
-        })
-    </script>
     {{-- <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
 @endsection
