@@ -51,7 +51,7 @@
                             <li>
                                 <form action="/user/logout" method="post">
                                     @csrf
-                                    <button class="dropdown-item" type="submit">Logout</button>
+                                    <button class="dropdown-item" type="submit">Log Out</button>
                                 </form>
                             </li>
                         </ul>
