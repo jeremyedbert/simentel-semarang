@@ -55,6 +55,10 @@ class CekStatusController extends Controller
     public function show(Pendaftaran $pendaftaran)
     {
         //
+        return view('user.detail', [
+          'data' => $pendaftaran
+        ]);
+
     }
 
     /**
