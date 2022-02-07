@@ -8,6 +8,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardTowerMacroController;
+use App\Http\Controllers\DashboardTowerMicroController;
+use App\Http\Controllers\DashboardPetaMacroController;
+use App\Http\Controllers\DashboardPetaMicroController;
 use App\Http\Controllers\DashboardListController;
 use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
@@ -62,7 +65,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return view('admin.welcome');
         });
 
-        // 
         Route::get('/pendaftaran', [DashboardListController::class, 'index']);
         Route::post('/pendaftaran/{pendaftaran}/decline', [DashboardListController::class, 'decline']);
         Route::post('/pendaftaran/{pendaftaran}/accept', [DashboardListController::class, 'accept']);
@@ -71,10 +73,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
 
         // Edit menara ketika belum diacc
-        // Route::get('/edit', [DashboardListController::class, 'edit'])->name('edit');
-        // Route::get('/history', [DashboardRiwayatController::class, 'index'])->name('history');
         Route::resource('/riwayat', DashboardRiwayatController::class);
         // Route::resource('/menara', DashboardTowerMacroController::class);
-        Route::resource('/menara/makro', DashboardTowerMacroController::class, ['parameters' => ['menara' => 'tower']]);
+        Route::prefix('/menara')->group(function () {
+            Route::resource('/makro', DashboardTowerMacroController::class);
+            Route::resource('/mikro', DashboardTowerMicroController::class);
+        });
+        Route::prefix('/peta')->group(function () {
+            Route::resource('/makro', DashboardPetaMacroController::class);
+            Route::resource('/mikro', DashboardPetaMicroController::class);
+        });
     });
 });

@@ -29,7 +29,7 @@ class CreatePendaftaransTable extends Migration
             $table->foreign('admin_id')->references('id')->on('admins');
 
             $table->unsignedBigInteger('tower_id');
-            $table->foreign('tower_id')->references('id')->on('towers');
+            $table->foreign('tower_id')->references('id')->on('towers')->cascadeOnDelete();
 
             $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')->references('id')->on('statuses');

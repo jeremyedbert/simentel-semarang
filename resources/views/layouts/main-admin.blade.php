@@ -6,50 +6,51 @@
 </head>
 
 <body onload="initialize()">
-    <script src={{ url("assets/admin/js/core/jquery.3.2.1.min.js") }}></script>
-    <script src={{ url("assets/admin/js/core/popper.min.js") }}></script>
-    <script src={{ url("assets/admin/js/core/bootstrap.min.js") }}></script>
+    <script src={{ url('assets/admin/js/core/jquery.3.2.1.min.js') }}></script>
+    <script src={{ url('assets/admin/js/core/popper.min.js') }}></script>
+    <script src={{ url('assets/admin/js/core/bootstrap.min.js') }}></script>
 
     <!-- jQuery UI -->
-    <script src={{ url("assets/admin/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js") }}></script>
-    <script src={{ url("assets/admin/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}></script>
+    <script src={{ url('assets/admin/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}></script>
 
     <!-- jQuery Scrollbar -->
-    <script src={{ url("assets/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}></script>
 
     <!-- Moment JS -->
-    <script src={{ url("assets/admin/js/plugin/moment/moment.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/moment/moment.min.js') }}></script>
 
     <!-- Chart JS -->
-    <script src={{ url("assets/admin/js/plugin/chart.js/chart.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/chart.js/chart.min.js') }}></script>
 
     <!-- jQuery Sparkline -->
-    <script type="text/javascript" src={{ url("assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js") }}></script>
+    <script type="text/javascript" src={{ url('assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}>
+    </script>
 
     <!-- Chart Circle -->
-    <script src={{ url("assets/admin/js/plugin/chart-circle/circles.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/chart-circle/circles.min.js') }}></script>
 
     <!-- Datatables -->
-    <script type="text/javascript" src={{ url("assets/admin/js/plugin/datatables/datatables.min.js") }}></script>
+    <script type="text/javascript" src={{ url('assets/admin/js/plugin/datatables/datatables.min.js') }}></script>
 
     <!-- Bootstrap Notify -->
-    <script src={{ url("assets/admin/js/plugin/bootstrap-notify/bootstrap-notify.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}></script>
 
     <!-- Bootstrap Toggle -->
-    <script src={{ url("assets/admin/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js') }}></script>
 
     <!-- jQuery Vector Maps -->
-    <script src={{ url("assets/admin/js/plugin/jqvmap/jquery.vmap.min.js") }}></script>
-    <script src={{ url("assets/admin/js/plugin/jqvmap/maps/jquery.vmap.world.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/jqvmap/jquery.vmap.min.js') }}></script>
+    <script src={{ url('assets/admin/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}></script>
 
     <!-- Google Maps Plugin -->
-    <script src={{ url("assets/admin/js/plugin/gmaps/gmaps.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/gmaps/gmaps.js') }}></script>
 
     <!-- Sweet Alert -->
-    <script src={{ url("assets/admin/js/plugin/sweetalert/sweetalert.min.js") }}></script>
+    <script src={{ url('assets/admin/js/plugin/sweetalert/sweetalert.min.js') }}></script>
 
     <!-- Azzara JS -->
-    <script src={{ url("assets/admin/js/ready.min.js") }}></script>
+    <script src={{ url('assets/admin/js/ready.min.js') }}></script>
 
     <div class="wrapper">
         <!--
@@ -58,10 +59,13 @@
         <div class="main-header" data-background-color="blue">
             <!-- Logo Header -->
             <div class="logo-header">
-
-                <a href="/admin/dashboard" class="logo">
-                    <img src={{ url("assets/admin/img/logoazzara.svg") }} alt="navbar brand" class="navbar-brand">
-                </a>
+                {{-- <div> --}}
+                    <a href="/admin/dashboard" style="text-align: center" class="logo">
+                        {{-- <img src={{ url("assets/admin/img/logoazzara.svg") }} alt="navbar brand" class="navbar-brand"> --}}
+                        <img style="width: 60%" src={{ url('assets/admin/img/logosimentel.png') }} alt="navbar brand"
+                            class="navbar-brand">
+                    </a>
+                {{-- </div> --}}
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -118,7 +122,8 @@
                                         <div class="notif-center">
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src={{ url("assets/admin/img/jm_denis.jpg") }} alt="Img Profile">
+                                                    <img src={{ url('assets/admin/img/jm_denis.jpg') }}
+                                                        alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Jimmy Denis</span>
@@ -130,7 +135,8 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src={{ url("assets/admin/img/chadengle.jpg") }} alt="Img Profile">
+                                                    <img src={{ url('assets/admin/img/chadengle.jpg') }}
+                                                        alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Chad</span>
@@ -142,7 +148,8 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src={{ url("assets/admin/img/mlane.jpg") }} alt="Img Profile">
+                                                    <img src={{ url('assets/admin/img/mlane.jpg') }}
+                                                        alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Jhon Doe</span>
@@ -154,7 +161,8 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src={{ url("assets/admin/img/talha.jpg") }} alt="Img Profile">
+                                                    <img src={{ url('assets/admin/img/talha.jpg') }}
+                                                        alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="subject">Talha</span>
@@ -208,7 +216,8 @@
                                             </a>
                                             <a href="#">
                                                 <div class="notif-img">
-                                                    <img src={{ url("assets/admin/img/profile2.jpg") }} alt="Img Profile">
+                                                    <img src={{ url('assets/admin/img/profile2.jpg') }}
+                                                        alt="Img Profile">
                                                 </div>
                                                 <div class="notif-content">
                                                     <span class="block">
@@ -240,14 +249,16 @@
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src={{ url("assets/admin/img/profile.jpg") }} alt="..." class="avatar-img rounded-circle">
+                                    <img src={{ url('assets/admin/img/profile.jpg') }} alt="..."
+                                        class="avatar-img rounded-circle">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src={{ url("assets/admin/img/profile.jpg") }}
-                                                alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="avatar-lg"><img
+                                                src={{ url('assets/admin/img/profile.jpg') }} alt="image profile"
+                                                class="avatar-img rounded"></div>
                                         <div class="u-text">
                                             <h4>Hizrian</h4>
                                             <p class="text-muted">hello@example.com</p><a href="profile.html"

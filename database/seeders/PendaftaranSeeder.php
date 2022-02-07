@@ -51,5 +51,13 @@ class PendaftaranSeeder extends Seeder
             'status_id' => 3,
             'admin_id' => 2,
         ]);
+        Pendaftaran::create([
+            // 'id' => time()*3,
+            'id' => 22020708000005,
+            'user_id' => 1,
+            'tower_id' => 5,
+            'status_id' => 2,
+            'admin_id' => 1,
+        ]);
     }
 }

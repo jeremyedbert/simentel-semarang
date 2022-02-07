@@ -9,8 +9,8 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header">
-                    <h4 class="page-title">Permohonan <span class="badge badge-warning ml-3">Sedang ditinjau</span></h4>
+                <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
+                    <h1 style="color: black" class="pb-3"><b>Permohonan</b> <span class="badge badge-warning ml-3">Sedang ditinjau</span></h1>
                 </div>
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,7 +48,7 @@
                                                 <tr>
                                                     <td>{{ $d->tower->idMenara }}</td>
                                                     <td>{{ $d->tower->pemilik }}</td>
-                                                    <td>{{ $d->created_at->format('d F Y') }}</td>
+                                                    <td>{{ $d->created_at->translatedFormat('d F Y') }}</td>
                                                     <td>{{ $d->tower->tipemenara->name }}</td>
                                                     <td><a href="#"><i class="far fa-file-alt"></i> Dokumen</a></td>
                                                     <td>
@@ -82,10 +82,11 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div>
-                                                                    <p class="mb-2"><b>Tolak pendaftaran ini?</b></p>
-                                                                    <p class="mb-0"><small>Setelah Anda menolak, Anda tidak dapat
-                                                                            mengembalikannya lagi. <a href="/admin/pendaftaran/{{ $d->id }}/edit"><small>Cek
-                                                                                kembali detail</small></a></small>
+                                                                    <h4><b>Tolak pendaftaran ini?</b></h4>
+                                                                    <p class="mb-0">Setelah Anda menolak, Anda
+                                                                        tidak dapat mengembalikannya lagi. <a
+                                                                            href="/admin/pendaftaran/{{ $d->id }}/edit">Cek
+                                                                            kembali detail</a>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -120,9 +121,9 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div>
-                                                                    <b>Terima pendaftaran ini? </b>
-                                                                    <a href="/admin/pendaftaran/{{ $d->id }}/edit"><small>Cek
-                                                                            kembali detail</small></a>
+                                                                    <h4><b>Terima pendaftaran ini? </b></h4>
+                                                                    <a href="/admin/pendaftaran/{{ $d->id }}/edit">Cek
+                                                                            kembali detail</a>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">

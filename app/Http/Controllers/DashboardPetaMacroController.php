@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tower;
 use Illuminate\Http\Request;
 
-class DashboardTowerMacroController extends Controller
+class DashboardPetaMacroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,10 @@ class DashboardTowerMacroController extends Controller
      */
     public function index()
     {
-        return view('admin.towers', [
-            'data' => Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get(),
-            'routes' => 'macro'
+        $data = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get();
+        return view('admin.peta', [
+            'data' => $data,
+            'routes' => 'macro',
         ]);
     }
 
@@ -83,7 +84,6 @@ class DashboardTowerMacroController extends Controller
      */
     public function destroy(Tower $tower)
     {
-        Tower::destroy($tower->id);
-        return redirect('/admin/menara/makro')->with('success', 'Menara ' . $tower->idMenara . ' dihapus');
+        //
     }
 }

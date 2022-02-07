@@ -72,5 +72,20 @@ class TowerSeeder extends Seeder
           'penyewa' => 'Tesla',
           'operator' => 'Tesla'
         ]);
+        Tower::create([
+            'idMenara' => 'VincentAndDesta',
+            'pemilik' => 'PT VINDES',
+            'latitude' => -6.950170,
+            'longitude' => 110.483663,
+            'kecamatan_id' => 15,
+            'kelurahan_id' => 162,
+            'tipe_menara_id' => 1,
+            'tipe_site_id' => 2,
+            'tipe_jalan_id' => 1,
+            'luas' => '18 meter persegi',
+            'tinggi' => 29,
+            'penyewa' => 'TransMedia',
+            'acc_date' => now()
+          ]);
     }
 }
