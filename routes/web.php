@@ -64,7 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', function () {
             return view('admin.welcome');
         });
-
+        Route::post('/logout', [AdminController::class, 'logout']);
         Route::get('/pendaftaran', [DashboardListController::class, 'index']);
         Route::post('/pendaftaran/{pendaftaran}/decline', [DashboardListController::class, 'decline']);
         Route::post('/pendaftaran/{pendaftaran}/accept', [DashboardListController::class, 'accept']);
