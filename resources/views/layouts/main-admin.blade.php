@@ -60,11 +60,10 @@
             <!-- Logo Header -->
             <div class="logo-header">
                 {{-- <div> --}}
-                    <a href="/admin/dashboard" style="text-align: center" class="logo">
-                        {{-- <img src={{ url("assets/admin/img/logoazzara.svg") }} alt="navbar brand" class="navbar-brand"> --}}
-                        <img style="width: 60%" src={{ url('assets/admin/img/logosimentel.png') }} alt="navbar brand"
-                            class="navbar-brand">
-                    </a>
+                <a href="/admin/dashboard" style="text-align: center" class="logo">
+                    <img style="width: 60%" src={{ url('assets/admin/img/logosimentel.png') }} alt="navbar brand"
+                        class="navbar-brand">
+                </a>
                 {{-- </div> --}}
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,18 +84,6 @@
             <nav class="navbar navbar-header navbar-expand-lg">
 
                 <div class="container-fluid">
-                    {{-- <div class="collapse" id="search-nav">
-                        <form class="navbar-left navbar-form nav-search mr-md-3">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="btn btn-search pr-1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </button>
-                                </div>
-                                <input type="text" placeholder="Search ..." class="form-control">
-                            </div>
-                        </form>
-                    </div> --}}
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         <li class="nav-item toggle-nav-search hidden-caret">
                             <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
@@ -104,7 +91,7 @@
                                 <i class="fa fa-search"></i>
                             </a>
                         </li>
-                        <li class="nav-item dropdown hidden-caret">
+                        {{-- <li class="nav-item dropdown hidden-caret">
                             <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-envelope"></i>
@@ -244,12 +231,12 @@
                                             class="fa fa-angle-right"></i> </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown hidden-caret">
                             <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
                                 aria-expanded="false">
                                 <div class="avatar-sm">
-                                    <img src={{ url('assets/admin/img/profile.jpg') }} alt="..."
+                                    <img src={{ url('assets/admin/img/profile.png') }} alt="..."
                                         class="avatar-img rounded-circle">
                                 </div>
                             </a>
@@ -257,24 +244,22 @@
                                 <li>
                                     <div class="user-box">
                                         <div class="avatar-lg"><img
-                                                src={{ url('assets/admin/img/profile.jpg') }} alt="image profile"
+                                                src={{ url('assets/admin/img/profile.png') }} alt="image profile"
                                                 class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@example.com</p><a href="profile.html"
-                                                class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                            <h4>{{ auth()->user()->name }}</h4>
+                                            <p class="text-muted">{{ auth()->user()->email }}</p>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Balance</a>
-                                    <a class="dropdown-item" href="#">Inbox</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Account Setting</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <form action="/admin/logout" method="post">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">Logout</button>
+                                    </form>
                                 </li>
                             </ul>
                         </li>
