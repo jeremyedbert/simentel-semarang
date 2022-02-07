@@ -27,13 +27,13 @@
                     <div class="collapse" id="peta">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="/admin/menara">
+                                <a href="/admin/menara/makro">
                                     <span class="sub-item">Menara Utama</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="components/buttons.html">
-                                    <span class="sub-item">Menara Microcell</span>
+                                <a href="/admin/menara/mikro">
+                                    <span class="sub-item">Menara Mikro</span>
                                 </a>
                             </li>
                         </ul>
@@ -46,7 +46,7 @@
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a data-toggle="collapse" href="#forms">
                         <i class="fas fa-pen-square"></i>
                         <p>Forms</p>
@@ -130,7 +130,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
                     <a href="widgets.html">
                         <i class="fas fa-desktop"></i>
@@ -219,7 +218,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

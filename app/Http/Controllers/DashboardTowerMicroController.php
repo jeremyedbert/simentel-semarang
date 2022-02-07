@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tower;
 use Illuminate\Http\Request;
 
-class DashboardTowerMacroController extends Controller
+class DashboardTowerMicroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class DashboardTowerMacroController extends Controller
     public function index()
     {
         return view('admin.towers', [
-            'data' => Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get(),
-            'routes' => 'macro'
+            'data' => Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->get(),
+            'routes' => 'micro'
         ]);
     }
 

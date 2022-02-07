@@ -51,7 +51,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Edit Form <span><a style="color: #ffa534" data-toggle="tooltip" data-placement="right"
+                    <h4 class="page-title">Edit Form <span><a style="color: grey" data-toggle="tooltip" data-placement="right"
                                 title="Anda hanya bisa mengubah beberapa data."><i class="fas fa-info-circle"></i></a></span></h4>
                 </div>
                 <div class="row">
@@ -79,7 +79,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="tinggi">Tinggi</label>
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <input type="text" class="form-control"
                                                         value="{{ $data->tower->tinggi }}" id="tinggi" name="tinggi"
                                                         readonly>

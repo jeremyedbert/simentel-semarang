@@ -104,9 +104,9 @@ class DashboardListController extends Controller
     {
         // $data = Pendaftaran::where('id', $id)->firstOrFail();
         // $data->delete();
-        Pendaftaran::destroy($pendaftaran->id);
-        Tower::destroy($pendaftaran->tower_id);
-        return redirect('/admin/pendaftaran')->with('success', 'Record has been deleted!');
+        // Pendaftaran::destroy($pendaftaran->id);
+        // Tower::destroy($pendaftaran->tower_id);
+        // return redirect('/admin/pendaftaran')->with('success', 'Record has been deleted!');
         // return dd($pendaftaran);
     }
 

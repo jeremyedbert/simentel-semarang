@@ -5,12 +5,13 @@
         //punya willy
     </script>
 
-
+    {{-- View ini dipakai oleh menara macro dan micro --}}
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Menara</h4>
+                    <h1 style="color: black"><b>Data Menara {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
+                    </h1>
                 </div>
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -46,40 +47,45 @@
                                                     <td>{{ $d->idMenara }}</td>
                                                     <td>{{ $d->pemilik }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-info btn-xs mx-1 my-1" data-toggle="modal"
-                                                            data-target="#{{ $d->id }}"><span><i class="fas fa-eye"></i></span> Info</a>
-                                                        <a href="#" class="btn btn-warning btn-xs mx-1 my-1" data-toggle="modal"
-                                                            data-target="#{{ $d->id }}"><span><i
-                                                                    class="fas fa-edit"></i></span> Edit</a>
-                                                        <a href="#" class="btn btn-danger btn-xs mx-1 my-1" data-toggle="modal"
+                                                        <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
+                                                            class="btn btn-info btn-xs mx-1 my-1"><span><i
+                                                                    class="fas fa-eye"></i></span> Info</a>
+                                                        <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
+                                                            data-toggle="modal"
                                                             data-target="#del{{ $d->id }}"><span><i
                                                                     class="fas fa-trash-alt"></i></span> Hapus</a>
                                                     </td>
                                                 </tr>
 
-                                                {{-- Modal Decline --}}
-                                                <div class="modal fade bd-example-modal-sm" id="{{ $d->id }}"
+                                                {{-- Modal Hapus --}}
+                                                <div class="modal fade bd-example-modal-sm" id="del{{ $d->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="exampleModalLongTitle">
+                                                                    Konfirmasi Hapus</h2>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
                                                             <div class="modal-body">
-                                                                <div style="text-align: center">
-                                                                    <h3>Setelah Anda menolak, Anda tidak dapat
-                                                                        mengembalikannya lagi.
-                                                                    </h3>
-                                                                    <h3><b>Lanjutkan?</b></h3>
+                                                                <div>
+                                                                    <b>Hapus menara ini? </b><a
+                                                                        href="/admin/menara/{{ $d->id }}/edit"><small>Cek
+                                                                            kembali detail</small></a>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-default btn-border btn-sm"
+                                                                <button type="button" class="btn btn-light btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
-                                                                <form
-                                                                    action="/admin/pendaftaran/{{ $d->id }}/decline"
+                                                                <form action="/admin/menara/{{ $d->id }}"
                                                                     method="post" class="d-inline">
+                                                                    @method('delete')
                                                                     @csrf
-                                                                    <button class="btn btn-danger btn-sm">Ya</button>
+                                                                    <button class="btn btn-danger btn-sm">Hapus</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -87,33 +93,6 @@
                                                 </div>
                                                 {{-- End of modal --}}
 
-                                                {{-- Modal Accept --}}
-                                                <div class="modal fade bd-example-modal-sm" id="acc{{ $d->id }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-body">
-                                                                <div style="text-align: center">
-                                                                    <h3>Yakin untuk menerima?
-                                                                    </h3>
-                                                                    <small><b>Cek kembali detail</b></small>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-default btn-border btn-sm"
-                                                                    data-dismiss="modal">Tidak</button>
-                                                                <form action="/admin/pendaftaran/{{ $d->id }}/accept"
-                                                                    method="post" class="d-inline">
-                                                                    @csrf
-                                                                    <button class="btn btn-success btn-sm">Ya</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- End of modal --}}
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -133,19 +112,4 @@
         })
     </script>
     {{-- <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
-
-    <ul class="nav nav-pills nav-secondary">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-    </ul>
 @endsection
