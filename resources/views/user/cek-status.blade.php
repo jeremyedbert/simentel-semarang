@@ -66,7 +66,7 @@
                       <div class="mb-2 d-flex justify-content-between" style="border-bottom: #bac6d1 solid 2px">
                         <div class="row id-tgl">
                           <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
-                          <div class="ml-3">{{ $d->created_at->format('d F Y') }}</div>
+                          <div class="ml-3">{{ ltrim($d->created_at->translatedFormat('d F Y'), '0')}}</div>
                         </div>
                         <h5>
                           @if ( $d->status->id === 1)
@@ -85,7 +85,7 @@
                           <span>{{ $d->tower->kelurahan->name }},&nbsp;</span>
                           <span>{{ $d->tower->kecamatan->name }}</span>
                         </div>
-                        <a href="#" class="mx-3">
+                        <a href="/user/cekstatus/{{ $d->id }}" class="mx-3">
                           <b><i>Detail</i></b>
                           <i class="icofont-simple-right "></i>
                         </a>
