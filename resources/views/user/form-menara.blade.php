@@ -59,8 +59,9 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <h2 class="title-color mb-4">Pendaftaran Menara</h2>
-            <form id="#" class="appoinment-form" method="post" action="{{ route('user.daftar-menara.createTower') }}">
+            <h2 class="title-color mb-2">Pendaftaran Menara</h2>
+            <div class="divider mb-4"></div>
+            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara">
                 <div class="col">
                     @csrf
                     <div class="form-group">
@@ -73,7 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tipe Menara <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" name="tipeMenara" id="tipeMenara">
+                        <select class="form-control" name="tipe_menara_id" id="tipeMenara">
                             <option value="none"> -- Pilih tipe menara -- </option>
                             @foreach ($tipemenara as $menara)
                                 <option value="{{ $menara->id }}"> {{ $menara->name }}</option>
@@ -82,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" name="tipeSite" id="tipeSite">
+                        <select class="form-control" name="tipe_site_id" id="tipeSite">
                             <option value="none"> -- Pilih tipe site -- </option>
                             @foreach ($tipesite as $site)
                                 <option value="{{ $site->id }}"> {{ $site->name }}</option>
@@ -91,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tipe Jalan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" name="tipeJalan" id="jalan">
+                        <select class="form-control" name="tipe_jalan_id" id="jalan">
                             <option value="none"> -- Pilih tipe jalan -- </option>
                             @foreach ($tipejalan as $jalan)
                                 <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
@@ -104,7 +105,7 @@
                     </div>
                     <div class="form-group">
                         <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" name="kecamatan" id="kecamatan" data-dependent="kelurahan">
+                        <select class="form-control" name="kecamatan_id" id="kecamatan" data-dependent="kelurahan">
                             <option value="none"> -- Pilih kecamatan -- </option>
                             @foreach ($kecamatan as $key => $kec)
                                 <option value="{{ $key }}"> {{ $kec }}</option>
@@ -114,7 +115,7 @@
 
                     <div class="form-group">
                         <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
-                        <select class="form-control" name="kelurahan" id="kelurahan">
+                        <select class="form-control" name="kelurahan_id" id="kelurahan">
                             <option value="none"> -- Pilih kelurahan -- </option>
                         </select>
                     </div>
@@ -153,8 +154,8 @@
                     </div>
 
                     <div class="form-group ">
-                      <label for="lampiran" class="form-label">Lampiran/Dokumen Pendukung <span style="color: #e12454"><b> * </b></span></label>
-                      <input class="form-control pt-2" type="file" id="lampiran" multiple>
+                      <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span style="color: #e12454"><b> * </b></span></label>
+                      <input class="form-control pt-2" type="file" name="document" id="document" multiple>
 
                     </div>
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
@@ -173,7 +174,7 @@
                 if (kecamatan_id) {
                     $.ajax({
                         type: "GET",
-                        url: "{{ url('user/daftar-menara/getKelurahan') }}?kecamatan_id=" +
+                        url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" +
                             kecamatan_id,
                         success: function(res) {
                             if (res) {
