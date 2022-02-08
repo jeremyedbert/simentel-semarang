@@ -1,16 +1,11 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
-        //punya willy
-    </script>
-
 
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
                 <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
-                    <h1 style="color: black" class="pb-3"><b>Permohonan</b> <span class="badge badge-warning ml-3">Sedang ditinjau</span></h1>
+                    <h1 style="color: black" class="pb-3"><b>Permohonan</b> <span class="badge badge-warning ml-2">Sedang ditinjau</span></h1>
                 </div>
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
