@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
 
         // Edit menara ketika belum diacc
-        Route::resource('/riwayat', DashboardRiwayatController::class);
+        Route::resource('/riwayat', DashboardRiwayatController::class, ['parameters' => ['riwayat' => 'pendaftaran']]);
         // Route::resource('/menara', DashboardTowerMacroController::class);
         Route::prefix('/menara')->group(function () {
             Route::resource('/makro', DashboardTowerMacroController::class, ['parameters' => ['makro' => 'tower']]);

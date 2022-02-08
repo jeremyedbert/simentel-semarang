@@ -18,7 +18,9 @@ class DashboardRiwayatController extends Controller
             // 'data' => $data::where('status_id', '=', 2)->orWhere('status_id', '=', 3)
             //     ->get(),
             // scopeSearching'
-            'data' => Pendaftaran::whereIn('status_id', [2, 3])->searching()->latest()->get()
+            'data' => Pendaftaran::whereIn('status_id', [2, 3])
+                                ->searching()
+                                ->orderBy('updated_at','desc')->get()
         ]);
     }
 
@@ -51,7 +53,9 @@ class DashboardRiwayatController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-        //
+        return view('admin.detail-riwayat', [
+            'data' => $pendaftaran
+        ]);
     }
 
     /**

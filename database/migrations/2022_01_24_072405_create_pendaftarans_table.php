@@ -34,6 +34,8 @@ class CreatePendaftaransTable extends Migration
             $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')->references('id')->on('statuses');
 
+            $table->string('document')->nullable();
+
             // $table->foreignId('admin_id')->nullable();
             // $table->foreignId('tower_id');
             // $table->foreignId('status_id')->default(1);

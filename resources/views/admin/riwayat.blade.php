@@ -8,12 +8,6 @@
                     <h1 style="color: black" class="pb-3"><b>Riwayat</b></h1>
                     {{-- Search bar --}}
                     <div class="form-group py-0">
-                        {{-- <div class="input-group" >
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                            </div>
-                                <input type="text" class="form-control" id="pillInput" placeholder="Cari...">
-                        </div> --}}
                         <form action="/admin/riwayat">
                             <div class="input-group pb-3">
                                 <div class="input-group-prepend">
@@ -29,7 +23,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-
                         @if ($data->count())
                             @foreach ($data as $d)
                                 <div class="card">
@@ -37,9 +30,10 @@
                                         <div class="d-flex justify-content-between">
                                             <div class="row d-flex align-items-center">
                                                 <div class="ml-3"><b>{{ $d->tower->idMenara }}</b></div>
-                                                <div class="ml-3">{{ $d->updated_at->translatedFormat('d F Y') }}</div>
-                                                <div class="ml-2 pl-2" style="border-left: 1px solid #575962;">
-                                                    {{ $d->id }}</div>
+                                                <div class="ml-3">
+                                                    {{ $d->updated_at->translatedFormat('d F Y') }}</div>
+                                                <div class="ml-2 pl-2" style="border-left: 1px solid #575962; color: #177dff">
+                                                    <b>{{ $d->id }}</b></div>
                                             </div>
                                             <div class="row d-flex align-items-center">
                                                 <h2 class="mr-3">
@@ -53,7 +47,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <h1>{{ $d->tower->pemilik }}</h1>
+                                        <a href="/admin/riwayat/{{ $d->id }}" style="text-decoration: none; color: inherit"><h1>{{ $d->tower->pemilik }}</h1></a>
                                         <div class="mb-2 d-flex row justify-content-between">
                                             <div class="col-lg-6">
                                                 <i class="fas fa-map-marker-alt"></i>
@@ -61,7 +55,7 @@
                                                     {{ $d->tower->kecamatan->name }}</span>
                                                 {{-- <span>{{ $d->tower->kecamatan->name }}</span> --}}
                                             </div>
-                                            <a href="#" class="mx-3">
+                                            <a href="/admin/riwayat/{{ $d->id }}" class="mx-3">
                                                 <b><i>Detail</i></b>
                                                 <i class="icofont-simple-right "></i>
                                             </a>
@@ -73,7 +67,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <h3 class="text-center">Tidak ada data.</h3>
+                            <h3 class="text-center">Tidak ada data. <a href="/admin/riwayat">Kembali</a></h3>
                         @endif
 
                     </div>
