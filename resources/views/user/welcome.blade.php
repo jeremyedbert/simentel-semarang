@@ -24,7 +24,7 @@
                                 </a>
                             {{-- </div>
                             <div> --}}
-                                <a href="{{ route('user.daftar-menara') }}" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
+                                <a href="/user/daftar-menara" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
                                     Daftarkan Menara<i class="icofont-simple-right ml-2  "></i>
                                 </a>
                             {{-- </div> --}}
@@ -240,7 +240,7 @@
 
                             
                         </form> --}}
-                        <a class="btn btn-main btn-round-full" href="{{ route('user.daftar-menara') }}">Daftarkan Menara <i
+                        <a class="btn btn-main btn-round-full" href="/user/daftar-menara">Daftarkan Menara <i
                             class="icofont-simple-right ml-2"></i></a>
                     </div>
                 </div>

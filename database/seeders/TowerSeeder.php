@@ -16,7 +16,7 @@ class TowerSeeder extends Seeder
     {
         Tower::create([
             'idMenara' => 'SMG454',
-            'pemilik' => 'PT. Dayamitra Telekomunikasi',
+            'pemilik' => 'PT Dayamitra Telekomunikasi',
             'latitude' => -7.09275,
             'longitude' => 110.32743,
             'kecamatan_id' => 5,
