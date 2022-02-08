@@ -13,7 +13,7 @@
     color: #fafafa;
   }
   
-  @media (max-width:425px){
+  @media (max-width:576px){
     .id-tgl{
       flex-direction: column;
     }
@@ -57,9 +57,9 @@
               @foreach ($data as $d)
                 <div class="permohonan">
                   <div class="col-lg-12 shadow py-4 mb-3" 
-                    @if ( $d->status->id === 1) style="border-radius: 7px; border-left: #ffc107 solid 7px"
-                    @elseif ( $d->status->id === 2) style="border-radius: 7px; border-left: #28a745 solid 7px"
-                    @else style="border-radius: 7px; border-left: #dc3545 solid 7px"
+                    @if ( $d->status->id === 1) style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
+                    @elseif ( $d->status->id === 2) style="border-radius: 7px; border-left: rgba(40, 167, 69, 0.7) solid 7px"
+                    @else style="border-radius: 7px; border-left: rgba(220, 53, 69, 0.7) solid 7px"
                     @endif
                   >
                     <div class="col">
@@ -70,11 +70,11 @@
                         </div>
                         <h5>
                           @if ( $d->status->id === 1)
-                            <span class="badge bg-warning text-dark" style="opacity: 0.75">{{ $d->status->name}}</span>
+                            <span class="badge bg-warning text-dark" style="opacity: 0.7">{{ $d->status->name}}</span>
                           @elseif ( $d->status->id === 2)
-                            <span class="badge bg-success" style="opacity: 0.75; color: white">{{ $d->status->name}}</span>
+                            <span class="badge bg-success" style="opacity: 0.7; color: white">{{ $d->status->name}}</span>
                           @else
-                            <span class="badge bg-danger" style="opacity: 0.75; color: white">{{ $d->status->name}}</span>
+                            <span class="badge bg-danger" style="opacity: 0.7; color: white">{{ $d->status->name}}</span>
                           @endif 
                         </h5>
                       </div>
