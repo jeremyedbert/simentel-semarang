@@ -1,7 +1,7 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy
+        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
         //punya willy
     </script>
     <script>
@@ -90,7 +90,7 @@
                                     <div class="d-flex col-lg-6 align-items-center ">
                                         <b>ID Permohonan</b>
                                     </div>
-                                    <div class="d-flex col-lg-6 align-items-center mx-md-3" style="color: #e83e8c">
+                                    <div class="d-flex col-lg-6 align-items-center mx-md-3" style="color: #177dff">
                                         <b>{{ $data->id }}</b>
                                     </div>
                                 </li>
