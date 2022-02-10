@@ -1,34 +1,44 @@
 @extends('layouts.main-user')
 @section('content')
-    <script type="text/javascript" {{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy --}}
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+        //punya jeremy
+        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8"
         //punya willy
     </script>
     <script type="text/javascript">
         function initialize() {
             // Creating map object
-            var map = new google.maps.Map(document.getElementById('map_canvas'), {
-                zoom: 12,
+            const map = new google.maps.Map(document.getElementById('map_canvas'), {
+                zoom: 13,
                 center: new google.maps.LatLng(-6.966667, 110.4381),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                // mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
+            // SVG Icon
+            const svgMark = {
+                url: "{{ url('/images/tower_marker.svg') }}",
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            };
+
             // creates a draggable marker to the given coords
-            var vMarker = new google.maps.Marker({
+            let vMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(-6.966667, 110.4381),
+                animation: google.maps.Animation.DROP,
+                icon: svgMark,
+                title: "Drag",
                 draggable: true
             });
 
             // adds a listener to the marker
             // gets the coords when drag event ends
             // then updates the input with the new coords
-            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
+            google.maps.event.addListener(vMarker, 'drag', function(evt) {
                 $("#txtLat").val(evt.latLng.lat().toFixed(6));
                 $("#txtLng").val(evt.latLng.lng().toFixed(6));
-
                 map.panTo(evt.latLng);
             });
-
+            
             // centers the map on markers coords
             map.setCenter(vMarker.position);
 
@@ -163,6 +173,7 @@
                             {{ $message }}
                         @enderror
                       </span>
+
                     </div>
 
                     <div class="form-group">
@@ -222,11 +233,14 @@
                     </div>
 
                     <div class="form-group ">
-                      <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span style="color: #e12454"><b> * </b></span></label>
-                      <input class="form-control pt-2" type="file" name="document" id="document" multiple>
+                        <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
+                                style="color: #e12454"><b> * </b></span></label>
+                        <input class="form-control pt-2" type="file" name="document" id="document" multiple>
 
                     </div>
+
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi.</b></p>
+
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
                 </div>
@@ -236,7 +250,7 @@
     </section>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#kecamatan').change(function() {
+            $('#kecamatan_id').change(function() {
                 var kecamatan_id = $(this).val();
                 if (kecamatan_id) {
                     $.ajax({
@@ -245,20 +259,20 @@
                             kecamatan_id,
                         success: function(res) {
                             if (res) {
-                                $('#kelurahan').empty();
-                                $('#kelurahan').append(
+                                $('#kelurahan_id').empty();
+                                $('#kelurahan_id').append(
                                     '<option value="none"> -- Pilih kelurahan -- </option>');
                                 $.each(res, function(key, value) {
-                                    $('#kelurahan').append('<option value="' + key +
+                                    $('#kelurahan_id').append('<option value="' + key +
                                         '">' + value + '</option>');
                                 });
                             } else {
-                                $('#kelurahan').empty();
+                                $('#kelurahan_id').empty();
                             }
                         }
                     });
                 } else {
-                    $('#kelurahan').empty();
+                    $('#kelurahan_id').empty();
                 }
             });
         });
