@@ -44,10 +44,11 @@ Route::prefix('user')->name('user.')->group(function () {
 
     // Authenticated User
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
-        // Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
-        Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
+        Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
+        // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
         Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
-        // Route::post('daftar-menara/createTower', [FormController::class, 'createTower'])->name('daftar-menara.createTower');
+        // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+        Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
         // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
         Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
         Route::post('/logout', [UserController::class, 'logout']);
