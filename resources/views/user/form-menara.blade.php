@@ -75,7 +75,7 @@
             @endif
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store">
+            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store" enctype="multipart/form-data">
                 <div class="col">
                     @csrf
                     <div class="form-group">
@@ -232,10 +232,10 @@
                           value='{{ old('nomorIMB') }}' placeholder="">
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group">
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
-                        <input class="form-control pt-2" type="file" name="document" id="document" multiple>
+                        <input class="form-control pt-2" type="file" name="document" id="document">
 
                     </div>
 
@@ -250,7 +250,7 @@
     </section>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#kecamatan_id').change(function() {
+            $('#kecamatan').change(function() {
                 var kecamatan_id = $(this).val();
                 if (kecamatan_id) {
                     $.ajax({
@@ -259,22 +259,34 @@
                             kecamatan_id,
                         success: function(res) {
                             if (res) {
-                                $('#kelurahan_id').empty();
-                                $('#kelurahan_id').append(
+                                $('#kelurahan').empty();
+                                $('#kelurahan').append(
                                     '<option value="none"> -- Pilih kelurahan -- </option>');
                                 $.each(res, function(key, value) {
-                                    $('#kelurahan_id').append('<option value="' + key +
+                                    $('#kelurahan').append('<option value="' + key +
                                         '">' + value + '</option>');
                                 });
                             } else {
-                                $('#kelurahan_id').empty();
+                                $('#kelurahan').empty();
                             }
                         }
                     });
                 } else {
-                    $('#kelurahan_id').empty();
+                    $('#kelurahan').empty();
                 }
             });
         });
     </script>
+    {{-- <script>
+      const inputElement = document.querySelector('input[id="document"]');
+      const pond = FilePond.create(inputElement);
+      FilePond.setOptions({
+        server:{ 
+          url: "{{ url('/user/daftar-menara/upload') }}",
+          headers:{
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          }
+        } 
+      });
+    </script> --}}
 @endsection
