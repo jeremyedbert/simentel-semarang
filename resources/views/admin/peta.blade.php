@@ -1,10 +1,6 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
-        //punya jeremy
-        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
-        //punya willy
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
     </script>
     <script>
         function initialize() {
@@ -22,8 +18,8 @@
                 center: new google.maps.LatLng(-6.977, 110.416664),
             });
 
-            let infowindow = new google.maps.InfoWindow(); 
-            
+            let infowindow = new google.maps.InfoWindow();
+
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
@@ -74,10 +70,10 @@
                 .idMenara + `</a></b>
                 </div>
                 <div class="mt-2">
-                    Koordinat: ` + marker.getPosition() +
+                    Pemilik: ` + tower.pemilik +
                 `</div>
                 <div>
-                    Tinggi: ` + tower.tinggi + ` meter
+                    Koordinat: ` + marker.getPosition() + `
                 </div>
                 <div>
                     Tinggi: ` + tower.tinggi + ` meter
@@ -135,6 +131,10 @@
                                     class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
                             </li>
                         </ul>
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-control" id="latlng" aria-describedby="emailHelp">
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div id="map_canvas" class="mx-3 my-3" style="width: auto; height: 500px;"></div>

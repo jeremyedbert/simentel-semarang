@@ -1,10 +1,8 @@
 @extends('layouts.main-user')
 @section('content')
     <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
         //punya jeremy
-        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8"
-        //punya willy
     </script>
     <script type="text/javascript">
         function initialize() {

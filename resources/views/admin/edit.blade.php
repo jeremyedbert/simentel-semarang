@@ -1,30 +1,34 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy
-        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
-        //punya willy
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}"> //punya jeremy
     </script>
     <script>
         function initialize() {
             // Creating map object
-            var lat = document.getElementById('txtLat').value;
-            var lng = document.getElementById('txtLng').value;
+            let lat = document.getElementById('txtLat').value;
+            let lng = document.getElementById('txtLng').value;
             // const uluru = {
             //     lat: -7.095,
             //     lng: 110.095
             // };
-            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            const svgMark = {
+                url: "{{ url('/images/tower_marker.svg') }}",
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            };
+
+            const map = new google.maps.Map(document.getElementById('map_canvas'), {
                 zoom: 15,
                 // center: new google.maps.LatLng(-7.09275, 110.32743),
                 scrollwheel: false,
                 center: new google.maps.LatLng(lat, lng),
                 // center: uluru,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
             // creates a draggable marker to the given coords
-            var vMarker = new google.maps.Marker({
+            let vMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(lat, lng),
+                icon : svgMark,
+                map: map,
                 // position: uluru,
                 draggable: true
             });
@@ -32,10 +36,9 @@
             // adds a listener to the marker
             // gets the coords when drag event ends
             // then updates the input with the new coords
-            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
+            google.maps.event.addListener(vMarker, 'drag', function(evt) {
                 $("#txtLat").val(evt.latLng.lat().toFixed(6));
                 $("#txtLng").val(evt.latLng.lng().toFixed(6));
-
                 map.panTo(evt.latLng);
             });
 
