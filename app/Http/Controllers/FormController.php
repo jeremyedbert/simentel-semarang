@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\UploadedFile;
 use App\Models\Tower;
 use App\Models\User;
 use App\Models\Pendaftaran;
@@ -35,6 +36,9 @@ class FormController extends Controller
 
   public function store(Request $request)
   {
+    // ddd($request);
+
+    // return $request->file('document')->store('documents');
     $validatedTower = $request->validate([
       'pemilik' => 'required|max:50',
       'idMenara' => 'required|unique:towers,idMenara',
@@ -94,6 +98,7 @@ class FormController extends Controller
     $pendaftaran->id = $id;
     $pendaftaran->user_id = auth()->user()->id;
     $pendaftaran->tower_id = $tower->id;
+    $pendaftaran->document = $request->file('document')->store('documents/');
     $storePendaftaran = $pendaftaran->save();
 
     if ($storeTower && $storePendaftaran) {
@@ -103,4 +108,23 @@ class FormController extends Controller
       return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
     }
   }
+
+  public function upload(Request $request)
+  {
+    if($request->hasFile('document')){
+      // $file = $request->file('document');
+      // $filename = 'docs-'.$request->idMenara;
+      // $folder = $request->idMenara;
+      // $filepath = "path:'documents/tmp'";
+      // $file->storeAs('tmp/'.$folder);
+      // $request->file('document')->store('tmp/');
+      // $request->file('document')->store('tmp/');
+
+      // return $folder;
+    }
+
+    // return '';
+  }
 }
+
+

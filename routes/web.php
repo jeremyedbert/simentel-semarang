@@ -48,6 +48,7 @@ Route::prefix('user')->name('user.')->group(function () {
         // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
         Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
         // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+        Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
         Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
         // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
         Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);

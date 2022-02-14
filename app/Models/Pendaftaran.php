@@ -18,6 +18,7 @@ class Pendaftaran extends Model
       'tower_id',
       'status_id',
       'admin_id',
+      'document'
     ];
 
     public function scopeSearching($query){
