@@ -1,10 +1,7 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
         //punya jeremy
-        // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
-        //punya willy
     </script>
     <script>
         function initialize() {
@@ -30,15 +27,15 @@
                 map: map,
                 title: "Klik untuk detail",
             });
-            
+
             // You can use a LatLng literal in place of a google.maps.LatLng object when
             // creating the Marker object. Once the Marker object is instantiated, its
             // position will be available as a google.maps.LatLng object. In this case,
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
             const infowindow = new google.maps.InfoWindow({
-                content: "<p>ID Menara: {{ $data->tower->idMenara }}</p>" + 
-                '<a href="/admin/menara/makro/{{ $data->tower->id }}">Info Tower </a> ',
+                content: "<p>ID Menara: {{ $data->tower->idMenara }}</p>" +
+                    '<a href="/admin/menara/makro/{{ $data->tower->id }}">Info Tower </a> ',
             });
 
             google.maps.event.addListener(marker, "click", () => {
