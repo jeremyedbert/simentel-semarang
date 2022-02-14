@@ -38,7 +38,7 @@
                 $("#txtLng").val(evt.latLng.lng().toFixed(6));
                 map.panTo(evt.latLng);
             });
-            
+
             // centers the map on markers coords
             map.setCenter(vMarker.position);
 
@@ -56,8 +56,8 @@
             margin-top: 0;
         }
 
-        select{
-          font-size: 9px;
+        select {
+            font-size: 9px;
         }
 
     </style>
@@ -75,27 +75,28 @@
             @endif
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store">
+            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store"
+                enctype="multipart/form-data">
                 <div class="col">
                     @csrf
                     <div class="form-group">
                         <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
-                        <input name="pemilik" type="text" class="form-control input-sm" 
-                          value='{{ old('pemilik') }}' placeholder="contoh: PT Telkom Indonesia Tbk">
+                        <input name="pemilik" type="text" class="form-control input-sm" value='{{ old('pemilik') }}'
+                            placeholder="contoh: PT Telkom Indonesia Tbk">
                         <span class="text-danger">
-                          @error('pemilik')
-                              {{ $message }}
-                          @enderror
+                            @error('pemilik')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group">
                         <label>ID Menara <span style="color: #e12454"><b> * </b></span></label>
-                        <input name="idMenara" type="text" class="form-control input-sm" 
-                          value='{{ old('idMenara') }}' placeholder="contoh: TLKM-SMG_123">
+                        <input name="idMenara" type="text" class="form-control input-sm" value='{{ old('idMenara') }}'
+                            placeholder="contoh: TLKM-SMG_123">
                         <span class="text-danger">
-                          @error('idMenara')
-                              {{ $message }}
-                          @enderror
+                            @error('idMenara')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group">
@@ -107,10 +108,10 @@
                             @endforeach
                         </select>
                         <span class="text-danger">
-                          @error('tipe_menara_id')
-                              {{ $message }}
-                          @enderror
-                      </span>
+                            @error('tipe_menara_id')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="form-group">
                         <label>Tipe Site <span style="color: #e12454"><b> * </b></span></label>
@@ -121,9 +122,9 @@
                             @endforeach
                         </select>
                         <span class="text-danger">
-                          @error('tipe_site_id')
-                              {{ $message }}
-                          @enderror
+                            @error('tipe_site_id')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group">
@@ -132,47 +133,48 @@
                             <option value=""> -- Pilih tipe jalan -- </option>
                             @foreach ($tipejalan as $jalan)
                                 <option value="{{ $jalan->id }}"> {{ $jalan->name }}</option>
-                                @endforeach
-                              </select>
-                              <span class="text-danger">
-                                @error('tipe_jalan_id')
-                                {{ $message }}
-                                @enderror
-                              </span>
-                    </div>
-                    <div class="form-group">
-                      <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
-                      <input name="tinggi" id="tinggi" type="text" class="form-control" 
-                        value='{{ old('tinggi') }}' placeholder="contoh: 12.5">
-                      <span class="text-danger">
-                        @error('tinggi')
-                        {{ $message }}
-                        @enderror
-                      </span>
-                    </div>
-                    <div class="form-group">
-                        <label>Luas (dalam meter&sup2; atau panjang x lebar)<span style="color: #e12454"><b> * </b></span></label>
-                        <input name="luas" id="luas" type="text" class="form-control" 
-                          value='{{ old('luas') }}' placeholder="contoh: 16 x 16 meter2">
+                            @endforeach
+                        </select>
                         <span class="text-danger">
-                          @error('luas')
-                              {{ $message }}
-                          @enderror
-                      </span>
+                            @error('tipe_jalan_id')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="form-group">
-                      <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
-                      <select class="form-control" name="kecamatan_id" id="kecamatan" data-dependent="kelurahan">
-                        <option value=""> -- Pilih kecamatan -- </option>
-                        @foreach ($kecamatan as $key => $kec)
-                        <option value="{{ $key }}"> {{ $kec }}</option>
-                          @endforeach
-                      </select>
-                      <span class="text-danger">
-                        @error('kecamatan_id')
-                            {{ $message }}
-                        @enderror
-                      </span>
+                        <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
+                        <input name="tinggi" id="tinggi" type="text" class="form-control" value='{{ old('tinggi') }}'
+                            placeholder="contoh: 12.5">
+                        <span class="text-danger">
+                            @error('tinggi')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Luas (dalam meter&sup2; atau panjang x lebar)<span style="color: #e12454"><b> *
+                                </b></span></label>
+                        <input name="luas" id="luas" type="text" class="form-control" value='{{ old('luas') }}'
+                            placeholder="contoh: 16 x 16 meter2">
+                        <span class="text-danger">
+                            @error('luas')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Kecamatan <span style="color: #e12454"><b> * </b></span></label>
+                        <select class="form-control" name="kecamatan_id" id="kecamatan" data-dependent="kelurahan">
+                            <option value=""> -- Pilih kecamatan -- </option>
+                            @foreach ($kecamatan as $key => $kec)
+                                <option value="{{ $key }}"> {{ $kec }}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger">
+                            @error('kecamatan_id')
+                                {{ $message }}
+                            @enderror
+                        </span>
 
                     </div>
 
@@ -182,34 +184,34 @@
                             <option value=""> -- Pilih kelurahan -- </option>
                         </select>
                         <span class="text-danger">
-                          @error('kelurahan_id')
-                              {{ $message }}
-                          @enderror
-                      </span>
+                            @error('kelurahan_id')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                                 <input id="txtLat" name="latitude" type="text" class="form-control"
-                                value='{{ old('latitude') }}' placeholder="-6.966667">
+                                    value='{{ old('latitude') }}' placeholder="-6.966667">
                                 <span class="text-danger">
-                                  @error('latitude')
-                                      {{ $message }}
-                                  @enderror
-                              </span>
+                                    @error('latitude')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
-                                <input id="txtLng" name="longitude" type="text" class="form-control" 
-                                  value='{{ old('longitude') }}' placeholder="110.4381">
+                                <input id="txtLng" name="longitude" type="text" class="form-control"
+                                    value='{{ old('longitude') }}' placeholder="110.4381">
                                 <span class="text-danger">
-                                  @error('longitude')
-                                      {{ $message }}
-                                  @enderror
-                              </span>
+                                    @error('longitude')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -218,28 +220,29 @@
                     </div>
                     <div class="form-group">
                         <label>Operator</label>
-                        <input name="operator" type="text" class="form-control" 
-                          value='{{ old('operator') }}' placeholder="">
+                        <input name="operator" type="text" class="form-control" value='{{ old('operator') }}'
+                            placeholder="">
                     </div>
                     <div class="form-group">
                         <label>Penyewa Menara</label>
-                        <input name="penyewa" type="text" class="form-control" 
-                          value='{{ old('penyewa') }}' placeholder="">
+                        <input name="penyewa" type="text" class="form-control" value='{{ old('penyewa') }}'
+                            placeholder="">
                     </div>
                     <div class="form-group">
                         <label>Nomor IMB</label>
-                        <input name="nomorIMB" type="text" class="form-control"
-                          value='{{ old('nomorIMB') }}' placeholder="">
+                        <input name="nomorIMB" type="text" class="form-control" value='{{ old('nomorIMB') }}'
+                            placeholder="">
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group">
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
-                        <input class="form-control pt-2" type="file" name="document" id="document" multiple>
+                        <input class="pt-2" type="file" name="document" id="document">
 
                     </div>
 
-                    <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi.</b></p>
+                    <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda
+                            isi.</b></p>
 
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
@@ -250,7 +253,7 @@
     </section>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#kecamatan_id').change(function() {
+            $('#kecamatan').change(function() {
                 var kecamatan_id = $(this).val();
                 if (kecamatan_id) {
                     $.ajax({
@@ -259,22 +262,34 @@
                             kecamatan_id,
                         success: function(res) {
                             if (res) {
-                                $('#kelurahan_id').empty();
-                                $('#kelurahan_id').append(
+                                $('#kelurahan').empty();
+                                $('#kelurahan').append(
                                     '<option value="none"> -- Pilih kelurahan -- </option>');
                                 $.each(res, function(key, value) {
-                                    $('#kelurahan_id').append('<option value="' + key +
+                                    $('#kelurahan').append('<option value="' + key +
                                         '">' + value + '</option>');
                                 });
                             } else {
-                                $('#kelurahan_id').empty();
+                                $('#kelurahan').empty();
                             }
                         }
                     });
                 } else {
-                    $('#kelurahan_id').empty();
+                    $('#kelurahan').empty();
                 }
             });
         });
     </script>
+    {{-- <script>
+      const inputElement = document.querySelector('input[id="document"]');
+      const pond = FilePond.create(inputElement);
+      FilePond.setOptions({
+        server:{ 
+          url: "{{ url('/user/daftar-menara/upload') }}",
+          headers:{
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          }
+        } 
+      });
+    </script> --}}
 @endsection

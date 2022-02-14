@@ -14,7 +14,7 @@ class TowerSeeder extends Seeder
      */
     public function run()
     {
-        Tower::create([
+        Tower::create([ // id: 1
             'idMenara' => 'SMG454',
             'pemilik' => 'PT Dayamitra Telekomunikasi',
             'latitude' => -7.09275,
@@ -28,7 +28,7 @@ class TowerSeeder extends Seeder
             'operator' => 'Dayamitra',
             'tinggi' => 27,
         ]);
-        Tower::create([
+        Tower::create([ // id: 2
             'idMenara' => 'INDOSAT-360',
             'pemilik' => 'PT. Indo Satelite',
             'latitude' => -6.968925,
@@ -42,7 +42,7 @@ class TowerSeeder extends Seeder
             'operator' => 'INDOSAT',
             'tinggi' => 18,
         ]);
-        Tower::create([
+        Tower::create([ // id: 3
             'idMenara' => 'BY.U PROVIDER',
             'pemilik' => 'PT TELKOMSEL',
             'latitude' => -6.990189,
@@ -57,7 +57,7 @@ class TowerSeeder extends Seeder
             'penyewa' => 'Axis',
             'acc_date' => now()
         ]);
-        Tower::create([
+        Tower::create([ // id: 4
           'idMenara' => 'SpaceX-123',
           'pemilik' => 'Elon Musk',
           'latitude' => -6.990170,
@@ -72,7 +72,7 @@ class TowerSeeder extends Seeder
           'penyewa' => 'Tesla',
           'operator' => 'Tesla'
         ]);
-        Tower::create([
+        Tower::create([ // id: 5
             'idMenara' => 'VincentAndDesta',
             'pemilik' => 'PT VINDES',
             'latitude' => -6.950170,
@@ -85,6 +85,35 @@ class TowerSeeder extends Seeder
             'luas' => '18 meter persegi',
             'tinggi' => 29,
             'penyewa' => 'TransMedia',
+            'acc_date' => now()
+          ]);
+        Tower::create([ // id: 6
+            'idMenara' => 'Indomie 01',
+            'pemilik' => 'PT INDOMIE MICIN',
+            'latitude' => -6.965,
+            'longitude' => 110.4672,
+            'kecamatan_id' => 8,
+            'kelurahan_id' => 80,
+            'tipe_menara_id' => 1,
+            'tipe_site_id' => 3,
+            'tipe_jalan_id' => 4,
+            'luas' => '10 m2',
+            'tinggi' => 69,
+            'penyewa' => 'Indofood',
+            'acc_date' => now()
+          ]);
+        Tower::create([ // id: 7
+            'idMenara' => 'Waskita Karya v2.0',
+            'pemilik' => 'PT Waskita Karya',
+            'latitude' => -6.9698,
+            'longitude' => 110.472398,
+            'kecamatan_id' => 14,
+            'kelurahan_id' => 153,
+            'tipe_menara_id' => 1,
+            'tipe_site_id' => 2,
+            'tipe_jalan_id' => 1,
+            'luas' => 'Cukup luas',
+            'tinggi' => 12,
             'acc_date' => now()
           ]);
     }

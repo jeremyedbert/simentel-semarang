@@ -15,6 +15,7 @@ class DashboardPetaMicroController extends Controller
     public function index()
     {
         $data = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->get();
+        // return dd($data);
         return view('admin.peta', [
             'data' => $data,
             'routes' => 'micro'
