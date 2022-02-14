@@ -16,9 +16,6 @@ class PendaftaranSeeder extends Seeder
      */
     public function run()
     {
-        $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => time(), 'field' => 'id'];
-        $id = IdGenerator::generate($config);
-
         Pendaftaran::create([
             // 'id' => $no_tiket,
             // 'id' => $id,
@@ -58,6 +55,22 @@ class PendaftaranSeeder extends Seeder
             'tower_id' => 5,
             'status_id' => 2,
             'admin_id' => 1,
+        ]);
+        Pendaftaran::create([
+            // 'id' => time()*3,
+            'id' => 22020708000006,
+            'user_id' => 2,
+            'tower_id' => 6,
+            'status_id' => 2,
+            'admin_id' => 1,
+        ]);
+        Pendaftaran::create([
+            // 'id' => time()*3,
+            'id' => 22020708000007,
+            'user_id' => 1,
+            'tower_id' => 7,
+            'status_id' => 2,
+            'admin_id' => 2,
         ]);
     }
 }

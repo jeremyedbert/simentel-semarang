@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\TipeSite;
 use App\Models\Tower;
 use Illuminate\Http\Request;
 
@@ -14,11 +17,14 @@ class DashboardPetaMacroController extends Controller
      */
     public function index()
     {
-        $data = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get();
-        return view('admin.peta', [
-            'data' => $data,
-            'routes' => 'macro',
-        ]);
+        $tower = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get();
+        $kecamatan = Kecamatan::all()->pluck('name', 'id');
+        $kelurahan = Kelurahan::all()->pluck('name', 'id');
+        $tipesite = TipeSite::all()->pluck('name', 'id');
+        // $tower = Tower::all();
+        // return response()->json($data);
+        // return response()->json(compact('tower', 'kecamatan', 'kelurahan', 'tipesite'));
+        return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), ['routes' => "macro"]);
     }
 
     /**

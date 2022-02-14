@@ -1,49 +1,49 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+        //punya jeremy
         // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
         //punya willy
     </script>
     <script>
         function initialize() {
-            // Creating map object
-            var lat = document.getElementById('txtLat').innerHTML;
-            var lng = document.getElementById('txtLng').innerHTML;
-            // const uluru = {
-            //     lat: -7.095,
-            //     lng: 110.095
-            // };
-            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            const lat = document.getElementById('txtLat').innerHTML;
+            const lng = document.getElementById('txtLng').innerHTML;
+
+            // Vector Icon Marker
+            const svgMark = {
+                url: "{{ url('/images/tower_marker.svg') }}",
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            };
+
+            map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 15,
-                // center: new google.maps.LatLng(-7.09275, 110.32743),
-                scrollwheel: false,
                 center: new google.maps.LatLng(lat, lng),
-                // center: uluru,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            // creates a draggable marker to the given coords
-            var vMarker = new google.maps.Marker({
+            const marker = new google.maps.Marker({
+                // The below line is equivalent to writing:
+                // position: new google.maps.LatLng(-34.397, 150.644)
+                icon: svgMark,
                 position: new google.maps.LatLng(lat, lng),
-                // position: uluru,
-                draggable: false
+                map: map,
+                title: "Klik untuk detail",
+            });
+            
+            // You can use a LatLng literal in place of a google.maps.LatLng object when
+            // creating the Marker object. Once the Marker object is instantiated, its
+            // position will be available as a google.maps.LatLng object. In this case,
+            // we retrieve the marker's position using the
+            // google.maps.LatLng.getPosition() method.
+            const infowindow = new google.maps.InfoWindow({
+                content: "<p>ID Menara: {{ $data->tower->idMenara }}</p>" + 
+                '<a href="/admin/menara/makro/{{ $data->tower->id }}">Info Tower </a> ',
             });
 
-            // adds a listener to the marker
-            // gets the coords when drag event ends
-            // then updates the input with the new coords
-            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
-                $("#txtLat").val(evt.latLng.lat().toFixed(6));
-                $("#txtLng").val(evt.latLng.lng().toFixed(6));
-
-                map.panTo(evt.latLng);
+            google.maps.event.addListener(marker, "click", () => {
+                infowindow.open(map, marker);
             });
-
-            // centers the map on markers coords
-            map.setCenter(vMarker.position);
-
-            // adds the marker on the map
-            vMarker.setMap(map);
         }
     </script>
 
@@ -144,7 +144,11 @@
                                         <b>Penyewa</b>
                                     </div>
                                     <div class="d-flex col-lg-6 align-items-center mx-md-3">
-                                        {{ $data->tower->penyewa }}
+                                        @if ($data->tower->penyewa === null)
+                                            -
+                                        @else
+                                            {{ $data->tower->penyewa }}
+                                        @endif
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-start align-items-center">

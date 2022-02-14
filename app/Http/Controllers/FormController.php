@@ -21,6 +21,8 @@ class FormController extends Controller
     $kecamatan = DB::table('kecamatans')->pluck("name", "id");
     $tipejalan = DB::table('tipe_jalans')->get();
     $tipesite = DB::table('tipe_sites')->get();
+    // return dd(response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite')));
+    // return response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite'));
     return view('user.form-menara', compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite'), ['active' => 'pendaftaran']);
   }
 
