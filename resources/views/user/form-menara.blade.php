@@ -75,8 +75,8 @@
             @endif
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store"
-                enctype="multipart/form-data">
+
+            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store" enctype="multipart/form-data">
                 <div class="col">
                     @csrf
                     <div class="form-group">
@@ -237,8 +237,8 @@
                     <div class="form-group">
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
-                        <input class="pt-2" type="file" name="document" id="document">
 
+                        <input class="form-control pt-2" type="file" name="document" id="document">
                     </div>
 
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda

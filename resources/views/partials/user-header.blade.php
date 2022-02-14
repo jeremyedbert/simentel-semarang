@@ -27,3 +27,6 @@
 
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ url('assets/user/css/style.css') }}">
+
+<!-- File Pond -->
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />

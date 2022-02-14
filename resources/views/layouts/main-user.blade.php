@@ -34,7 +34,8 @@ FACEBOOK: https://www.facebook.com/themefisher
     </header>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-
+     <!-- File Pond -->
+     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <!-- Slider Start -->
     @yield('content')
     <!-- footer Start -->
@@ -51,6 +52,9 @@ FACEBOOK: https://www.facebook.com/themefisher
     {{-- <script src="assets/user/plugins/google-map/gmap.js"></script> --}}
 
     <script src="{{ url('assets/user/js/script.js') }}"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+
+    
 
 </body>
 
