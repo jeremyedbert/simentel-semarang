@@ -17,7 +17,7 @@ class DashboardPetaMacroController extends Controller
      */
     public function index()
     {
-        $tower = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get();
+        $tower = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->searching()->get();
         $kecamatan = Kecamatan::all()->pluck('name', 'id');
         $kelurahan = Kelurahan::all()->pluck('name', 'id');
         $tipesite = TipeSite::all()->pluck('name', 'id');

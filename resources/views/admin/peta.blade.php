@@ -3,21 +3,30 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
     </script>
     <script>
+        let map;
+
         function initialize() {
-            // const lat = document.getElementById('txtLat').innerHTML;
-            // const lng = document.getElementById('txtLng').innerHTML;
+            // Initialize json object from tower
             let towers = @json($tower);
+
             // Vector Icon Marker
             const svgMark = {
                 url: "{{ url('/images/tower_marker.svg') }}",
                 scaledSize: new google.maps.Size(40, 40), // scaled size
             };
 
-            let map = new google.maps.Map(document.getElementById("map_canvas"), {
+            // Make a new map
+            map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 13,
                 center: new google.maps.LatLng(-6.977, 110.416664),
             });
 
+            document.getElementById("submit").addEventListener("click", () => {
+                searchPos(map);
+                // setSam();
+            });
+
+            // Initialize InfoWindow
             let infowindow = new google.maps.InfoWindow();
 
             for (tower in towers) {
@@ -46,6 +55,11 @@
             // position will be available as a google.maps.LatLng object. In this case,
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
+
+            document
+                .getElementById("delete")
+                .addEventListener("click", deleteMarkers);
+
         }
 
         function theContent(marker, tower) {
@@ -86,6 +100,52 @@
                 </div>
             </div>`;
             return content
+        }
+
+        // array of markers
+        let markers = [];
+
+        function searchPos(map) {
+            const lat = document.getElementById("lat").value;
+            const lng = document.getElementById("lng").value;
+            // const latlngStr = input.split(",", 2);
+            const latlng = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+            };
+            map.setZoom(15); // Zoom Map
+            const marker = new google.maps.Marker({
+                position: latlng,
+                map,
+                animation: google.maps.Animation.DROP,
+            });
+            deleteMarkers();
+            markers.push(marker);
+            map.setCenter(latlng); // set Center
+        }
+
+        function setMapOnAll(map) {
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+        // Removes the markers from the map, but keeps them in the array.
+        function hideMarkers() {
+            setMapOnAll(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            hideMarkers();
+            markers = [];
+        }
+
+        function keySuccess() {
+            if ((document.getElementById('lat').value === "") || (document.getElementById('lng').value === "")) {
+                document.getElementById('submit').disabled = true;
+            } else {
+                document.getElementById('submit').disabled = false;
+            }
         }
     </script>
     <style>
@@ -131,10 +191,47 @@
                                     class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
                             </li>
                         </ul>
-                        <div class="form-group">
-                            <label for="latitude">Latitude</label>
-                            <input type="text" class="form-control" id="latlng" aria-describedby="emailHelp">
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="latitude">Latitude</label>
+                                    <input id="lat" onkeyup="keySuccess()" type="text" class="form-control"
+                                        autocomplete="off" placeholder="contoh: -6.9356">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="longitude">Longitude</label>
+                                    <input id="lng" onkeyup="keySuccess()" type="text" class="form-control"
+                                        autocomplete="off" placeholder="contoh: 110.5387">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <form action="/admin/peta/makro">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="search" placeholder="Cari ID Menara"
+                                            value="{{ request('search') }}">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 ml-2">
+                                <button class="btn btn-primary btn-xs mt-3" disabled id="submit" type="button">Cari
+                                    Posisi</button>
+                                <button class="btn btn-danger btn-xs mt-3" id="delete" type="button">Reset Marker</button>
+                            </div>
+                            {{-- <button class="btn btn-primary btn-xs" id="show" type="button">Show Marker</button> --}}
+                            {{-- <button class="btn btn-primary btn-xs" id="hide" type="button">Hide Marker</button> --}}
+                        </div>
+
+                        <div id="test"></div>
+                        <div id="tester"></div>
                         <div class="card">
                             <div class="card-body">
                                 <div id="map_canvas" class="mx-3 my-3" style="width: auto; height: 500px;"></div>

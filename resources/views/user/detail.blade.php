@@ -30,7 +30,6 @@
                 icon: svgMark,
                 position: new google.maps.LatLng(lat, lng),
                 map: map,
-                title: "Klik untuk detail",
             });
             // You can use a LatLng literal in place of a google.maps.LatLng object when
             // creating the Marker object. Once the Marker object is instantiated, its

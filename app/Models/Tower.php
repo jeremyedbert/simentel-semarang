@@ -33,6 +33,13 @@ class Tower extends Model
 
 	use HasFactory;
 
+	public function scopeSearching($query)
+	{
+		if (request('search')) {
+			$query->where('idMenara', 'like', '%' . request('search') . '%');
+		}
+	}
+
 	public function pendaftaran()
 	{
 		return $this->hasOne(Pendaftaran::class, 'tower_id');
@@ -62,5 +69,4 @@ class Tower extends Model
 	{
 		return $this->belongsTo(TipeMenara::class, 'tipe_menara_id');
 	}
-
 }
