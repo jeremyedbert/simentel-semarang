@@ -1,13 +1,16 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+        //punya jeremy
         // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
         //punya willy
     </script>
     <style>
-        .bld{
+        .bld {
             font-weight: bold
         }
+
     </style>
     {{-- View ini dipakai oleh menara macro dan micro --}}
     <div class="main-panel">
@@ -17,8 +20,13 @@
                     <h1 style="color: black" class="pb-3"><b>Detail Menara&nbsp;</b></h1>
                     <h1 style="color: #e83e8c" class="pb-3"> <b>{{ $data->idMenara }}</b></h1>
                 </div>
-                <a href="/admin/menara/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
-                        class="fas fa-chevron-left"></i> Kembali ke daftar menara</a>
+                <div class="d-flex justify-content-between">
+                    <a href="/admin/menara/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
+                            class="fas fa-chevron-left"></i> Daftar menara</a>
+                    <a href="/admin/peta/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
+                            class="fas fa-map-marked"></i> Peta menara
+                        {{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }}</a>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         {{-- Card --}}

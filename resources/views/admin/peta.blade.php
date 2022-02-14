@@ -1,8 +1,96 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ"> //punya jeremy
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ">
+        //punya jeremy
         // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8">
         //punya willy
+    </script>
+    <script>
+        function initialize() {
+            // const lat = document.getElementById('txtLat').innerHTML;
+            // const lng = document.getElementById('txtLng').innerHTML;
+            let towers = @json($tower);
+            // Vector Icon Marker
+            const svgMark = {
+                url: "{{ url('/images/tower_marker.svg') }}",
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+            };
+
+            let map = new google.maps.Map(document.getElementById("map_canvas"), {
+                zoom: 13,
+                center: new google.maps.LatLng(-6.977, 110.416664),
+            });
+
+            let infowindow = new google.maps.InfoWindow(); 
+            
+            for (tower in towers) {
+                tower = towers[tower];
+                if (tower.latitude && tower.longitude) {
+                    let marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(tower.latitude, tower.longitude),
+                        icon: svgMark,
+                        map: map,
+                        title: "Klik untuk detail"
+                    });
+
+                    // InfoWindow
+                    google.maps.event.addListener(marker, 'click', (function(marker, tower) {
+                        return function() {
+                            infowindow.setContent(theContent(marker, tower))
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, tower));
+                }
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            // You can use a LatLng literal in place of a google.maps.LatLng object when
+            // creating the Marker object. Once the Marker object is instantiated, its
+            // position will be available as a google.maps.LatLng object. In this case,
+            // we retrieve the marker's position using the
+            // google.maps.LatLng.getPosition() method.
+        }
+
+        function theContent(marker, tower) {
+            let kelurahan = @json($kelurahan);
+            let kecamatan = @json($kecamatan);
+            let tipesite = @json($tipesite);
+            let i = tower.kelurahan_id; // indeks kelurahan
+            let j = tower.kecamatan_id; // indeks kecamatan
+            let k = tower.tipe_site_id;
+
+            let content =
+                `
+            <style>
+            .bor{
+                border-bottom: 1px solid #aaaaaa
+            }
+            </style>
+            <div class="mx-1">
+                <div class="bor text-center"><b>
+                    <a href="/admin/menara/{{ $routes === 'macro' ? 'makro' : 'mikro' }}/` + tower.id +
+                `" style="text-decoration:none;">` + tower
+                .idMenara + `</a></b>
+                </div>
+                <div class="mt-2">
+                    Koordinat: ` + marker.getPosition() +
+                `</div>
+                <div>
+                    Tinggi: ` + tower.tinggi + ` meter
+                </div>
+                <div>
+                    Tinggi: ` + tower.tinggi + ` meter
+                </div>
+                <div>
+                    Posisi: Kelurahan ` + kelurahan[i] + `, Kecamatan ` + kecamatan[j] + `
+                </div>
+                <div>
+                    Tipe Site: ` + tipesite[k] + `
+                </div>
+            </div>`;
+            return content
+        }
     </script>
     <style>
         .nav-pills>li>.nav-link {
@@ -49,71 +137,7 @@
                         </ul>
                         <div class="card">
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="basic-datatables" class="display table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Id Tower</th>
-                                                <th>Pemilik</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $d)
-                                                <tr>
-                                                    <td>{{ $d->idMenara }}</td>
-                                                    <td>{{ $d->pemilik }}</td>
-                                                    <td>
-                                                        <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
-                                                            class="btn btn-info btn-xs mx-1 my-1"><span><i
-                                                                    class="fas fa-eye"></i></span> Info</a>
-                                                        <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
-                                                            data-toggle="modal"
-                                                            data-target="#del{{ $d->id }}"><span><i
-                                                                    class="fas fa-trash-alt"></i></span> Hapus</a>
-                                                    </td>
-                                                </tr>
-
-                                                {{-- Modal Hapus --}}
-                                                <div class="modal fade bd-example-modal-sm" id="del{{ $d->id }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h2 class="modal-title" id="exampleModalLongTitle">
-                                                                    Konfirmasi Hapus</h2>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div>
-                                                                    <b>Hapus menara ini? </b><a
-                                                                        href="/admin/menara/{{ $d->id }}/edit"><small>Cek
-                                                                            kembali detail</small></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light btn-sm"
-                                                                    data-dismiss="modal">Tidak</button>
-                                                                <form action="/admin/menara/{{ $d->id }}"
-                                                                    method="post" class="d-inline">
-                                                                    @method('delete')
-                                                                    @csrf
-                                                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- End of modal --}}
-
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div id="map_canvas" class="mx-3 my-3" style="width: auto; height: 500px;"></div>
                             </div>
                         </div>
                     </div>
