@@ -93,7 +93,8 @@
     </style>
     <section class="section appoinment">
         <div class="container">
-            <h2 class="title-color mb-4">Peta Menara Utama</h2>
+            <h2 class="title-color mb-2">Peta Menara Utama</h2>
+            <div class="divider mb-4"></div>
             <form id="#" class="appoinment-form" method="post" action="#">
                 <div class="col">
 
@@ -121,6 +122,46 @@
                     {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <a class="btn btn-main btn-round" href="#">Submit</a> --}}
+                    <div class="shadow px-3 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+                      <h3 class="title-color">List Menara Utama</h3>
+                      <div class="col-lg-12">
+                        <table  class="display table table-striped table-hover">
+                          <thead>
+                              <tr>
+                                  <th>ID Tower</th>
+                                  <th>Pemilik</th>
+                                  <th>Lokasi</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($dataMakro as $d)
+                        
+                                  <tr class="clickable-row" data-href="{{ route('home') }}">
+                                    
+                                      <td>{{ $d->idMenara }}</td>
+                                      <td>{{ $d->pemilik }}</td>
+                                      <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
+                                      {{-- <td>
+                                          <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
+                                              class="btn btn-info btn-xs mx-1 my-1"><span><i
+                                                      class="fas fa-eye"></i></span> Info</a>
+                                          <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
+                                              data-toggle="modal"
+                                              data-target="#del{{ $d->id }}"><span><i
+                                                      class="fas fa-trash-alt"></i></span> Hapus</a>
+                                          <a href="#" class="mx-3">
+                                            <b><i>Detail</i></b>
+                                            <i class="icofont-simple-right "></i>
+                                          </a>
+                                      </td> --}}
+                                  </tr>
+                               
+
+                              @endforeach
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -129,6 +170,13 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
       async
     ></script>
+    <script>
+      jQuery(document).ready(function($) {
+          $(".clickable-row").click(function() {
+              window.location = $(this).data("href");
+          });
+      });
+    </script>
     {{-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
       async

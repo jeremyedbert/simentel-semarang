@@ -132,7 +132,8 @@
                     </h6>
 
                     <div class="detail">
-                        <div class="col-lg-12 shadow py-4 mb-3" @if ($data->status->id === 1)
+                        <div class="col-lg-12 shadow py-4 mb-3" 
+                        @if ($data->status->id === 1)
                             style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
                         @elseif ($data->status->id === 2) style="border-radius: 7px; border-left: rgba(40, 167, 69,
                             0.7) solid 7px"

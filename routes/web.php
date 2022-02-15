@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardPetaMicroController;
 use App\Http\Controllers\DashboardListController;
 use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
+use App\Http\Controllers\PetaController;
 
 
 /*
@@ -32,8 +33,8 @@ use App\Http\Controllers\CekStatusController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/peta-menara', [UserController::class, 'peta_menara'])->name('peta-menara');
-    Route::get('/peta-microcell', [UserController::class, 'peta_microcell'])->name('peta-microcell');
+    Route::get('/peta-menara', [PetaController::class, 'petaMakro'])->name('peta-menara');
+    Route::get('/peta-microcell', [PetaController::class, 'petaMikro'])->name('peta-microcell');
     // Guest User
     Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');

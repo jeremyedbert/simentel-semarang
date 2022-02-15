@@ -25,6 +25,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 <head>
     @include('partials.user-header')
     
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 </head>
 
 <body id="top" onload="initialize();">
