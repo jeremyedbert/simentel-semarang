@@ -159,7 +159,7 @@
                           <tbody>
                               @foreach ($towerMakro as $d)
                                 <a href="">
-                                  <tr class="clickable-row" data-href="{{ route('home') }}">
+                                  <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
                                     
                                       <td>{{ $d->idMenara }}</td>
                                       <td>{{ $d->pemilik }}</td>

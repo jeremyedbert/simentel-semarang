@@ -32,12 +32,12 @@
                         {{-- href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li> --}}
                         href="/user/daftar-menara">Pendaftaran</a></li>
 
-                <li class="nav-item dropdown  {{ Request::is('user/peta-menara') OR Request::is('user/peta-microcell') ? 'active' : '' }}">
+                <li class="nav-item dropdown {{ (Request::is('user/peta-menara') || Request::is('user/peta-microcell')) ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
-                        <li><a class="dropdown-item" href="{{ route('user.peta-menara') }}">Peta Menara</a></li>
-                        <li><a class="dropdown-item" href="{{ route('user.peta-microcell') }}">Peta Microcell</a></li>
+                        <li><a class="dropdown-item" href="/user/peta-menara">Peta Menara</a></li>
+                        <li><a class="dropdown-item" href="/user/peta-microcell">Peta Microcell</a></li>
                     </ul>
                 </li>
                 
@@ -58,7 +58,7 @@
                         </ul>
                     </li>
                 @else
-                    <li class="nav-item dropdown  {{ $active === 'login' ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ (Request::is('user/login') || Request::is('admin/login') || Request::is('user/register')) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownlogin">
