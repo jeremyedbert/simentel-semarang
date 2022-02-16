@@ -192,36 +192,41 @@
                             </li>
                         </ul>
                         <div class="row d-flex justify-content-between">
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label for="latitude">Latitude</label>
-                                    <input id="lat" onkeyup="keySuccess()" type="text" class="form-control"
-                                        autocomplete="off" placeholder="contoh: -6.9356">
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label for="longitude">Longitude</label>
-                                    <input id="lng" onkeyup="keySuccess()" type="text" class="form-control"
-                                        autocomplete="off" placeholder="contoh: 110.5387">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <form action="/admin/peta/makro">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="form-control" name="search" placeholder="Cari ID Menara"
-                                            value="{{ request('search') }}">
+                            <div class="d-flex col-lg-6">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="latitude">Latitude</label>
+                                        <input id="lat" onkeyup="keySuccess()" type="text" class="form-control"
+                                            autocomplete="off" placeholder="contoh: -6.9356">
                                     </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="longitude">Longitude</label>
+                                        <input id="lng" onkeyup="keySuccess()" type="text" class="form-control"
+                                            autocomplete="off" placeholder="contoh: 110.5387">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-end justify-content-end">
+                                <form action="/admin/peta/{{ $routes === 'macro' ? 'makro' : 'mikro' }}">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="search"
+                                                placeholder="Cari ID Menara" value="{{ request('search') }}">
+                                        </div>
+                                    </div>
+                                    {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
                                 </form>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-2 ml-2">
+                            <div class="col-lg-6 ml-4">
                                 <button class="btn btn-primary btn-xs mt-3" disabled id="submit" type="button">Cari
                                     Posisi</button>
                                 <button class="btn btn-danger btn-xs mt-3" id="delete" type="button">Reset Marker</button>
@@ -230,8 +235,6 @@
                             {{-- <button class="btn btn-primary btn-xs" id="hide" type="button">Hide Marker</button> --}}
                         </div>
 
-                        <div id="test"></div>
-                        <div id="tester"></div>
                         <div class="card">
                             <div class="card-body">
                                 <div id="map_canvas" class="mx-3 my-3" style="width: auto; height: 500px;"></div>

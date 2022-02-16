@@ -18,7 +18,7 @@
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/menara*') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/menara*') || Request::is('admin/peta*')? 'active' : '' }}">
                     <a data-toggle="collapse" href="#peta">
                         <i class="fas fa-broadcast-tower"></i>
                         <p>Menara</p>

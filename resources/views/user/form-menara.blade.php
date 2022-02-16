@@ -1,7 +1,6 @@
 @extends('layouts.main-user')
 @section('content')
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
         //punya jeremy
     </script>
     <script type="text/javascript">
@@ -74,7 +73,8 @@
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
 
-            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store" enctype="multipart/form-data">
+            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store"
+                enctype="multipart/form-data">
                 <div class="col">
                     @csrf
                     <div class="form-group">
@@ -175,7 +175,7 @@
                         </span>
 
                     </div>
-
+                    {{-- Kelurahan --}}
                     <div class="form-group">
                         <label>Kelurahan <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" name="kelurahan_id" id="kelurahan">
@@ -187,6 +187,7 @@
                             @enderror
                         </span>
                     </div>
+                    {{-- Koordinat --}}
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -213,19 +214,23 @@
                             </div>
                         </div>
                     </div>
+                    {{-- Map --}}
                     <div class="form-group">
                         <div id="map_canvas" style="width: auto; height: 300px;"></div>
                     </div>
+                    {{-- Operator --}}
                     <div class="form-group">
                         <label>Operator</label>
                         <input name="operator" type="text" class="form-control" value='{{ old('operator') }}'
                             placeholder="">
                     </div>
+                    {{-- Penyewa --}}
                     <div class="form-group">
                         <label>Penyewa Menara</label>
                         <input name="penyewa" type="text" class="form-control" value='{{ old('penyewa') }}'
                             placeholder="">
                     </div>
+                    {{-- No IMB --}}
                     <div class="form-group">
                         <label>Nomor IMB</label>
                         <input name="nomorIMB" type="text" class="form-control" value='{{ old('nomorIMB') }}'
@@ -235,8 +240,8 @@
                     <div class="form-group">
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
-
-                        <input class="form-control pt-2" type="file" name="document" id="document">
+                        {{-- <input class="form-control pt-2" type="file" name="document" id="document"> --}}
+                        <input class="pt-2" type="file" name="document" id="document">
                     </div>
 
                     <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda
@@ -278,16 +283,16 @@
             });
         });
     </script>
-    {{-- <script>
-      const inputElement = document.querySelector('input[id="document"]');
-      const pond = FilePond.create(inputElement);
-      FilePond.setOptions({
-        server:{ 
-          url: "{{ url('/user/daftar-menara/upload') }}",
-          headers:{
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-          }
-        } 
-      });
-    </script> --}}
+    <script>
+    //   const inputElement = document.querySelector('input[id="document"]');
+    //   const pond = FilePond.create(inputElement);
+    //   FilePond.setOptions({
+    //     server:{ 
+    //       url: "/user/daftar-menara/upload",
+    //       headers:{
+    //         'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //       }
+    //     } 
+    //   });
+    </script>
 @endsection

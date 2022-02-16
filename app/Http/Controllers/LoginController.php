@@ -9,14 +9,10 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('user.login', [
-            'active' => 'login',
-        ]);
+        return view('user.login');
     }
    
     public function index_admin(){
-        return view('admin.login', [
-            'active' => 'login',
-        ]);
+        return view('admin.login');
     }
 }

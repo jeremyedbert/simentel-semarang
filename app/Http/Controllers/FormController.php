@@ -54,10 +54,11 @@ class FormController extends Controller
       'operator' => 'nullable',
       'penyewa' => 'nullable',
       'nomorIMB' => 'nullable',
+      'document' => 'required|mimes:pdf|max:10240',
     ],[
       'pemilik.required' => 'Harap isi nama pemilik atau perusahaan.',
       'idMenara.required' => 'Harap isi ID Menara.',
-      'idMenara.unique' => 'ID Menara tersebut sudah ada.',
+      'idMenara.unique' => 'ID Menara sudah ada.',
       'tipe_menara_id.required' => 'Harap pilih tipe menara.',
       'tipe_site_id.required' => 'Harap pilih tipe site.',
       'tipe_jalan_id.required' => 'Harap pilih tipe jalan.',
@@ -98,7 +99,12 @@ class FormController extends Controller
     $pendaftaran->id = $id;
     $pendaftaran->user_id = auth()->user()->id;
     $pendaftaran->tower_id = $tower->id;
-    $pendaftaran->document = $request->file('document')->store('documents');
+
+    $file = $request->file('document');
+    // $filename = $request->file('document')->getClientOriginalName();
+    $filename = preg_replace('/[^A-Za-z0-9().\-]/', '_', $file->getClientOriginalName());
+    $pendaftaran->document = $file->storeAs('documents', $filename);
+
     $storePendaftaran = $pendaftaran->save();
 
     if ($storeTower && $storePendaftaran) {
