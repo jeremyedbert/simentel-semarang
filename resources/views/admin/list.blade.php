@@ -45,7 +45,7 @@
                                                     <td>{{ $d->tower->pemilik }}</td>
                                                     <td>{{ $d->created_at->translatedFormat('d F Y') }}</td>
                                                     <td>{{ $d->tower->tipemenara->name }}</td>
-                                                    <td><a href="#"><i class="far fa-file-alt"></i> Dokumen</a></td>
+                                                    <td><a href="{{ asset('storage/' . $d->document) }}" target="blank"><i class="far fa-file-alt"></i> Dokumen</a></td>
                                                     <td>
                                                         <a href="/admin/pendaftaran/{{ $d->id }}/edit"
                                                             class="btn btn-warning btn-xs my-1 mx-1"><span><i
