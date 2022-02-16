@@ -104,6 +104,7 @@ class FormController extends Controller
     // $filename = $request->file('document')->getClientOriginalName();
     $filename = preg_replace('/[^A-Za-z0-9().\-]/', '_', $file->getClientOriginalName());
     $pendaftaran->document = $file->storeAs('documents', $filename);
+
     $storePendaftaran = $pendaftaran->save();
 
     if ($storeTower && $storePendaftaran) {

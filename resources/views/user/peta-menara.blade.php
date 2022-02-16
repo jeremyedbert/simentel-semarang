@@ -9,91 +9,114 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
     ></script> --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script type="text/javascript">
-        function initialize() {
-            // Creating map object
-            var map = new google.maps.Map(document.getElementById('map_canvas'), {
-                zoom: 12,
-                center: new google.maps.LatLng(-6.966667, 110.4381),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+    <script>
+      function initialize() {
+          // const lat = document.getElementById('txtLat').innerHTML;
+          // const lng = document.getElementById('txtLng').innerHTML;
+          let towers = @json($towerMakro);
+          // Vector Icon Marker
+          const svgMark = {
+              url: "{{ url('/images/tower_marker.svg') }}",
+              scaledSize: new google.maps.Size(40, 40), // scaled size
+          };
 
-            // creates a draggable marker to the given coords
-            var vMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(-6.966667, 110.4381),
-                draggable: true
-            });
+          let map = new google.maps.Map(document.getElementById("map_canvas"), {
+              zoom: 13,
+              center: new google.maps.LatLng(-6.977, 110.416664),
+          });
 
-            // adds a listener to the marker
-            // gets the coords when drag event ends
-            // then updates the input with the new coords
-            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
-                $("#txtLat").val(evt.latLng.lat().toFixed(6));
-                $("#txtLng").val(evt.latLng.lng().toFixed(6));
+          let infowindow = new google.maps.InfoWindow();
 
-                map.panTo(evt.latLng);
-            });
+          for (tower in towers) {
+              tower = towers[tower];
+              if (tower.latitude && tower.longitude) {
+                  let marker = new google.maps.Marker({
+                      position: new google.maps.LatLng(tower.latitude, tower.longitude),
+                      icon: svgMark,
+                      map: map,
+                      title: "Klik untuk detail"
+                  });
 
-            // centers the map on markers coords
-            map.setCenter(vMarker.position);
+                  // InfoWindow
+                  google.maps.event.addListener(marker, 'click', (function(marker, tower) {
+                      return function() {
+                          infowindow.setContent(theContent(marker, tower))
+                          infowindow.open(map, marker);
+                      }
+                  })(marker, tower));
+              }
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
 
-            // adds the marker on the map
-            vMarker.setMap(map);
-        }
+          // You can use a LatLng literal in place of a google.maps.LatLng object when
+          // creating the Marker object. Once the Marker object is instantiated, its
+          // position will be available as a google.maps.LatLng object. In this case,
+          // we retrieve the marker's position using the
+          // google.maps.LatLng.getPosition() method.
+      }
 
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById("map_canvas"), {
-            zoom: 8,
-            center: { lat: -6.966667, lng: 110.4381 },
-            });
-            const geocoder = new google.maps.Geocoder();
-            const infowindow = new google.maps.InfoWindow();
-        
-            document.getElementById("submit").addEventListener("click", () => {
-            geocodeLatLng(geocoder, map, infowindow);
-            });
-        }
-  
-        function geocodeLatLng(geocoder, map, infowindow) {
+      function theContent(marker, tower) {
+          let kelurahan = @json($kelurahan);
+          let kecamatan = @json($kecamatan);
+          let tipesite = @json($tipesite);
+          let i = tower.kelurahan_id; // indeks kelurahan
+          let j = tower.kecamatan_id; // indeks kecamatan
+          let k = tower.tipe_site_id;
 
-            const inputLat = document.getElementById("txtLat").value;
-            const inputLng = document.getElementById("txtLng").value;
-            // const latlngStr = input.split(",", 2);
-            const latlng = {
-              lat: parseFloat(inputLat),
-              lng: parseFloat(inputLng),
-            };
-        
-            geocoder
-            .geocode({ location: latlng })
-            .then((response) => {
-                if (response.results[0]) {
-                map.setZoom(11);
-        
-                const marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map,
-                });
-        
-                infowindow.setContent(response.results[0].formatted_address);
-                infowindow.open(map, marker);
-                } else {
-                window.alert("No results found");
-                }
-            })
-            .catch((e) => window.alert("Geocoder failed due to: " + e));
-        }
-            
-    </script>
+          let content =
+              `
+          <style>
+          .bor{
+              border-bottom: 1px solid #aaaaaa
+          }
+          </style>
+          <div class="mx-1">
+              <div class="bor text-center"><b>
+                  <a href="#` + tower.id +
+              `" style="text-decoration:none;">` + tower
+              .idMenara + `</a></b>
+              </div>
+              <div class="mt-2">
+                  Pemilik: ` + tower.pemilik +
+              `</div>
+              <div>
+                  Koordinat: ` + marker.getPosition() + `
+              </div>
+              <div>
+                  Tinggi: ` + tower.tinggi + ` meter
+              </div>
+              <div>
+                  Posisi: Kelurahan ` + kelurahan[i] + `, Kecamatan ` + kecamatan[j] + `
+              </div>
+              <div>
+                  Tipe Site: ` + tipesite[k] + `
+              </div>
+          </div>`;
+          return content
+      }
+  </script>
     <style>
         p{
             margin-top:0;
             margin-bottom:0;
         }
+        .clickable-row:hover{
+          color: #e12454;
+          background-color: rgba(34, 58, 102, 0.1);
+        }
+        .dtHorizontalExampleWrapper {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        #dtHorizontalExample th, td {
+          white-space: nowrap;
+        }
+
     </style>
     <section class="section appoinment">
         <div class="container">
-            <h2 class="title-color mb-4">Peta Menara Utama</h2>
+            <h2 class="title-color mb-2">Peta Menara Utama</h2>
+            <div class="divider mb-4"></div>
             <form id="#" class="appoinment-form" method="post" action="#">
                 <div class="col">
 
@@ -121,6 +144,47 @@
                     {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <a class="btn btn-main btn-round" href="#">Submit</a> --}}
+                    <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+                      <h3 class="title-color mb-0">List Menara Utama</h3>
+                      <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
+                      <div class="col-lg-12 px-0 px-md-3 table-responsive">
+                        <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
+                          <thead>
+                              <tr>
+                                  <th>ID Tower</th>
+                                  <th>Pemilik</th>
+                                  <th>Lokasi</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($towerMakro as $d)
+                                <a href="">
+                                  <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
+                                    
+                                      <td>{{ $d->idMenara }}</td>
+                                      <td>{{ $d->pemilik }}</td>
+                                      <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
+                                      {{-- <td>
+                                          <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
+                                              class="btn btn-info btn-xs mx-1 my-1"><span><i
+                                                      class="fas fa-eye"></i></span> Info</a>
+                                          <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
+                                              data-toggle="modal"
+                                              data-target="#del{{ $d->id }}"><span><i
+                                                      class="fas fa-trash-alt"></i></span> Hapus</a>
+                                          <a href="#" class="mx-3">
+                                            <b><i>Detail</i></b>
+                                            <i class="icofont-simple-right "></i>
+                                          </a>
+                                      </td> --}}
+                                  </tr>
+                                </a>
+
+                              @endforeach
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -129,6 +193,13 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
       async
     ></script>
+    <script>
+      jQuery(document).ready(function($) {
+          $(".clickable-row").click(function() {
+              window.location = $(this).data("href");
+          });
+      });
+    </script>
     {{-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
       async

@@ -45,12 +45,7 @@
             });
         }
 
-        // function initialize() { // testing data type
-        //     const lat = {{ $data->tower->latitude }};
-        //     const lng = {{ $data->tower->longitude }};
-        //     var x = document.getElementById("txtLat").innerHTML;
-        //     document.getElementById("map_canvas").innerHTML = typeof(lat);
-        // }
+        
     </script>
 
     <style>
@@ -90,56 +85,21 @@
     </style>
     <section>
         <div class="d-flex row d-inline-block mb-5">
-            <div class="col-lg-4 d-flex justify-content-lg-end ml-0" style="height:min-content">
-
-                <div class="col-lg-8 user-profile shadow px-3 py-4 mb-5 mx-4 bg-body" style="border-radius: 16px">
-                    <div class="material-icons-outlined user-icon d-flex justify-content-center mb-3" id="">account_circle
-                    </div>
-                    {{-- <i class="icofont-business-man-alt-1"></i> --}}
-                    <div class="col px-auto">
-                        <div class="d-flex justify-content-center">
-                            <h3 class="nama-user">
-                                {{ auth()->user()->name }}
-                            </h3>
-                        </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="material-icons-outlined mr-2">
-                                email
-                            </span>
-                            <span>
-                                {{ auth()->user()->email }}
-                            </span>
-                        </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <span class="material-icons-outlined mr-2">
-                                phone_iphone
-                            </span>
-                            {{ auth()->user()->phone }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
                 <div class="col-lg-11 pl-lg-0">
-                    <h2 class="title-color mb-2">Detail Permohonan</h2>
+                    <h2 class="title-color mb-2">Detail Menara</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
-                        <a href="/user/cekstatus">
+                        <a href="/user/peta-menara">
                             <i class="icofont-simple-left"></i>
-                            <i>Kembali ke halaman Status Permohonan</i>
+                            <i>Kembali ke halaman Peta</i>
                         </a>
                     </h6>
 
                     <div class="detail">
-                        <div class="col-lg-12 shadow py-4 mb-3" 
-                        @if ($data->status->id === 1)
-                            style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
-                        @elseif ($data->status->id === 2) style="border-radius: 7px; border-left: rgba(40, 167, 69,
-                            0.7) solid 7px"
-                        @else style="border-radius: 7px; border-left: rgba(220, 53, 69, 0.7) solid 7px"
-                            @endif
-                            >
-                            <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
+                        <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px">
+                            {{-- <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
                                     <h3>
                                         @if ($data->status->id === 1)
@@ -177,7 +137,7 @@
                                     Tanggal Pengajuan
                                     <h6>{{ ltrim($data->created_at->translatedFormat('d F Y'), '0') }}</h6>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
@@ -185,59 +145,59 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     ID Menara
-                                    <h6>{{ $data->tower->idMenara }}</h6>
+                                    <h6>{{ $data->idMenara }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Pemilik
-                                    <h6>{{ $data->tower->pemilik }}</h6>
+                                    <h6>{{ $data->pemilik }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Operator
                                     <h6>
-                                        @if ($data->tower->operator === null)
+                                        @if ($data->operator === null)
                                             -
                                         @else
-                                            {{ $data->tower->operator }}
+                                            {{ $data->operator }}
                                         @endif
                                     </h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Penyewa
                                     <h6>
-                                        @if ($data->tower->penyewa === null)
+                                        @if ($data->penyewa === null)
                                             -
                                         @else
-                                            {{ $data->tower->penyewa }}
+                                            {{ $data->penyewa }}
                                         @endif
                                     </h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Tipe Menara
-                                    <h6>{{ $data->tower->tipemenara->name }}</h6>
+                                    <h6>{{ $data->tipemenara->name }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Tipe Site
-                                    <h6>{{ $data->tower->tipesite->name }}</h6>
+                                    <h6>{{ $data->tipesite->name }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Tipe Jalan
-                                    <h6>{{ $data->tower->tipejalan->name }}</h6>
+                                    <h6>{{ $data->tipejalan->name }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Ketinggian
-                                    <h6>{{ $data->tower->tinggi }} meter</h6>
+                                    <h6>{{ $data->tinggi }} meter</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Luas
-                                    <h6>{{ $data->tower->luas }}</h6>
+                                    <h6>{{ $data->luas }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Nomor IMB
                                     <h6>
-                                        @if ($data->tower->nomorIMB === null)
+                                        @if ($data->nomorIMB === null)
                                             -
                                         @else
-                                            {{ $data->tower->nomorIMB }}
+                                            {{ $data->nomorIMB }}
                                         @endif
                                     </h6>
                                 </div>
@@ -248,19 +208,19 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Kecamatan
-                                    <h6>{{ $data->tower->kecamatan->name }}</h6>
+                                    <h6>{{ $data->kecamatan->name }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Kelurahan
-                                    <h6>{{ $data->tower->kelurahan->name }}</h6>
+                                    <h6>{{ $data->kelurahan->name }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
                                     Latitude
-                                    <h6 id="txtLat" name="latitude">{{ $data->tower->latitude }}</h6>
+                                    <h6 id="txtLat" name="latitude">{{ $data->latitude }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Longitude
-                                    <h6 id="txtLng" name="longitude">{{ $data->tower->longitude }}</h6>
+                                    <h6 id="txtLng" name="longitude">{{ $data->longitude }}</h6>
                                 </div>
                                 <div class="mx-md-3 mt-3">
                                     <div id="map_canvas"></div>

@@ -31,6 +31,7 @@
                 <li class="nav-item {{ Request::is('user/daftar-menara') ? 'active' : '' }}"><a class="nav-link"
                         {{-- href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li> --}} href="/user/daftar-menara">Pendaftaran</a></li>
 
+
                 <li
                     class="nav-item dropdown {{ Request::is('user/peta-menara') || Request::is('user/peta-microcell') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
@@ -58,10 +59,10 @@
                         </ul>
                     </li>
                 @else
-                    <li
-                        class="nav-item dropdown {{ Request::is('user/login') || Request::is('admin/login') || Request::is('user/register') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
+
+                    <li class="nav-item dropdown {{ (Request::is('user/login') || Request::is('admin/login') || Request::is('user/register')) ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownlogin">
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login sebagai Pemohon</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.login') }}">Login sebagai Admin</a></li>
