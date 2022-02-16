@@ -19,7 +19,7 @@
                         {{-- <p class="mb-4 pr-5">Tentukan lokasi. Daftar. Selesai.</p> --}}
                         <div class="btn-container ">
                             {{-- <div class="mb-2"> --}}
-                                <a href="{{ route('user.peta-menara') }}" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
+                                <a href="/user/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
                                     Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
                                 </a>
                             {{-- </div>
@@ -109,11 +109,11 @@
                         <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang. 
                             Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
                         </p>
-                        <a href="{{ route('user.peta-menara') }}" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/user/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Menara
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
-                        <a href="{{ route('user.peta-microcell') }}" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/user/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Microcell
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>

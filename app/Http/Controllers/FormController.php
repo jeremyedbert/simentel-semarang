@@ -98,7 +98,7 @@ class FormController extends Controller
     $pendaftaran->id = $id;
     $pendaftaran->user_id = auth()->user()->id;
     $pendaftaran->tower_id = $tower->id;
-    $pendaftaran->document = $request->file('document')->store('documents/');
+    $pendaftaran->document = $request->file('document')->store('documents');
     $storePendaftaran = $pendaftaran->save();
 
     if ($storeTower && $storePendaftaran) {
