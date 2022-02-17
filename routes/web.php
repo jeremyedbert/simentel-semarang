@@ -16,7 +16,7 @@ use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\PetaMacroController;
 use App\Http\Controllers\PetaMicroController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,7 @@ Route::prefix('user')->name('user.')->group(function () {
     // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
     Route::resource('/peta-menara', PetaMacroController::class, ['parameters' => ['peta-menara' => 'tower']]);
     Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
+    Auth::routes(['verify' => true]);
     // Guest User
     Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -46,7 +47,7 @@ Route::prefix('user')->name('user.')->group(function () {
     });
 
     // Authenticated User
-    Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
+    Route::middleware([['auth', 'verified'], 'PreventBackHistory'])->group(function () {
         Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
         // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
         Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');

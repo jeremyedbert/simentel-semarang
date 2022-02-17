@@ -37,8 +37,8 @@
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
-                        <li><a class="dropdown-item" href="{{ route('user.peta-menara') }}">Peta Menara</a></li>
-                        <li><a class="dropdown-item" href="{{ route('user.peta-microcell') }}">Peta Microcell</a>
+                        <li><a class="dropdown-item" href="/user/peta-menara">Peta Menara</a></li>
+                        <li><a class="dropdown-item" href="/user/peta-microcell">Peta Microcell</a>
                         </li>
                     </ul>
                 </li>
