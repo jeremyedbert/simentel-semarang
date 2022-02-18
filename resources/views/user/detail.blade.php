@@ -84,7 +84,7 @@
         }
 
         #map_canvas {
-            height: 300px;
+            height: 400px;
         }
 
     </style>
@@ -242,7 +242,7 @@
                                     </h6>
                                 </div>
                             </div>
-                            <div class="mx-3 mb-4 pb-2">
+                            <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
                                     <h5>Lokasi Menara</h5>
                                 </div>
@@ -262,10 +262,38 @@
                                     Longitude
                                     <h6 id="txtLng" name="longitude">{{ $data->tower->longitude }}</h6>
                                 </div>
-                                <div class="mx-md-3 mt-3">
+                                <div class="mx-md-3 mt-3 pb-3">
                                     <div id="map_canvas"></div>
                                 </div>
                             </div>
+                            <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
+                              <div>
+                                  <h5>Lampiran/Dokumen</h5>
+                              </div>
+                              <div class="d-flex justify-content-center mx-md-3">
+                                <iframe
+                                  {{-- src="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('storage/' . $data->document) }}#toolbar=0&scrollbar=0" --}}
+                                  src="{{ asset('storage/' . $data->document) }}"
+                                  frameBorder="0"
+                                  scrolling="auto"
+                                  height="400px"
+                                  width="100%"
+                                ></iframe>
+                              </div>
+                              <div class="d-flex justify-content-center p-1 mx-md-3">
+                                <a href="{{ asset('storage/' . $data->document) }}" target="blank"><i class="icofont-ui-file"></i>&nbsp;Lihat Dokumen</a>
+                              </div>
+                            </div>
+                            @if ($data->status->id === 2)
+                              <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
+                                <div>
+                                    <h5>Kondisi</h5>
+                                </div>
+                                <div class="p-1 mx-md-3">
+                                    {{ $data->tower->kondisi }}
+                                </div>
+                              </div>
+                            @endif
                         </div>
                     </div>
                 </div>

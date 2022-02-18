@@ -88,7 +88,7 @@
             
             <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
                 <div class="col-lg-11 pl-lg-0">
-                    <h2 class="title-color mb-2">Detail Menara</h2>
+                    <h2 class="title-color mb-2">Menara {{ $data->idMenara }}</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
                         <a href="/user/peta-menara">
