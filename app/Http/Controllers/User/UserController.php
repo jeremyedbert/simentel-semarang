@@ -31,7 +31,8 @@ class UserController extends Controller
         $save = $user->save();
 
         if ($save) {
-            return redirect(route('user.login'))->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
+            // return redirect(route('user.login'))->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
+            return redirect('/')->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
         } else {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
         }
