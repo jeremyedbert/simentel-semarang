@@ -36,7 +36,7 @@
 
 
                 <li
-                    class="nav-item dropdown {{ Request::is('user/peta-menara') || Request::is('user/peta-microcell') ? 'active' : '' }}">
+                    class="nav-item dropdown {{ (Request::is('user/peta-menara*') || Request::is('user/peta-microcell*')) ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
@@ -48,7 +48,7 @@
 
 
                 @auth
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown {{ Request::is('user/cekstatus*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Halo, {{ auth()->user()->name }}<i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">
@@ -62,11 +62,12 @@
                         </ul>
                     </li>
                 @else
-
-                    <li
-                        class="nav-item dropdown {{ Request::is('user/login') || Request::is('admin/login') || Request::is('user/register') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
+                    <li class="nav-item dropdown {{ (Request::is('user/login') || 
+                                                    Request::is('admin/login') || 
+                                                    Request::is('user/register')) ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
+                            
                         <ul class="dropdown-menu" aria-labelledby="dropdownlogin">
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login sebagai Pemohon</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.login') }}">Login sebagai Admin</a></li>
