@@ -126,27 +126,27 @@
         <div class="container">
             <div class="cta position-relative">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
-                            <i class="icofont-doctor"></i>
+                            <i class="icofont-network-tower"></i>
                             <span class="h3 counter" data-count="58">0</span>
                             <p>Menara Utama</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
-                            <i class="icofont-flag"></i>
+                            <i class="icofont-network-tower"></i>
                             <span class="h3 counter" data-count="700">0</span>
                             <p>Menara Microcell</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
+                    {{-- <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="counter-stat">
                             <i class="icofont-flag"></i>
                             <span class="h3 counter" data-count="10">0</span>
                             <p>Provider</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

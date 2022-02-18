@@ -16,7 +16,7 @@ use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\PetaMacroController;
 use App\Http\Controllers\PetaMicroController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,14 +47,16 @@ Route::prefix('user')->name('user.')->group(function () {
 
     // Authenticated User
     Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
-        Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
-        // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
-        Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
-        // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
-        Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
-        Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
-        // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
-        Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
+        Route::middleware('verified')->group(function (){
+            Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
+            // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
+            Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
+            // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+            Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
+            Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+            // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
+            Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
+        });
         Route::post('/logout', [UserController::class, 'logout']);
     });
 });
@@ -91,3 +93,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
     });
 });
+
+Auth::routes(['verify' => true]);
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

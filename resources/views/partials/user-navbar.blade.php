@@ -1,18 +1,21 @@
-{{-- <div class="header-top-bar">
-    <div class="container">
-        <div class="row align-items-center">
-            <ul class="top-bar-info list-inline-item pl-0 mb-0">
-                <li class="list-inline-item mr-4"><i class="icofont-email mr-2"></i> simentel@semarangkota.go.id</li>
-                <li class="list-inline-item mr-4"><i class="icofont-location-pin mr-2"></i>Jl. Pemuda No.148, Semarang 50132
-                </li>
-                <li class="list-inline-item mr-4"><i class="icofont-ui-call mr-2"></i>
-                    (024) 3513366
-                </li>
-
-            </ul>
+<style>
+</style>
+@auth
+    @if (auth()->user()->email_verified_at === null)
+        <div class="header-top-bar">
+            <div class="container">
+                <div class="row d-flex align-items-center text-align-center justify-content-center">
+                    Anda tidak bisa melakukan pendaftaran karena belum melakukan verifikasi email.
+                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline" style="color: yellow">Kirim
+                            verifikasi</button>.
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</div> --}}
+    @endif
+@endauth
 <nav class="navbar navbar-expand-lg navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
@@ -59,12 +62,12 @@
                         </ul>
                     </li>
                 @else
-
                     <li class="nav-item dropdown {{ (Request::is('user/login') || 
                                                     Request::is('admin/login') || 
                                                     Request::is('user/register')) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" id="dropdownlogin" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Login <i class="icofont-thin-down"></i></a>
+                            
                         <ul class="dropdown-menu" aria-labelledby="dropdownlogin">
                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login sebagai Pemohon</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.login') }}">Login sebagai Admin</a></li>
