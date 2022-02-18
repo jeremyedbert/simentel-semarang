@@ -21,8 +21,13 @@
           };
 
           let map = new google.maps.Map(document.getElementById("map_canvas"), {
-              zoom: 13,
+              zoom: 12,
               center: new google.maps.LatLng(-6.977, 110.416664),
+          });
+
+          document.getElementById("submit").addEventListener("click", () => {
+              searchPos(map);
+              // setSam();
           });
 
           let infowindow = new google.maps.InfoWindow();
@@ -46,13 +51,8 @@
                   })(marker, tower));
               }
           }
-          google.maps.event.addDomListener(window, 'load', initialize);
 
-          // You can use a LatLng literal in place of a google.maps.LatLng object when
-          // creating the Marker object. Once the Marker object is instantiated, its
-          // position will be available as a google.maps.LatLng object. In this case,
-          // we retrieve the marker's position using the
-          // google.maps.LatLng.getPosition() method.
+          google.maps.event.addDomListener(window, 'load', initialize);
       }
 
       function theContent(marker, tower) {
@@ -72,7 +72,7 @@
           </style>
           <div class="mx-1">
               <div class="bor text-center"><b>
-                  <a href="#` + tower.id +
+                  <a href="/user/peta-menara/` + tower.id +
               `" style="text-decoration:none;">` + tower
               .idMenara + `</a></b>
               </div>
@@ -93,6 +93,61 @@
               </div>
           </div>`;
           return content
+      }
+
+      // array of markers
+      let markers = [];
+
+      function searchPos(map) {
+          const lat = document.getElementById("lat").value;
+          const lng = document.getElementById("lng").value;
+          // const latlngStr = input.split(",", 2);
+          const latlng = {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+          };
+          map.setZoom(15); // Zoom Map
+          const marker = new google.maps.Marker({
+              position: latlng,
+              map,
+              animation: google.maps.Animation.DROP,
+              draggable: true
+          });
+
+          //draggable
+          google.maps.event.addListener(marker, 'drag', function(evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
+                map.panTo(evt.latlng);
+          });
+          
+          deleteMarkers();
+          markers.push(marker);
+          map.setCenter(latlng); // set Center
+      }
+
+      function setMapOnAll(map) {
+          for (let i = 0; i < markers.length; i++) {
+              markers[i].setMap(map);
+          }
+      }
+      // Removes the markers from the map, but keeps them in the array.
+      function hideMarkers() {
+          setMapOnAll(null);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+          hideMarkers();
+          markers = [];
+      }
+
+      function keySuccess() {
+          if ((document.getElementById('lat').value === "") || (document.getElementById('lng').value === "")) {
+              document.getElementById('submit').disabled = true;
+          } else {
+              document.getElementById('submit').disabled = false;
+          }
       }
   </script>
     <style>
@@ -124,17 +179,17 @@
                         <div class="col-md-4">
                             <p>Latitude <span style="color: #e12454"><b> * </b></span></p>
                             <div class="form-group">
-                                <input id="txtLat" name="latitude" type="text" value="-6.966667" class="form-control">
+                                <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <p>Longitude <span style="color: #e12454"><b> * </b></span></p>
                             <div class="form-group">
-                                <input id="txtLng" name="longitude" type="text" value="110.4381" class="form-control">
+                                <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4" value="Cari"/>
+                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4" value="Cari Posisi"/>
                         </div>
                     </div>
                     <div class="form-group">
