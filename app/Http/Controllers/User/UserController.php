@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -16,11 +17,11 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users|email:dns',
             'phone' => 'required|unique:users',
-            'password' => 'required|min:5|max:30',
-            'cpassword' => 'required|min:5|max:30|same:password',
+            'password' => 'required|min:5',
+            'cpassword' => 'required|min:5|same:password',
         ], [
-            'cpassword.required' => 'Confirmation password is required.',
-            'cpassword.same' => 'Your password confirmation does not match.'
+            'cpassword.required' => 'Kolom password konfirmasi wajib diisi.',
+            'cpassword.same' => 'Password konfirmasi tidak sesuai.'
         ]);
 
         $user = new User();
@@ -38,6 +39,50 @@ class UserController extends Controller
         }
     }
 
+    public function edit()
+    {
+        // return dd(Auth::user());
+        return view('user.edit-profil', [
+            'data' => Auth::user(),
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => ['required', 'email:dns', Rule::unique('users', 'email')->ignore(Auth::user()->id)],
+            'name' => 'required',
+            'phone' => ['required', Rule::unique('users', 'phone')->ignore(Auth::user()->id)],
+            'password' => 'required|min:5',
+        ], [
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.unique' => 'Email sudah dipakai oleh pengguna lain.',
+            'email.email' => 'Email tidak sesuai.',
+            'name.required' => 'Kolom nama wajib diisi.',
+            'phone.required' => 'Kolom nomor handphone wajib diisi.',
+            'password.required' => 'Kolom password wajib diisi.',
+            'password.min' => 'Password minimal 5 karakter.',
+        ]);
+
+        if (Hash::check($validatedData['password'], Auth::user()->getAuthPassword())) {
+            if ($request->email === auth()->user()->email) {
+                User::find(auth()->user()->id)->update([
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                ]);
+            } else {
+                User::find(auth()->user()->id)->update([
+                    'email' => $request->email,
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                    'email_verified_at' => null,
+                ]);
+            }
+            return back()->with('success', 'Data Anda sudah diperbarui');
+        } else {
+            return back()->with('error', 'Password tidak sesuai');
+        };
+    }
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -80,11 +125,4 @@ class UserController extends Controller
             'active' => 'peta',
         ]);
     }
-
-    // public function cekStatus(Request $request)
-    // {
-    //     return view('user.cek-status',[
-    //         'active' => 'none',
-    //     ]);
-    // }
 }

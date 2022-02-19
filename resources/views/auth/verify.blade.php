@@ -44,6 +44,7 @@
                                         class="icofont-thin-down"></i></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownuser">
                                     {{-- <li><a class="dropdown-item" href="/user/cekstatus">Cek Status Permohonan</a></li> --}}
+                                    <li><a class="dropdown-item" href="/user/edit">Edit Profil</a></li>
                                     <li>
                                         <form action="/user/logout" method="post">
                                             @csrf
