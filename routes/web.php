@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 /* Untuk User */
 
+Auth::routes(['verify' => true]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
@@ -94,6 +95,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Auth::routes(['verify' => true]);
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
