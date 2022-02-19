@@ -135,14 +135,14 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
                             <i class="icofont-network-tower"></i>
-                            <span class="h3 counter" data-count="58">0</span>
+                            <span class="h3 counter" data-count="{{ $macro }}">0</span>
                             <p>Menara Utama</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
                             <i class="icofont-network-tower"></i>
-                            <span class="h3 counter" data-count="700">0</span>
+                            <span class="h3 counter" data-count="{{ $micro }}">0</span>
                             <p>Menara Microcell</p>
                         </div>
                     </div>

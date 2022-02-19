@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function create(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users|email:dns',
             'phone' => 'required|unique:users',
@@ -33,7 +33,10 @@ class UserController extends Controller
 
         if ($save) {
             // return redirect(route('user.login'))->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
-            return redirect('/')->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect()->intended('/email/verify');
+            }
         } else {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
         }
@@ -89,7 +92,7 @@ class UserController extends Controller
             'email' => 'required|email:dns|exists:users,email',
             'password' => 'required|min:5|max:30'
         ], [
-            'email.exists' => "We can't find your email."
+            'email.exists' => 'Email sudah dipakai oleh pengguna lain.'
         ]);
 
         if (Auth::attempt($credentials)) {
