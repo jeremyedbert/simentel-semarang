@@ -39,6 +39,7 @@ class PendaftaranSeeder extends Seeder
             'tower_id' => 3,
             'status_id' => 2,
             'admin_id' => 1,
+            'document' => 'documents/test3.pdf'
         ]);
         Pendaftaran::create([
             // 'id' => time()*3,
@@ -55,6 +56,7 @@ class PendaftaranSeeder extends Seeder
             'tower_id' => 5,
             'status_id' => 2,
             'admin_id' => 1,
+            'document' => 'documents/test5.pdf'
         ]);
         Pendaftaran::create([
             // 'id' => time()*3,
@@ -63,6 +65,7 @@ class PendaftaranSeeder extends Seeder
             'tower_id' => 6,
             'status_id' => 2,
             'admin_id' => 1,
+            'document' => 'documents/test6.pdf'
         ]);
         Pendaftaran::create([
             // 'id' => time()*3,
@@ -71,6 +74,7 @@ class PendaftaranSeeder extends Seeder
             'tower_id' => 7,
             'status_id' => 2,
             'admin_id' => 2,
+            'document' => 'documents/test7.pdf'
         ]);
     }
 }
