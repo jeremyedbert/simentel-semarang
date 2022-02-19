@@ -9,7 +9,7 @@
 <body id="top">
 
     <header>
-        <nav class="navbar navbar-expand-lg navigation" id="navbar">
+        <nav class="navbar navbar-expand-lg navigation shadow" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="images/logo.png" alt="" class="img-fluid">
@@ -77,44 +77,50 @@
     <!-- File Pond -->
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <!-- Slider Start -->
-    <div class="container pb-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Verifikasi Email Anda</div>
 
-                    <div class="card-body">
-                        @if (session('resent'))
-                            <div class="alert alert-success" role="alert">
-                                Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+    <section class="mt-4">
+        <div class="d-flex row d-inline-block mb-5">
+            <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
+                <div class="col-lg-11 pl-lg-0">
+                    <h2 class="title-color mb-2">Verifikasi Email Anda</h2>
+                    <div class="divider mb-4"></div>
+                    <div class="detail">
+                        <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px;">
+                            <div class="mx-3 mb-4 pb-2">
+                                @if (session('resent'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+                                    </div>
+                                @endif
+                                Untuk melakukan pendaftaran menara, Anda perlu melakukan verifikasi email.
+                                <form class="d-inline" method="POST"
+                                    action="{{ route('verification.resend') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Klik untuk
+                                        mengirim pesan
+                                        verifikasi</button>.
+                                </form>
+                                Jika Anda mengalami kesalahan pada data email, <a href="/user/edit" class="btn btn-link p-0 m-0 align-baseline">ubah email</a> Anda.
                             </div>
-                        @endif
-                        Sebelum melanjutkan, silakan cek kotak masuk email Anda untuk link verifikasi.
-                        Jika belum mendapat pesan,
-                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                            @csrf
-                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">klik untuk mengirim
-                                kembali</button>.
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- footer Start -->
-    @include('partials.user-footer')
-    <!-- 
+        <!-- footer Start -->
+        @include('partials.user-footer')
+        <!-- 
     Essential Scripts
     =====================================-->
-    <script src="{{ url('assets/user/plugins/jquery/jquery.js') }}"></script>
-    <script src="{{ url('assets/user/plugins/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ url('assets/user/plugins/slick-carousel/slick/slick.min.js') }}"></script>
-    <script src="{{ url('assets/user/plugins/shuffle/shuffle.min.js') }}"></script>
+        <script src="{{ url('assets/user/plugins/jquery/jquery.js') }}"></script>
+        <script src="{{ url('assets/user/plugins/bootstrap/bootstrap.min.js') }}"></script>
+        <script src="{{ url('assets/user/plugins/slick-carousel/slick/slick.min.js') }}"></script>
+        <script src="{{ url('assets/user/plugins/shuffle/shuffle.min.js') }}"></script>
 
-    <!-- Google Map -->
-    {{-- <script src="assets/user/plugins/google-map/gmap.js"></script> --}}
+        <!-- Google Map -->
+        {{-- <script src="assets/user/plugins/google-map/gmap.js"></script> --}}
 
-    <script src="{{ url('assets/user/js/script.js') }}"></script>
+        <script src="{{ url('assets/user/js/script.js') }}"></script>
 
 </body>
 

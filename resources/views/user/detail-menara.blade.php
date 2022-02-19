@@ -85,7 +85,6 @@
     </style>
     <section class="mt-4">
         <div class="d-flex row d-inline-block mb-5">
-            
             <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
                 <div class="col-lg-11 pl-lg-0">
                     <h2 class="title-color mb-2">Menara {{ $data->idMenara }}</h2>
