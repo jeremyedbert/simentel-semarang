@@ -168,11 +168,11 @@
         }
 
     </style>
-    <section class="section appoinment">
+    <section class="mt-4">
         <div class="container">
             <h2 class="title-color mb-2">Peta Menara Utama</h2>
             <div class="divider mb-4"></div>
-            <form id="#" class="appoinment-form" method="post" action="#">
+            <form id="#" method="post" action="#">
                 <div class="col">
 
                     <div class="row mb-4">

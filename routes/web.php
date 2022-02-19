@@ -59,6 +59,9 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
         });
         Route::post('/logout', [UserController::class, 'logout']);
+        // Edit Profil User
+        Route::get('/edit', [UserController::class, 'edit']);
+        Route::post('/update', [UserController::class, 'update']);
     });
 });
 

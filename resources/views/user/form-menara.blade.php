@@ -58,7 +58,7 @@
         }
 
     </style>
-    <section class="section appoinment">
+    <section class="mt-4">
         <div class="container">
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -73,7 +73,7 @@
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
 
-            <form id="#" class="appoinment-form" method="post" action="/user/daftar-menara/store"
+            <form id="#" method="post" action="/user/daftar-menara/store"
                 enctype="multipart/form-data">
                 <div class="col">
                     @csrf

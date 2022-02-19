@@ -16,7 +16,7 @@
         </div>
     @endif
 @endauth
-<nav class="navbar navbar-expand-lg navigation" id="navbar">
+<nav class="navbar navbar-expand-lg shadow navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="images/logo.png" alt="" class="img-fluid">
@@ -53,6 +53,7 @@
                             aria-expanded="false">Halo, {{ auth()->user()->name }}<i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">
                             <li><a class="dropdown-item" href="/user/cekstatus">Cek Status Permohonan</a></li>
+                            <li><a class="dropdown-item" href="/user/edit">Edit Profil</a></li>
                             <li>
                                 <form action="/user/logout" method="post">
                                     @csrf
