@@ -19,14 +19,14 @@
                         {{-- <p class="mb-4 pr-5">Tentukan lokasi. Daftar. Selesai.</p> --}}
                         <div class="btn-container ">
                             {{-- <div class="mb-2"> --}}
-                                <a href="/user/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
-                                    Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
-                                </a>
+                            <a href="/user/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
+                                Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
+                            </a>
                             {{-- </div>
                             <div> --}}
-                                <a href="/user/daftar-menara" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
-                                    Daftarkan Menara<i class="icofont-simple-right ml-2  "></i>
-                                </a>
+                            <a href="/user/daftar-menara" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
+                                Daftarkan Menara<i class="icofont-simple-right ml-2  "></i>
+                            </a>
                             {{-- </div> --}}
                         </div>
                     </div>
@@ -45,7 +45,8 @@
                             </div>
                             <span>Kantor Pelayanan</span>
                             <h4 class="mb-3">Diskominfo Kota Semarang</h4>
-                            <p class="mb-4">Jl. Pemuda No.148 Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132</p>
+                            <p class="mb-4">Jl. Pemuda No.148 Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa
+                                Tengah 50132</p>
                             <a href="https://www.google.com/maps/place/Dinas+Kominfo+Kota+Semarang/@-6.9837516,110.4118455,17z/data=!4m5!3m4!1s0x2e708b4fd277d06b:0x4056bfa9e8303c06!8m2!3d-6.9836393!4d110.413617"
                                 target="blank" class="btn btn-main btn-round-full">
                                 <i class="icofont-search-map"></i>
@@ -77,8 +78,7 @@
                                 <br>
                                 <i class="icofont-ui-call mr-2"></i>(024) 3513366
                             </p>
-                            <a href="https://api.whatsapp.com/send?phone=6281222810002"
-                                href="https://wa.me/6281222810002"
+                            <a href="https://api.whatsapp.com/send?phone=6281222810002" href="https://wa.me/6281222810002"
                                 target="blank" class="btn btn-main btn-round-full align-middle">
                                 <i class="icofont-brand-whatsapp mr-1"></i>
                                 Hubungi via WhatsApp
@@ -106,7 +106,7 @@
                 <div class="col-lg-4">
                     <div class="about-content pl-4 mt-4 mt-lg-0">
                         <h2 class="title-color">Persebaran Lokasi Menara & Microcell</h2>
-                        <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang. 
+                        <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang.
                             Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
                         </p>
                         <a href="/user/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
@@ -169,10 +169,15 @@
                         <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara/microcell
                             menjadi lebih mudah. Cukup ikuti beberapa langkah berikut.</p>
                         <ol class="mb-4">
-                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau <a href="{{ route('user.register') }}"><b>buat akun</b></a>  terlebih dahulu bila belum memilikinya</li>
-                            <li>Pilih tab <a href="{{ route('user.') }}"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda dapat mengisi detail menara, 
+                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau <a
+                                    href="{{ route('user.register') }}"><b>buat akun</b></a> terlebih dahulu bila belum
+                                memilikinya. Pastikan email yang Anda masukkan sudah sesuai</li>
+                            <li>Verifikasi email Anda</li>
+                            <li>Pilih tab <a href="{{ route('user.') }}"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda
+                                dapat mengisi detail menara,
                                 menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung</li>
-                            <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan</li>
+                            <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan
+                            </li>
                             <li>Tunggu verifikasi dari kami. Notifikasi akan kami kirimkan melalui email Anda</li>
                             <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li>
                         </ol>
@@ -241,7 +246,7 @@
                             
                         </form> --}}
                         <a class="btn btn-main btn-round-full" href="/user/daftar-menara">Daftarkan Menara <i
-                            class="icofont-simple-right ml-2"></i></a>
+                                class="icofont-simple-right ml-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -275,7 +280,7 @@
                             <h4>5000 Dogecoins for SI MenTel</h4>
                             <span>Elon Mas</span>
                             <p>
-                                SI MenTel amazed me with great service, so I gave them 5000 Dogecoin to built new system 
+                                SI MenTel amazed me with great service, so I gave them 5000 Dogecoin to built new system
                                 for Tesla communication tower. Oh, dont't forget about SpaceX! We're working together now.
                             </p>
                         </div>
@@ -290,7 +295,8 @@
                             <h4>We are closer to the metaverse</h4>
                             <span>Mark Suckerbergzhjkl</span>
                             <p>
-                                Since Meta was still Facebook. I've used SI MenTel for registering the towers. They have best service 
+                                Since Meta was still Facebook. I've used SI MenTel for registering the towers. They have
+                                best service
                                 to support telecommunication. With SI MenTel, we are closer to the metaverse!
                             </p>
                         </div>
@@ -308,8 +314,10 @@
                             <span>Uzumaki Naruto</span>
                             <p>
                                 Sejak SI MenTel hadir, jumlah menara telekomunikasi di Desa Konoha meningkat pesat.
-                                Hal ini membuat komunikasi kami dengan desa sekitar semakin baik, begitu pun dengan Kota Semarang.
-                                SI MenTel sudah mendukung terwujudnya perdamaian keempat desa dan membantu mengakhiri Perang Dunia Ninja 
+                                Hal ini membuat komunikasi kami dengan desa sekitar semakin baik, begitu pun dengan Kota
+                                Semarang.
+                                SI MenTel sudah mendukung terwujudnya perdamaian keempat desa dan membantu mengakhiri Perang
+                                Dunia Ninja
                             </p>
                         </div>
                         <i class="icofont-quote-right"></i>
@@ -318,5 +326,4 @@
             </div>
         </div>
     </section>
-
 @endsection
