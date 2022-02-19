@@ -9,6 +9,12 @@
     </style>
     <section class="banner background">
         <div class="container">
+            @if (session('resent'))
+                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="block">

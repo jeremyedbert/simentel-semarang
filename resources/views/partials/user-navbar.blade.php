@@ -4,7 +4,7 @@
     @if (auth()->user()->email_verified_at === null)
         <div class="header-top-bar">
             <div class="container">
-                <div class="row d-flex align-items-center text-align-center justify-content-center">
+                <div class="row d-flex align-items-center text-center justify-content-center">
                     Anda tidak bisa melakukan pendaftaran karena belum melakukan verifikasi email.
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
