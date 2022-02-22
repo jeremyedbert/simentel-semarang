@@ -181,18 +181,18 @@
             @endif
             <h2 class="title-color mb-2">Peta Menara Utama</h2>
             <div class="divider mb-4"></div>
-            <form id="#" method="post" action="#">
-                <div class="col">
+            <div class="col">
 
-                    <div class="row mb-4">
+                <form id="#" method="post" action="#">
+                    <div class="row">
                         <div class="col-md-4">
-                            <p>Latitude <span style="color: #e12454"><b> * </b></span></p>
+                            <p>Latitude</p>
                             <div class="form-group">
                                 <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <p>Longitude <span style="color: #e12454"><b> * </b></span></p>
+                            <p>Longitude</p>
                             <div class="form-group">
                                 <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
@@ -202,34 +202,62 @@
                                 value="Cari Posisi" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div id="map_canvas" style="width: auto; height: 500px;"></div>
-                    </div>
+                </form>
 
-                    {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
+                <form action="/user/peta-menara">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <p>ID Menara</p>
+                            <div class="form-group mb-0">
+                                <input id="search" name="search" type="text" class="form-control"
+                                    value="{{ request('search') }}">
+                            </div>
+                            <small>Tekan <i>enter</i> untuk mencari</small>
+                            {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
+                        </div>
+                        {{-- <div class="col-md-2 align-self-end">
+                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
+                                value="Cari ID Menara" />
+                            <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
+                        </div> --}}
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                </div>
+
+                {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <a class="btn btn-main btn-round" href="#">Submit</a> --}}
-                    <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
-                        <h3 class="title-color mb-0">List Menara Utama</h3>
-                        <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
-                        <div class="col-lg-12 px-0 px-md-3 table-responsive">
-                            <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>ID Tower</th>
-                                        <th>Pemilik</th>
-                                        <th>Lokasi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($towerMakro as $d)
-                                        <a href="">
-                                            <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
-
+                <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-md-4">
+                            <h3 class="title-color mb-0">List Menara Utama</h3>
+                            <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
+                        </div>
+                        {{-- <div class="col-md-4">
+                            <label for="search"><small>Cari ID Menara atau Pemilik</small></label>
+                            <input name="search" type="text" class="form-control input-sm" placeholder=""
+                                onkeyup="search()">
+                        </div> --}}
+                    </div>
+                    <div class="col-lg-12 px-0 px-md-3 table-responsive">
+                        <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>ID Menara</th>
+                                    <th>Pemilik</th>
+                                    <th>Lokasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($towerMakro as $d)
+                                    <a href="">
+                                        <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
                                                 <td>{{ $d->idMenara }}</td>
                                                 <td>{{ $d->pemilik }}</td>
                                                 <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
-                                                
                                             </tr>
                                         </a>
                                     @endforeach
@@ -238,7 +266,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+
         </div>
     </section>
     <script

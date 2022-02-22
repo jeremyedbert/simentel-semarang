@@ -92,7 +92,7 @@ class UserController extends Controller
             'email' => 'required|email:dns|exists:users,email',
             'password' => 'required|min:5|max:30'
         ], [
-            'email.exists' => 'Email sudah dipakai oleh pengguna lain.'
+            'email.exists' => 'Email tidak ditemukan.'
         ]);
 
         if (Auth::attempt($credentials)) {

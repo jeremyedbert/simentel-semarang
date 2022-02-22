@@ -68,17 +68,15 @@
                                             menyetujui
                                         @else
                                             menolak
-                                        @endif permohonan ini pada
-                                        {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
+                                        @endif permohonan ini pada {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
                                     @else
                                         Admin {{ $data->admin->name }}
                                         @if ($data->status->id === 2)
                                             menyetujui
                                         @else
                                             menolak
-                                        @endif pendaftaran ini pada
+                                        @endif pendaftaran ini pada {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
                                     @endif
-                                    {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
                                 </i>
                             </div>
 
