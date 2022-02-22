@@ -75,7 +75,7 @@
 
             <form id="#" method="post" action="/user/daftar-menara/store"
                 enctype="multipart/form-data">
-                <div class="col">
+                <div class="col mb-3">
                     @csrf
                     <div class="form-group">
                         <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>

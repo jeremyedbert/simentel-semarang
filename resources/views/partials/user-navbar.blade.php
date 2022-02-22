@@ -5,11 +5,11 @@
         <div class="header-top-bar">
             <div class="container">
                 <div class="row d-flex align-items-center text-center justify-content-center">
-                    Anda tidak bisa melakukan pendaftaran karena belum melakukan verifikasi email.
+                    Anda tidak dapat melakukan pendaftaran karena belum melakukan verifikasi email.
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline" style="color: yellow">Kirim
-                            verifikasi</button>.
+                            verifikasi email</button>.
                     </form>
                 </div>
             </div>
