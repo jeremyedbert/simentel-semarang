@@ -32,7 +32,7 @@
                 <li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('home') }}">Beranda</a></li>
                 <li class="nav-item {{ Request::is('user/daftar-menara') ? 'active' : '' }}"><a class="nav-link"
-                        {{-- href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li> --}} href="/user/daftar-menara">Pendaftaran</a></li>
+                {{-- href="{{ route('user.daftar-menara') }}">Pendaftaran</a></li> --}} href="/user/daftar-menara">Pendaftaran</a></li>
 
 
                 <li

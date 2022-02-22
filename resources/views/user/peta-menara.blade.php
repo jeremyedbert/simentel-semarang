@@ -198,7 +198,7 @@
                             </div>
                         </div>
                         <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
+                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-3"
                                 value="Cari Posisi" />
                         </div>
                     </div>
@@ -255,28 +255,15 @@
                                 @foreach ($towerMakro as $d)
                                     <a href="">
                                         <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
-
-                                            <td>{{ $d->idMenara }}</td>
-                                            <td>{{ $d->pemilik }}</td>
-                                            <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
-                                            {{-- <td>
-                                          <a href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
-                                              class="btn btn-info btn-xs mx-1 my-1"><span><i
-                                                      class="fas fa-eye"></i></span> Info</a>
-                                          <a href="#" class="btn btn-danger btn-xs mx-1 my-1"
-                                              data-toggle="modal"
-                                              data-target="#del{{ $d->id }}"><span><i
-                                                      class="fas fa-trash-alt"></i></span> Hapus</a>
-                                          <a href="#" class="mx-3">
-                                            <b><i>Detail</i></b>
-                                            <i class="icofont-simple-right "></i>
-                                          </a>
-                                      </td> --}}
-                                        </tr>
-                                    </a>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                <td>{{ $d->idMenara }}</td>
+                                                <td>{{ $d->pemilik }}</td>
+                                                <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
+                                            </tr>
+                                        </a>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
