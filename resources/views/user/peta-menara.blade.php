@@ -224,7 +224,7 @@
                 </form>
 
                 <div class="form-group">
-                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                    {{-- <div id="map_canvas" style="width: auto; height: 500px;"></div> --}}
                 </div>
 
                 {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
@@ -251,10 +251,11 @@
                                     <th>Lokasi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($towerMakro as $d)
-                                    <a href="">
-                                        <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
+                            @if ($towerMakro->count())
+                                <tbody>
+                                    @foreach ($towerMakro as $d)
+                                        <a href="">
+                                            <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
                                                 <td>{{ $d->idMenara }}</td>
                                                 <td>{{ $d->pemilik }}</td>
                                                 <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
@@ -262,11 +263,17 @@
                                         </a>
                                     @endforeach
                                 </tbody>
-                            </table>
-                        </div>
+                            @else
+                                <tbody>
+                                    <td colspan="3" class="text-align-center justify-content-center" style="align-items: center">No Data Found</td>
+                                </tbody>
+                            @endif
+
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
 
         </div>
     </section>

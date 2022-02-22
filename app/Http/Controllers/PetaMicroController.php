@@ -19,7 +19,7 @@ class PetaMicroController extends Controller
     public function index()
     {
         //
-      $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->get();
+      $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
       $kecamatan = Kecamatan::all()->pluck('name', 'id');
       $kelurahan = Kelurahan::all()->pluck('name', 'id');
       $tipesite = TipeSite::all()->pluck('name', 'id');
