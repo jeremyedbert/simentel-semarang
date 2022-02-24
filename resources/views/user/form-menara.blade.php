@@ -53,8 +53,8 @@
             margin-top: 0;
         }
 
-        select {
-            font-size: 9px;
+        option{
+          padding: 5px 0;
         }
 
     </style>
@@ -241,11 +241,11 @@
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
                         {{-- <input class="form-control pt-2" type="file" name="document" id="document"> --}}
-                        <input class="pt-2" type="file" name="document" id="document">
+                        <input class="form-control" type="file" name="document" id="document">
                     </div>
 
-                    <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda
-                            isi.</b></p>
+                    <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali 
+                        form yang telah Anda isi.</b></p>
 
                     <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
