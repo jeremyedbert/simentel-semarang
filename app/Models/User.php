@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Notifications\NewPendaftaran;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +49,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function pendaftaran()
     {
         return $this->hasMany(Pendaftaran::class);
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new NewPendaftaran);
     }
 }

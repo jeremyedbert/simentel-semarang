@@ -27,6 +27,11 @@ class Pendaftaran extends Model
         }
     }
 
+    public function notifikasi()
+    {
+        return $this->belongsTo(Notifikasi::class);
+    }
+
     public function tower()
     {
         return $this->belongsTo(Tower::class);

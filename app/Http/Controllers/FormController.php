@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\StoreNotifikasiRequest;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +57,7 @@ class FormController extends Controller
       'penyewa' => 'nullable',
       'nomorIMB' => 'nullable',
       'document' => 'required|mimes:pdf|max:10240',
-    ],[
+    ], [
       'pemilik.required' => 'Harap isi nama pemilik atau perusahaan.',
       'idMenara.required' => 'Harap isi ID Menara.',
       'idMenara.unique' => 'ID Menara sudah ada.',
@@ -107,7 +109,11 @@ class FormController extends Controller
 
     $storePendaftaran = $pendaftaran->save();
 
-    if ($storeTower && $storePendaftaran) {
+    $notifikasi = new Notifikasi();
+    $notifikasi->pendaftaran_id = $id;
+    $storeNotifikasi = $notifikasi->save();
+
+    if ($storeTower && $storePendaftaran && $storeNotifikasi) {
       return redirect(route('user.daftar-menara'))
         ->with('success', 'Pengajuan pendaftaran/izin menara berhasil. Silakan tunggu persetujuan dari kami.');
     } else {
@@ -117,7 +123,7 @@ class FormController extends Controller
 
   public function upload(Request $request)
   {
-    if($request->hasFile('document')){
+    if ($request->hasFile('document')) {
       // $file = $request->file('document');
       // $filename = 'docs-'.$request->idMenara;
       // $folder = $request->idMenara;
@@ -132,5 +138,3 @@ class FormController extends Controller
     // return '';
   }
 }
-
-

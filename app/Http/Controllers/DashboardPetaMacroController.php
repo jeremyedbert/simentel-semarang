@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
+use App\Models\Notifikasi;
 use App\Models\Kelurahan;
 use App\Models\TipeSite;
 use App\Models\Tower;
@@ -24,7 +25,9 @@ class DashboardPetaMacroController extends Controller
         // $tower = Tower::all();
         // return response()->json($data);
         // return response()->json(compact('tower', 'kecamatan', 'kelurahan', 'tipesite'));
-        return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), ['routes' => "macro"]);
+        return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), [
+            'routes' => "macro", 
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),]);
     }
 
     /**

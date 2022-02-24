@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tower;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 
 class DashboardTowerMicroController extends Controller
@@ -16,7 +17,8 @@ class DashboardTowerMicroController extends Controller
     {
         return view('admin.towers', [
             'data' => Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->get(),
-            'routes' => 'micro'
+            'routes' => 'micro',
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
     }
 
@@ -50,7 +52,8 @@ class DashboardTowerMicroController extends Controller
     public function show(Tower $tower)
     {
         return view('admin.tower', [
-            'data' => $tower
+            'data' => $tower,
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
     }
 
