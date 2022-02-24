@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class DashboardListController extends Controller
         return view('admin.list', [
             'data' => Pendaftaran::where('status_id', '=', 1)
                 ->get(),
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
     }
 
@@ -52,6 +54,7 @@ class DashboardListController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
+
     }
 
     /**
@@ -63,7 +66,8 @@ class DashboardListController extends Controller
     public function edit(Pendaftaran $pendaftaran)
     {
         return view('admin.edit', [
-            'data' => $pendaftaran
+            'data' => $pendaftaran,
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
 
         // return dd($pendaftaran);

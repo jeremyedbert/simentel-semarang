@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 
 class DashboardRiwayatController extends Controller
@@ -20,7 +21,8 @@ class DashboardRiwayatController extends Controller
             // scopeSearching'
             'data' => Pendaftaran::whereIn('status_id', [2, 3])
                                 ->searching()
-                                ->orderBy('updated_at','desc')->get()
+                                ->orderBy('updated_at','desc')->get(),
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
     }
 
@@ -54,7 +56,8 @@ class DashboardRiwayatController extends Controller
     public function show(Pendaftaran $pendaftaran)
     {
         return view('admin.detail-riwayat', [
-            'data' => $pendaftaran
+            'data' => $pendaftaran,
+            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
         ]);
     }
 
