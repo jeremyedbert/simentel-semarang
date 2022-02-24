@@ -6,6 +6,10 @@
             width: 100%;
         }
 
+        .w-hours{
+          font-size: 16px;
+        }
+
     </style>
     <section class="banner background">
         <div class="container">
@@ -184,7 +188,7 @@
                                 menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung</li>
                             <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan
                             </li>
-                            <li>Tunggu verifikasi dari kami. Notifikasi akan kami kirimkan melalui email Anda</li>
+                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di menu Cek Status Permohonan</li>
                             <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li>
                         </ol>
                         {{-- <form id="#" class="appoinment-form" method="post" action="#">
@@ -258,19 +262,7 @@
             </div>
         </div>
     </section>
-    <section class="section testimonial-2 gray-bg">
-        {{-- <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="section-title text-center">
-                        <h2>We served over 5000+ Patients</h2>
-                        <div class="divider mx-auto my-4"></div>
-                        <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt
-                            molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+    {{-- <section class="section testimonial-2 gray-bg">
 
         <div class="container">
             <div class="row align-items-center">
@@ -331,5 +323,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
