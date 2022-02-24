@@ -8,7 +8,7 @@
                     <a href='/admin/dashboard'>
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
-                        <span class="badge badge-count">5</span>
+                        {{-- <span class="badge badge-count">5</span> --}}
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('admin/pendaftaran*') ? 'active' : '' }}">

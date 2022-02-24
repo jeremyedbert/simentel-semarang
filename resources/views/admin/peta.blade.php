@@ -159,7 +159,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
+                <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Peta Menara
                             {{ Request::is('admin/peta/makro') ? 'Utama' : 'Mikro' }}</b>
                     </h1>

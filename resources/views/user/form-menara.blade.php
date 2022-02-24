@@ -100,7 +100,7 @@
                     <div class="form-group">
                         <label>Tipe Menara <span style="color: #e12454"><b> * </b></span></label>
                         <select class="form-control" name="tipe_menara_id" id="tipeMenara">
-                            <option value=""> -- Pilih tipe menara -- </option>
+                            <option value="{{ old('tipe_menara_id') }}"> -- Pilih tipe menara -- </option>
                             @foreach ($tipemenara as $menara)
                                 <option value="{{ $menara->id }}"> {{ $menara->name }}</option>
                             @endforeach

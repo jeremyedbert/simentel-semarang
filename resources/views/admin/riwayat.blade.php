@@ -4,7 +4,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header d-flex justify-content-between" style="border-bottom: 1px solid #aaaaaa;">
+                <div class="page-header d-flex justify-content-between">
                     <h1 style="color: black" class="pb-3"><b>Riwayat</b></h1>
                     {{-- Search bar --}}
                     <div class="form-group py-0">
