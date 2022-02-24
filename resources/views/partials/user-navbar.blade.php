@@ -16,7 +16,7 @@
         </div>
     @endif
 @endauth
-<nav class="navbar navbar-expand-lg shadow navigation" id="navbar">
+<nav class="navbar navbar-expand-lg shadow-sm navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="images/logo.png" alt="" class="img-fluid">
@@ -40,7 +40,7 @@
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
-                        <li><a class="dropdown-item" href="/user/peta-menara">Peta Menara</a></li>
+                        <li><a class="dropdown-item" href="/user/peta-menara">Peta Menara Makro</a></li>
                         <li><a class="dropdown-item" href="/user/peta-microcell">Peta Microcell</a>
                         </li>
                     </ul>
