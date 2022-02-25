@@ -9,7 +9,7 @@
 <body id="top">
 
     <header>
-        <nav class="navbar navbar-expand-lg navigation shadow" id="navbar">
+        <nav class="navbar navbar-expand-lg navigation shadow-sm" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="images/logo.png" alt="" class="img-fluid">

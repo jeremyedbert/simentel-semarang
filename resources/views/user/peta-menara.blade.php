@@ -111,15 +111,15 @@
                 position: latlng,
                 map,
                 animation: google.maps.Animation.DROP,
-                draggable: true
+                // draggable: true
             });
 
             //draggable
-            google.maps.event.addListener(marker, 'drag', function(evt) {
-                $("#lat").val(evt.latLng.lat().toFixed(6));
-                $("#lng").val(evt.latLng.lng().toFixed(6));
-                map.panTo(evt.latlng);
-            });
+            // google.maps.event.addListener(marker, 'drag', function(evt) {
+            //     $("#lat").val(evt.latLng.lat().toFixed(6));
+            //     $("#lng").val(evt.latLng.lng().toFixed(6));
+            //     map.panTo(evt.latlng);
+            // });
 
             deleteMarkers();
             markers.push(marker);
