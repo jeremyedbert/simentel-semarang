@@ -29,7 +29,7 @@ class Pendaftaran extends Model
 
     public function notifikasi()
     {
-        return $this->belongsTo(Notifikasi::class);
+        return $this->hasOne(Notifikasi::class);
     }
 
     public function tower()

@@ -15,6 +15,7 @@ use App\Http\Controllers\DashboardListController;
 use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\PetaMacroController;
 use App\Http\Controllers\PetaMicroController;
 use Illuminate\Support\Facades\Auth;
@@ -79,6 +80,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/pendaftaran', [DashboardListController::class, 'index']);
         Route::post('/pendaftaran/{pendaftaran}/decline', [DashboardListController::class, 'decline']);
         Route::post('/pendaftaran/{pendaftaran}/accept', [DashboardListController::class, 'accept']);
+        Route::post('/notifikasi/{notifikasi}', [NotifikasiController::class, 'update']);
         Route::resource('/pendaftaran', DashboardListController::class);
         // Delete
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);

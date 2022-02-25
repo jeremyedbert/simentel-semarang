@@ -57,7 +57,7 @@ class DashboardRiwayatController extends Controller
     {
         return view('admin.detail-riwayat', [
             'data' => $pendaftaran,
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::whereNull('mark_as_read')->limit(3)->get(),
         ]);
     }
 

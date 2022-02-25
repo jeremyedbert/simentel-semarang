@@ -99,7 +99,7 @@
                                     <span class="notification">{{ $notif->count() }}</span>
                                 @endif
                             </a>
-                            <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+                            <ul class="dropdown-menu notif-box" aria-labelledby="notifDropdown">
                                 {{-- <li>
                                     <div class="dropdown-title">You have 4 new notification</div>
                                 </li> --}}
@@ -109,17 +109,26 @@
                                         <div class="notif-scroll scrollbar-outer scroll-content"
                                             style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 256px;">
                                             <div class="notif-center submenu">
-                                                <a href="#">
-                                                    <div class="notif-icon notif-primary"> <i
-                                                            class="fa fa-user-plus"></i> </div>
-                                                    <div class="notif-content">
-                                                        <span class="block">
-                                                            New user registered
-                                                        </span>
-                                                        <span class="time">5 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
+                                                @foreach ($notif as $n)
+                                                    <a>
+                                                        <form action="/admin/notifikasi/{{ $n->id }}" method="post">
+                                                            @csrf
+                                                            <button type="submit">
+                                                                {{-- <div class="notif-icon notif-primary">
+                                                            <i class="fa fa-user-plus"></i>
+                                                        </div> --}}
+                                                                <div class="notif-content">
+                                                                    <span class="block ml-3">
+                                                                        <b>{{ $n->pendaftaran->tower->idMenara }}</b>
+                                                                    </span>
+                                                                    <span
+                                                                        class="time ml-3">{{ $n->created_at->diffForHumans() }}</span>
+                                                                </div>
+                                                            </button>
+                                                        </form>
+                                                    </a>
+                                                @endforeach
+                                                {{-- <a href="#">
                                                     <div class="notif-icon notif-success"> <i
                                                             class="fa fa-comment"></i> </div>
                                                     <div class="notif-content">
@@ -138,7 +147,7 @@
                                                         </span>
                                                         <span class="time">17 minutes ago</span>
                                                     </div>
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                         <div class="scroll-element scroll-x" style="">
@@ -159,10 +168,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="submenu">
+                                {{-- <li class="submenu">
                                     <a class="see-all" href="javascript:void(0);">See all notifications<i
                                             class="fa fa-angle-right"></i> </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="nav-item dropdown hidden-caret">
@@ -173,7 +182,7 @@
                                         class="avatar-img rounded-circle">
                                 </div>
                             </a>
-                            <ul class="dropdown-menu dropdown-user animated fadeIn">
+                            <ul class="dropdown-menu dropdown-user">
                                 <li>
                                     <div class="user-box">
                                         <div class="avatar-lg"><img
