@@ -68,9 +68,12 @@ class NotifikasiController extends Controller
      * @param  \App\Models\Notifikasi  $notifikasi
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateNotifikasiRequest $request, Notifikasi $notifikasi)
+    // public function update(UpdateNotifikasiRequest $request, Notifikasi $notifikasi)
+    public function update(Notifikasi $notifikasi)
     {
-        //
+        Notifikasi::where('pendaftaran_id', $notifikasi->pendaftaran_id)
+                    ->update(['mark_as_read' => now()]);
+        return redirect('/admin/pendaftaran/' . $notifikasi->pendaftaran_id . '/edit');
     }
 
     /**

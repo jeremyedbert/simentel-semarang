@@ -224,7 +224,7 @@
                 </form>
 
                 <div class="form-group">
-                    {{-- <div id="map_canvas" style="width: auto; height: 500px;"></div> --}}
+                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
                 </div>
 
                 {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>

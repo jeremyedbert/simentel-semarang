@@ -17,6 +17,6 @@ class Notifikasi extends Model
 
     public function pendaftaran()
     {
-        return $this->hasOne(Pendaftaran::class);
+        return $this->belongsTo(Pendaftaran::class);
     }
 }

@@ -1,5 +1,23 @@
 @extends('layouts.main-admin')
 @section('content')
+    <style>
+        .notif {
+            position: absolute;
+            background-color: #f3545d;
+            text-align: center;
+            border-radius: 20px;
+            min-width: 25px;
+            height: 25px;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 300;
+            line-height: 24px;
+            top: -6px;
+            right: -6px;
+            letter-spacing: -1px;
+        }
+
+    </style>
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -9,6 +27,9 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <div class="card card-stats card-round">
+                            @if ($notif->count())
+                                <span class="notif">{{ $notif->count() }}</span>
+                            @endif
                             <div class="card-body ">
                                 <div class="row align-items-center">
                                     <div class="col-icon">
@@ -19,7 +40,7 @@
                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <h3 class="fw-bold">Pendaftaran</h3>
-                                            <h4>$ 1,345</h4>
+                                            <h4>{{ $apply->count() }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +59,7 @@
                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <h2 class="fw-bold">Diterima</h2>
-                                            <h4>$ 1,345</h4>
+                                            <h4>{{ $acc->count() }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +78,7 @@
                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <h2 class="fw-bold">Ditolak</h2>
-                                            <h4>$ 1,345</h4>
+                                            <h4>{{ $reject->count() }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +119,7 @@
                                         <div class="col col-stats ml-3 ml-sm-0">
                                             <div class="numbers">
                                                 <h2 class="fw-bold">Menara Macro</h2>
-                                                <h4>$ 1,345</h4>
+                                                <h4>{{ $makro->count() }} Menara</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +141,7 @@
                                             <div class="numbers">
                                                 {{-- <p class="card-category">Sales</p> --}}
                                                 <h2 class="fw-bold">Menara Microcell</h2>
-                                                <h4>$ 1,345</h4>
+                                                <h4>{{ $mikro->count() }} Menara</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -129,8 +150,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    {{-- <div class="col-md-8">
+                {{-- <div class="row">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
@@ -158,7 +179,7 @@
                                 <div id="myChartLegend"></div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="col-md-4">
                         <div class="card card-success">
                             <div class="card-header">
@@ -182,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row row-card-no-pd">
+                <div class="row row-card-no-pd">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -304,7 +325,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
@@ -611,7 +632,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
