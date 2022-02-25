@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg shadow-sm navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="images/logo.png" alt="" class="img-fluid">
+            <img src="images/logosimentelblue.svg" alt="" class="img-fluid" style="max-height:32px;">
         </a>
 
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
