@@ -20,7 +20,7 @@
 
                 <div class="col-lg-8 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
                     <h2 class="title-color mb-3 mx-3">Daftar Akun Pemohon</h2>
-                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.create') }}">
+                    <form class="mx-3 mb-3" method="post" action="{{ route('user.create') }}">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama<span style="color: #e12454"><b> * </b></span></label>
@@ -78,7 +78,7 @@
                                 {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
                             </div>
                         @endif
-                        <button class="btn btn-main btn-round-full" type="submit">Daftar</button>
+                        <button class="btn btn-main btn-round-full mt-3" type="submit">Daftar</button>
                     </form>
                 </div>
             </div>

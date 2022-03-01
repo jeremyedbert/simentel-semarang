@@ -17,15 +17,19 @@
     <section class="mt-4">
         <div class="d-flex row h-100 d-inline-block">
             <div class="col-lg-6 d-flex justify-content-center">
-
                 <div class="col-lg-8 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     @if (session()->has('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('error') }}
                         </div>
                     @endif
                     <h2 class="title-color mb-3 mx-3">Login sebagai Pemohon</h2>
-                    <form class="appoinment-form mx-3 mb-3" method="post" action="{{ route('user.check') }}">
+                    <form class="mx-3 mb-3" method="post" action="{{ route('user.check') }}">
                         @csrf
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>

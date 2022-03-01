@@ -45,10 +45,10 @@
             <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
                 <div class="col-lg-11 pl-lg-0">
                     @if (session('resent'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
-                            </div>
-                        @endif
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+                        </div>
+                    @endif
                     <h2 class="title-color mb-2">Edit Profil</h2>
                     <div class="divider mb-4"></div>
                     {{-- <h6 class="mb-3">
@@ -78,7 +78,8 @@
                                                 {{ $message }}
                                             @enderror
                                         </span>
-                                        <small>Jika terdapat perubahan pada email, Anda wajib melakukan verifikasi ulang.</small>
+                                        {{-- <small>Jika terdapat perubahan pada email, Anda wajib melakukan verifikasi
+                                            ulang.</small> --}}
                                     </div>
                                     <div class="form-group">
                                         <label>Nama <span style="color: #e12454"><b> * </b></span></label>
@@ -106,7 +107,7 @@
                                         <label>Password <span style="color: #e12454"><b> * </b></span></label>
                                         <input name="password" type="password"
                                             class="form-control input-sm @error('password') is-invalid @enderror
-                                            {{ (session()->has('error')) ? 'is-invalid' : ''}}">
+                                            {{ session()->has('error') ? 'is-invalid' : '' }}">
                                         <span class="text-danger">
                                             @error('password')
                                                 {{ $message }}
@@ -116,12 +117,12 @@
                                             @if (session()->has('error'))
                                                 {{ session('error') }}
                                             @endif
-                                    </span>
-                                </div>
-                                <button class="btn btn-main btn-round-full" type="submit">Simpan</button>
-                            </form>
-                        </div>
-                        {{-- <div class="mx-3 mb-4 pb-2">
+                                        </span>
+                                    </div>
+                                    <button class="btn btn-main btn-round-full" type="submit">Simpan</button>
+                                </form>
+                            </div>
+                            {{-- <div class="mx-3 mb-4 pb-2">
                                 <div>
                                     <h5>Lokasi Menara</h5>
                                 </div>
@@ -145,10 +146,10 @@
                                     <div id="map_canvas"></div>
                                 </div>
                             </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 @endsection

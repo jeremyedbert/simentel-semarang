@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jeremy Edbert Widjaja',
             'email' => 'jeremy@gmail.com',
             'phone' => '085162901375',
-            'password' => bcrypt('jeremy')
+            'password' => bcrypt('jeremy'),
         ]);
 
         User::create([
