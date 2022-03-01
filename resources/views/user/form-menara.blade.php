@@ -62,7 +62,7 @@
         <div class="container">
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
+                    {!! session('success') !!}
                 </div>
             @endif
             @if (session()->has('error'))
@@ -72,7 +72,6 @@
             @endif
             <h2 class="title-color mb-2">Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-
             <form id="#" method="post" action="/user/daftar-menara/store" enctype="multipart/form-data">
                 <div class="col mb-5">
                     @csrf
