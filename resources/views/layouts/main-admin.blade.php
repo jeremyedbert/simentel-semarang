@@ -110,13 +110,14 @@
                                             style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 256px;">
                                             <div class="notif-center submenu">
                                                 @foreach ($notif as $n)
-                                                    <a>
+                                                    
                                                         <form action="/admin/notifikasi/{{ $n->id }}" method="post">
                                                             @csrf
-                                                            <button type="submit">
+                                                            <button type="submit" style="width: 100%">
                                                                 {{-- <div class="notif-icon notif-primary">
                                                             <i class="fa fa-user-plus"></i>
                                                         </div> --}}
+                                                              <a class="d-flex">
                                                                 <div class="notif-content">
                                                                     <span class="block ml-3">
                                                                         <b>{{ $n->pendaftaran->tower->idMenara }}</b>
@@ -124,9 +125,10 @@
                                                                     <span
                                                                         class="time ml-3">{{ $n->created_at->diffForHumans() }}</span>
                                                                 </div>
+                                                              </a>
                                                             </button>
                                                         </form>
-                                                    </a>
+                                                    
                                                 @endforeach
                                                 {{-- <a href="#">
                                                     <div class="notif-icon notif-success"> <i
