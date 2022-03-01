@@ -29,14 +29,15 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
+        $user['email_verified_at'] = now();
         $save = $user->save();
 
         if ($save) {
-            // return redirect(route('user.login'))->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect()->intended('/email/verify');
-            }
+            return redirect(route('user.login'))->with('success', 'Anda sudah teregistrasi. Silakan masuk.');
+            // if (Auth::attempt($credentials)) {
+            //     $request->session()->regenerate();
+            //     return redirect()->intended('/email/verify');
+            // }
         } else {
             return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
         }
@@ -78,7 +79,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'name' => $request->name,
                     'phone' => $request->phone,
-                    'email_verified_at' => null,
+                    // 'email_verified_at' => now(),
                 ]);
             }
             return back()->with('success', 'Data Anda sudah diperbarui');
