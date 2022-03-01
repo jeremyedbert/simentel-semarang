@@ -88,6 +88,7 @@ class DashboardListController extends Controller
             'kondisi' => 'nullable',
             'penyewa' => 'nullable',
             'noimb' => 'nullable',
+            'operator' => 'nullable',
         ];
 
         $validatedData = $request->validate($rules);

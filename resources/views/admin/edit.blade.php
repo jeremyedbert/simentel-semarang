@@ -1,6 +1,7 @@
 @extends('layouts.main-admin')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}"> //punya jeremy
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
+        //punya jeremy
     </script>
     <script>
         function initialize() {
@@ -27,7 +28,7 @@
             // creates a draggable marker to the given coords
             let vMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(lat, lng),
-                icon : svgMark,
+                icon: svgMark,
                 map: map,
                 // position: uluru,
                 draggable: true
@@ -54,17 +55,23 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Edit Form <span><a style="color: grey" data-toggle="tooltip" data-placement="right"
-                                title="Anda hanya bisa mengubah beberapa data."><i class="fas fa-info-circle"></i></a></span></h4>
+                    <h4 class="page-title">Edit Form <span><a style="color: grey" data-toggle="tooltip"
+                                data-placement="right" title="Anda hanya bisa mengubah beberapa data."><i
+                                    class="fas fa-info-circle"></i></a></span></h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title"><b>No. Tiket: {{ $data->id }}</b></div>
-                                <div class="card-title">{{ $data->tower->idMenara }}</div>
+                                <div class="card-title"><b><i>No. Tiket: {{ $data->id }}</i></b></div>
+                                <div class="card-title"><i>{{ $data->tower->idMenara }}</i></div>
                             </div>
-
+                            <div class="card-body" style="border-bottom: 1px solid #ebecec">
+                                <p><b>Anda dapat menghubungi pendaftar:</b></p>
+                                <p class="mb-0">Nama: {{ $data->user->name }}</p>
+                                <p class="mb-0">No HP: {{ $data->user->phone }}</p>
+                                <p class="mb-0">Email: {{ $data->user->email }}</p>
+                            </div>
                             {{-- Form Edit --}}
                             <form action="/admin/pendaftaran/{{ $data->id }}" method="post">
                                 @method('put')
@@ -162,14 +169,21 @@
                                         <textarea class="form-control" id="kondisi" name="kondisi" rows="4"></textarea>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="penyewa">Penyewa</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->penyewa }}" id="penyewa" name="penyewa">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="operator">Operator</label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $data->tower->operator }}" id="operator" name="operator">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="noimb">No IMB</label>
                                                 <input type="text" class="form-control"

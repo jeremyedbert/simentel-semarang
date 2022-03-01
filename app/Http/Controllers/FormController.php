@@ -72,7 +72,8 @@ class FormController extends Controller
       'latitude.numeric' => 'Isi latitude dengan angka.',
       'longitude.required' => 'Harap isi longitude.',
       'longitude.numeric' => 'Isi longitude dengan angka.',
-      'luas.required' => 'Harap isi luas menara.'
+      'luas.required' => 'Harap isi luas menara.',
+      'document.required' => 'Harap unggah dokumen.'
     ]);
 
     $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => date('ymdH'), 'field' => 'id'];
