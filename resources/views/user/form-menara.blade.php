@@ -4,19 +4,54 @@
         //punya jeremy
     </script>
     <script type="text/javascript">
+        // array of markers
+        let markers = [];
+
+        // SVG Icon
+        const svgMark = {
+            url: "{{ url('/images/tower_marker.svg') }}",
+            scaledSize: new google.maps.Size(40, 40), // scaled size
+        };
+
         function initialize() {
+
+            let zones = {
+              semarang: {
+                center: { lat: -6.966667, lng: 110.4381 },
+                rad: 1000,
+              },
+            };
+            
             // Creating map object
-            const map = new google.maps.Map(document.getElementById('map_canvas'), {
+            let map = new google.maps.Map(document.getElementById('map_canvas'), {
                 zoom: 13,
                 center: new google.maps.LatLng(-6.966667, 110.4381),
                 // mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            // SVG Icon
-            const svgMark = {
-                url: "{{ url('/images/tower_marker.svg') }}",
-                scaledSize: new google.maps.Size(40, 40), // scaled size
-            };
+            document.getElementById("lat").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
+
+            document.getElementById("lng").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
+
+            // Add the circle zone for zones to the map.
+            for (zone in zones) {
+              const zoneCircle = new google.maps.Circle({
+                strokeColor: "#90EE90",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#90EE90",
+                fillOpacity: 0.35,
+                map,
+                center: zones[zone].center,
+                radius: Math.sqrt(zones[zone].rad) * 10,
+              });
+            }
 
             // creates a draggable marker to the given coords
             let vMarker = new google.maps.Marker({
@@ -31,16 +66,63 @@
             // gets the coords when drag event ends
             // then updates the input with the new coords
             google.maps.event.addListener(vMarker, 'drag', function(evt) {
-                $("#txtLat").val(evt.latLng.lat().toFixed(6));
-                $("#txtLng").val(evt.latLng.lng().toFixed(6));
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
                 map.panTo(evt.latLng);
             });
 
             // centers the map on markers coords
             map.setCenter(vMarker.position);
+            markers.push(vMarker);
 
             // adds the marker on the map
             vMarker.setMap(map);
+        }
+
+        function searchPos(map) {
+            const lat = document.getElementById("lat").value;
+            const lng = document.getElementById("lng").value;
+            // const latlngStr = input.split(",", 2);
+            const latlng = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+            };
+            map.setZoom(15); // Zoom Map
+            const marker = new google.maps.Marker({
+                position: latlng,
+                map,
+                animation: google.maps.Animation.DROP,
+                icon: svgMark,
+                title: "Drag",
+                draggable: true
+            });
+
+            //draggable
+            google.maps.event.addListener(marker, 'dragend', function(evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
+                map.panTo(evt.latlng);
+            });
+
+            deleteMarkers();
+            markers.push(marker);
+            map.setCenter(latlng); // set Center
+        }
+
+        function setMapOnAll(map) {
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+        // Removes the markers from the map, but keeps them in the array.
+        function hideMarkers() {
+            setMapOnAll(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            hideMarkers();
+            markers = [];
         }
     </script>
     <style>
@@ -205,7 +287,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
-                                <input id="txtLat" name="latitude" type="text"
+                                <input id="lat" name="latitude" type="text"
                                     class="form-control @error('latitude') is-invalid @enderror"
                                     value='{{ old('latitude') }}' placeholder="contoh: -6.966667">
                                 <span class="text-danger">
@@ -218,7 +300,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
-                                <input id="txtLng" name="longitude" type="text"
+                                <input id="lng" name="longitude" type="text"
                                     class="form-control @error('longitude') is-invalid @enderror"
                                     value='{{ old('longitude') }}' placeholder="contoh: 110.4381">
                                 <span class="text-danger">

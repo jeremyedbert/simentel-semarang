@@ -1,10 +1,23 @@
 <footer class="footer gray-bg pt-5">
+  <style>
+    .logo-diskominfo{
+      border-right: solid 2px #223a66;
+    }
+    
+    @media (max-width: 576px) {
+      .logo-diskominfo{
+        border-right: 0;
+      }
+    }
+  </style>
   <div class="container">
       <div class="row">
         <div class="col-lg-12 mb-4">
           <a href="https://diskominfo.semarangkota.go.id/" target="blank">
-            <img src="https://diskominfo.semarangkota.go.id:443//uploads/infoumum/20200117084655-2020-01-17infoumum084654.png"
-            width="200px" alt="">
+            <img src="{{ url('images/logo-diskominfo.png') }}" class="mr-2 pr-3 logo-diskominfo" width="200px" alt="">
+          </a>
+          <a href="{{ route('home') }}">
+            <img src="{{ url('images/logosimentelblue.svg') }}" class="mr-4 mt-3 mt-md-0" width="200px" alt="">
           </a>
         </div>
       </div>
