@@ -21,7 +21,7 @@
                        Jawa Tengah 50132</span> 
                   </li>
                   <li class="d-flex">
-                    <span><i class="icofont-ui-clock mr-2"></i></span>
+                    <span><i class="icofont-clock-time mr-2"></i></span>
                     <span>Senin - Jumat, 07.00 - 15.00</span> 
                   </li>
                   <li class="d-flex">
