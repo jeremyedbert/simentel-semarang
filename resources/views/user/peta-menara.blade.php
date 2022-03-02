@@ -10,10 +10,19 @@
     ></script> --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
+        
         function initialize() {
             // const lat = document.getElementById('txtLat').innerHTML;
             // const lng = document.getElementById('txtLng').innerHTML;
             let towers = @json($towerMakro);
+
+            let zones = {
+              semarang: {
+                center: { lat: -6.966667, lng: 110.4381 },
+                rad: 1000,
+              },
+            };
+
             // Vector Icon Marker
             const svgMark = {
                 url: "{{ url('/images/tower_marker.svg') }}",
@@ -32,6 +41,20 @@
 
             let infowindow = new google.maps.InfoWindow();
 
+            for (zone in zones) {
+            // Add the circle for this city to the map.
+              const zoneCircle = new google.maps.Circle({
+                strokeColor: "#90EE90",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#90EE90",
+                fillOpacity: 0.35,
+                map,
+                center: zones[zone].center,
+                radius: Math.sqrt(zones[zone].rad) * 10,
+              });
+            }
+            
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
@@ -54,6 +77,31 @@
 
             google.maps.event.addDomListener(window, 'load', initialize);
         }
+
+        // function initMap() {
+        //   // Create the map.
+        //   const map = new google.maps.Map(document.getElementById("map"), {
+        //     zoom: 4,
+        //     center: { lat: 37.09, lng: -95.712 },
+        //     mapTypeId: "terrain",
+        //   });
+
+        //   // Construct the circle for each value in citymap.
+        //   // Note: We scale the area of the circle based on the population.
+        //   for (const city in citymap) {
+        //     // Add the circle for this city to the map.
+        //     const cityCircle = new google.maps.Circle({
+        //       strokeColor: "#FF0000",
+        //       strokeOpacity: 0.8,
+        //       strokeWeight: 2,
+        //       fillColor: "#FF0000",
+        //       fillOpacity: 0.35,
+        //       map,
+        //       center: citymap[city].center,
+        //       radius: Math.sqrt(citymap[city].population) * 100,
+        //     });
+        //   }
+        // }
 
         function theContent(marker, tower) {
             let kelurahan = @json($kelurahan);
@@ -279,7 +327,8 @@
     </section>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
-        async></script>
+        async> //punya willy
+    </script>
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
