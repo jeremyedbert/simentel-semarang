@@ -113,12 +113,12 @@
                                                     
                                                         <form action="/admin/notifikasi/{{ $n->id }}" method="post">
                                                             @csrf
-                                                            <button type="submit" style="width: 100%">
+                                                            <button type="submit" style="width: 100%; border: 0; background: #ffffff">
                                                                 {{-- <div class="notif-icon notif-primary">
                                                             <i class="fa fa-user-plus"></i>
                                                         </div> --}}
                                                               <a class="d-flex">
-                                                                <div class="notif-content">
+                                                                <div class="notif-content" style="width: 100%">
                                                                     <span class="block ml-3">
                                                                         <b>{{ $n->pendaftaran->tower->idMenara }}</b>
                                                                     </span>
