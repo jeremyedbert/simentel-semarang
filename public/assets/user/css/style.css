@@ -73,13 +73,13 @@ p {
   background: #223a66;
 }
 
-input[type=email], input[type=password], input[type=text], input[type=tel], input[type=file], select[class=form-control] {
+input[type=email], input[type=password], input[type=text], input[type=tel], input[type=file] {
   box-shadow: none;
   height: 45px;
   outline: none;
   font-size: 16px;
 }
-input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus, input[type=file]:focus, select[class=form-control]:focus {
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus {
   box-shadow: none;
   border: 1px solid #223a66;
 }
@@ -87,7 +87,9 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 .form-control {
   box-shadow: none;
   border-radius: 0;
+  height: 45px;
 }
+
 .form-control:focus {
   box-shadow: none;
   border: 1px solid #223a66;
