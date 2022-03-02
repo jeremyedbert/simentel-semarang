@@ -10,10 +10,19 @@
     ></script> --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
+        
         function initialize() {
             // const lat = document.getElementById('txtLat').innerHTML;
             // const lng = document.getElementById('txtLng').innerHTML;
             let towers = @json($towerMikro);
+
+            let zones = {
+              semarang: {
+                center: { lat: -6.966667, lng: 110.4381 },
+                rad: 1000,
+              },
+            };
+
             // Vector Icon Marker
             const svgMark = {
                 url: "{{ url('/images/tower_marker.svg') }}",
@@ -30,8 +39,32 @@
                 // setSam();
             });
 
-            let infowindow = new google.maps.InfoWindow();
+            document.getElementById("lat").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
 
+            document.getElementById("lng").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
+
+            let infowindow = new google.maps.InfoWindow();
+            
+            // Add the circle zone for zones to the map.
+            for (zone in zones) {
+              const zoneCircle = new google.maps.Circle({
+                strokeColor: "#90EE90",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#90EE90",
+                fillOpacity: 0.35,
+                map,
+                center: zones[zone].center,
+                radius: Math.sqrt(zones[zone].rad) * 10,
+              });
+            }
+            
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
@@ -54,6 +87,31 @@
 
             google.maps.event.addDomListener(window, 'load', initialize);
         }
+
+        // function initMap() {
+        //   // Create the map.
+        //   const map = new google.maps.Map(document.getElementById("map"), {
+        //     zoom: 4,
+        //     center: { lat: 37.09, lng: -95.712 },
+        //     mapTypeId: "terrain",
+        //   });
+
+        //   // Construct the circle for each value in citymap.
+        //   // Note: We scale the area of the circle based on the population.
+        //   for (const city in citymap) {
+        //     // Add the circle for this city to the map.
+        //     const cityCircle = new google.maps.Circle({
+        //       strokeColor: "#FF0000",
+        //       strokeOpacity: 0.8,
+        //       strokeWeight: 2,
+        //       fillColor: "#FF0000",
+        //       fillOpacity: 0.35,
+        //       map,
+        //       center: citymap[city].center,
+        //       radius: Math.sqrt(citymap[city].population) * 100,
+        //     });
+        //   }
+        // }
 
         function theContent(marker, tower) {
             let kelurahan = @json($kelurahan);
@@ -115,7 +173,7 @@
             });
 
             //draggable
-            google.maps.event.addListener(marker, 'drag', function(evt) {
+            google.maps.event.addListener(marker, 'dragend', function(evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
                 map.panTo(evt.latlng);
@@ -159,6 +217,7 @@
         .clickable-row:hover {
             color: #e12454;
             background-color: rgba(34, 58, 102, 0.1);
+            cursor: pointer;
         }
 
         .dtHorizontalExampleWrapper {
@@ -181,98 +240,106 @@
             @endif
             <h2 class="title-color mb-2">Peta Microcell</h2>
             <div class="divider mb-4"></div>
-            
-                <div class="col">
+            <div class="col">
 
-                    <form id="#" method="post" action="#">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p>Latitude</p>
-                                <div class="form-group">
-                                    <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <p>Longitude</p>
-                                <div class="form-group">
-                                    <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2 align-self-end">
-                                <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-3"
-                                    value="Cari Posisi" />
+                <form id="#" method="post" action="#">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Latitude</p>
+                            <div class="form-group">
+                                <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
                             </div>
                         </div>
-                    </form>
-    
-                    <form action="/user/peta-microcell">
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <p>ID Menara</p>
-                                <div class="form-group mb-0">
-                                    <input id="search" name="search" type="text" class="form-control"
-                                        value="{{ request('search') }}">
-                                </div>
-                                <small>Tekan <i>enter</i> untuk mencari</small>
-                                {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
+                        <div class="col-md-4">
+                            <p>Longitude</p>
+                            <div class="form-group">
+                                <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
                             </div>
-                            {{-- <div class="col-md-2 align-self-end">
-                                <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
-                                    value="Cari ID Menara" />
-                                <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
-                            </div> --}}
                         </div>
-                    </form>
-    
-                    <div class="form-group">
-                        <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                        <div class="col-md-2 align-self-end">
+                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-3"
+                                value="Cari Posisi" />
+                        </div>
                     </div>
-    
-                    {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
-                        <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
-                        <a class="btn btn-main btn-round" href="#">Submit</a> --}}
-                    <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
-                        <div class="row d-flex justify-content-between">
-                            <div class="col-md-4">
-                                <h3 class="title-color mb-0">List Menara Utama</h3>
-                                <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
+                </form>
+
+                <form action="/user/peta-menara">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <p>ID Menara</p>
+                            <div class="form-group mb-0">
+                                <input id="search" name="search" type="text" class="form-control"
+                                    value="{{ request('search') }}">
                             </div>
-                            {{-- <div class="col-md-4">
-                                <label for="search"><small>Cari ID Menara atau Pemilik</small></label>
-                                <input name="search" type="text" class="form-control input-sm" placeholder=""
-                                    onkeyup="search()">
-                            </div> --}}
+                            <small>Tekan <i>enter</i> untuk mencari</small>
+                            {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
                         </div>
-                        <div class="col-lg-12 px-0 px-md-3 table-responsive">
-                            <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th>ID Menara</th>
-                                        <th>Pemilik</th>
-                                        <th>Lokasi</th>
-                                    </tr>
-                                </thead>
+                        {{-- <div class="col-md-2 align-self-end">
+                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
+                                value="Cari ID Menara" />
+                            <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
+                        </div> --}}
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                </div>
+
+                {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
+                    <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
+                    <a class="btn btn-main btn-round" href="#">Submit</a> --}}
+                <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-md-4">
+                            <h3 class="title-color mb-0">List Microcell</h3>
+                            <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
+                        </div>
+                        {{-- <div class="col-md-4">
+                            <label for="search"><small>Cari ID Menara atau Pemilik</small></label>
+                            <input name="search" type="text" class="form-control input-sm" placeholder=""
+                                onkeyup="search()">
+                        </div> --}}
+                    </div>
+                    <div class="col-lg-12 px-0 px-md-3 table-responsive">
+                        <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>ID Menara</th>
+                                    <th>Pemilik</th>
+                                    <th>Lokasi</th>
+                                </tr>
+                            </thead>
+                            @if ($towerMikro->count())
                                 <tbody>
                                     @foreach ($towerMikro as $d)
                                         <a href="">
                                             <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
-                                                    <td>{{ $d->idMenara }}</td>
-                                                    <td>{{ $d->pemilik }}</td>
-                                                    <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
-                                                </tr>
-                                            </a>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                                <td>{{ $d->idMenara }}</td>
+                                                <td>{{ $d->pemilik }}</td>
+                                                <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
+                                            </tr>
+                                        </a>
+                                    @endforeach
+                                </tbody>
+                            @else
+                                <tbody>
+                                    <td colspan="3" class="text-align-center justify-content-center" style="align-items: center">Tidak ada data menara yang ditemukan</td>
+                                </tbody>
+                            @endif
+
+                        </table>
                     </div>
                 </div>
+            </div>
+        </div>
+
         </div>
     </section>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
-        async></script>
+        async> //punya willy
+    </script>
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

@@ -39,10 +39,20 @@
                 // setSam();
             });
 
-            let infowindow = new google.maps.InfoWindow();
+            document.getElementById("lat").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
 
+            document.getElementById("lng").addEventListener("change", () => {
+                searchPos(map);
+                // setSam();
+            });
+
+            let infowindow = new google.maps.InfoWindow();
+            
+            // Add the circle zone for zones to the map.
             for (zone in zones) {
-            // Add the circle for this city to the map.
               const zoneCircle = new google.maps.Circle({
                 strokeColor: "#90EE90",
                 strokeOpacity: 0.8,
@@ -159,15 +169,15 @@
                 position: latlng,
                 map,
                 animation: google.maps.Animation.DROP,
-                // draggable: true
+                draggable: true
             });
 
             //draggable
-            // google.maps.event.addListener(marker, 'drag', function(evt) {
-            //     $("#lat").val(evt.latLng.lat().toFixed(6));
-            //     $("#lng").val(evt.latLng.lng().toFixed(6));
-            //     map.panTo(evt.latlng);
-            // });
+            google.maps.event.addListener(marker, 'dragend', function(evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
+                map.panTo(evt.latlng);
+            });
 
             deleteMarkers();
             markers.push(marker);
@@ -207,6 +217,7 @@
         .clickable-row:hover {
             color: #e12454;
             background-color: rgba(34, 58, 102, 0.1);
+            cursor: pointer;
         }
 
         .dtHorizontalExampleWrapper {
@@ -227,7 +238,7 @@
                     Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
                 </div>
             @endif
-            <h2 class="title-color mb-2">Peta Menara Utama</h2>
+            <h2 class="title-color mb-2">Peta Menara Makro</h2>
             <div class="divider mb-4"></div>
             <div class="col">
 
@@ -281,7 +292,7 @@
                 <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
                     <div class="row d-flex justify-content-between">
                         <div class="col-md-4">
-                            <h3 class="title-color mb-0">List Menara Utama</h3>
+                            <h3 class="title-color mb-0">List Menara Makro</h3>
                             <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
                         </div>
                         {{-- <div class="col-md-4">
@@ -313,7 +324,7 @@
                                 </tbody>
                             @else
                                 <tbody>
-                                    <td colspan="3" class="text-align-center justify-content-center" style="align-items: center">No Data Found</td>
+                                    <td colspan="3" class="text-center justify-content-center" >Tidak ada data menara yang ditemukan</td>
                                 </tbody>
                             @endif
 
