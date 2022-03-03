@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pendaftaran;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardRiwayatController extends Controller
 {
@@ -23,6 +24,10 @@ class DashboardRiwayatController extends Controller
                                 ->searching()
                                 ->orderBy('updated_at','desc')->get(),
             'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 
@@ -57,7 +62,11 @@ class DashboardRiwayatController extends Controller
     {
         return view('admin.detail-riwayat', [
             'data' => $pendaftaran,
-            'notif' => Notifikasi::whereNull('mark_as_read')->limit(3)->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 

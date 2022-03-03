@@ -63,14 +63,20 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title"><b><i>No. Tiket: {{ $data->id }}</i></b></div>
-                                <div class="card-title"><i>{{ $data->tower->idMenara }}</i></div>
-                            </div>
-                            <div class="card-body" style="border-bottom: 1px solid #ebecec">
-                                <p><b>Anda dapat menghubungi pendaftar:</b></p>
-                                <p class="mb-0">Nama: {{ $data->user->name }}</p>
-                                <p class="mb-0">No HP: {{ $data->user->phone }}</p>
-                                <p class="mb-0">Email: {{ $data->user->email }}</p>
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-md-6">
+                                        <div class="card-title"><b><i>No. Tiket: {{ $data->id }}</i></b></div>
+                                        <div class="card-title"><i>{{ $data->tower->idMenara }}</i></div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="col text-md-right">
+                                            <p class="mb-0 mt-3 mt-md-0"><b>Anda dapat menghubungi pendaftar:</b></p>
+                                            <p class="mb-0">{{ $data->user->name }}</p>
+                                            <p class="mb-0">{{ $data->user->phone }}</p>
+                                            <p class="mb-0">{{ $data->user->email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             {{-- Form Edit --}}
                             <form action="/admin/pendaftaran/{{ $data->id }}" method="post">
@@ -102,8 +108,8 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="luas">Luas</label>
-                                                <input type="text" class="form-control" value="{{ $data->tower->luas }}"
-                                                    id="luas" name="luas" readonly>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $data->tower->luas }}" id="luas" name="luas" readonly>
                                             </div>
                                         </div>
                                     </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Notifikasi;
 use Illuminate\Database\Seeder;
 
 class NotifikasiSeeder extends Seeder
@@ -13,6 +14,11 @@ class NotifikasiSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Notifikasi::create([
+            'pendaftaran_id' => 22020223000001,
+        ]);
+        Notifikasi::create([
+            'pendaftaran_id' => 22020223000002,
+        ]);
     }
 }

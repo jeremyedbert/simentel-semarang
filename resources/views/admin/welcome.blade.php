@@ -109,34 +109,34 @@
                     <div class="col-sm-6 col-md-6">
                         <div class="card card-stats card-primary card-round">
                             <div class="card-body">
-                                <a href="/admin/menara/makro" style="text-decoration: none; color: white">
-                                    <div class="row align-items-center">
-                                        <div class="col-icon">
-                                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                                <i class="fas fa-broadcast-tower"></i>
-                                            </div>
+                                <div class="row align-items-center">
+                                    <div class="col-icon">
+                                        <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                            <i class="fas fa-broadcast-tower"></i>
                                         </div>
+                                    </div>
+                                    <a href="/admin/menara/makro" style="text-decoration: none; color: white">
                                         <div class="col col-stats ml-3 ml-sm-0">
                                             <div class="numbers">
                                                 <h2 class="fw-bold">Menara Macro</h2>
                                                 <h4>{{ $makro->count() }} Menara</h4>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-6">
                         <div class="card card-stats card-secondary card-round">
                             <div class="card-body">
-                                <a href="/admin/menara/mikro" style="text-decoration: none; color: white">
-                                    <div class="row align-items-center">
-                                        <div class="col-icon">
-                                            <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                                <i class="fas fa-broadcast-tower"></i>
-                                            </div>
+                                <div class="row align-items-center">
+                                    <div class="col-icon">
+                                        <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                            <i class="fas fa-broadcast-tower"></i>
                                         </div>
+                                    </div>
+                                    <a href="/admin/menara/mikro" style="text-decoration: none; color: white">
                                         <div class="col col-stats ml-3 ml-sm-0">
                                             <div class="numbers">
                                                 {{-- <p class="card-category">Sales</p> --}}
@@ -144,8 +144,8 @@
                                                 <h4>{{ $mikro->count() }} Menara</h4>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

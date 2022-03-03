@@ -3,6 +3,11 @@
 
 <head>
     @include('partials.admin-header')
+    <style>
+        .hover-notif {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body onload="initialize()">
@@ -95,8 +100,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
-                                @if ($notif->count())
-                                    <span class="notification">{{ $notif->count() }}</span>
+                                @if ($countNotif > 0)
+                                    <span class="notification">{{ $countNotif }}</span>
                                 @endif
                             </a>
                             <ul class="dropdown-menu notif-box" aria-labelledby="notifDropdown">
@@ -110,14 +115,15 @@
                                             style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 256px;">
                                             <div class="notif-center submenu">
                                                 @foreach ($notif as $n)
-                                                    
-                                                        <form action="/admin/notifikasi/{{ $n->id }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" style="width: 100%; border: 0; background: #ffffff">
-                                                                {{-- <div class="notif-icon notif-primary">
+                                                    <form action="/admin/notifikasi/{{ $n->id }}" method="post">
+                                                        @csrf
+                                                        <button class="hover-notif" type="submit"
+                                                            style="width: 100%; border: 0; background: {{ $n->pendaftaran->status_id == 1 ? '#FFFBDE' : '#FFFFFF' }}">
+                                                            {{-- <div class="notif-icon notif-primary">
                                                             <i class="fa fa-user-plus"></i>
                                                         </div> --}}
-                                                              <a class="d-flex">
+                                                            <a class="d-flex"
+                                                                style="background: {{ $n->pendaftaran->status_id == 1 ? '#FFFBDE' : '#FFFFFF' }}">
                                                                 <div class="notif-content" style="width: 100%">
                                                                     <span class="block ml-3">
                                                                         <b>{{ $n->pendaftaran->tower->idMenara }}</b>
@@ -125,10 +131,9 @@
                                                                     <span
                                                                         class="time ml-3">{{ $n->created_at->diffForHumans() }}</span>
                                                                 </div>
-                                                              </a>
-                                                            </button>
-                                                        </form>
-                                                    
+                                                            </a>
+                                                        </button>
+                                                    </form>
                                                 @endforeach
                                                 {{-- <a href="#">
                                                     <div class="notif-icon notif-success"> <i

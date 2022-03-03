@@ -8,6 +8,7 @@ use App\Models\Notifikasi;
 use App\Models\Kecamatan;
 use App\Models\TipeSite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardPetaMicroController extends Controller
 {
@@ -27,7 +28,11 @@ class DashboardPetaMicroController extends Controller
         // return response()->json(compact('tower', 'kecamatan', 'kelurahan', 'tipesite'));
         return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), [
             'routes' => 'micro',
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 

@@ -21,7 +21,11 @@ class DashboardListController extends Controller
         return view('admin.list', [
             'data' => Pendaftaran::where('status_id', '=', 1)
                 ->get(),
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 
@@ -54,7 +58,6 @@ class DashboardListController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-
     }
 
     /**
@@ -65,9 +68,14 @@ class DashboardListController extends Controller
      */
     public function edit(Pendaftaran $pendaftaran)
     {
+        // return dd($countNotif);
         return view('admin.edit', [
             'data' => $pendaftaran,
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
 
         // return dd($pendaftaran);
@@ -137,7 +145,7 @@ class DashboardListController extends Controller
                 'status_id' => 2,
                 'admin_id' => auth()->user()->id
             ]);
-
+        Notifikasi::where('pendaftaran_id', $pendaftaran->id)->update(['mark_as_read' => now()]);
         Tower::where('id', $pendaftaran->tower->id)->update(['acc_date' => now()]);
         return redirect('/admin/pendaftaran')->with('accept', 'Permohonan <b>' . $pendaftaran->id . '</b> diterima. Untuk melihat riwayat, silakan menuju ke <a href="/admin/riwayat">link</a> berikut');
     }
