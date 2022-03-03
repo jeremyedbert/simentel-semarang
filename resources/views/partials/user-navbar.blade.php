@@ -46,7 +46,6 @@
                     </ul>
                 </li>
 
-
                 @auth
                     <li class="nav-item dropdown {{ Request::is('user/cekstatus*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tower;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardTowerMacroController extends Controller
 {
@@ -18,7 +19,11 @@ class DashboardTowerMacroController extends Controller
         return view('admin.towers', [
             'data' => Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->get(),
             'routes' => 'macro',
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 
@@ -53,7 +58,11 @@ class DashboardTowerMacroController extends Controller
     {
         return view('admin.tower', [
             'data' => $tower,
-            'notif' => Notifikasi::whereNull('mark_as_read')->get(),
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
         ]);
     }
 

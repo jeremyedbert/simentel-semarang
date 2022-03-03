@@ -79,7 +79,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'name' => $request->name,
                     'phone' => $request->phone,
-                    // 'email_verified_at' => now(),
+                    // 'email_verified_at' => NULL,
                 ]);
             }
             return back()->with('success', 'Data Anda sudah diperbarui');

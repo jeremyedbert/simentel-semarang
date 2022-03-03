@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notifikasi;
 use App\Http\Requests\StoreNotifikasiRequest;
 use App\Http\Requests\UpdateNotifikasiRequest;
+use App\Models\Pendaftaran;
 
 class NotifikasiController extends Controller
 {
@@ -71,9 +72,15 @@ class NotifikasiController extends Controller
     // public function update(UpdateNotifikasiRequest $request, Notifikasi $notifikasi)
     public function update(Notifikasi $notifikasi)
     {
-        Notifikasi::where('pendaftaran_id', $notifikasi->pendaftaran_id)
-                    ->update(['mark_as_read' => now()]);
-        return redirect('/admin/pendaftaran/' . $notifikasi->pendaftaran_id . '/edit');
+        if ($notifikasi->pendaftaran->status_id == 1){
+            // Jika masih ditinjau
+            return redirect('/admin/pendaftaran/' . $notifikasi->pendaftaran_id . '/edit');
+        } else{
+            // Jika ditolak atau diterima
+            // Notifikasi::where('pendaftaran_id', $notifikasi->pendaftaran_id)
+            //             ->update(['mark_as_read' => now()]);
+            return redirect('/admin/riwayat/' . $notifikasi->pendaftaran_id);
+        }
     }
 
     /**

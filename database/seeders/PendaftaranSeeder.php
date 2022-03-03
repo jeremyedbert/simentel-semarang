@@ -31,6 +31,7 @@ class PendaftaranSeeder extends Seeder
             'user_id' => 1,
             'tower_id' => 2,
             'status_id' => 1,
+            'document' => 'documents/test3.pdf'
         ]);
         Pendaftaran::create([
             // 'id' => time()*3,

@@ -11,7 +11,8 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h1 style="color: black" class="pb-3"><b>Menara {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
+                    <h1 style="color: black" class="pb-3"><b>Menara
+                            {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
                     </h1>
                 </div>
                 @if (session()->has('success'))
@@ -33,10 +34,12 @@
                     <div class="col-md-12">
                         <ul class="nav nav-pills nav-primary mb-3 justify-content-center">
                             <li class="nav-item submenu">
-                                <a href="/admin/menara/{{ $routes === 'macro' ? 'makro' : 'mikro' }}" class="nav-link {{ Request::is('admin/menara*') ? 'active' : '' }}" >Tabel</a>
+                                <a href="/admin/menara/{{ $routes === 'macro' ? 'makro' : 'mikro' }}"
+                                    class="nav-link {{ Request::is('admin/menara*') ? 'active' : '' }}">Tabel</a>
                             </li>
                             <li class="nav-item submenu">
-                                <a href="/admin/peta/{{ $routes === 'macro' ? 'makro' : 'mikro' }}" class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
+                                <a href="/admin/peta/{{ $routes === 'macro' ? 'makro' : 'mikro' }}"
+                                    class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
                             </li>
                         </ul>
                         <div class="card">
@@ -83,14 +86,15 @@
                                                             <div class="modal-body">
                                                                 <div>
                                                                     <b>Hapus menara ini? </b><a
-                                                                        href="/admin/menara/{{ $d->id }}/edit"><small>Cek
+                                                                        href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"><small>Cek
                                                                             kembali detail</small></a>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-light btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
-                                                                <form action="/admin/menara/{{ $d->id }}"
+                                                                <form
+                                                                    action="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"
                                                                     method="post" class="d-inline">
                                                                     @method('delete')
                                                                     @csrf
@@ -101,7 +105,6 @@
                                                     </div>
                                                 </div>
                                                 {{-- End of modal --}}
-
                                             @endforeach
                                         </tbody>
                                     </table>
