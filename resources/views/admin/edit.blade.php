@@ -137,15 +137,23 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="latitude">Latitude</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text"
+                                                    class="form-control @error('latitude') is-invalid @enderror"
                                                     value="{{ $data->tower->latitude }}" id="txtLat" name="latitude">
+                                                @error('latitude')
+                                                    <div style="color: #dc3545">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="longitude">Longitude</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text"
+                                                    class="form-control @error('longitude') is-invalid @enderror"
                                                     value="{{ $data->tower->longitude }}" id="txtLng" name="longitude">
+                                                @error('longitude')
+                                                    <div style="color: #dc3545">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -172,28 +180,28 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="kondisi">Kondisi</label>
-                                        <textarea class="form-control" id="kondisi" name="kondisi" rows="4"></textarea>
+                                        <textarea class="form-control" id="kondisi" name="kondisi" rows="4">{{ old('kondisi', $data->tower->kondisi) }}</textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="penyewa">Penyewa</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->penyewa }}" id="penyewa" name="penyewa">
+                                                    value="{{ old('penyewa', $data->tower->penyewa) }}" id="penyewa" name="penyewa">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="operator">Operator</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->operator }}" id="operator" name="operator">
+                                                    value="{{ old('operator', $data->tower->operator) }}" id="operator" name="operator">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="noimb">No IMB</label>
                                                 <input type="text" class="form-control"
-                                                    value="{{ $data->tower->noIMB }}" id="nomorIMB" name="nomorIMB">
+                                                    value="{{ old('nomorIMB', $data->tower->noIMB) }}" id="nomorIMB" name="nomorIMB">
                                             </div>
                                         </div>
                                     </div>

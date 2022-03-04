@@ -20,6 +20,8 @@ class UserController extends Controller
             'password' => 'required|min:5',
             'cpassword' => 'required|min:5|same:password',
         ], [
+            'name.required' => 'Kolom nama wajib diisi',
+            'email.required' => 'Kolom email wajib diisi',
             'cpassword.required' => 'Kolom password konfirmasi wajib diisi.',
             'cpassword.same' => 'Password konfirmasi tidak sesuai.'
         ]);
@@ -57,7 +59,7 @@ class UserController extends Controller
             'email' => ['required', 'email:dns', Rule::unique('users', 'email')->ignore(Auth::user()->id)],
             'name' => 'required',
             'phone' => ['required', Rule::unique('users', 'phone')->ignore(Auth::user()->id)],
-            'password' => 'required|min:5',
+            'password' => 'required|min:5|max:30',
         ], [
             'email.required' => 'Kolom email wajib diisi.',
             'email.unique' => 'Email sudah dipakai oleh pengguna lain.',
@@ -93,7 +95,12 @@ class UserController extends Controller
             'email' => 'required|email:dns|exists:users,email',
             'password' => 'required|min:5|max:30'
         ], [
-            'email.exists' => 'Email tidak ditemukan.'
+            'email.exists' => 'Email tidak ditemukan.',
+            'email.required' => 'Harap mengisi kolom email.',
+            'email.email' => 'Email tidak sesuai.',
+            'password.required' => 'Harap mengisi kolom password.',
+            'password.min' => 'Password minimal 5 karakter.',
+            'password.max' => 'Password maksimal 30 karakter.'
         ]);
 
         if (Auth::attempt($credentials)) {

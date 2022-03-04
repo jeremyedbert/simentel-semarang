@@ -229,7 +229,7 @@
                             <div class="col-lg-6 ml-4">
                                 <button class="btn btn-primary btn-xs mt-3" disabled id="submit" type="button">Cari
                                     Posisi</button>
-                                <button class="btn btn-danger btn-xs mt-3" id="delete" type="button">Reset Marker</button>
+                                {{-- <button class="btn btn-danger btn-xs mt-3" id="delete" type="button">Reset Marker</button> --}}
                             </div>
                             {{-- <button class="btn btn-primary btn-xs" id="show" type="button">Show Marker</button> --}}
                             {{-- <button class="btn btn-primary btn-xs" id="hide" type="button">Hide Marker</button> --}}

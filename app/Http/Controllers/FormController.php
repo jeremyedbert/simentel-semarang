@@ -59,21 +59,21 @@ class FormController extends Controller
       'document' => 'required|mimes:pdf|max:10240',
     ], [
       'pemilik.required' => 'Harap isi nama pemilik atau perusahaan.',
-      'idMenara.required' => 'Harap isi ID Menara.',
+      'idMenara.required' => 'Kolom ID Menara wajib diisi.',
       'idMenara.unique' => 'ID Menara sudah ada.',
       'tipe_menara_id.required' => 'Harap pilih tipe menara.',
       'tipe_site_id.required' => 'Harap pilih tipe site.',
       'tipe_jalan_id.required' => 'Harap pilih tipe jalan.',
-      'tinggi.required' => 'Harap isi tinggi menara.',
+      'tinggi.required' => 'Kolom tinggi menara wajib diisi',
       'tinggi.numeric' => 'Isi tinggi menara dengan angka.',
       'kecamatan_id.required' => 'Harap pilih kecamatan.',
       'kelurahan_id.required' => 'Harap pilih kelurahan.',
-      'latitude.required' => 'Harap isi latitude.',
+      'latitude.required' => 'Kolom latitude wajib diisi.',
       'latitude.numeric' => 'Isi latitude dengan angka.',
-      'longitude.required' => 'Harap isi longitude.',
+      'longitude.required' => 'Kolom longitude wajib diisi.',
       'longitude.numeric' => 'Isi longitude dengan angka.',
-      'luas.required' => 'Harap isi luas menara.',
-      'document.required' => 'Harap unggah dokumen.'
+      'luas.required' => 'Kolom luas menara wajib diisi.',
+      'document.required' => 'Anda wajib mengunggah dokumen/surat permohonan.'
     ]);
 
     $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => date('ymdH'), 'field' => 'id'];
