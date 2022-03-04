@@ -16,7 +16,12 @@ class AdminController extends Controller
             'email' => 'required|email:dns|exists:admins,email',
             'password' => 'required|min:5|max:30'
         ], [
-            'email.exists' => "We can't find your email."
+            'email.exists' => 'Email tidak ditemukan.',
+            'email.email' => 'Email tidak sesuai.',
+            'email.required' => 'Harap mengisi kolom email.',
+            'password.required' => 'Harap mengisi kolom password.',
+            'password.min' => 'Password minimal 5 karakter.',
+            'password.max' => 'Password maksimal 30 karakter.'
         ]);
 
         if (Auth::guard('admin')->attempt($credentials)) {

@@ -17,7 +17,7 @@ class CreateNotifikasisTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('pendaftaran_id');
-            $table->foreign('pendaftaran_id')->references('id')->on('pendaftarans');
+            $table->foreign('pendaftaran_id')->references('id')->on('pendaftarans')->cascadeOnDelete();
             
             $table->dateTime('mark_as_read')->nullable();
             $table->timestamps();

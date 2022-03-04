@@ -90,6 +90,7 @@ class DashboardListController extends Controller
      */
     public function update(Request $request, Pendaftaran $pendaftaran)
     {
+        // return dd($request->kondisi);
         $rules = [
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
@@ -99,7 +100,12 @@ class DashboardListController extends Controller
             'operator' => 'nullable',
         ];
 
-        $validatedData = $request->validate($rules);
+        $validatedData = $request->validate($rules, [
+            'latitude.required' => 'Kolom latitude wajib diisi.',
+            'longitude.required' => 'Kolom longitude wajib diisi.',
+            'latitude.numeric' => 'Isi latitude dengan angka.',
+            'longitude.numeric' => 'Isi longitude dengan angka.'
+        ]);
 
         Tower::where('id', $pendaftaran->tower->id)
             ->update($validatedData);
