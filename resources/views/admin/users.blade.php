@@ -24,10 +24,9 @@
                                               <tr>
                                                   <td>{{ $d->name }}</td>
                                                   <td>
-                                                      <a href="/admin/pendaftaran/edit"
+                                                      <a href="/admin/kelola-user/{{ $d->id }}"
                                                           class="btn btn-info btn-xs my-1 mx-1"><span><i
-                                                                  class="fas fa-eye"></i></span> Detail &
-                                                          Edit</a>
+                                                                  class="fas fa-eye"></i></span> Detail</a>
                                                   </td>
                                               </tr>
                                           @endforeach

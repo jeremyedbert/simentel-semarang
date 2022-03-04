@@ -64,6 +64,7 @@ class UserController extends Controller
             'email.email' => 'Email tidak sesuai.',
             'name.required' => 'Kolom nama wajib diisi.',
             'phone.required' => 'Kolom nomor handphone wajib diisi.',
+            'phone.unique' => 'Nomor HP sudah dipakai oleh pengguna lain.',
             'password.required' => 'Kolom password wajib diisi.',
             'password.min' => 'Password minimal 5 karakter.',
         ]);

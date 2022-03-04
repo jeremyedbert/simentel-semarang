@@ -17,6 +17,7 @@ use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PetaMacroController;
 use App\Http\Controllers\PetaMicroController;
 use Illuminate\Support\Facades\Auth;
@@ -83,7 +84,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/pendaftaran/{pendaftaran}/accept', [DashboardListController::class, 'accept']);
         Route::post('/notifikasi/{notifikasi}', [NotifikasiController::class, 'update']);
         Route::resource('/pendaftaran', DashboardListController::class);
-        Route::resource('/manage-user', DashboardUserController::class);
+        Route::resource('/kelola-user', DashboardUserController::class, ['parameters' => ['kelola-user' => 'user']]);
         // Delete
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
 
@@ -97,6 +98,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('/peta')->group(function () {
             Route::resource('/makro', DashboardPetaMacroController::class, ['parameters' => ['makro' => 'tower']]);
             Route::resource('/mikro', DashboardPetaMicroController::class, ['parameters' => ['mikro' => 'tower']]);
+        });
+        Route::prefix('/cetak')->group(function(){
+            Route::get('/', [PDFController::class, 'index']);
         });
     });
 });
