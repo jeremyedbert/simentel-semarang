@@ -104,7 +104,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-3 col-sm-4">
                     <div class="about-img">
-                        <img src="/images/tower-1.jpg" alt="" class="img-fluid tower-img mx-auto d-block">
+                        <img src="/images/tower-3.jpeg" alt="" class="img-fluid tower-img mx-auto d-block">
                         <img src="/images/microcell-2.jpg" alt="" class="img-fluid mt-4 tower-img mx-auto d-block">
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                             <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan
                             </li>
                             <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di menu Cek Status Permohonan</li>
-                            <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li>
+                            {{-- <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li> --}}
                         </ol>
                         {{-- <form id="#" class="appoinment-form" method="post" action="#">
                             <div class="row">
