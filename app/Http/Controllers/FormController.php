@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 use App\Models\Tower;
 use App\Models\User;
 use App\Models\Pendaftaran;
+use App\Models\Zone;
 use Illuminate\Support\Facades\DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -19,13 +20,15 @@ class FormController extends Controller
 {
   public function index()
   {
+    $zones = Zone::all();
     $tipemenara = DB::table('tipe_menaras')->get();
     $kecamatan = DB::table('kecamatans')->pluck("name", "id");
     $tipejalan = DB::table('tipe_jalans')->get();
     $tipesite = DB::table('tipe_sites')->get();
+    // return response()->json($zones);
     // return dd(response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite')));
     // return response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite'));
-    return view('user.form-menara', compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite'), ['active' => 'pendaftaran']);
+    return view('user.form-menara', compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite', 'zones'), ['active' => 'pendaftaran']);
   }
 
   public function getKelurahan(Request $request)
@@ -73,7 +76,9 @@ class FormController extends Controller
       'longitude.required' => 'Kolom longitude wajib diisi.',
       'longitude.numeric' => 'Isi longitude dengan angka.',
       'luas.required' => 'Kolom luas menara wajib diisi.',
-      'document.required' => 'Anda wajib mengunggah dokumen/surat permohonan.'
+      'document.required' => 'Anda wajib mengunggah dokumen/surat permohonan.',
+      'document.mimes' => 'Dokumen wajib berupa PDF.',
+      'document.max' => 'Dokumen wajib bertipe PDF.',
     ]);
 
     $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => date('ymdH'), 'field' => 'id'];
