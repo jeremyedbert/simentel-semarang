@@ -16,12 +16,12 @@
             // const lng = document.getElementById('txtLng').innerHTML;
             let towers = @json($towerMikro);
 
-            let zones = {
-              semarang: {
-                center: { lat: -6.966667, lng: 110.4381 },
-                rad: 1000,
-              },
-            };
+            // let zones = {
+            //   semarang: {
+            //     center: { lat: -6.966667, lng: 110.4381 },
+            //     rad: 1000,
+            //   },
+            // };
 
             // Vector Icon Marker
             const svgMark = {
@@ -31,6 +31,8 @@
 
             let map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 12,
+                minZoom: 12,
+                maxZoom: 16,
                 center: new google.maps.LatLng(-6.977, 110.416664),
             });
 
@@ -52,18 +54,18 @@
             let infowindow = new google.maps.InfoWindow();
             
             // Add the circle zone for zones to the map.
-            for (zone in zones) {
-              const zoneCircle = new google.maps.Circle({
-                strokeColor: "#90EE90",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#90EE90",
-                fillOpacity: 0.35,
-                map,
-                center: zones[zone].center,
-                radius: Math.sqrt(zones[zone].rad) * 10,
-              });
-            }
+            // for (zone in zones) {
+            //   const zoneCircle = new google.maps.Circle({
+            //     strokeColor: "#90EE90",
+            //     strokeOpacity: 0.8,
+            //     strokeWeight: 2,
+            //     fillColor: "#90EE90",
+            //     fillOpacity: 0.35,
+            //     map,
+            //     center: zones[zone].center,
+            //     radius: Math.sqrt(zones[zone].rad) * 10,
+            //   });
+            // }
             
             for (tower in towers) {
                 tower = towers[tower];
@@ -283,7 +285,7 @@
                 </form>
 
                 <div class="form-group">
-                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                    <div id="map_canvas" style="width: auto; height: 600px;"></div>
                 </div>
 
                 {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>

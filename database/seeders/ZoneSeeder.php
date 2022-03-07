@@ -15,8 +15,6 @@ class ZoneSeeder extends Seeder
      */
     public function run()
     {
-        
-        
         // Eloquent::unguard();
 
         $path = 'database/sql_files/zones.sql';
