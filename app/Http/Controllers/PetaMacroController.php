@@ -7,6 +7,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\TipeSite;
 use App\Models\User;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 
 class PetaMacroController extends Controller
@@ -23,8 +24,13 @@ class PetaMacroController extends Controller
       $kecamatan = Kecamatan::all()->pluck('name', 'id');
       $kelurahan = Kelurahan::all()->pluck('name', 'id');
       $tipesite = TipeSite::all()->pluck('name', 'id');
+
+      $zones = Zone::all();
+    //   return response()->json($zones);
+    //   return dd(compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'));
+    //   return dd($zones);
       
-      return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite'),['active' => 'peta']);
+      return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
     }
 
     /**

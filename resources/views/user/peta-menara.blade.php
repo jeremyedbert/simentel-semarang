@@ -10,18 +10,15 @@
     ></script> --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
-        
         function initialize() {
-            // const lat = document.getElementById('txtLat').innerHTML;
-            // const lng = document.getElementById('txtLng').innerHTML;
             let towers = @json($towerMakro);
-
-            let zones = {
-              semarang: {
-                center: { lat: -6.966667, lng: 110.4381 },
-                rad: 1000,
-              },
-            };
+            let zones = @json($zones);
+            // let zones = {
+            //   semarang: {
+            //     center: { lat: -6.966667, lng: 110.4381 },
+            //     rad: 1000,
+            //   },
+            // };
 
             // Vector Icon Marker
             const svgMark = {
@@ -31,6 +28,8 @@
 
             let map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 12,
+                minZoom: 12,
+                maxZoom: 16,
                 center: new google.maps.LatLng(-6.977, 110.416664),
             });
 
@@ -50,21 +49,30 @@
             });
 
             let infowindow = new google.maps.InfoWindow();
-            
+
             // Add the circle zone for zones to the map.
             for (zone in zones) {
-              const zoneCircle = new google.maps.Circle({
-                strokeColor: "#90EE90",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#90EE90",
-                fillOpacity: 0.35,
-                map,
-                center: zones[zone].center,
-                radius: Math.sqrt(zones[zone].rad) * 10,
-              });
+                zone = zones[zone];
+                let zoneCircle = new google.maps.Circle({
+                    strokeColor: "#8AE2E5",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: "#8AE2E5",
+                    fillOpacity: 0.5,
+                    map,
+                    center: new google.maps.LatLng(zone.latitude, zone.longitude),
+                    radius: Math.sqrt(zone.radius) * 10,
+                });
+                google.maps.event.addListener(zoneCircle, 'click', (function(zone, ev) {
+                    return function() {
+                        infowindow.setPosition(new google.maps.LatLng(zone.latitude, zone.longitude));
+                        // infowindow.setPosition(ev.latLng);
+                        infowindow.setContent(infoRadius(zone));
+                        infowindow.open(map);
+                    }
+                })(zone));
             }
-            
+
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
@@ -88,30 +96,33 @@
             google.maps.event.addDomListener(window, 'load', initialize);
         }
 
-        // function initMap() {
-        //   // Create the map.
-        //   const map = new google.maps.Map(document.getElementById("map"), {
-        //     zoom: 4,
-        //     center: { lat: 37.09, lng: -95.712 },
-        //     mapTypeId: "terrain",
-        //   });
+        function infoRadius(zone) {
+            // let content = '<p>' + zone.name + '</p>';
+            let kecamatan = @json($kecamatan);
+            let i = zone.kecamatan_id; // indeks kecamatan
+            let content =
+                `
+            <style>
+            .bor{
+                border-bottom: 1px solid #aaaaaa
+            }
+            </style>
+            <div class="mx-1">
+                <div class="bor text-center"><b>` + zone.name + `</b>
+                </div>
+                <div class="mt-2">
+                    Kecamatan: ` + kecamatan[i] +
+                `</div>
+                <div>
+                    Latitude: ` + zone.latitude + `
+                </div>
+                <div>
+                    Longitude: ` + zone.longitude + `
+                </div>
+            </div>`;
 
-        //   // Construct the circle for each value in citymap.
-        //   // Note: We scale the area of the circle based on the population.
-        //   for (const city in citymap) {
-        //     // Add the circle for this city to the map.
-        //     const cityCircle = new google.maps.Circle({
-        //       strokeColor: "#FF0000",
-        //       strokeOpacity: 0.8,
-        //       strokeWeight: 2,
-        //       fillColor: "#FF0000",
-        //       fillOpacity: 0.35,
-        //       map,
-        //       center: citymap[city].center,
-        //       radius: Math.sqrt(citymap[city].population) * 100,
-        //     });
-        //   }
-        // }
+            return content
+        }
 
         function theContent(marker, tower) {
             let kelurahan = @json($kelurahan);
@@ -283,7 +294,7 @@
                 </form>
 
                 <div class="form-group">
-                    <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                    <div id="map_canvas" style="width: auto; height: 600px;"></div>
                 </div>
 
                 {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
@@ -324,7 +335,8 @@
                                 </tbody>
                             @else
                                 <tbody>
-                                    <td colspan="3" class="text-center justify-content-center" >Tidak ada data menara yang ditemukan</td>
+                                    <td colspan="3" class="text-center justify-content-center">Tidak ada data menara yang
+                                        ditemukan</td>
                                 </tbody>
                             @endif
 
@@ -338,7 +350,8 @@
     </section>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
-        async> //punya willy
+        async>
+        //punya willy
     </script>
     <script>
         jQuery(document).ready(function($) {

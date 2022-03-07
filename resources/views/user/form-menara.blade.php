@@ -1,71 +1,189 @@
 @extends('layouts.main-user')
 @section('content')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=geometry">
         //punya jeremy
     </script>
     <script type="text/javascript">
         // array of markers
         let markers = [];
-
+        let zonezones = [];
         // SVG Icon
         const svgMark = {
             url: "{{ url('/images/tower_marker.svg') }}",
             scaledSize: new google.maps.Size(40, 40), // scaled size
         };
 
-        function initialize() {
+        const svgAvail = {
+            url: "{{ url('/images/tower_avail.svg') }}",
+            scaledSize: new google.maps.Size(40, 40), // scaled size
+        }
 
-            let zones = {
-              semarang: {
-                center: { lat: -6.966667, lng: 110.4381 },
-                rad: 1000,
-              },
-            };
-            
+        let pos = new google.maps.LatLng(-6.966667, 110.4381);
+
+        function infoRadius(zone) {
+            // let content = '<p>' + zone.name + '</p>';
+            let kecamatan = @json($kecamatan);
+            let i = zone.kecamatan_id; // indeks kecamatan
+            let content =
+                `
+            <style>
+            .bor{
+                border-bottom: 1px solid #aaaaaa
+            }
+            </style>
+            <div class="mx-1">
+                <div class="bor text-center"><b>` + zone.name + `</b>
+                </div>
+                <div class="mt-2">
+                    Kecamatan: ` + kecamatan[i] +
+                `</div>
+                <div>
+                    Latitude: ` + zone.latitude + `
+                </div>
+                <div>
+                    Longitude: ` + zone.longitude + `
+                </div>
+            </div>`;
+
+            return content
+        }
+
+        function initialize() {
+            // Zona
+            let infowindow = new google.maps.InfoWindow();
+            let zones = @json($zones);
+
+            // creates a draggable marker to the given coords
+            let vMarker = new google.maps.Marker({
+                position: pos,
+                icon: svgAvail,
+                title: "Drag",
+                draggable: true,
+            });
+
             // Creating map object
             let map = new google.maps.Map(document.getElementById('map_canvas'), {
                 zoom: 13,
                 center: new google.maps.LatLng(-6.966667, 110.4381),
-                // mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-
-            document.getElementById("lat").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
-            });
-
-            document.getElementById("lng").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
             });
 
             // Add the circle zone for zones to the map.
             for (zone in zones) {
-              const zoneCircle = new google.maps.Circle({
-                strokeColor: "#90EE90",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#90EE90",
-                fillOpacity: 0.35,
-                map,
-                center: zones[zone].center,
-                radius: Math.sqrt(zones[zone].rad) * 10,
-              });
+                zone = zones[zone];
+                let zoneCircle = new google.maps.Circle({
+                    strokeColor: "#8AE2E5",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: "#8AE2E5",
+                    fillOpacity: 0.5,
+                    map,
+                    // center: new google.maps.LatLng(zone.latitude, zone.longitude),
+                    center: new google.maps.LatLng(zone.latitude, zone.longitude),
+                    // radius: Math.sqrt(zone.radius) * 10,
+                    radius: Math.sqrt(zone.radius) * 10,
+                });
+
+                zonezones.push(zoneCircle);
+                // let bound = zoneCircle.getBounds();
+                // Infowindow Circle
+
+                let noteA = jQuery('.bool#a');
+                google.maps.event.addListener(vMarker, 'dragend', function() {
+                    let state = false;
+                    pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
+                    for (let i = 0; i < zonezones.length; i++) {
+                        let bound = zonezones[i].getBounds();
+                        if (bound.contains(pos)) {
+                            state = "Menara dapat dibangun di zona ini.";
+                            document.getElementById("rectangle").style.backgroundColor = "green";
+                            break;
+                        } else {
+                            state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
+                            document.getElementById("rectangle").style.backgroundColor = "red";
+                        }
+                    }
+                    noteA.text(state);
+                });
+
+                google.maps.event.addListener(zoneCircle, 'click', (function(zone) {
+                    return function() {
+                        infowindow.setPosition(new google.maps.LatLng(zone.latitude, zone.longitude));
+                        infowindow.setContent(infoRadius(zone));
+                        infowindow.open(map);
+                    }
+                })(zone));
             }
 
-            // creates a draggable marker to the given coords
-            let vMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(-6.966667, 110.4381),
-                animation: google.maps.Animation.DROP,
-                icon: svgMark,
-                title: "Drag",
-                draggable: true
+            // ON KEY CHANGE
+            document.getElementById("lat").addEventListener("change", () => {
+                // searchPos(map);
+                const lat = document.getElementById("lat").value;
+                const lng = document.getElementById("lng").value;
+
+                pos = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng),
+                };
+
+                // pos = new google.maps.LatLng(lat, lng);
+                map.setZoom(15); // Zoom Map
+
+                let noteA = jQuery('.bool#a');
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
+                let state = false;
+                pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
+                for (let i = 0; i < zonezones.length; i++) {
+                    let bound = zonezones[i].getBounds();
+                        if (bound.contains(pos)) {
+                            state = "Menara dapat dibangun di zona ini.";
+                            document.getElementById("rectangle").style.backgroundColor = "green";
+                            break;
+                        } else {
+                            state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
+                            document.getElementById("rectangle").style.backgroundColor = "red";
+                        }
+                }
+                noteA.text(state);
+            });
+
+            document.getElementById("lng").addEventListener("change", () => {
+                // searchPos(map);
+                const lat = document.getElementById("lat").value;
+                const lng = document.getElementById("lng").value;
+
+                pos = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng),
+                };
+
+                // pos = new google.maps.LatLng(lat, lng);
+                map.setZoom(15); // Zoom Map
+
+                let noteA = jQuery('.bool#a');
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
+                let state = false;
+                pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
+                for (let i = 0; i < zonezones.length; i++) {
+                    let bound = zonezones[i].getBounds();
+                        if (bound.contains(pos)) {
+                            state = "Menara dapat dibangun di zona ini.";
+                            document.getElementById("rectangle").style.backgroundColor = "green";
+                            break;
+                        } else {
+                            state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
+                            document.getElementById("rectangle").style.backgroundColor = "red";
+                        }
+                }
+                noteA.text(state);
             });
 
             // adds a listener to the marker
             // gets the coords when drag event ends
             // then updates the input with the new coords
-            google.maps.event.addListener(vMarker, 'drag', function(evt) {
+            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
                 map.panTo(evt.latLng);
@@ -82,31 +200,38 @@
         function searchPos(map) {
             const lat = document.getElementById("lat").value;
             const lng = document.getElementById("lng").value;
-            // const latlngStr = input.split(",", 2);
-            const latlng = {
+            pos = {
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
             };
+
+            // pos = new google.maps.LatLng(lat, lng);
             map.setZoom(15); // Zoom Map
-            const marker = new google.maps.Marker({
-                position: latlng,
+            const vMarker = new google.maps.Marker({
+                position: pos,
                 map,
                 animation: google.maps.Animation.DROP,
-                icon: svgMark,
+                icon: svgAvail,
                 title: "Drag",
                 draggable: true
             });
 
+            // google.maps.event.addListener(vMarker, 'dragend', function() {
+            //     pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
+            //     noteA.text(bounds.contains(pos));
+            // });
+
             //draggable
-            google.maps.event.addListener(marker, 'dragend', function(evt) {
+            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
-                map.panTo(evt.latlng);
+                // pos = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
+                map.panTo(evt.latLng);
             });
 
             deleteMarkers();
-            markers.push(marker);
-            map.setCenter(latlng); // set Center
+            markers.push(vMarker);
+            map.setCenter(vMarker.pos); // set Center
         }
 
         function setMapOnAll(map) {
@@ -126,6 +251,11 @@
         }
     </script>
     <style>
+        .rectangle {
+            height: 50px;
+            /* background-color: rgb(117, 219, 122); */
+        }
+
         label {
             margin-top: 5px;
             margin-bottom: 0;
@@ -258,8 +388,8 @@
                             id="kecamatan" data-dependent="kelurahan">
                             <option value=""> -- Pilih kecamatan -- </option>
                             @foreach ($kecamatan as $key => $kec)
-                                <option value="{{ $key }}"
-                                    {{ old('kecamatan_id') == $key ? 'selected' : '' }}> {{ $kec }}</option>
+                                <option value="{{ $key }}" {{ old('kecamatan_id') == $key ? 'selected' : '' }}>
+                                    {{ $kec }}</option>
                             @endforeach
                         </select>
                         <span class="text-danger">
@@ -312,8 +442,16 @@
                         </div>
                     </div>
                     {{-- Map --}}
-                    <div class="form-group">
-                        <div id="map_canvas" style="width: auto; height: 300px;"></div>
+                    <div class="form-group mb-0">
+                        <div id="map_canvas" style="width: auto; height: 500px;"></div>
+                    </div>
+                    <div class="form-group mt-0">
+                        <div>
+                            <div id="rectangle" class="rectangle px-3 py-1">
+                                <div id="a" class="bool" style="color: #fff;"></div>
+                            </div>
+                            {{-- <p id="a" class="bool" style="color: #fff;"></p> --}}
+                        </div>
                     </div>
                     {{-- Operator --}}
                     <div class="form-group">
@@ -338,7 +476,8 @@
                         <label for="document" class="form-label">Lampiran/Dokumen Pendukung <span
                                 style="color: #e12454"><b> * </b></span></label>
                         {{-- <input class="form-control pt-2" type="file" name="document" id="document"> --}}
-                        <input class="form-control @error('longitude') is-invalid @enderror" type="file" name="document" id="document">
+                        <input class="form-control @error('longitude') is-invalid @enderror" type="file" name="document"
+                            id="document">
                         <span class="text-danger">
                             @error('document')
                                 {{ $message }}
