@@ -8,20 +8,14 @@
     {{-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
     ></script> --}}
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=geometry"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script>
-        
-        function initialize() {
-            // const lat = document.getElementById('txtLat').innerHTML;
-            // const lng = document.getElementById('txtLng').innerHTML;
-            let towers = @json($towerMikro);
+    <script type="text/javascript">
+        let pos = new google.maps.LatLng(-6.966667, 110.4381);
 
-            // let zones = {
-            //   semarang: {
-            //     center: { lat: -6.966667, lng: 110.4381 },
-            //     rad: 1000,
-            //   },
-            // };
+        function initialize() {
+            let towers = @json($towerMikro);
 
             // Vector Icon Marker
             const svgMark = {
@@ -33,40 +27,53 @@
                 zoom: 12,
                 minZoom: 12,
                 maxZoom: 16,
-                center: new google.maps.LatLng(-6.977, 110.416664),
+                // center: new google.maps.LatLng(-6.966667, 110.4381),
+                center: pos,
+            });
+            let vMarker = new google.maps.Marker({
+                position: pos,
+                title: "Drag",
+                draggable: true,
+                map: map,
             });
 
             document.getElementById("submit").addEventListener("click", () => {
-                searchPos(map);
-                // setSam();
+                // searchPos(map);
+                const lat = document.getElementById("lat").value;
+                const lng = document.getElementById("lng").value;
+
+                pos = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng),
+                };
+
+                // pos = new google.maps.LatLng(lat, lng);
+                map.setZoom(15); // Zoom Map
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
             });
 
-            document.getElementById("lat").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
+            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
+                map.panTo(evt.latLng);
+                // map.setCenter(vMarker.position);
             });
 
-            document.getElementById("lng").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
-            });
+            // document.getElementById("lat").addEventListener("change", () => {
+            //     searchPos(map);
+            //     // setSam();
+            // });
+
+            // document.getElementById("lng").addEventListener("change", () => {
+            //     searchPos(map);
+            //     // setSam();
+            // });
 
             let infowindow = new google.maps.InfoWindow();
-            
+
             // Add the circle zone for zones to the map.
-            // for (zone in zones) {
-            //   const zoneCircle = new google.maps.Circle({
-            //     strokeColor: "#90EE90",
-            //     strokeOpacity: 0.8,
-            //     strokeWeight: 2,
-            //     fillColor: "#90EE90",
-            //     fillOpacity: 0.35,
-            //     map,
-            //     center: zones[zone].center,
-            //     radius: Math.sqrt(zones[zone].rad) * 10,
-            //   });
-            // }
-            
+
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
@@ -89,31 +96,6 @@
 
             google.maps.event.addDomListener(window, 'load', initialize);
         }
-
-        // function initMap() {
-        //   // Create the map.
-        //   const map = new google.maps.Map(document.getElementById("map"), {
-        //     zoom: 4,
-        //     center: { lat: 37.09, lng: -95.712 },
-        //     mapTypeId: "terrain",
-        //   });
-
-        //   // Construct the circle for each value in citymap.
-        //   // Note: We scale the area of the circle based on the population.
-        //   for (const city in citymap) {
-        //     // Add the circle for this city to the map.
-        //     const cityCircle = new google.maps.Circle({
-        //       strokeColor: "#FF0000",
-        //       strokeOpacity: 0.8,
-        //       strokeWeight: 2,
-        //       fillColor: "#FF0000",
-        //       fillOpacity: 0.35,
-        //       map,
-        //       center: citymap[city].center,
-        //       radius: Math.sqrt(citymap[city].population) * 100,
-        //     });
-        //   }
-        // }
 
         function theContent(marker, tower) {
             let kelurahan = @json($kelurahan);
@@ -162,13 +144,13 @@
             const lat = document.getElementById("lat").value;
             const lng = document.getElementById("lng").value;
             // const latlngStr = input.split(",", 2);
-            const latlng = {
+            pos = {
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
             };
             map.setZoom(15); // Zoom Map
             const marker = new google.maps.Marker({
-                position: latlng,
+                position: pos,
                 map,
                 animation: google.maps.Animation.DROP,
                 draggable: true
@@ -178,12 +160,12 @@
             google.maps.event.addListener(marker, 'dragend', function(evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
-                map.panTo(evt.latlng);
+                map.panTo(evt.pos);
             });
 
             deleteMarkers();
             markers.push(marker);
-            map.setCenter(latlng); // set Center
+            map.setCenter(marker.pos); // set Center
         }
 
         function setMapOnAll(map) {
@@ -265,7 +247,7 @@
                     </div>
                 </form>
 
-                <form action="/user/peta-menara">
+                <form action="/user/peta-microcell">
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <p>ID Menara</p>
@@ -316,7 +298,7 @@
                                 <tbody>
                                     @foreach ($towerMikro as $d)
                                         <a href="">
-                                            <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
+                                            <tr class="clickable-row" data-href="/user/peta-microcell/{{ $d->id }}">
                                                 <td>{{ $d->idMenara }}</td>
                                                 <td>{{ $d->pemilik }}</td>
                                                 <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
@@ -326,7 +308,8 @@
                                 </tbody>
                             @else
                                 <tbody>
-                                    <td colspan="3" class="text-align-center justify-content-center" style="align-items: center">Tidak ada data menara yang ditemukan</td>
+                                    <td colspan="3" class="text-center justify-content-center">Tidak ada data menara yang
+                                        ditemukan</td>
                                 </tbody>
                             @endif
 
@@ -338,10 +321,6 @@
 
         </div>
     </section>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
-        async> //punya willy
-    </script>
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
@@ -349,8 +328,4 @@
             });
         });
     </script>
-    {{-- <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
-      async
-    ></script> --}}
 @endsection

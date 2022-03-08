@@ -7,6 +7,7 @@ use App\Models\Notifikasi;
 use App\Models\Kelurahan;
 use App\Models\TipeSite;
 use App\Models\Tower;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,10 +24,11 @@ class DashboardPetaMacroController extends Controller
         $kecamatan = Kecamatan::all()->pluck('name', 'id');
         $kelurahan = Kelurahan::all()->pluck('name', 'id');
         $tipesite = TipeSite::all()->pluck('name', 'id');
+        $zones = Zone::all();
         // $tower = Tower::all();
         // return response()->json($data);
         // return response()->json(compact('tower', 'kecamatan', 'kelurahan', 'tipesite'));
-        return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), [
+        return view('admin.peta-makro', compact('tower', 'kecamatan', 'kelurahan', 'tipesite', 'zones'), [
             'routes' => "macro", 
             'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
             'countNotif' => DB::table('notifikasis')
