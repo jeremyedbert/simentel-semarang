@@ -12,7 +12,7 @@
 <meta name="generator" content="Themefisher Novena HTML Template v1.0">
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/user/images/favicon.png') }}" />
+<link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/user/images/tower.svg') }}" />
 
 <!-- Material icon-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">

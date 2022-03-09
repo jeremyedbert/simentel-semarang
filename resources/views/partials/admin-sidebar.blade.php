@@ -46,6 +46,13 @@
                         {{-- <span class="badge badge-count badge-success">4</span> --}}
                     </a>
                 </li>
+                <li class="nav-item {{ Request::is('admin/kelola-user*') ? 'active' : '' }}">
+                    <a href="/admin/kelola-user">
+                        <i class="fas fa-users-cog"></i>
+                        <p>Kelola Pengguna</p>
+                        {{-- <span class="badge badge-count badge-success">4</span> --}}
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a data-toggle="collapse" href="#forms">
                         <i class="fas fa-pen-square"></i>

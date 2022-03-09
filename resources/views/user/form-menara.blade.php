@@ -14,11 +14,6 @@
             scaledSize: new google.maps.Size(40, 40), // scaled size
         };
 
-        const svgAvail = {
-            url: "{{ url('/images/tower_avail.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
-        }
-
         let pos = new google.maps.LatLng(-6.966667, 110.4381);
 
         function infoRadius(zone) {
@@ -57,7 +52,7 @@
             // creates a draggable marker to the given coords
             let vMarker = new google.maps.Marker({
                 position: pos,
-                icon: svgAvail,
+                icon: svgMark,
                 title: "Drag",
                 draggable: true,
             });
@@ -81,7 +76,7 @@
                     // center: new google.maps.LatLng(zone.latitude, zone.longitude),
                     center: new google.maps.LatLng(zone.latitude, zone.longitude),
                     // radius: Math.sqrt(zone.radius) * 10,
-                    radius: Math.sqrt(zone.radius) * 10,
+                    radius: zone.radius,
                 });
 
                 zonezones.push(zoneCircle);
@@ -97,10 +92,12 @@
                         if (bound.contains(pos)) {
                             state = "Menara dapat dibangun di zona ini.";
                             document.getElementById("rectangle").style.backgroundColor = "green";
+                            // vMarker.setIcon(svgAvail);
                             break;
                         } else {
                             state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
-                            document.getElementById("rectangle").style.backgroundColor = "red";
+                            document.getElementById("rectangle").style.backgroundColor = "#e12454";
+                            // vMarker.setIcon(svgRejected);
                         }
                     }
                     noteA.text(state);
@@ -136,14 +133,16 @@
                 pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
                 for (let i = 0; i < zonezones.length; i++) {
                     let bound = zonezones[i].getBounds();
-                        if (bound.contains(pos)) {
-                            state = "Menara dapat dibangun di zona ini.";
-                            document.getElementById("rectangle").style.backgroundColor = "green";
-                            break;
-                        } else {
-                            state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
-                            document.getElementById("rectangle").style.backgroundColor = "red";
-                        }
+                    if (bound.contains(pos)) {
+                        state = "Menara dapat dibangun di zona ini.";
+                        document.getElementById("rectangle").style.backgroundColor = "green";
+                        // vMarker.setIcon(svgAvail);
+                        break;
+                    } else {
+                        state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
+                        document.getElementById("rectangle").style.backgroundColor = "#e12454";
+                        // vMarker.setIcon(svgRejected);
+                    }
                 }
                 noteA.text(state);
             });
@@ -168,14 +167,16 @@
                 pos = new google.maps.LatLng(vMarker.position.lat(), vMarker.position.lng());
                 for (let i = 0; i < zonezones.length; i++) {
                     let bound = zonezones[i].getBounds();
-                        if (bound.contains(pos)) {
-                            state = "Menara dapat dibangun di zona ini.";
-                            document.getElementById("rectangle").style.backgroundColor = "green";
-                            break;
-                        } else {
-                            state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
-                            document.getElementById("rectangle").style.backgroundColor = "red";
-                        }
+                    if (bound.contains(pos)) {
+                        state = "Menara dapat dibangun di zona ini.";
+                        document.getElementById("rectangle").style.backgroundColor = "green";
+                        // vMarker.setIcon(svgAvail);
+                        break;
+                    } else {
+                        state = "Menara tidak dapat dibangun di zona ini. Admin mungkin akan menolak.";
+                        document.getElementById("rectangle").style.backgroundColor = "#e12454";
+                        // vMarker.setIcon(svgRejected);
+                    }
                 }
                 noteA.text(state);
             });
@@ -211,7 +212,7 @@
                 position: pos,
                 map,
                 animation: google.maps.Animation.DROP,
-                icon: svgAvail,
+                icon: svgMark,
                 title: "Drag",
                 draggable: true
             });
