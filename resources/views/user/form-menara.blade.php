@@ -479,6 +479,7 @@
                         {{-- <input class="form-control pt-2" type="file" name="document" id="document"> --}}
                         <input class="form-control @error('longitude') is-invalid @enderror" type="file" name="document"
                             id="document">
+                        <small>Maksimal ukuran: 10 MB</small>
                         <span class="text-danger">
                             @error('document')
                                 {{ $message }}
