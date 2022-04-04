@@ -14,6 +14,7 @@ class Tower extends Model
 	 */
 
 	protected $fillable = [
+		'id',
 		'idMenara',
 		'operator',
 		'tipe_menara_id',
