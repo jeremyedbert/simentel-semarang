@@ -100,6 +100,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('/makro', DashboardPetaMacroController::class, ['parameters' => ['makro' => 'tower']]);
             Route::resource('/mikro', DashboardPetaMicroController::class, ['parameters' => ['mikro' => 'tower']]);
         });
+        Route::prefix('/cetak')->group(function(){
+            Route::get('/', [PDFController::class, 'index']);
+        });
     });
 });
 

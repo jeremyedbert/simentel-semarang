@@ -76,6 +76,7 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="password_admin">Password Anda (Admin)</label>
+
                                                 <input type="password"
                                                     class="form-control @error('password_admin') is-invalid @enderror"
                                                     value="" id="password_admin" name="password_admin">
@@ -87,6 +88,7 @@
                                                 @error('password_admin')
                                                     <small style="color: #dc3545">{{ $message }}</small>
                                                 @enderror
+
                                             </div>
                                         </div>
                                     </div>

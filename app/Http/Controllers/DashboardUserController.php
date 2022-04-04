@@ -99,6 +99,7 @@ class DashboardUserController extends Controller
     {
         $passwordAdmin = $request->password_admin;
         // return dd(Hash::check($passwordAdmin, Auth::user()->getAuthPassword()));
+
         $phone = $request->phone;
         if ($request->password == '') {
 
@@ -164,8 +165,6 @@ class DashboardUserController extends Controller
         // return dd($user->phone, $validatedData['phone']);
 
         // $passwordAdmin = $request->password_admin;
-
-
         return redirect('/admin/kelola-user/' . $user->id)->with('success', 'Data pengguna berhasil diubah');
     }
 
