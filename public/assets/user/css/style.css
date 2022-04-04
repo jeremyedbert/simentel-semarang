@@ -160,6 +160,17 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   border-left: 1px solid rgba(0, 0, 0, 0.09);
 }
 
+.btn-solid-border-2 {
+  border: 2px solid #e12454;
+  background: transparent;
+  color: #e12454;
+}
+.btn-solid-border-2:hover {
+  border: 2px solid #e12454;
+  color: #fff;
+  background: #e12454;
+}
+
 .btn-transparent {
   background: transparent;
   color: #222;

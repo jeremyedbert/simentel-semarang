@@ -131,7 +131,7 @@
                     </h6>
 
                     <div class="detail">
-                        <div class="col-lg-12 shadow py-4 mb-3" 
+                      <div class="col-lg-12 shadow py-4 mb-3" 
                         @if ($data->status->id === 1)
                             style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
                         @elseif ($data->status->id === 2) style="border-radius: 7px; border-left: rgba(40, 167, 69,
@@ -294,7 +294,18 @@
                                 </div>
                               </div>
                             @endif
+                      </div>
+                      @if ($data->status->id === 1)
+                        <div class="d-flex justify-content-lg-end">
+                            <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
+                              Batalkan
+                            </a>
+                            <a href="/user/cekstatus/{{ $data->id }}/edit" 
+                              class="col-lg-3 btn btn-solid-border btn-round-full mt-1 mx-1 mx-md-2">
+                              Edit
+                            </a>
                         </div>
+                      @endif
                     </div>
                 </div>
             </div>

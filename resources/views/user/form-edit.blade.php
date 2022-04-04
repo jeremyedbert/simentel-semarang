@@ -48,10 +48,12 @@
             // Zona
             let infowindow = new google.maps.InfoWindow();
             let zones = @json($zones);
+            let oldlat = parseFloat(document.getElementById("lat").value);
+            let oldlng = parseFloat(document.getElementById("lng").value);
 
             // creates a draggable marker to the given coords
             let vMarker = new google.maps.Marker({
-                position: pos,
+                position: new google.maps.LatLng(oldlat, oldlng),
                 icon: svgMark,
                 title: "Drag",
                 draggable: true,
@@ -60,7 +62,7 @@
             // Creating map object
             let map = new google.maps.Map(document.getElementById('map_canvas'), {
                 zoom: 13,
-                center: new google.maps.LatLng(-6.966667, 110.4381),
+                center: new google.maps.LatLng(oldlat, oldlng),
             });
 
             // Add the circle zone for zones to the map.
@@ -292,16 +294,17 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <h2 class="title-color mb-2">Pendaftaran Menara</h2>
+            <h2 class="title-color mb-2">Edit Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form id="#" method="post" action="/user/daftar-menara/store" enctype="multipart/form-data">
+            <form id="#" method="post" action="/user/cekstatus/{{ $data->id }}" enctype="multipart/form-data">
                 <div class="col mb-5">
+                  @method('put')
                     @csrf
                     <div class="form-group">
                         <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
                         <input name="pemilik" type="text"
                             class="form-control input-sm @error('pemilik') is-invalid @enderror"
-                            value='{{ old('pemilik') }}' placeholder="contoh: PT Telkom Indonesia Tbk">
+                            value='{{ old('pemilik',$data->tower->pemilik) }}'>
                         <span class="text-danger">
                             @error('pemilik')
                                 {{ $message }}
@@ -312,7 +315,7 @@
                         <label>ID Menara <span style="color: #e12454"><b> * </b></span></label>
                         <input name="idMenara" type="text"
                             class="form-control input-sm @error('idMenara') is-invalid @enderror"
-                            value='{{ old('idMenara') }}' placeholder="contoh: TLKM-SMG_123">
+                            value='{{ old('idMenara', $data->tower->idMenara) }}'>
                         <span class="text-danger">
                             @error('idMenara')
                                 {{ $message }}
@@ -324,9 +327,10 @@
                         <select class="form-control @error('tipe_menara_id') is-invalid @enderror" name="tipe_menara_id"
                             id="tipeMenara">
                             <option value=""> -- Pilih tipe menara -- </option>
-                            @foreach ($tipemenara as $menara)
+                            @foreach ($tipemenara as $menara) 
                                 <option value="{{ $menara->id }}"
-                                    {{ old('tipe_menara_id') == $menara->id ? 'selected' : '' }}> {{ $menara->name }}
+                                    {{ old('tipe_menara_id', $data->tower->tipemenara->id) == $menara->id ? 'selected' : '' }}> 
+                                    {{ $menara->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -343,7 +347,8 @@
                             <option value=""> -- Pilih tipe site -- </option>
                             @foreach ($tipesite as $site)
                                 <option value="{{ $site->id }}"
-                                    {{ old('tipe_site_id') == $site->id ? 'selected' : '' }}> {{ $site->name }}
+                                    {{ old('tipe_site_id', $data->tower->tipesite->id) == $site->id ? 'selected' : '' }}> 
+                                    {{ $site->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -360,7 +365,7 @@
                             <option value=""> -- Pilih tipe jalan -- </option>
                             @foreach ($tipejalan as $jalan)
                                 <option value="{{ $jalan->id }}"
-                                    {{ old('tipe_jalan_id') == $jalan->id ? 'selected' : '' }}> {{ $jalan->name }}
+                                    {{ old('tipe_jalan_id', $data->tower->tipejalan->id) == $jalan->id ? 'selected' : '' }}> {{ $jalan->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -373,8 +378,8 @@
                     <div class="form-group">
                         <label>Ketinggian (dalam meter) <span style="color: #e12454"><b> * </b></span></label>
                         <input name="tinggi" id="tinggi" type="text"
-                            class="form-control @error('tinggi') is-invalid @enderror" value='{{ old('tinggi') }}'
-                            placeholder="contoh: 12.5">
+                            class="form-control @error('tinggi') is-invalid @enderror" 
+                            value='{{ old('tinggi', $data->tower->tinggi) }}'>
                         <span class="text-danger">
                             @error('tinggi')
                                 {{ $message }}
@@ -384,8 +389,9 @@
                     <div class="form-group">
                         <label>Luas (dalam meter&sup2; atau panjang x lebar)<span style="color: #e12454"><b> *
                                 </b></span></label>
-                        <input name="luas" id="luas" type="text" class="form-control @error('luas') is-invalid @enderror"
-                            value='{{ old('luas') }}' placeholder="contoh: 16 x 16 meter2">
+                        <input name="luas" id="luas" type="text" 
+                            class="form-control @error('luas') is-invalid @enderror"
+                            value='{{ old('luas', $data->tower->luas) }}'>
                         <span class="text-danger">
                             @error('luas')
                                 {{ $message }}
@@ -398,7 +404,7 @@
                             id="kecamatan" data-dependent="kelurahan">
                             <option value=""> -- Pilih kecamatan -- </option>
                             @foreach ($kecamatan as $key => $kec)
-                                <option value="{{ $key }}" {{ old('kecamatan_id') == $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ old('kecamatan_id', $data->tower->kecamatan->id) == $key ? 'selected' : '' }}>
                                     {{ $kec }}</option>
                             @endforeach
                         </select>
@@ -415,9 +421,9 @@
                         <select class="form-control @error('kelurahan_id') is-invalid @enderror" name="kelurahan_id"
                             id="kelurahan">
                             <option value=""> -- Pilih kelurahan -- </option>
-                            @foreach ($kelurahan->where('kecamatan_id','=', old('kecamatan_id')) as $kel)
+                            @foreach ($kelurahan->where('kecamatan_id','=', old('kecamatan_id', $data->tower->kecamatan->id)) as $kel)
                                 <option value="{{ $kel->id }}"
-                                    {{ old('kelurahan_id') == $kel->id ? 'selected' : '' }}> 
+                                    {{ old('kelurahan_id', $data->tower->kelurahan->id) == $kel->id ? 'selected' : '' }}> 
                                     {{ $kel->name }}
                                 </option>
                             @endforeach
@@ -435,7 +441,7 @@
                                 <label>Latitude <span style="color: #e12454"><b> * </b></span></label>
                                 <input id="lat" name="latitude" type="text"
                                     class="form-control @error('latitude') is-invalid @enderror"
-                                    value='{{ old('latitude') }}' placeholder="contoh: -6.966667">
+                                    value='{{ old('latitude', $data->tower->latitude) }}' placeholder="contoh: -6.966667">
                                 <span class="text-danger">
                                     @error('latitude')
                                         {{ $message }}
@@ -448,7 +454,7 @@
                                 <label>Longitude <span style="color: #e12454"><b> * </b></span></label>
                                 <input id="lng" name="longitude" type="text"
                                     class="form-control @error('longitude') is-invalid @enderror"
-                                    value='{{ old('longitude') }}' placeholder="contoh: 110.4381">
+                                    value='{{ old('longitude', $data->tower->longitude) }}' placeholder="contoh: 110.4381">
                                 <span class="text-danger">
                                     @error('longitude')
                                         {{ $message }}
@@ -472,19 +478,19 @@
                     {{-- Operator --}}
                     <div class="form-group">
                         <label>Operator</label>
-                        <input name="operator" type="text" class="form-control" value='{{ old('operator') }}'
+                        <input name="operator" type="text" class="form-control" value='{{ old('operator', $data->tower->operator) }}'
                             placeholder="">
                     </div>
                     {{-- Penyewa --}}
                     <div class="form-group">
                         <label>Penyewa Menara</label>
-                        <input name="penyewa" type="text" class="form-control" value='{{ old('penyewa') }}'
+                        <input name="penyewa" type="text" class="form-control" value='{{ old('penyewa', $data->tower->penyewa) }}'
                             placeholder="">
                     </div>
                     {{-- No IMB --}}
                     <div class="form-group">
                         <label>Nomor IMB</label>
-                        <input name="nomorIMB" type="text" class="form-control" value='{{ old('nomorIMB') }}'
+                        <input name="nomorIMB" type="text" class="form-control" value='{{ old('nomorIMB', $data->tower->nomorIMB) }}'
                             placeholder="">
                     </div>
 
@@ -495,7 +501,7 @@
                           <input class="form-control" 
                             type="file" name="document" id="document" hidden>
                           <label class="btn btn-solid-border my-1 mx-2 py-1 px-3" for="document">Pilih file</label>
-                          <span id="document-chosen">Tidak ada file yang dipilih</span>
+                          <span id="document-chosen">{{ old('document', $data->document) }}</span>
                         </div>
 
                         <span class="text-danger">
@@ -511,7 +517,7 @@
                           const docChosen = document.getElementById('document-chosen');
 
                           doc.addEventListener('change', function(){
-                            docChosen.textContent = this.files[0].name
+                            docChosen.textContent = this.files[0].name;
                           })
                         </script>
                     </div>
@@ -521,7 +527,7 @@
                             "Ajukan Izin/Pendaftaran".</b></p>
 
                     {{-- <p class="mb-4" style="color: #e12454"><b></b></p> --}}
-                    <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>
+                    <button class="btn btn-main btn-round-full" type="submit">Simpan</button>
                 </div>
             </form>
 
@@ -529,6 +535,8 @@
     </section>
     <script type="text/javascript">
         $(document).ready(function() {
+            // var kecamatan_id = $('#kecamatan').val();
+
             $('#kecamatan').change(function() {
                 var kecamatan_id = $(this).val();
                 if (kecamatan_id) {
