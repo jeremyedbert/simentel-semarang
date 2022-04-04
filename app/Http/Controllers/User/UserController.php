@@ -18,10 +18,16 @@ class UserController extends Controller
             'email' => 'required|email|unique:users|email:dns',
             'phone' => 'required|unique:users',
             'password' => 'required|min:5',
-            'cpassword' => 'required|min:5|same:password',
+            'cpassword' => 'required|same:password',
         ], [
-            'name.required' => 'Kolom nama wajib diisi',
-            'email.required' => 'Kolom email wajib diisi',
+            'name.required' => 'Kolom nama wajib diisi.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.unique' => 'Email sudah dipakai oleh pengguna lain.',
+            'email.email' => 'Email tidak sesuai.',
+            'phone.required' => 'Kolom nomor HP wajib diisi.',
+            'phone.unique' => 'Nomor HP sudah dipakai.',
+            'password.required' => 'Kolom password wajib diisi',
+            'password.min' => 'Password minimal 5 karakter.',
             'cpassword.required' => 'Kolom password konfirmasi wajib diisi.',
             'cpassword.same' => 'Password konfirmasi tidak sesuai.'
         ]);
@@ -59,7 +65,7 @@ class UserController extends Controller
             'email' => ['required', 'email:dns', Rule::unique('users', 'email')->ignore(Auth::user()->id)],
             'name' => 'required',
             'phone' => ['required', Rule::unique('users', 'phone')->ignore(Auth::user()->id)],
-            'password' => 'required|min:5|max:30',
+            'password' => 'required|current_password:web',
         ], [
             'email.required' => 'Kolom email wajib diisi.',
             'email.unique' => 'Email sudah dipakai oleh pengguna lain.',
@@ -67,7 +73,7 @@ class UserController extends Controller
             'name.required' => 'Kolom nama wajib diisi.',
             'phone.required' => 'Kolom nomor handphone wajib diisi.',
             'password.required' => 'Kolom password wajib diisi.',
-            'password.min' => 'Password minimal 5 karakter.',
+            'password.current_password' => 'Password Anda tidak sesuai.',
         ]);
 
         if (Hash::check($validatedData['password'], Auth::user()->getAuthPassword())) {
@@ -85,9 +91,7 @@ class UserController extends Controller
                 ]);
             }
             return back()->with('success', 'Data Anda sudah diperbarui');
-        } else {
-            return back()->with('error', 'Password tidak sesuai');
-        };
+        }
     }
     public function authenticate(Request $request)
     {

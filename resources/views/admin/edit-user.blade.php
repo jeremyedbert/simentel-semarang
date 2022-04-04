@@ -17,31 +17,55 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Nama</label>
-                                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $data->name }}"
-                                                    id="name" name="name">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                    value="{{ old('name', $data->name) }}" id="name" name="name">
+                                                @error('name')
+                                                    <small style="color: #dc3545">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="luas">Email</label>
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ $data->email }}"
-                                                    id="email" name="email">
+                                                <label for="password">Password Pengguna</label>
+                                                <input type="password"
+                                                    class="form-control @error('password') is-invalid @enderror" value=""
+                                                    id="password" name="password">
+                                                <small class="form-text text-muted">Isi jika ingin melakukan perubahan
+                                                    password.</small>
+                                                @error('password')
+                                                    <small style="color: #dc3545">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="phone">Nomor HP</label>
-                                                <input type="text" class="form-control  @error('phone') is-invalid @enderror" value="{{ $data->phone }}"
-                                                    id="phone" name="phone">
+                                                <input type="text"
+                                                    class="form-control  @error('phone') is-invalid @enderror"
+                                                    value="{{ old('phone', $data->phone) }}" id="phone" name="phone">
                                                 @error('phone')
-                                                    <small>{{ $message }}</small>
+                                                    <small style="color: #dc3545">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="password">Password Pengguna</label>
-                                                <input type="password" class="form-control @error('password') is-invalid @enderror" value="" id="password"
-                                                    name="password">
+                                                <label for="password">Konfirmasi Password Pengguna</label>
+                                                <input type="password"
+                                                    class="form-control @error('cpassword') is-invalid @enderror" value=""
+                                                    id="cpassword" name="cpassword">
                                                 <small class="form-text text-muted">Isi jika ingin melakukan perubahan
                                                     password.</small>
-                                                
+                                                @error('cpassword')
+                                                    <small style="color: #dc3545">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="luas">Email</label>
+                                                <input type="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    value="{{ old('email', $data->email) }}" id="email" name="email">
+                                                @error('email')
+                                                    <small style="color: #dc3545">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -52,16 +76,19 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="password_admin">Password Anda (Admin)</label>
-                                                <input type="password" class="form-control" value="" id="password_admin"
-                                                    name="password_admin">
+
+                                                <input type="password"
+                                                    class="form-control @error('password_admin') is-invalid @enderror"
+                                                    value="" id="password_admin" name="password_admin">
                                                 <small class="form-text text-muted">Memastikan bahwa perubahan data pengguna
                                                     hanya dilakukan oleh admin.</small>
-                                                @if (session()->has('error'))
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        {{ session('error') }}
-                                                    </div>
-                                                @endif
+                                                {{-- @if (session()->has('error'))
+                                                    <small style="color: #dc3545">Password admin tidak sesuai.</small>
+                                                @endif --}}
+                                                @error('password_admin')
+                                                    <small style="color: #dc3545">{{ $message }}</small>
+                                                @enderror
+
                                             </div>
                                         </div>
                                     </div>

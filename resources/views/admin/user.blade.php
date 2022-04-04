@@ -6,6 +6,12 @@
                 <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Data Pengguna</b></h1>
                 </div>
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <a href="/admin/kelola-user"> <i class="fas fa-chevron-left"></i> Kembali ke daftar pengguna</a>
                 <div class="row mt-3">
                     <div class="col-md-12">
@@ -33,14 +39,46 @@
                             </div>
                             <div class="card-action">
                                 <a class="btn btn-warning" href="/admin/kelola-user/{{ $data->id }}/edit">Edit</a>
-                                <form action="/admin/kelola-user/{{ $data->id }}" method="post" class="d-inline">
-                                    {{-- Belum berjalan --}}
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-danger">Hapus</button>
-                                </form>
+                                <button class="btn btn-danger" data-toggle="modal"
+                                    data-target="#{{ $data->id }}">Hapus</button>
                             </div>
+                            {{-- Modal Decline --}}
+                            <div class="modal fade bd-example-modal-sm" id="{{ $data->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title" id="exampleModalLongTitle">
+                                                Konfirmasi Hapus</h2>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <h4><b>Hapus pengguna "{{ $data->name }}"?</b></h4>
+                                                <p class="mb-0">Pengguna yang telah dihapus tidak dapat
+                                                    dikembalikan.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light btn-sm"
+                                                data-dismiss="modal">Batal</button>
+                                            <form action="/admin/kelola-user/{{ $data->id }}" method="post"
+                                                class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- End of modal --}}
                         </div>
+                        
                         {{-- Alamat --}}
                         {{-- <div class="row">
                                     <div class="col-md-6">
@@ -128,7 +166,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 @endsection

@@ -23,12 +23,13 @@ class FormController extends Controller
     $zones = Zone::all();
     $tipemenara = DB::table('tipe_menaras')->get();
     $kecamatan = DB::table('kecamatans')->pluck("name", "id");
+    $kelurahan = DB::table('kelurahans')->get();
     $tipejalan = DB::table('tipe_jalans')->get();
     $tipesite = DB::table('tipe_sites')->get();
     // return response()->json($zones);
     // return dd(response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite')));
     // return response()->json(compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite'));
-    return view('user.form-menara', compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite', 'zones'), ['active' => 'pendaftaran']);
+    return view('user.form-menara', compact('tipemenara', 'kecamatan', 'kelurahan', 'tipejalan', 'tipesite', 'zones'), ['active' => 'pendaftaran']);
   }
 
   public function getKelurahan(Request $request)
@@ -78,7 +79,7 @@ class FormController extends Controller
       'luas.required' => 'Kolom luas menara wajib diisi.',
       'document.required' => 'Anda wajib mengunggah dokumen/surat permohonan.',
       'document.mimes' => 'Dokumen wajib berupa PDF.',
-      'document.max' => 'Dokumen wajib bertipe PDF.',
+      'document.max' => 'Ukuran maksimum 10 MB.',
     ]);
 
     $config = ['table' => 'pendaftarans', 'length' => 14, 'prefix' => date('ymdH'), 'field' => 'id'];

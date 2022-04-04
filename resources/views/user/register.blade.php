@@ -24,7 +24,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="name" id="name" type="text" class="form-control" placeholder="contoh: John Doe" autofocus
+                            <input name="name" id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="contoh: John Doe" autofocus
                                 value='{{ old('name') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('name')
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="contoh: johndoe@example.com"
+                            <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="contoh: johndoe@example.com"
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('email')
@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Nomor HP<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="phone" id="phone" type="text" class="form-control" placeholder="contoh: 08123456789"
+                            <input name="phone" id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="contoh: 08123456789"
                                 value='{{ old('phone') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('phone')
@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="password" id="password" type="password" class="form-control" placeholder=""
+                            <input name="password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder=""
                                 autocomplete="off">
                             <span class="text-danger">
                                 @error('password')
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cpassword">Konfirmasi Password<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="cpassword" id="cpassword" type="password" class="form-control" placeholder=""
+                            <input name="cpassword" id="cpassword" type="password" class="form-control @error('cpassword') is-invalid @enderror" placeholder=""
                                 autocomplete="off">
                             <span class="text-danger">
                                 @error('cpassword')

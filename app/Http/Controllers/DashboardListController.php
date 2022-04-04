@@ -7,6 +7,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tower;
+use App\Models\Zone;
 
 class DashboardListController extends Controller
 {
@@ -68,8 +69,14 @@ class DashboardListController extends Controller
      */
     public function edit(Pendaftaran $pendaftaran)
     {
+        $zones = Zone::all();
+        $tipemenara = DB::table('tipe_menaras')->get();
+        $kecamatan = DB::table('kecamatans')->pluck("name", "id");
+        $tipejalan = DB::table('tipe_jalans')->get();
+        $tipesite = DB::table('tipe_sites')->get();
         // return dd($countNotif);
-        return view('admin.edit', [
+        // return response()->json($pendaftaran);
+        return view('admin.edit', compact('tipemenara', 'kecamatan', 'tipejalan', 'tipesite', 'zones', 'pendaftaran'), [
             'data' => $pendaftaran,
             'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
             'countNotif' => DB::table('notifikasis')

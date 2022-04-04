@@ -8,8 +8,13 @@
     {{-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
     ></script> --}}
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=geometry"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default">
+    </script>
+    <script type="text/javascript">
+        let pos = new google.maps.LatLng(-6.966667, 110.4381);
+
         function initialize() {
             let towers = @json($towerMakro);
             let zones = @json($zones);
@@ -30,23 +35,48 @@
                 zoom: 12,
                 minZoom: 12,
                 maxZoom: 16,
-                center: new google.maps.LatLng(-6.977, 110.416664),
+                // center: new google.maps.LatLng(-6.966667, 110.4381),
+                center: pos,
+            });
+            let vMarker = new google.maps.Marker({
+                position: pos,
+                title: "Drag",
+                draggable: true,
+                map: map,
             });
 
             document.getElementById("submit").addEventListener("click", () => {
-                searchPos(map);
-                // setSam();
+                // searchPos(map);
+                const lat = document.getElementById("lat").value;
+                const lng = document.getElementById("lng").value;
+
+                pos = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng),
+                };
+
+                // pos = new google.maps.LatLng(lat, lng);
+                map.setZoom(15); // Zoom Map
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
             });
 
-            document.getElementById("lat").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
+            google.maps.event.addListener(vMarker, 'dragend', function(evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#lng").val(evt.latLng.lng().toFixed(6));
+                map.panTo(evt.latLng);
+                // map.setCenter(vMarker.position);
             });
 
-            document.getElementById("lng").addEventListener("change", () => {
-                searchPos(map);
-                // setSam();
-            });
+            // document.getElementById("lat").addEventListener("change", () => {
+            //     searchPos(map);
+            //     // setSam();
+            // });
+
+            // document.getElementById("lng").addEventListener("change", () => {
+            //     searchPos(map);
+            //     // setSam();
+            // });
 
             let infowindow = new google.maps.InfoWindow();
 
@@ -61,7 +91,7 @@
                     fillOpacity: 0.5,
                     map,
                     center: new google.maps.LatLng(zone.latitude, zone.longitude),
-                    radius: Math.sqrt(zone.radius) * 10,
+                    radius: zone.radius,
                 });
                 google.maps.event.addListener(zoneCircle, 'click', (function(zone, ev) {
                     return function() {
@@ -171,13 +201,13 @@
             const lat = document.getElementById("lat").value;
             const lng = document.getElementById("lng").value;
             // const latlngStr = input.split(",", 2);
-            const latlng = {
+            pos = {
                 lat: parseFloat(lat),
                 lng: parseFloat(lng),
             };
             map.setZoom(15); // Zoom Map
             const marker = new google.maps.Marker({
-                position: latlng,
+                position: pos,
                 map,
                 animation: google.maps.Animation.DROP,
                 draggable: true
@@ -187,12 +217,12 @@
             google.maps.event.addListener(marker, 'dragend', function(evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
-                map.panTo(evt.latlng);
+                map.panTo(evt.pos);
             });
 
             deleteMarkers();
             markers.push(marker);
-            map.setCenter(latlng); // set Center
+            map.setCenter(marker.pos); // set Center
         }
 
         function setMapOnAll(map) {
@@ -348,11 +378,6 @@
 
         </div>
     </section>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoDVlS58M0lMm79-lA61YGZhtngOW7hP8&callback=initMap&v=weekly&channel=2"
-        async>
-        //punya willy
-    </script>
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

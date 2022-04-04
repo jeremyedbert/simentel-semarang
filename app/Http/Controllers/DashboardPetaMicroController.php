@@ -26,7 +26,7 @@ class DashboardPetaMicroController extends Controller
         // $tower = Tower::all();
         // return response()->json($data);
         // return response()->json(compact('tower', 'kecamatan', 'kelurahan', 'tipesite'));
-        return view('admin.peta', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), [
+        return view('admin.peta-mikro', compact('tower', 'kecamatan', 'kelurahan', 'tipesite'), [
             'routes' => 'micro',
             'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
             'countNotif' => DB::table('notifikasis')

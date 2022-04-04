@@ -72,7 +72,7 @@
                                         <label>Email <span style="color: #e12454"><b> * </b></span></label>
                                         <input name="email" type="email"
                                             class="form-control input-sm @error('email') is-invalid @enderror"
-                                            value='{{ $data->email }}'>
+                                            value='{{ old('email', $data->email) }}'>
                                         <span class="text-danger">
                                             @error('email')
                                                 {{ $message }}
@@ -85,7 +85,7 @@
                                         <label>Nama <span style="color: #e12454"><b> * </b></span></label>
                                         <input name="name" type="text"
                                             class="form-control input-sm @error('name') is-invalid @enderror"
-                                            value='{{ $data->name }}'>
+                                            value='{{ old('name', $data->name) }}'>
                                         <span class="text-danger">
                                             @error('name')
                                                 {{ $message }}
@@ -96,7 +96,7 @@
                                         <label>Nomor Handphone <span style="color: #e12454"><b> * </b></span></label>
                                         <input name="phone" type="text"
                                             class="form-control input-sm @error('phone') is-invalid @enderror"
-                                            value='{{ $data->phone }}'>
+                                            value='{{ old('phone', $data->phone) }}'>
                                         <span class="text-danger">
                                             @error('phone')
                                                 {{ $message }}

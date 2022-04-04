@@ -99,13 +99,16 @@ class DashboardUserController extends Controller
     {
         $passwordAdmin = $request->password_admin;
         // return dd(Hash::check($passwordAdmin, Auth::user()->getAuthPassword()));
-        
+
+        $phone = $request->phone;
         if ($request->password == '') {
+
+            // if (Hash::check($passwordAdmin, Auth::user()->getAuthPassword())) {
             $rules = [
                 'name' => 'required',
                 'email' => ['required', 'email:dns', Rule::unique('users', 'email')->ignore($user->id)],
                 'phone' => ['required', Rule::unique('users', 'phone')->ignore($user->id)],
-                // 'password_admin' => 'required|min:5|max_30'
+                'password_admin' => 'required|current_password:admin'
             ];
             $validatedData = $request->validate($rules, [
                 'name.required' => 'Kolom nama wajib diisi.',
@@ -113,13 +116,26 @@ class DashboardUserController extends Controller
                 'email.email' => 'Email tidak sesuai.',
                 'phone.required' => 'Kolom nomor handphone wajib diisi.',
                 'phone.unique' => 'Nomor HP sudah dipakai oleh pengguna lain.',
+                'password_admin.required' => 'Kolom password admin wajib diisi',
+                'password_admin.current_password' => 'Password Anda tidak sesuai.',
             ]);
+            User::where('id', $user->id)->update([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+            ]);
+            // } else {
+            //     return back()->with('error', 'Password Anda tidak sesuai');
+            // }
         } else {
+            // if (Hash::check($passwordAdmin, Auth::user()->getAuthPassword())) {
             $rules = [
                 'name' => 'required',
                 'email' => ['required', 'email:dns', Rule::unique('users', 'email')->ignore($user->id)],
                 'phone' => ['required', Rule::unique('users', 'phone')->ignore($user->id)],
                 'password' => 'min:5|max:30',
+                'cpassword' => 'required|same:password',
+                'password_admin' => 'required|current_password:admin',
                 // 'password_admin' => 'required|min:5|max_30'
             ];
             $validatedData = $request->validate($rules, [
@@ -130,20 +146,25 @@ class DashboardUserController extends Controller
                 'phone.unique' => 'Nomor HP sudah dipakai oleh pengguna lain.',
                 'password.min' => 'Password minimal 5 karakter.',
                 'password.max' => 'Password maksimal 30 karakter.',
-                // 'password_admin' => 'required|min:5|max_30'
+                'cpassword.same' => 'Password konfirmasi tidak sesuai.',
+                'cpassword.required' => 'Password konfirmasi wajib diisi.',
+                'password_admin.required' => 'Kolom password admin wajib diisi.',
+                'password_admin.current_password' => 'Password Anda tidak sesuai.',
             ]);
+            User::where('id', $user->id)->update([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            // } else {
+            //     return back()->with('error', 'Password Anda tidak sesuai');
+            // }
         }
 
         // return dd($user->phone, $validatedData['phone']);
-        
+
         // $passwordAdmin = $request->password_admin;
-        if (Hash::check($passwordAdmin, Auth::user()->getAuthPassword())) {
-            User::where('id', $user->id)->update($validatedData);
-        } else{
-            return back()->with('error', 'Password tidak sesuai');
-        }
-
-
         return redirect('/admin/kelola-user/' . $user->id)->with('success', 'Data pengguna berhasil diubah');
     }
 
@@ -155,6 +176,7 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/admin/kelola-user')->with('success', 'Akun sudah dihapus');
     }
 }
