@@ -53,7 +53,16 @@
             <div class="col-lg-11 pl-lg-0">
               <h2 class="title-color mb-2">Status Permohonan</h2>
               <div class="divider mb-4"></div>
-              
+              @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {!! session('success') !!}
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
               @foreach ($data as $d)
                 <div class="permohonan">
                   <div class="col-lg-12 shadow py-4 mb-3" 
