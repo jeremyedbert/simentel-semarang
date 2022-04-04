@@ -21,7 +21,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => $id,
             'id' => 22020223000001,
             'user_id' => 2,
-            'tower_id' => 1,
+            'tower_id' => 1233,
             'status_id' => 1,
         ]);
         Pendaftaran::create([
@@ -29,7 +29,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*2,
             'id' => 22020223000002,
             'user_id' => 1,
-            'tower_id' => 2,
+            'tower_id' => 1234,
             'status_id' => 1,
             'document' => 'documents/test3.pdf'
         ]);
@@ -37,7 +37,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*3,
             'id' => 22020223000003,
             'user_id' => 2,
-            'tower_id' => 3,
+            'tower_id' => 1235,
             'status_id' => 2,
             'admin_id' => 1,
             'document' => 'documents/test3.pdf'
@@ -46,7 +46,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*3,
             'id' => 22020223000004,
             'user_id' => 2,
-            'tower_id' => 4,
+            'tower_id' => 1236,
             'status_id' => 3,
             'admin_id' => 2,
         ]);
@@ -54,7 +54,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*3,
             'id' => 22020708000005,
             'user_id' => 1,
-            'tower_id' => 5,
+            'tower_id' => 1237,
             'status_id' => 2,
             'admin_id' => 1,
             'document' => 'documents/test5.pdf'
@@ -63,7 +63,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*3,
             'id' => 22020708000006,
             'user_id' => 2,
-            'tower_id' => 6,
+            'tower_id' => 1238,
             'status_id' => 2,
             'admin_id' => 1,
             'document' => 'documents/test6.pdf'
@@ -72,7 +72,7 @@ class PendaftaranSeeder extends Seeder
             // 'id' => time()*3,
             'id' => 22020708000007,
             'user_id' => 1,
-            'tower_id' => 7,
+            'tower_id' => 1239,
             'status_id' => 2,
             'admin_id' => 2,
             'document' => 'documents/test7.pdf'
