@@ -10,7 +10,7 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="page-header" style="border-bottom: 1px solid #aaaaaa;">
+                <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Detail Menara&nbsp;</b></h1>
                     <h1 style="color: #e83e8c" class="pb-3"> <b>{{ $data->idMenara }}</b></h1>
                 </div>

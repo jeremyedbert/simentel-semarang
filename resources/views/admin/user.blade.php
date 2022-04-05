@@ -6,6 +6,7 @@
                 <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Data Pengguna</b></h1>
                 </div>
+
                 @if (session()->has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
@@ -77,9 +78,7 @@
                             </div>
                             {{-- End of modal --}}
                         </div>
-
-                        {{-- Belum berjalan --}}
-
+                        
                         {{-- Alamat --}}
                         {{-- <div class="row">
                                     <div class="col-md-6">

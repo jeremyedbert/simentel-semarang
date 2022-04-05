@@ -41,13 +41,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable();
-        })
-    </script>
+
+      $(document).ready(function() {
+          $('#basic-datatables').DataTable();
+      })
+  </script>
 @endsection

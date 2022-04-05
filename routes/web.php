@@ -58,7 +58,8 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
             // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
-            Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+            Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
+            
             // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
             Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
         });
@@ -98,6 +99,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('/peta')->group(function () {
             Route::resource('/makro', DashboardPetaMacroController::class, ['parameters' => ['makro' => 'tower']]);
             Route::resource('/mikro', DashboardPetaMicroController::class, ['parameters' => ['mikro' => 'tower']]);
+        });
+        Route::prefix('/cetak')->group(function(){
+            Route::get('/', [PDFController::class, 'index']);
         });
     });
 });

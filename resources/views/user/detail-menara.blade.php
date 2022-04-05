@@ -97,7 +97,7 @@
                     </h6>
 
                     <div class="detail">
-                        <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px">
+                        <div class="col-lg-12 shadow py-4 mb-3" style="border-radius: 7px; border-left: #223a66 solid 7px">
                             {{-- <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
                                     <h3>
