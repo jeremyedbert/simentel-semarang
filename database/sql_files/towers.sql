@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
@@ -32,6 +33,7 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `towers` (`id`, `idMenara`, `operator`, `kecamatan_id`, `kelurahan_id`, `tipe_menara_id`, `tipe_site_id`, `tipe_jalan_id`, `tinggi`, `latitude`, `longitude`, `luas`, `pemilik`, `penyewa`, `nomorIMB`, `kondisi`, `url_file`, `acc_date`, `created_at`, `updated_at`) VALUES
+
 (1, 'BT-SMG-1', NULL, 1, 8, 1, 2, 2, 10.0, '-6.9790833', '110.4236667', '10 X 12 Meter.', 'PT Bakrie Telecom', NULL, NULL, 'Tower BAKRIE TELECOM ini berada di area rumah penduduk, sisi sebelah utara jalan lokal, sisi sebelah barat, sisi sebelah selatan dan sisi sebelah timur rumah penduduk', NULL, '2022-03-21', '2022-03-17 06:17:08', '2022-03-17 06:17:08'),
 (2, 'NTS-SMG-1', NULL, 1, 5, 1, 1, 3, 52.0, '-6.9872222', '110.4301667', 'Area Gedung HSBC.', 'PT Indonesian Satelindo.', 'PT Natrindo Telephone Seluler', NULL, 'Tower INDOSAT ini berada di area perkantoran dekat ruko, sisi sebelah utara kantor, sisi sebelah barat ruko, sisi sebelah selatan Masjid Agung dan sisi sebelah timur jalan raya.', NULL, '2022-03-21', '2022-03-17 06:17:08', '2022-03-17 06:17:08'),
 (3, 'IS-SMG-2', NULL, 11, 110, 1, 1, 3, 62.0, '-7.0957500', '110.4178056', 'Area Gedung HSBC.', 'PT Indonesian Satelindo.', NULL, NULL, 'Tower INDOSAT ini berada di area perkantoran dekat ruko, sisi sebelah utara kantor, sisi sebelah barat ruko, sisi sebelah selatan Masjid Agung dan sisi sebelah timur jalan raya.', NULL, '2022-03-21', '2022-03-17 06:17:08', '2022-03-17 06:17:08'),
@@ -1278,7 +1280,6 @@ INSERT INTO `towers` (`id`, `idMenara`, `operator`, `kecamatan_id`, `kelurahan_i
 -- Indexes for table `towers`
 --
 
-
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -1286,7 +1287,6 @@ INSERT INTO `towers` (`id`, `idMenara`, `operator`, `kecamatan_id`, `kelurahan_i
 --
 -- AUTO_INCREMENT for table `towers`
 --
-
 
 --
 -- Constraints for dumped tables

@@ -77,6 +77,7 @@ class TowerSeeder extends Seeder
       'operator' => 'Tesla'
     ]);
     Tower::create([ // id: 5
+
       'idMenara' => 'VincentAndDesta',
       'pemilik' => 'PT VINDES',
       'latitude' => -6.950170,
