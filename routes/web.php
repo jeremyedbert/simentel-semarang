@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardTowerMicroController;
 use App\Http\Controllers\DashboardPetaMacroController;
 use App\Http\Controllers\DashboardPetaMicroController;
 use App\Http\Controllers\DashboardListController;
+use App\Http\Controllers\DashboardZoneController;
 use App\Http\Controllers\DashboardRiwayatController;
 use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\DashboardController;
@@ -86,6 +87,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/notifikasi/{notifikasi}', [NotifikasiController::class, 'update']);
         Route::resource('/pendaftaran', DashboardListController::class);
         Route::resource('/kelola-user', DashboardUserController::class, ['parameters' => ['kelola-user' => 'user']]);
+        Route::resource('/zona', DashboardZoneController::class, ['parameters' => ['zona' => 'zone']]);
         // Delete
         // Route::post('/list/{pendaftaran:id}', [DashboardListController::class, 'destroy']);
 

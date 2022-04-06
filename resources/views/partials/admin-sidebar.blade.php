@@ -39,6 +39,13 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item {{ Request::is('admin/zona*') ? 'active' : '' }}">
+                    <a href="/admin/zona">
+                        <i class="fas fa-street-view"></i>
+                        <p>Zona</p>
+                        {{-- <span class="badge badge-count badge-success">4</span> --}}
+                    </a>
+                </li>
                 <li class="nav-item {{ Request::is('admin/riwayat*') ? 'active' : '' }}">
                     <a href="/admin/riwayat">
                         <i class="fas fa-history"></i>
