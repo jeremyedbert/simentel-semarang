@@ -332,7 +332,7 @@
     </script>
     <style>
         .rectangle {
-            height: 50px;
+            height: 2rem;
             /* background-color: rgb(117, 219, 122); */
         }
 
@@ -371,7 +371,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="pemilik">Pemilik</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->pemilik }}" id="pemilik" name="pemilik"
@@ -379,7 +379,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="tinggi">Tinggi</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control"
@@ -392,7 +392,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="luas">Luas</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->luas }}" id="luas" name="luas" readonly>
@@ -403,7 +403,7 @@
                                     {{-- Alamat --}}
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="kecamatan">Kecamatan</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->kecamatan->name }}" id="kecamatan"
@@ -411,7 +411,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="kelurahan">Kelurahan</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->kelurahan->name }}" id="kelurahan"
@@ -421,7 +421,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default">
                                                 <label for="latitude">Latitude</label>
                                                 <input type="text"
                                                     class="form-control @error('latitude') is-invalid @enderror"
@@ -432,7 +432,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default">
                                                 <label for="longitude">Longitude</label>
                                                 <input type="text"
                                                     class="form-control @error('longitude') is-invalid @enderror"
@@ -448,15 +448,17 @@
                                     </div>
                                     <div class="form-group pt-0">
                                         <div>
+                                            {{-- digunakan untuk background --}}
                                             <div id="rectangle" class="rectangle px-3 py-1">
-                                                <div id="a" class="bool" style="color: #fff;"></div>
+                                                {{-- digunakan untuk teks --}}
+                                                <div id="a" class="bool" style="color: #fff; font-size: 14px"></div>
                                             </div>
                                             {{-- <p id="a" class="bool" style="color: #fff;"></p> --}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="tipesite">Tipe Site</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->tipesite->name }}" id="tipesite"
@@ -464,7 +466,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default" style="background-color: #E8E8E8">
                                                 <label for="tipejalan">Tipe Jalan</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ $data->tower->tipejalan->name }}" id="tipejalan"
@@ -472,14 +474,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group form-group-default">
                                         <label for="kondisi">Kondisi</label>
                                         <textarea class="form-control" id="kondisi" name="kondisi"
                                             rows="4">{{ old('kondisi', $data->tower->kondisi) }}</textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default">
                                                 <label for="penyewa">Penyewa</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ old('penyewa', $data->tower->penyewa) }}" id="penyewa"
@@ -487,7 +489,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default">
                                                 <label for="operator">Operator</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ old('operator', $data->tower->operator) }}" id="operator"
@@ -495,7 +497,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
+                                            <div class="form-group form-group-default">
                                                 <label for="noimb">No IMB</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ old('nomorIMB', $data->tower->noIMB) }}" id="nomorIMB"
@@ -505,9 +507,16 @@
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <button class="btn btn-success" type="submit">Simpan</button>
+                                    <button class="btn btn-success" type="submit">
+                                        <span class="btn-label">
+                                            <i class="fas fa-save"></i>
+                                        </span>
+                                        Simpan
+                                    </button>
                                     {{-- <button class="btn btn-danger">Cancel</button> --}}
-                                    <a class="btn btn-danger" href="/admin/pendaftaran">Batal</a>
+                                    <a class="btn btn-danger" href="/admin/pendaftaran">
+                                        <span class="btn-label"><i class="fas fa-times"></i></span>
+                                        Batal</a>
                                 </div>
                             </form>
                         </div>
