@@ -90,7 +90,7 @@
                     <h2 class="title-color mb-2">Menara {{ $data->idMenara }}</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
-                        <a href="/user/peta-menara">
+                        <a href="/user/{{ Request::is('user/peta-makro/*') ? 'peta-makro' : 'peta-microcell' }}">
                             <i class="icofont-simple-left"></i>
                             <i>Kembali ke halaman Peta</i>
                         </a>
