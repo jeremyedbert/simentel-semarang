@@ -41,8 +41,9 @@ Auth::routes(['verify' => true]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
-    Route::resource('/peta-menara', PetaMacroController::class, ['parameters' => ['peta-menara' => 'tower']]);
-    Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
+    Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
+    Route::resource('/peta-microcell', PetaMicroController::class, ['parameters' => ['peta-microcell' => 'tower']]);
+    //Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
     // Guest User
     Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -61,7 +62,10 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
             Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             
-            // Route::get('/cekstatus', [CekStatusListController::class, 'index']);
+            // Route::get('/cekstatus', [CekStatusController::class, 'index'])->name('cekstatus');
+            // Route::get('/cekstatus/{pendaftaran}', [CekStatusController::class, 'show'])->name('cekstatus/{pendaftaran}');
+            Route::post('/cekstatus/{pendaftaran}/update', [CekStatusController::class, 'update'])->name('cekstatus/{pendaftaran}/update');
+            
             Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
         });
         Route::post('/logout', [UserController::class, 'logout']);

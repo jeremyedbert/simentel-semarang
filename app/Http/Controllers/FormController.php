@@ -112,7 +112,10 @@ class FormController extends Controller
     $file = $request->file('document');
     // $filename = $request->file('document')->getClientOriginalName();
     $filename = preg_replace('/[^A-Za-z0-9().\-]/', '_', $file->getClientOriginalName());
-    $pendaftaran->document = $file->storeAs('documents', $filename);
+    //$pendaftaran->document = $file->storeAs('documents/', $filename);
+    $file->storeAs('documents/', $filename);
+    $pendaftaran->document = $filename;
+
 
     $storePendaftaran = $pendaftaran->save();
 
@@ -129,20 +132,20 @@ class FormController extends Controller
     }
   }
 
-  public function upload(Request $request)
-  {
-    if ($request->hasFile('document')) {
-      // $file = $request->file('document');
-      // $filename = 'docs-'.$request->idMenara;
-      // $folder = $request->idMenara;
-      // $filepath = "path:'documents/tmp'";
-      // $file->storeAs('tmp/'.$folder);
-      // $request->file('document')->store('tmp/');
-      // $request->file('document')->store('tmp/');
+  // public function upload(Request $request)
+  // {
+  //   if ($request->hasFile('document')) {
+  //     $file = $request->file('document');
+  //     $filename = 'docs-'.$request->idMenara;
+  //     $folder = $request->idMenara;
+  //     $filepath = "path:'documents/tmp'";
+  //     $file->storeAs('tmp/'.$folder);
+  //     $request->file('document')->store('tmp/');
+  //     $request->file('document')->store('tmp/');
 
-      // return $folder;
-    }
+  //     return $folder;
+  //   }
 
-    // return '';
-  }
+  //   // return '';
+  // }
 }
