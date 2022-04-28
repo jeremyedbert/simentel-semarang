@@ -57,6 +57,9 @@ class PetaMicroController extends Controller
     public function show(Tower $tower)
     {
         //
+        return view('user.detail-menara', [
+          'data' => $tower
+        ]);
     }
 
     /**

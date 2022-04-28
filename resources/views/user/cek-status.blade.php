@@ -28,7 +28,7 @@
               {{-- <i class="icofont-business-man-alt-1"></i> --}}
                 <div class="col px-auto">
                   <div class="d-flex justify-content-center">
-                    <h3 class="nama-user">
+                    <h3 class="nama-user text-center">
                       {{ auth()->user()->name }}
                     </h3>
                   </div>

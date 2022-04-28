@@ -10,9 +10,12 @@ use App\Models\Zone;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Storage;
+use Storage;
 
 class CekStatusController extends Controller
 {
+  
     /**
      * Display a listing of the resource.
      *
@@ -61,9 +64,9 @@ class CekStatusController extends Controller
     public function show(Pendaftaran $pendaftaran)
     {
         //
-        return view('user.detail', [
-          'data' => $pendaftaran
-        ]);
+        return view('user.detail', 
+          ['data' => $pendaftaran]
+        );
 
     }
 
@@ -76,27 +79,31 @@ class CekStatusController extends Controller
     public function edit(Pendaftaran $pendaftaran)
     {
         //
-        $zones = Zone::all();
-        $tipemenara = DB::table('tipe_menaras')->get();
-        $kecamatan = DB::table('kecamatans')->pluck("name", "id");
-        $kelurahan = DB::table('kelurahans')->get();
-        $tipejalan = DB::table('tipe_jalans')->get();
-        $tipesite = DB::table('tipe_sites')->get();
-        // return dd($countNotif);
-        // return response()->json($pendaftaran);
-        return view('user.form-edit', 
-          compact(
-                  'tipemenara', 
-                  'kecamatan', 
-                  'kelurahan',
-                  'tipejalan', 
-                  'tipesite', 
-                  'zones', 
-                  'pendaftaran'), 
-                  ['data' => $pendaftaran]
-                );
-
-        // return dd($pendaftaran);
+        if($pendaftaran->status->id == 1){
+          $zones = Zone::all();
+          $tipemenara = DB::table('tipe_menaras')->get();
+          $kecamatan = DB::table('kecamatans')->pluck("name", "id");
+          $kelurahan = DB::table('kelurahans')->get();
+          $tipejalan = DB::table('tipe_jalans')->get();
+          $tipesite = DB::table('tipe_sites')->get();
+          // return dd($countNotif);
+          // return response()->json($pendaftaran);
+          return view('user.form-edit', 
+            compact(
+                    'tipemenara', 
+                    'kecamatan', 
+                    'kelurahan',
+                    'tipejalan', 
+                    'tipesite', 
+                    'zones', 
+                    'pendaftaran'), 
+                    ['data' => $pendaftaran]
+                  );
+          // return dd($pendaftaran);
+        }else{
+          return redirect("/user/cekstatus/$pendaftaran->id");
+        }
+        
     }
 
     /**
@@ -128,7 +135,8 @@ class CekStatusController extends Controller
       ];
 
       $rulesPendaftaran = [
-        'document' => 'required|mimes:pdf|max:10240'
+        'document' => 'mimes:pdf|max:10240'
+        // 'document' => 'required'
       ];
 
       $validatedTower = $request->validate($rulesTower, [
@@ -149,27 +157,41 @@ class CekStatusController extends Controller
         'luas.required' => 'Kolom luas menara wajib diisi.',
       ]);
 
-      if($request->hasFile('document')){
-        return dd($request);
-        $file = $request->file('document');
-        $filename = preg_replace('/[^A-Za-z0-9().\-]/', '_', $file->getClientOriginalName());
-        $newDoc = $file->storeAs('documents', $filename);
-
-        // Pendaftaran::where('id', $pendaftaran->id)
-        //   ->update(['document'=> $newDoc]);
-      }
-
       $validatedPendaftaran = $request->validate($rulesPendaftaran,[
         'document.required' => 'Anda wajib mengunggah dokumen/surat permohonan.',
         'document.mimes' => 'Dokumen wajib berupa PDF.',
         'document.max' => 'Ukuran maksimum 10 MB.',
       ]);
 
-      return dd($request);
+      $pendaftaran = Pendaftaran::findOrFail($pendaftaran->id);
+
+      if($request->file('document') != ""){
+
+        //hapus file lama
+        //Storage::delete($pendaftaran->document);
+        Storage::delete('documents/'.$pendaftaran->document);
+
+        //upload file baru
+        $file = $request->file('document');
+        $filename = preg_replace('/[^A-Za-z0-9().\-]/', '_', $file->getClientOriginalName());
+        $file->storeAs('documents/', $filename);
+        $savedPath = 'documents/'.$filename;
+
+        $pendaftaran->update([
+          // 'document' => $savedPath
+          'document' => $filename
+        ]);
+      }else{
+        $pendaftaran->update();
+      }
+
+      //return dd($request);
       // return dd(Pendaftaran::where('id', $pendaftaran->id));
 
-      Pendaftaran::where('id', $pendaftaran->id)
-          ->update($validatedPendaftaran);
+      // Pendaftaran::where('id', $pendaftaran->id)
+      //     ->update($validatedPendaftaran);
+
+      // $pendaftaran->update($validatedPendaftaran);
 
       Tower::where('id', $pendaftaran->tower->id)
           ->update($validatedTower);

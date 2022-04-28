@@ -296,10 +296,10 @@
             @endif
             <h2 class="title-color mb-2">Edit Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form id="#" method="post" action="/user/cekstatus/{{ $data->id }}" enctype="multipart/form-data">
+            <form method="POST" action="/user/cekstatus/{{ $data->id }}/update" enctype="multipart/form-data">
+                @csrf
+                {{-- @method('PUT') --}}
                 <div class="col mb-5">
-                  @method('put')
-                    @csrf
                     <div class="form-group">
                         <label>Pemilik Menara <span style="color: #e12454"><b> * </b></span></label>
                         <input name="pemilik" type="text"
