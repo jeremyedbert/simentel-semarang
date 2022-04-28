@@ -13,7 +13,7 @@ class Zone extends Model
     'kecamatan_id',
     'latitude',
     'longitude',
-    'radius'
+    'radius' 
 	];
 
     use HasFactory;

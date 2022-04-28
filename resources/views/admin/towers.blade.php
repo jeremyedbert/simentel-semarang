@@ -85,7 +85,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div>
-                                                                    <b>Hapus menara ini? </b><a
+                                                                    <b>Hapus menara {{ $d->idMenara }}? </b><a
                                                                         href="/admin/menara/{{ Request::is('admin/menara/makro') ? 'makro' : 'mikro' }}/{{ $d->id }}"><small>Cek
                                                                             kembali detail</small></a>
                                                                 </div>
