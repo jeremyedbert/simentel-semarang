@@ -273,7 +273,7 @@
                               <div class="d-flex justify-content-center mx-md-3">
                                 <iframe
                                   {{-- src="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('storage/' . $data->document) }}#toolbar=0&scrollbar=0" --}}
-                                  src="{{ asset('storage/' . $data->document) }}"
+                                  src="{{ asset('storage/documents/' . $data->document) }}"
                                   frameBorder="0"
                                   scrolling="auto"
                                   height="400px"
@@ -281,7 +281,7 @@
                                 ></iframe>
                               </div>
                               <div class="d-flex justify-content-center p-1 mx-md-3">
-                                <a href="{{ asset('storage/' . $data->document) }}" target="blank"><i class="icofont-ui-file"></i>&nbsp;Lihat Dokumen</a>
+                                <a href="{{ asset('storage/documents/' . $data->document) }}" target="blank"><i class="icofont-ui-file"></i>&nbsp;Lihat Dokumen</a>
                               </div>
                             </div>
                             @if ($data->status->id === 2)

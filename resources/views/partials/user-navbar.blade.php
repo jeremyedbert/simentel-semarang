@@ -40,7 +40,7 @@
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
-                        <li><a class="dropdown-item" href="/user/peta-menara">Peta Menara Makro</a></li>
+                        <li><a class="dropdown-item" href="/user/peta-makro">Peta Menara Makro</a></li>
                         <li><a class="dropdown-item" href="/user/peta-microcell">Peta Microcell</a>
                         </li>
                     </ul>
