@@ -13,7 +13,10 @@ class DashboardController extends Controller
     public function index(){
         // $notif = Notifikasi::whereNull('mark_as_read')->get();
         // return dd($notif);
-        return view('admin.welcome', [
+        $tower = Tower::selectRaw('kecamatan_id, COUNT(kecamatan_id) as c')->groupBy('kecamatan_id')->whereNotNull('acc_date')->get();
+        // return dd($tower);
+        // return response()->json($tower);
+        return view('admin.welcome', compact('tower'), [
             'active' => 'dashboard',
             'apply' => Pendaftaran::all(),
             'acc' => Pendaftaran::where('status_id', '2'),
@@ -24,7 +27,7 @@ class DashboardController extends Controller
             'countNotif' => DB::table('notifikasis')
                 ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
                 ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
-                ->count()
+                ->count(),
         ]);
     }
 }

@@ -1,5 +1,6 @@
 @extends('layouts.main-admin')
 @section('content')
+    {{-- <script src={{ url('assets/admin/js/plugin/chart.js/chart.min.js') }}></script> --}}
     <style>
         .notif {
             position: absolute;
@@ -85,25 +86,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-icon">
-                                    <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                        <i class="far fa-check-circle"></i>
-                                    </div>
-                                </div>
-                                <div class="col col-stats ml-3 ml-sm-0">
-                                    <div class="numbers">
-                                        <p class="card-category">Order</p>
-                                        <h4 class="card-title">576</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
@@ -150,60 +132,22 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-md-8">
+                <div class="row">
+                    <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-head-row">
-                                    <div class="card-title">User Statistics</div>
-                                    <div class="card-tools">
-                                        <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                            <span class="btn-label">
-                                                <i class="fa fa-pencil"></i>
-                                            </span>
-                                            Export
-                                        </a>
-                                        <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                                            <span class="btn-label">
-                                                <i class="fa fa-print"></i>
-                                            </span>
-                                            Print
-                                        </a>
-                                    </div>
-                                </div>
+                                <div class="card-title">Grafik Jumlah Menara</div>
                             </div>
                             <div class="card-body">
                                 <div class="chart-container" style="min-height: 375px">
-                                    <canvas id="statisticsChart"></canvas>
+                                    <canvas id="barChart"></canvas>
                                 </div>
                                 <div id="myChartLegend"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <div class="card-title">Daily Sales</div>
-                                <div class="card-category">March 25 - April 02</div>
-                            </div>
-                            <div class="card-body pb-0">
-                                <div class="mb-4 mt-2">
-                                    <h1>$4,578.58</h1>
-                                </div>
-                                <div class="pull-in">
-                                    <canvas id="dailySalesChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-info bg-info-gradient">
-                            <div class="card-body">
-                                <h4 class="mb-1 fw-bold">Tasks Progress</h4>
-                                <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row row-card-no-pd">
+                {{-- <div class="row row-card-no-pd">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -635,6 +579,88 @@
                 </div> --}}
             </div>
         </div>
-
     </div>
+    <script type="text/javascript">
+        let barChart = document.getElementById('barChart').getContext('2d');
+        let towers = @json($tower);
+        let data = []
+        for (tower in towers){
+            tower = towers[tower];
+            data.push(tower.c);
+        }
+        let myBarChart = new Chart(barChart, {
+            type: 'bar',
+            data: {
+                labels: [
+                    "Smg Tengah", 
+                    "Smg Utara", 
+                    "Smg Timur", 
+                    "Gayamsari", 
+                    "Genuk", 
+                    "Pedurungan", 
+                    "Smg Selatan", 
+                    "Candisari", 
+                    "Gajahmungkur", 
+                    "Tembalang", 
+                    "Banyumanik", 
+                    "Gunungpati",
+                    "Smg Barat",
+                    "Mijen",
+                    "Ngaliyan",
+                    "Tugu"
+                ],
+                datasets: [{
+                    label: ["Jumlah menara"],
+                    backgroundColor: [
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                    ],
+                    borderColor: [
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                        '#f15bb5',
+                        '#fee440',
+                        '#00bbf9',
+                        '#00f5d4',
+                        '#9b5de5',
+                    ],
+                    data: data,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
 @endsection
