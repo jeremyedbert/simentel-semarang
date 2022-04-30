@@ -60,14 +60,24 @@ class DashboardRiwayatController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-        return view('admin.detail-riwayat', [
-            'data' => $pendaftaran,
-            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
-            'countNotif' => DB::table('notifikasis')
-                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
-                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
-                ->count()
-        ]);
+        if($pendaftaran->admin_id != NULL){
+            return view('admin.detail-riwayat', [
+                'data' => $pendaftaran,
+                'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+                'countNotif' => DB::table('notifikasis')
+                    ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                    ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                    ->count()
+            ]);
+        } else{
+            return view('admin.404', [
+                'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+                'countNotif' => DB::table('notifikasis')
+                    ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                    ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                    ->count()
+            ]);
+        }
     }
 
     /**
