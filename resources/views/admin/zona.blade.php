@@ -26,7 +26,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <a href="" class="btn btn-primary">
+                                    <a href="/admin/zona/create" class="btn btn-primary">
                                         <span class="btn-label">
                                             <i class="fa fa-plus"></i>
                                         </span>
@@ -85,11 +85,11 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-light btn-sm"
                                                                     data-dismiss="modal">Tidak</button>
-                                                                <form
-                                                                    action="/admin/pendaftaran/{{ $d->id }}/decline"
-                                                                    method="post" class="d-inline">
+                                                                <form action="/admin/zona/{{ $d->id }}" method="post"
+                                                                    class="d-inline">
+                                                                    @method('delete')
                                                                     @csrf
-                                                                    <button class="btn btn-danger btn-sm">Tolak</button>
+                                                                    <button class="btn btn-danger btn-sm">Hapus</button>
                                                                 </form>
                                                             </div>
                                                         </div>

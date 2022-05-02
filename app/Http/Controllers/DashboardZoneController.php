@@ -33,7 +33,14 @@ class DashboardZoneController extends Controller
      */
     public function create()
     {
-        //
+        $kecamatan = DB::table('kecamatans')->pluck("name", "id");
+        return view('admin.add-zona', compact('kecamatan'), [
+            'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
+            'countNotif' => DB::table('notifikasis')
+                ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
+                ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
+                ->count()
+        ]);
     }
 
     /**
@@ -44,7 +51,25 @@ class DashboardZoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'radius' => 'required|numeric',
+            'kecamatan_id' => 'required',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric'
+        ], [
+            'name.required' => 'Kolom nama wajib diisi.',
+            'radius.required' => 'Kolom radius wajib diisi.',
+            'radius.numeric' => 'Isi radius dengan angka.',
+            'kecamatan_id.required' => 'Kecamatan wajib dipilih.',
+            'latitude.required' => 'Kolom latitude wajib diisi.',
+            'latitude.numeric' => 'Isi latitude dengan angka.',
+            'longitude.required' => 'Kolom longitude wajib diisi.',
+            'longitude.numeric' => 'Isi longitude dengan angka.',
+        ]);
+
+        Zone::create($validatedData);
+        return redirect('/admin/zona')->with('success', 'Zona berhasil ditambahkan');
     }
 
     /**
@@ -93,7 +118,7 @@ class DashboardZoneController extends Controller
             'longitude' => 'required|numeric',
             'kecamatan_id' => 'required'
         ];
-        
+
         $validatedData = $request->validate($rules, [
             'name.required' => 'Kolom nama wajib diisi.',
             'radius.required' => 'Kolom radius wajib diisi.',
@@ -104,7 +129,7 @@ class DashboardZoneController extends Controller
             'longitude.numeric' => 'Isi longitude dengan angka.',
             'kecamatan_id.required' => 'Kolom kecamatan wajib dipilih',
         ]);
-        
+
         // return dd($validatedData);
         Zone::where('id', $zone->id)->update($validatedData);
 
@@ -119,6 +144,7 @@ class DashboardZoneController extends Controller
      */
     public function destroy(Zone $zone)
     {
-        //
+        Zone::destroy($zone->id);
+        return redirect('/admin/zona')->with('success', 'Zona ' . $zone->name . ' dihapus');
     }
 }
