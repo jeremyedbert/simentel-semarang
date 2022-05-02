@@ -1,5 +1,5 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>SI MenTel - Admin Dashboard</title>
+<title>SI MenTel - Admin shboard</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 <link rel="icon" href={{ url("assets/admin/img/admin.svg") }} type="image/x-icon" />
 
