@@ -62,10 +62,7 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
             Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             
-            // Route::get('/cekstatus', [CekStatusController::class, 'index'])->name('cekstatus');
-            // Route::get('/cekstatus/{pendaftaran}', [CekStatusController::class, 'show'])->name('cekstatus/{pendaftaran}');
             Route::post('/cekstatus/{pendaftaran}/update', [CekStatusController::class, 'update'])->name('cekstatus/{pendaftaran}/update');
-            
             Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
         });
         Route::post('/logout', [UserController::class, 'logout']);
