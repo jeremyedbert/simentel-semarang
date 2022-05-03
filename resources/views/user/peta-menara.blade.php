@@ -171,7 +171,7 @@
           </style>
           <div class="mx-1">
               <div class="bor text-center"><b>
-                  <a href="/user/peta-menara/` + tower.id +
+                  <a href="/user/peta-makro/` + tower.id +
                 `" style="text-decoration:none;">` + tower
                 .idMenara + `</a></b>
               </div>
@@ -304,7 +304,7 @@
                     </div>
                 </form>
 
-                <form action="/user/peta-menara">
+                <form action="/user/peta-makro">
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <p>ID Menara</p>
@@ -355,7 +355,7 @@
                                 <tbody>
                                     @foreach ($towerMakro as $d)
                                         <a href="">
-                                            <tr class="clickable-row" data-href="/user/peta-menara/{{ $d->id }}">
+                                            <tr class="clickable-row" data-href="/user/peta-makro/{{ $d->id }}">
                                                 <td>{{ $d->idMenara }}</td>
                                                 <td>{{ $d->pemilik }}</td>
                                                 <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>

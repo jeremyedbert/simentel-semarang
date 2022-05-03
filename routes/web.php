@@ -18,7 +18,7 @@ use App\Http\Controllers\CekStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\NotifikasiController;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PetaMacroController;
 use App\Http\Controllers\PetaMicroController;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +104,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('/mikro', DashboardPetaMicroController::class, ['parameters' => ['mikro' => 'tower']]);
         });
         Route::prefix('/cetak')->group(function(){
-            Route::get('/', [PDFController::class, 'index']);
+            Route::get('/', [ExcelController::class, 'index']);
+            Route::get('/exportTower', [ExcelController::class, 'towerExport']);
         });
     });
 });

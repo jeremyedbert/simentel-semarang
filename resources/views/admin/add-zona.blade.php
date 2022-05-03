@@ -17,10 +17,8 @@
         function initialize() {
             let txtLat = document.getElementById('lat').value;
             let txtLng = document.getElementById('lng').value;
-            const lat1 = parseFloat(txtLat);
-            const lng1 = parseFloat(txtLng);
+            let pos = new google.maps.LatLng(-6.966667, 110.4381);
             let radius = parseInt(document.getElementById('radius').value);
-            const pos = new google.maps.LatLng(lat1, lng1);
             // Zona
 
             // creates a draggable marker to the given coords
@@ -44,84 +42,52 @@
                 fillColor: "#FF0000",
                 fillOpacity: 0.35,
                 map,
-                // center: pos,
                 radius: radius
             });
 
             zone.bindTo('center', vMarker, 'position');
 
             google.maps.event.addListener(vMarker, 'dragend', function(evt) {
-
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#lng").val(evt.latLng.lng().toFixed(6));
                 map.panTo(evt.latLng);
-
-                let newLat = document.getElementById('lat').value;
-                let newLng = document.getElementById('lng').value;
-
-                if (zonezones.length == 0) {
-                    addZone(newLat, newLng, radius, map);
-                } else { // zonezones.length != 0
-                    deleteMarkers();
-                    addZone(newLat, newLng, radius, map);
-                }
-
-                vMarker.setPosition(pos);
-                vMarker.setDraggable(false);
             });
 
             document.getElementById("lat").addEventListener("change", () => {
                 const newLat = document.getElementById("lat").value;
                 const newLng = document.getElementById("lng").value;
-                let radius = parseInt(document.getElementById('radius').value);
 
-                // map.setZoom(14); // Zoom Map
-                if (zonezones.length == 0) {
-                    addZone(newLat, newLng, radius, map);
-                    vMarker.setDraggable(false);
-                } else {
-                    deleteMarkers();
-                    addZone(newLat, newLng, radius, map);
-                }
+                pos = {
+                    lat: parseFloat(newLat),
+                    lng: parseFloat(newLng),
+                };
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
             });
 
             document.getElementById("lng").addEventListener("change", () => {
                 const newLat = document.getElementById("lat").value;
                 const newLng = document.getElementById("lng").value;
-                let radius = parseInt(document.getElementById('radius').value);
 
                 // map.setZoom(14); // Zoom Map
-                if (zonezones.length == 0) {
-                    addZone(newLat, newLng, radius, map);
-                    vMarker.setDraggable(false);
-                } else {
-                    deleteMarkers();
-                    addZone(newLat, newLng, radius, map);
-                }
+                pos = {
+                    lat: parseFloat(newLat),
+                    lng: parseFloat(newLng),
+                };
+                vMarker.setPosition(pos);
+                map.setCenter(vMarker.position); // set Center
             });
 
             document.getElementById("radius").addEventListener("change", () => {
                 const rad = parseInt(document.getElementById("radius").value);
-                const lat = document.getElementById("lat").value;
-                const lng = document.getElementById("lng").value;
 
-                // map.setZoom(14); // Zoom Map
-                if (zonezones.length == 0) {
-                    addZone(lat, lng, rad, map);
-                    vMarker.setDraggable(false);
-                } else { // zonezones.length != 0
-                    // zonezones = [];
-                    // markers = [];
-                    deleteMarkers();
-                    addZone(lat, lng, rad, map);
-                }
+                zone.setRadius(rad);
                 // map.setCenter(vMarker.position);
             });
 
             // centers the map on markers coords
             map.setCenter(vMarker.position);
-            // markers.push(vMarker);
-
+            
             // adds the marker on the map
             vMarker.setMap(map);
         }
@@ -193,7 +159,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Edit Zona</h4>
+                    <h4 class="page-title">Tambah Zona</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -204,22 +170,21 @@
                             <div class="card-header">
                                 <div class="row d-flex justify-content-between">
                                     {{-- <div class="col-md-6">
-                                  <div class="card-title"><b><i>No. Tiket: {{ $data->id }}</i></b></div>
-                                  <div class="card-title"><i>{{ $data->tower->idMenara }}</i></div>
-                              </div>
-                              <div class="d-flex">
-                                  <div class="col text-md-right">
-                                      <p class="mb-0 mt-3 mt-md-0"><b>Anda dapat menghubungi pendaftar:</b></p>
-                                      <p class="mb-0">{{ $data->user->name }}</p>
-                                      <p class="mb-0">{{ $data->user->phone }}</p>
-                                      <p class="mb-0">{{ $data->user->email }}</p>
-                                  </div>
-                              </div> --}}
+                            <div class="card-title"><b><i>No. Tiket: {{ $data->id }}</i></b></div>
+                            <div class="card-title"><i>{{ $data->tower->idMenara }}</i></div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="col text-md-right">
+                                <p class="mb-0 mt-3 mt-md-0"><b>Anda dapat menghubungi pendaftar:</b></p>
+                                <p class="mb-0">{{ $data->user->name }}</p>
+                                <p class="mb-0">{{ $data->user->phone }}</p>
+                                <p class="mb-0">{{ $data->user->email }}</p>
+                            </div>
+                        </div> --}}
                                 </div>
                             </div>
-                            {{-- Form Edit --}}
-                            <form action="/admin/zona/{{ $data->id }}" method="post">
-                                @method('put')
+                            {{-- Form Add --}}
+                            <form action="/admin/zona" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
@@ -227,8 +192,8 @@
                                             <div class="form-group form-group-default"
                                                 @error('name') style="border: 1px solid rgb(255, 0, 0)" @enderror>
                                                 <label for="name">Nama <span class="required-label">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ old('name', $data->name) }}" id="name" name="name">
+                                                <input type="text" class="form-control" value="{{ old('name') }}"
+                                                    id="name" name="name">
                                                 <span class="text-danger">
                                                     @error('name')
                                                         {{ $message }}
@@ -237,33 +202,33 @@
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-4">
-                                      <div class="form-group">
-                                          <label for="tinggi">Tinggi</label>
-                                          <div class="input-group">
-                                              <input type="text" class="form-control"
-                                                  value="{{ $data->tower->tinggi }}" id="tinggi" name="tinggi"
-                                                  readonly>
-                                              <div class="input-group-append">
-                                                  <span class="input-group-text" id="basic-addon2">meter</span>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-4">
-                                      <div class="form-group">
-                                          <label for="luas">Luas</label>
-                                          <input type="text" class="form-control"
-                                              value="{{ $data->tower->luas }}" id="luas" name="luas" readonly>
-                                      </div>
-                                  </div> --}}
+                                <div class="form-group">
+                                    <label for="tinggi">Tinggi</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            value="{{ $data->tower->tinggi }}" id="tinggi" name="tinggi"
+                                            readonly>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">meter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="luas">Luas</label>
+                                    <input type="text" class="form-control"
+                                        value="{{ $data->tower->luas }}" id="luas" name="luas" readonly>
+                                </div>
+                            </div> --}}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group form-group-default"
                                                 @error('radius') style="border: 1px solid rgb(255, 0, 0)" @enderror>
                                                 <label for="radius">Radius <span class="required-label">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ old('radius', $data->radius) }}" id="radius" name="radius">
+                                                <input type="text" class="form-control" value="{{ old('radius') }}"
+                                                    id="radius" name="radius">
                                                 <span class="text-danger">
                                                     @error('radius')
                                                         {{ $message }}
@@ -278,9 +243,10 @@
                                                 <label for="longitude">Kecamatan <span
                                                         class="required-label">*</span></label>
                                                 <select class="form-control" name="kecamatan_id" id="kecamatan_id">
+                                                    <option value=""> -- Pilih kecamatan -- </option>
                                                     @foreach ($kecamatan as $key => $kec)
                                                         <option value="{{ $key }}"
-                                                            {{ old('kecamatan_id', $data->kecamatan_id) == $key ? 'selected' : '' }}>
+                                                            {{ old('kecamatan_id') == $key ? 'selected' : '' }}>
                                                             {{ $kec }}</option>
                                                     @endforeach
                                                 </select>
@@ -297,9 +263,8 @@
                                             <div class="form-group form-group-default"
                                                 @error('latitude') style="border: 1px solid rgb(255, 0, 0)" @enderror>
                                                 <label for="latitude">Latitude <span class="required-label">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ old('latitude', $data->latitude) }}" id="lat"
-                                                    name="latitude">
+                                                <input type="text" class="form-control" value="{{ old('latitude', -6.966667) }}"
+                                                    id="lat" name="latitude">
                                                 <span class="text-danger">
                                                     @error('latitude')
                                                         {{ $message }}
@@ -312,9 +277,8 @@
                                                 @error('longitude') style="border: 1px solid rgb(255, 0, 0)" @enderror>
                                                 <label for="longitude">Longitude <span
                                                         class="required-label">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ old('longitude', $data->longitude) }}" id="lng"
-                                                    name="longitude">
+                                                <input type="text" class="form-control" value="{{ old('longitude', 110.4381) }}"
+                                                    id="lng" name="longitude">
                                                 <span class="text-danger">
                                                     @error('longitude')
                                                         {{ $message }}
@@ -325,13 +289,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            Anda bisa melakukan <i>drag</i> pada <i>marker</i> yang terdapat pada peta <b>atau</b> 
-                                            mengubah nilai pada masukan/input.
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            Zona <b style="color: #FF0000">merah</b> merupakan zona <b>sebelum</b> perubahan. Zona <b style="color: #3385FF">biru</b> merupakan zona <b>setelah</b> perubahan
+                                            Berikan <i><b>radius</b></i> supaya zona dapat terlihat pada peta
                                         </div>
                                     </div>
                                 </div>

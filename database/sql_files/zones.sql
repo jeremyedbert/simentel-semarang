@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 -- Struktur dari tabel `zones`
 --
 
-CREATE TABLE `zones` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kecamatan_id` bigint(20) UNSIGNED NOT NULL,
-  `latitude` decimal(10,7) NOT NULL,
-  `longitude` decimal(10,7) NOT NULL,
-  `radius` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- CREATE TABLE `zones` (
+--   `id` bigint(20) UNSIGNED NOT NULL,
+--   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+--   `kecamatan_id` bigint(20) UNSIGNED NOT NULL,
+--   `latitude` decimal(10,7) NOT NULL,
+--   `longitude` decimal(10,7) NOT NULL,
+--   `radius` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `zones`
@@ -350,9 +350,9 @@ INSERT INTO `zones` (`id`, `name`, `kecamatan_id`, `latitude`, `longitude`, `rad
 --
 -- Indeks untuk tabel `zones`
 --
-ALTER TABLE `zones`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `kecamatan_id` (`kecamatan_id`);
+-- ALTER TABLE `zones`
+--   ADD PRIMARY KEY (`id`),
+--   ADD KEY `kecamatan_id` (`kecamatan_id`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -361,8 +361,8 @@ ALTER TABLE `zones`
 --
 -- AUTO_INCREMENT untuk tabel `zones`
 --
-ALTER TABLE `zones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+-- ALTER TABLE `zones`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -371,8 +371,8 @@ ALTER TABLE `zones`
 --
 -- Ketidakleluasaan untuk tabel `zones`
 --
-ALTER TABLE `zones`
-  ADD CONSTRAINT `zones_ibfk_1` FOREIGN KEY (`kecamatan_id`) REFERENCES `kecamatans` (`id`);
+-- ALTER TABLE `zones`
+--   ADD CONSTRAINT `zones_ibfk_1` FOREIGN KEY (`kecamatan_id`) REFERENCES `kecamatans` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
