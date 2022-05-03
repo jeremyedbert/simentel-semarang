@@ -41,7 +41,7 @@
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
                         <li><a class="dropdown-item" href="/user/peta-makro">Peta Menara Makro</a></li>
-                        <li><a class="dropdown-item" href="/user/peta-microcell">Peta Microcell</a>
+                        <li><a class="dropdown-item" href="/user/peta-microcell">Peta Menara Mikro</a>
                         </li>
                     </ul>
                 </li>
@@ -51,7 +51,7 @@
                         <a class="nav-link dropdown-toggle" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Halo, {{ auth()->user()->name }}<i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">
-                            <li><a class="dropdown-item" href="/user/cekstatus">Cek Status Permohonan</a></li>
+                            <li><a class="dropdown-item" href="/user/riwayat">Riwayat Permohonan</a></li>
                             <li><a class="dropdown-item" href="/user/edit">Edit Profil</a></li>
                             <li>
                                 <form action="/user/logout" method="post">

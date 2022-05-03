@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Storage;
 use Storage;
 
-class CekStatusController extends Controller
+class RiwayatController extends Controller
 {
   
     /**
@@ -24,7 +24,7 @@ class CekStatusController extends Controller
     public function index()
     {
         //
-        return view('user.cek-status', [
+        return view('user.riwayat', [
           'data' => Pendaftaran::where('user_id','=',auth()->user()->id)
                                   ->orderBy('status_id')
                                   ->orderBy('created_at', 'desc')
@@ -101,7 +101,7 @@ class CekStatusController extends Controller
                   );
           // return dd($pendaftaran);
         }else{
-          return redirect("/user/cekstatus/$pendaftaran->id");
+          return redirect("/user/riwayat/$pendaftaran->id");
         }
         
     }
@@ -196,7 +196,7 @@ class CekStatusController extends Controller
       Tower::where('id', $pendaftaran->tower->id)
           ->update($validatedTower);
 
-      return redirect('/user/cekstatus')->with('success', 'Data ' . $pendaftaran->id . ' berhasil diupdate');
+      return redirect('/user/riwayat')->with('success', 'Data ' . $pendaftaran->id . ' berhasil diupdate');
     }
 
     /**

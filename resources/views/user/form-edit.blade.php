@@ -296,7 +296,13 @@
             @endif
             <h2 class="title-color mb-2">Edit Pendaftaran Menara</h2>
             <div class="divider mb-4"></div>
-            <form method="POST" action="/user/cekstatus/{{ $data->id }}/update" enctype="multipart/form-data">
+            <h6 class="mb-3">
+              <a href="/user/riwayat/{{ $data->id }}">
+                  <i class="icofont-simple-left"></i>
+                  <i>Kembali ke halaman Detail Permohonan</i>
+              </a>
+          </h6>
+            <form method="POST" action="/user/riwayat/{{ $data->id }}/update" enctype="multipart/form-data">
                 @csrf
                 {{-- @method('PUT') --}}
                 <div class="col mb-5">
