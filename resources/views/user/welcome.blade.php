@@ -115,16 +115,16 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="about-content pl-4 mt-4 mt-lg-0">
-                        <h2 class="title-color">Persebaran Lokasi Menara & Microcell</h2>
-                        <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang.
-                            Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
+                        <h2 class="title-color">Persebaran Lokasi Menara Makro & Mikro</h2>
+                        <p class="mt-3 mb-4">Temukan lokasi menara makro dan menara mikro di Kota Semarang.
+                            Anda juga dapat melihat radius zona yang diperbolehkan untuk pendirian menara.
                         </p>
                         <a href="/user/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
-                            Lihat Peta Menara
+                            Lihat Peta Menara Makro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
                         <a href="/user/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
-                            Lihat Peta Microcell
+                            Lihat Peta Menara Mikro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
                     </div>
@@ -140,14 +140,14 @@
                         <div class="counter-stat">
                             <i class="icofont-network-tower"></i>
                             <span class="h3 counter" data-count="{{ $macro }}">0</span>
-                            <p>Menara Utama</p>
+                            <p>Menara Makro</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
                             <i class="icofont-network-tower"></i>
                             <span class="h3 counter" data-count="{{ $micro }}">0</span>
-                            <p>Menara Microcell</p>
+                            <p>Menara Mikro</p>
                         </div>
                     </div>
                     {{-- <div class="col-lg-4 col-md-12 col-sm-12">
@@ -175,20 +175,20 @@
                 </div>
                 <div class="col-lg-6 col-md-10 ">
                     <div class="appoinment-wrap mt-5 mt-lg-0">
-                        <h2 class="mb-4 title-color">Pengajuan Izin dan Pendaftaran Menara/Microcell</h2>
-                        <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara/microcell
+                        <h2 class="mb-4 title-color">Pengajuan Izin dan Pendaftaran Menara Makro atau Mikro</h2>
+                        <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara
                             menjadi lebih mudah. Cukup ikuti beberapa langkah berikut.</p>
                         <ol class="mb-4">
-                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau <a
-                                    href="{{ route('user.register') }}"><b>buat akun</b></a> terlebih dahulu bila belum
-                                memilikinya. Pastikan email yang Anda masukkan sudah sesuai</li>
-                            <li>Verifikasi email Anda</li>
-                            <li>Pilih tab <a href="{{ route('user.') }}"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda
-                                dapat mengisi detail menara,
-                                menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung</li>
-                            <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan
-                            </li>
-                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di menu Cek Status Permohonan</li>
+                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau 
+                              <a href="{{ route('user.register') }}"><b>buat akun</b></a> terlebih dahulu bila belum
+                                memilikinya. Pastikan email dan nomor telepon yang Anda masukkan sudah benar.</li>
+                            {{-- <li>Verifikasi email Anda</li> --}}
+                            <li>Pilih tab <a href="{{ route('user.daftar-menara') }}"><b>Pendaftaran</b></a>, 
+                                lalu isi formulir. Anda dapat mengisi detail menara,
+                                menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung.</li>
+                            <li>Klik Ajukan Izin/Pendaftaran, kami akan segera melakukan tinjauan lokasi 
+                              dan kelayakan.</li>
+                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di menu Riwayat Permohonan</li>
                             {{-- <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li> --}}
                         </ol>
                         {{-- <form id="#" class="appoinment-form" method="post" action="#">
