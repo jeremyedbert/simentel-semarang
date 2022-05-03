@@ -222,7 +222,7 @@
                     Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
                 </div>
             @endif
-            <h2 class="title-color mb-2">Peta Microcell</h2>
+            <h2 class="title-color mb-2">Peta Menara Mikro</h2>
             <div class="divider mb-4"></div>
             <div class="col">
 
@@ -276,7 +276,7 @@
                 <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
                     <div class="row d-flex justify-content-between">
                         <div class="col-md-4">
-                            <h3 class="title-color mb-0">List Microcell</h3>
+                            <h3 class="title-color mb-0">List Menara Mikro</h3>
                             <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
                         </div>
                         {{-- <div class="col-md-4">

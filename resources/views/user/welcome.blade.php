@@ -188,7 +188,7 @@
                                 menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung.</li>
                             <li>Klik Ajukan Izin/Pendaftaran, kami akan segera melakukan tinjauan lokasi 
                               dan kelayakan.</li>
-                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di menu Riwayat Permohonan</li>
+                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di halaman <a href="user/riwayat"><b>Riwayat Permohonan</b></a>.</li>
                             {{-- <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li> --}}
                         </ol>
                         {{-- <form id="#" class="appoinment-form" method="post" action="#">
