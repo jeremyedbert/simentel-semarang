@@ -20,11 +20,12 @@
                                         <h5 class="card-title">Pilih tanggal disetujui</h5>
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>Dari tanggal</label>
+                                                <div class="form-group @error('datepicker') has-error @enderror">
+                                                    <label>Dari tanggal (format: mm/dd/yyyy)</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="datepicker"
-                                                            name="datepicker">
+                                                            name="datepicker" autocomplete="off"
+                                                            value='{{ old('datepicker') }}'>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">
                                                                 <i class="fa fa-calendar"></i>
@@ -32,6 +33,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <span class="text-danger">
+                                                    @error('datepicker')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
                                             </div>
                                             <div class="col-md-2 justify-content-center d-flex align-items-center">
                                                 <div>
@@ -39,11 +45,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>Sampai tanggal</label>
+                                                <div class="form-group @error('datepicker2') has-error @enderror">
+                                                    <label>Sampai tanggal (format: mm/dd/yyyy)</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="datepicker2"
-                                                            name="datepicker2">
+                                                            name="datepicker2" autocomplete="off"
+                                                            value='{{ old('datepicker2') }}'>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">
                                                                 <i class="fa fa-calendar"></i>
@@ -51,6 +58,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <span class="text-danger">
+                                                    @error('datepicker2')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -58,17 +70,31 @@
                                         <h5 class="card-title">Pilih kecamatan</h5>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-check">
-                                                    @foreach ($kecamatan as $k)
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                name="daftar[]" id="customCheck{{ $k->id }}"
-                                                                value="{{ $k->id }}" 
-                                                                {{ (is_array(old('daftar')) && in_array($k->id, old('daftar'))) ? 'checked' : '' }}>
-                                                            <label class="custom-control-label"
-                                                                for="customCheck{{ $k->id }}">{{ $k->name }}</label>
-                                                        </div>
-                                                    @endforeach
+                                                <div class="form-check d-flex">
+                                                    <div class="col-md-6">
+                                                        @for ($i = 0; $i < 8; $i++)
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    name="daftar[]" id="customCheck{{ $i+1 }}"
+                                                                    value="{{ $i+1 }}"
+                                                                    {{ is_array(old('daftar')) && in_array($i+1, old('daftar')) ? 'checked' : '' }}>
+                                                                <label class="custom-control-label"
+                                                                    for="customCheck{{ $i+1 }}">{{ $kecamatan[$i]->name }}</label>
+                                                            </div><br>
+                                                        @endfor
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        @for ($i = 8; $i < 16; $i++)
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    name="daftar[]" id="customCheck{{ $i+1 }}"
+                                                                    value="{{ $i+1 }}"
+                                                                    {{ is_array(old('daftar')) && in_array($i+1, old('daftar')) ? 'checked' : '' }}>
+                                                                <label class="custom-control-label"
+                                                                    for="customCheck{{ $i+1 }}">{{ $kecamatan[$i]->name }}</label>
+                                                            </div><br>
+                                                        @endfor
+                                                    </div>
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('daftar')
@@ -83,12 +109,14 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group @error('tipeMenara') has-error @enderror">
-                                                    <select class="form-control input-square" id="squareSelect" name="tipeMenara">
+                                                    <select class="form-control input-square" id="squareSelect"
+                                                        name="tipeMenara">
                                                         <option value=""> -- Pilih tipe menara -- </option>
-                                                        <option value="0">Semua tipe</option>
+                                                        <option value="5" {{ old('tipeMenara') == 5 ? 'selected' : '' }}>Semua tipe</option>
                                                         @foreach ($tipeMenara as $t)
-                                                            <option value="{{ $t->id }}" 
-                                                                {{ old('tipeMenara') == $t->id ? 'selected' : '' }}>{{ $t->name }}</option>
+                                                            <option value="{{ $t->id }}"
+                                                                {{ old('tipeMenara') == $t->id ? 'selected' : '' }}>
+                                                                {{ $t->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -109,7 +137,6 @@
                                         </span>
                                         Download
                                     </button>
-                                    <a href="/admin/cetak/exportTower" class="btn btn-link">Test</a>
                                 </div>
                             </form>
                         </div>
@@ -125,11 +152,11 @@
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'mm/dd/yyyy',
             });
 
             $('#datepicker2').datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'mm/dd/yyyy',
             });
         })
     </script>
