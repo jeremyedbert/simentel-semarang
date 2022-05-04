@@ -126,7 +126,7 @@ class FormController extends Controller
     if ($storeTower && $storePendaftaran && $storeNotifikasi) {
       return redirect(route('user.daftar-menara'))
         ->with('success', 'Pengajuan pendaftaran/izin menara berhasil. Silakan tunggu persetujuan dari kami. 
-        Anda dapat melihat status pendaftaran di halaman <a href="/user/cekstatus"><b>Cek Status Permohonan</b></a>');
+        Anda dapat melihat status pendaftaran di halaman <a href="/user/riwayat"><b>Riwayat Permohonan</b></a>');
     } else {
       return redirect()->back()->with('error', 'Terjadi kesalahan. Silakan ulangi lagi.');
     }

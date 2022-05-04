@@ -14,7 +14,7 @@ use App\Http\Controllers\DashboardPetaMicroController;
 use App\Http\Controllers\DashboardListController;
 use App\Http\Controllers\DashboardZoneController;
 use App\Http\Controllers\DashboardRiwayatController;
-use App\Http\Controllers\CekStatusController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\NotifikasiController;
@@ -62,11 +62,8 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
             Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             
-            // Route::get('/cekstatus', [CekStatusController::class, 'index'])->name('cekstatus');
-            // Route::get('/cekstatus/{pendaftaran}', [CekStatusController::class, 'show'])->name('cekstatus/{pendaftaran}');
-            Route::post('/cekstatus/{pendaftaran}/update', [CekStatusController::class, 'update'])->name('cekstatus/{pendaftaran}/update');
-            
-            Route::resource('/cekstatus', CekStatusController::class, ['parameters' => ['cekstatus' => 'pendaftaran']]);
+            Route::post('/riwayat/{pendaftaran}/update', [RiwayatController::class, 'update'])->name('riwayat/{pendaftaran}/update');
+            Route::resource('/riwayat', RiwayatController::class, ['parameters' => ['riwayat' => 'pendaftaran']]);
         });
         Route::post('/logout', [UserController::class, 'logout']);
         // Edit Profil User

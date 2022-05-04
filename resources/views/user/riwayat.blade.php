@@ -51,7 +51,7 @@
         </div>
         <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
             <div class="col-lg-11 pl-lg-0">
-              <h2 class="title-color mb-2">Status Permohonan</h2>
+              <h2 class="title-color mb-2">Riwayat Permohonan</h2>
               <div class="divider mb-4"></div>
               @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -94,7 +94,7 @@
                           <span>{{ $d->tower->kelurahan->name }},&nbsp;</span>
                           <span>{{ $d->tower->kecamatan->name }}</span>
                         </div>
-                        <a href="/user/cekstatus/{{ $d->id }}" class="mx-3">
+                        <a href="/user/riwayat/{{ $d->id }}" class="mx-3">
                           <b><i>Detail</i></b>
                           <i class="icofont-simple-right "></i>
                         </a>

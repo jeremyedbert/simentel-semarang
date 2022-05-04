@@ -124,9 +124,9 @@
                     <h2 class="title-color mb-2">Detail Permohonan</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
-                        <a href="/user/cekstatus">
+                        <a href="/user/riwayat">
                             <i class="icofont-simple-left"></i>
-                            <i>Kembali ke halaman Status Permohonan</i>
+                            <i>Kembali ke halaman Riwayat Permohonan</i>
                         </a>
                     </h6>
 
@@ -300,7 +300,7 @@
                             <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
                               Batalkan
                             </a>
-                            <a href="/user/cekstatus/{{ $data->id }}/edit" 
+                            <a href="/user/riwayat/{{ $data->id }}/edit" 
                               class="col-lg-3 btn btn-solid-border btn-round-full mt-1 mx-1 mx-md-2">
                               Edit
                             </a>
