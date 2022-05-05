@@ -159,12 +159,18 @@
                                     @elseif ($data->status->id === 2)
                                         <p style="color: black" class="mb-2"><i>Permohonan izin menara Anda telah
                                                 disetujui pada
-                                                <b>{{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}</b>.</i>
+                                                <b>{{ $data->updated_at->translatedFormat('d F Y') }}</b>
+                                                pukul
+                                                <b>{{ $data->updated_at->translatedFormat('h.m') }}</b>
+                                                </i>
                                         </p>
                                     @else
                                         <p style="color: black" class="mb-2"><i>Maaf, permohonan izin menara Anda
                                                 ditolak pada
-                                                <b>{{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}</b>.</i>
+                                                <b>{{ $data->updated_at->translatedFormat('d F Y') }}</b>
+                                                pukul
+                                                <b>{{ $data->updated_at->translatedFormat('h.m') }}</b>
+                                                </i>
                                         </p>
                                     @endif
 
@@ -175,7 +181,8 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
                                     Tanggal Pengajuan
-                                    <h6>{{ ltrim($data->created_at->translatedFormat('d F Y'), '0') }}</h6>
+                                    {{-- <h6>{{ ltrim($data->created_at->translatedFormat('d F Y'), '0') }}</h6> --}}
+                                    <h6>{{ $data->created_at->translatedFormat('d F Y, h.m') }}</h6>
                                 </div>
                             </div>
 
@@ -297,14 +304,71 @@
                       </div>
                       @if ($data->status->id === 1)
                         <div class="d-flex justify-content-lg-end">
-                            <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
+                            {{-- <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
                               Batalkan
-                            </a>
+                            </a> --}}
+                            <button type="button" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2"
+                              data-toggle="modal" data-target="#modalBatalkan">
+                              Batalkan
+                            </button>
                             <a href="/user/riwayat/{{ $data->id }}/edit" 
                               class="col-lg-3 btn btn-solid-border btn-round-full mt-1 mx-1 mx-md-2">
                               Edit
                             </a>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalBatalkan" 
+                          tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pembatalan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Pembatalan akan menghapus permohonan. 
+                                Apakah Anda yakin akan membatalkan permohonan izin menara? 
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-round-full btn-transparent" data-dismiss="modal">Kembali</button>
+                                <form action="/user/riwayat/{{ $data->id }}/destroy" method="post">
+                                  {{-- @method('delete') --}}
+                                  @csrf
+                                  <button class="btn btn-round-full btn-solid-border-2">
+                                    Ya, batalkan
+                                  </button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Modal -->
+                        {{-- <div class="modal fade" id="modalBatalkan" data-backdrop="static" 
+                          data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Pembatalan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Pembatalan akan menghapus permohonan. 
+                                Apakah Anda yakin akan membatalkan permohonan izin menara? 
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                <button type="button" class="btn btn-primary">Ya, batalkan</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div> --}}
                       @endif
                     </div>
                 </div>

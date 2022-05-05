@@ -36,7 +36,7 @@
 
 
                 <li
-                    class="nav-item dropdown {{ (Request::is('user/peta-menara*') || Request::is('user/peta-microcell*')) ? 'active' : '' }}">
+                    class="nav-item dropdown {{ (Request::is('user/peta-makro*') || Request::is('user/peta-microcell*')) ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
@@ -47,7 +47,7 @@
                 </li>
 
                 @auth
-                    <li class="nav-item dropdown {{ Request::is('user/cekstatus*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ (Request::is('user/riwayat*') || Request::is('user/edit')) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Halo, {{ auth()->user()->name }}<i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownuser">

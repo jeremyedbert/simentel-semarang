@@ -196,7 +196,7 @@ class RiwayatController extends Controller
       Tower::where('id', $pendaftaran->tower->id)
           ->update($validatedTower);
 
-      return redirect('/user/riwayat')->with('success', 'Data ' . $pendaftaran->id . ' berhasil diupdate');
+      return redirect('/user/riwayat')->with('success', 'Permohonan dengan ID ' . $pendaftaran->id . ' berhasil diedit');
     }
 
     /**
@@ -208,5 +208,10 @@ class RiwayatController extends Controller
     public function destroy(Pendaftaran $pendaftaran)
     {
         //
+        $deletedTower = DB::table('towers')->where('id', $pendaftaran->tower->id);
+        $deletedTower->delete();
+        Storage::delete('documents/'.$pendaftaran->document);
+        Pendaftaran::destroy($pendaftaran->id);
+        return redirect('/user/riwayat')->with('success', 'Permohonan dengan ID ' . $pendaftaran->id . ' berhasil dibatalkan');
     }
 }
