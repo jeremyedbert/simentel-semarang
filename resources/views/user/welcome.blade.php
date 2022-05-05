@@ -29,7 +29,7 @@
                         {{-- <p class="mb-4 pr-5">Tentukan lokasi. Daftar. Selesai.</p> --}}
                         <div class="btn-container ">
                             {{-- <div class="mb-2"> --}}
-                            <a href="/user/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
+                            <a href="/user/peta-makro" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
                                 Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
                             </a>
                             {{-- </div>
@@ -119,7 +119,7 @@
                         <p class="mt-3 mb-4">Temukan lokasi menara makro dan menara mikro di Kota Semarang.
                             Anda juga dapat melihat radius zona yang diperbolehkan untuk pendirian menara.
                         </p>
-                        <a href="/user/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/user/peta-makro" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Menara Makro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>

@@ -173,7 +173,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 
 .btn-transparent {
   background: transparent;
-  color: #222;
+  color: #6F8BA4;
   border-color: #6F8BA4;
 }
 .btn-transparent:hover {
