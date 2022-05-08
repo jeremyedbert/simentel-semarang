@@ -80,23 +80,31 @@
 
             let infowindow = new google.maps.InfoWindow();
 
+            //google.map.showZones();
             // Add the circle zone for zones to the map.
+            
+
             for (zone in zones) {
                 zone = zones[zone];
-                let zoneCircle = new google.maps.Circle({
+                let buildCircle = {
                     strokeColor: "#8AE2E5",
                     strokeOpacity: 0.8,
                     strokeWeight: 1,
                     fillColor: "#8AE2E5",
                     fillOpacity: 0.5,
-                    map,
+                    map: map,
                     center: new google.maps.LatLng(zone.latitude, zone.longitude),
                     radius: zone.radius,
-                });
-                google.maps.event.addListener(zoneCircle, 'click', (function(zone, ev) {
+                    visible: true
+                };
+
+                zoneCircle = new google.maps.Circle(buildCircle);
+                showHideZone(map, zoneCircle);
+
+                //show zone infowindow
+                google.maps.event.addListener(zoneCircle, 'click', (function(zone) {
                     return function() {
                         infowindow.setPosition(new google.maps.LatLng(zone.latitude, zone.longitude));
-                        // infowindow.setPosition(ev.latLng);
                         infowindow.setContent(infoRadius(zone));
                         infowindow.open(map);
                     }
@@ -106,24 +114,60 @@
             for (tower in towers) {
                 tower = towers[tower];
                 if (tower.latitude && tower.longitude) {
-                    let marker = new google.maps.Marker({
+                    let buildMarker = {
                         position: new google.maps.LatLng(tower.latitude, tower.longitude),
                         icon: svgMark,
                         map: map,
-                        title: "Klik untuk detail"
-                    });
+                        title: "Klik untuk detail",
+                        // visible: true
+                    };
 
-                    // InfoWindow
-                    google.maps.event.addListener(marker, 'click', (function(marker, tower) {
+                    towerMarker = new google.maps.Marker(buildMarker);
+                    showHideTower(map, towerMarker)
+
+                    //show tower Infowindow
+                    google.maps.event.addListener(towerMarker, 'click', (function(marker, tower) {
                         return function() {
                             infowindow.setContent(theContent(marker, tower))
                             infowindow.open(map, marker);
                         }
-                    })(marker, tower));
+                    })(towerMarker, tower));
                 }
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
+        }
+
+        function showHideZone(map, zone){
+
+          document.getElementById("checkboxZone").addEventListener("change", function(){
+            if(this.checked){
+              zone.setOptions({
+                visible: true
+              });
+            }else{
+              zone.setOptions({
+                visible: false
+              });
+            }
+          });
+          
+        }
+
+        function showHideTower(map, tower){
+
+          document.getElementById("checkboxTower").addEventListener("change", function(){
+            if(this.checked){
+              tower.setOptions({
+                visible: true
+              });
+            }else{
+              tower.setOptions({
+                visible: false
+              });
+            }
+          });
+
         }
 
         function infoRadius(zone) {
@@ -249,6 +293,7 @@
             }
         }
     </script>
+    
     <style>
         p {
             margin-top: 0;
@@ -274,11 +319,11 @@
     </style>
     <section class="mt-4">
         <div class="container">
-            @if (session('resent'))
+            {{-- @if (session('resent'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
                 </div>
-            @endif
+            @endif --}}
             <h2 class="title-color mb-2">Peta Menara Makro</h2>
             <div class="divider mb-4"></div>
             <div class="col">
@@ -321,6 +366,17 @@
                             <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
                         </div> --}}
                     </div>
+                </form>
+
+                <form class="row pl-3">
+                  <div class="form-group form-check mr-3">
+                    <input type="checkbox" class="form-check-input" id="checkboxTower" checked>
+                    <label class="form-check-label" for="checkboxMenara">Tampilkan menara</label>
+                  </div>
+                  <div class="form-group form-check mr-3">
+                    <input type="checkbox" class="form-check-input" id="checkboxZone" checked>
+                    <label class="form-check-label" for="checkboxZone">Tampilkan zona</label>
+                  </div>
                 </form>
 
                 <div class="form-group">
@@ -378,6 +434,7 @@
 
         </div>
     </section>
+    
     <script>
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
