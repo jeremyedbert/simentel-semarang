@@ -62,8 +62,9 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
             Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             
-            Route::post('/riwayat/{pendaftaran}/update', [RiwayatController::class, 'update'])->name('riwayat/{pendaftaran}/update');
             Route::resource('/riwayat', RiwayatController::class, ['parameters' => ['riwayat' => 'pendaftaran']]);
+            Route::post('/riwayat/{pendaftaran}/update', [RiwayatController::class, 'update'])->name('riwayat/{pendaftaran}/update');
+            Route::post('/riwayat/{pendaftaran}/destroy', [RiwayatController::class, 'destroy'])->name('riwayat/{pendaftaran}/destroy');
         });
         Route::post('/logout', [UserController::class, 'logout']);
         // Edit Profil User
