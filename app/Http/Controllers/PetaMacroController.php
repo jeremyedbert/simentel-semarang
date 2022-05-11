@@ -9,6 +9,7 @@ use App\Models\TipeSite;
 use App\Models\User;
 use App\Models\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PetaMacroController extends Controller
 {
@@ -19,18 +20,31 @@ class PetaMacroController extends Controller
      */
     public function index()
     {
-        // scopeSearching()
-      $towerMakro = Tower::where('tipe_menara_id', '=', 1)->whereNotNull('acc_date')->searching()->get();
-      $kecamatan = Kecamatan::all()->pluck('name', 'id');
-      $kelurahan = Kelurahan::all()->pluck('name', 'id');
-      $tipesite = TipeSite::all()->pluck('name', 'id');
+        //
 
-      $zones = Zone::all();
-    //   return response()->json($zones);
-    //   return dd(compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'));
-    //   return dd($zones);
+        $towerMakro = Tower::
+                    where('tipe_menara_id', 1)  
+                        // $query->where('kecamatan_id', $request->kecamatan_id);
+                        // $query->where('kelurahan_id', $request->kelurahan_id); 
+                    ->whereNotNull('acc_date')
+                    ->filter(request(['kecamatan_id','kelurahan_id']))
+                    ->get();
+        
+        $kecamatan = DB::table('kecamatans')->pluck("name", "id");
+        $kelurahan = DB::table('kelurahans')->pluck("name", "id");
+        $tipesite = TipeSite::all()->pluck('name', 'id');
+        $zones = Zone::all();
+  
+        return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
       
-      return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
+    }
+
+    public function getKelurahan(Request $request)
+    {
+      $kelurahan = DB::table('kelurahans')
+        ->where("kecamatan_id", $request->kecamatan_id)
+        ->pluck("name", "id");
+      return response()->json($kelurahan);
     }
 
     /**
