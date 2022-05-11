@@ -45,7 +45,7 @@
                 map: map,
             });
 
-            document.getElementById("submit").addEventListener("click", () => {
+            document.getElementById("cariPosisi").addEventListener("click", () => {
                 // searchPos(map);
                 const lat = document.getElementById("lat").value;
                 const lng = document.getElementById("lng").value;
@@ -287,9 +287,9 @@
 
         function keySuccess() {
             if ((document.getElementById('lat').value === "") || (document.getElementById('lng').value === "")) {
-                document.getElementById('submit').disabled = true;
+                document.getElementById('cariPosisi').disabled = true;
             } else {
-                document.getElementById('submit').disabled = false;
+                document.getElementById('cariPosisi').disabled = false;
             }
         }
     </script>
@@ -328,7 +328,7 @@
             <div class="divider mb-4"></div>
             <div class="col">
 
-                <form id="#" method="post" action="#">
+                <form id="formCariPosisi" method="" action="#">
                     <div class="row">
                         <div class="col-md-4">
                             <p>Latitude</p>
@@ -343,14 +343,14 @@
                             </div>
                         </div>
                         <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-3"
+                            <input type="button" id="cariPosisi" class="btn btn-main btn-icon btn-round-full mb-3"
                                 value="Cari Posisi" />
                         </div>
                     </div>
                 </form>
 
-                <form action="/user/peta-makro">
-                    <div class="row mb-4">
+                <form id="formCariID" action="/user/peta-makro">
+                    <div class="row">
                         <div class="col-md-4">
                             <p>ID Menara</p>
                             <div class="form-group mb-0">
@@ -366,6 +366,38 @@
                             <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
                         </div> --}}
                     </div>
+                </form>
+
+                <form id="formCariKecKel" method="get" action="/user/peta-makro" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <p>Kecamatan</p>
+                      <select class="form-control" name="kecamatan_id" id="kecamatan" data-dependent="kelurahan">
+                          <option value=""> -- Semua kecamatan -- </option>
+                          @foreach ($kecamatan as $key => $kec)
+                              <option value="{{ $key }}" {{ request('kecamatan_id') == $key ? 'selected' : '' }}>
+                                  {{ $kec }}
+                              </option>
+                          @endforeach
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <p>Kelurahan</p>
+                      <select class="form-control" name="kelurahan_id" id="kelurahan">
+                          <option value=""> -- Semua kelurahan -- </option>
+                          @foreach ($kelurahan->where('kecamatan_id','=', request('kecamatan_id')) as $key => $kel)
+                              <option value="{{ $key }}" {{ request('kelurahan_id') == $key ? 'selected' : '' }}> 
+                                  {{ $kel }}
+                              </option>
+                          @endforeach
+                      </select>
+                    </div>
+
+                    <div class="col-md-2 align-self-end">
+                      <button type="submit" id="cariKecKel" class="btn btn-main btn-icon btn-round-full mb-3">Cari</button>
+                    </div>
+                  </div>
                 </form>
 
                 <form class="row pl-3">
@@ -442,6 +474,66 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          if($('#kecamatan').val() == ""){
+            $('#kelurahan').empty();
+            $('#kelurahan').append('<option value=""> -- Semua kelurahan -- </option>');
+          }else{
+            var kecamatan_id = $('#kecamatan').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" + kecamatan_id,
+                success: function(res) {
+                    if (res) {
+                        $('#kelurahan').empty();
+                        $('#kelurahan').append(
+                            '<option value=""> -- Semua kelurahan -- </option>');
+                        $.each(res, function(key, value) {
+                            // $('#kelurahan').append('<option value="' + key +
+                            //     '">' + value + '</option>');
+                            $('#kelurahan').append('<option value="' + key +
+                                '" {{ request('kelurahan_id') == ' + key + ' ? 'selected' : '' }}>' +
+                                value + '</option>');
+                        });
+                    } else {
+                        $('#kelurahan').empty();
+                    }
+                }
+            });
+          }
+          $('#kecamatan').change(function() {
+              var kecamatan_id = $(this).val();
+              if (kecamatan_id) {
+                  $.ajax({
+                      type: "GET",
+                      url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" + kecamatan_id,
+                      success: function(res) {
+                          if (res) {
+                              $('#kelurahan').empty();
+                              $('#kelurahan').append(
+                                  '<option value=""> -- Semua kelurahan -- </option>');
+                              $.each(res, function(key, value) {
+                                  // $('#kelurahan').append('<option value="' + key +
+                                  //     '">' + value + '</option>');
+                                  $('#kelurahan').append('<option value="' + key +
+                                      '" {{ request('kelurahan_id') == ' + key + ' ? 'selected' : '' }}>' +
+                                      value + '</option>');
+                              });
+                          } else {
+                              $('#kelurahan').empty();
+                          }
+                      }
+                  });
+              } else {
+                  $('#kelurahan').empty();
+                  $('#kelurahan').append('<option value=""> -- Semua kelurahan -- </option>');
+              }
+          });
+      });
+    </script>
+
     {{-- <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
       async

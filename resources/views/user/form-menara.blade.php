@@ -534,8 +534,7 @@
                 if (kecamatan_id) {
                     $.ajax({
                         type: "GET",
-                        url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" +
-                            kecamatan_id,
+                        url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" + kecamatan_id,
                         success: function(res) {
                             if (res) {
                                 $('#kelurahan').empty();
@@ -555,6 +554,7 @@
                     });
                 } else {
                     $('#kelurahan').empty();
+                    $('#kelurahan').append('<option value=""> -- Pilih kelurahan -- </option>');
                 }
             });
         });
