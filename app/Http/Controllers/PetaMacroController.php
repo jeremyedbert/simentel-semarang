@@ -27,8 +27,21 @@ class PetaMacroController extends Controller
                         // $query->where('kecamatan_id', $request->kecamatan_id);
                         // $query->where('kelurahan_id', $request->kelurahan_id); 
                     ->whereNotNull('acc_date')
+                    ->searching()
                     ->filter(request(['kecamatan_id','kelurahan_id']))
                     ->get();
+
+        $tabelMakro = Tower::
+                    where('tipe_menara_id', 1)  
+                        // $query->where('kecamatan_id', $request->kecamatan_id);
+                        // $query->where('kelurahan_id', $request->kelurahan_id); 
+                    ->whereNotNull('acc_date')
+                    ->searching()
+                    ->filter(request(['kecamatan_id','kelurahan_id']))
+                    ->paginate(30)
+                    ->withQueryString();
+                    // ->get();
+        
         
         $kecamatan = DB::table('kecamatans')->pluck("name", "id");
         $kelurahan = DB::table('kelurahans')->pluck("name", "id");
@@ -36,7 +49,7 @@ class PetaMacroController extends Controller
         // $zones = Zone::all();
         $zones = Zone::filter(request(['kecamatan_id']))->get();
   
-        return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
+        return view('user.peta-menara', compact('towerMakro', 'tabelMakro','kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
       
     }
 
