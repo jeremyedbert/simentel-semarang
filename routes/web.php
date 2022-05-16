@@ -41,8 +41,12 @@ Auth::routes(['verify' => true]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
-    Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
-    Route::get('/peta-makro/getKelurahan', [PetaMacroController::class, 'getKelurahan'])->name('peta-makro.getKelurahan');
+    // Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
+    Route::get('/peta-makro', [PetaMacroController::class, 'index'])->name('peta-makro');
+    Route::get('/peta-makro/{tower}', [PetaMacroController::class, 'show'])->name('peta-makro.show');
+    Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
+    // Route::get('/peta-makro/getKelurahan', [PetaMacroController::class, 'getKelurahan'])->name('peta-makro.getKelurahan');
+
     // Route::get('/peta-makro/filter', [PetaMacroController::class, 'filter'])->name('peta-makro.filter');
     Route::resource('/peta-microcell', PetaMicroController::class, ['parameters' => ['peta-microcell' => 'tower']]);
     //Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
@@ -59,7 +63,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::middleware('verified')->group(function (){
             Route::get('/daftar-menara', [FormController::class, 'index'])->name('daftar-menara');
             // Route::resource('/daftar-menara', FormController::class, ['parameters' => ['daftar-menara' => 'pendaftaran']]);
-            Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
+            // Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
             // Route::post('daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
             Route::post('/daftar-menara/upload', [FormController::class, 'upload'])->name('daftar-menara.upload');
             Route::post('/daftar-menara/store', [FormController::class, 'store'])->name('daftar-menara.store');
