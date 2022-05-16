@@ -42,6 +42,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
     Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
+    Route::get('/peta-makro/getKelurahan', [PetaMacroController::class, 'getKelurahan'])->name('peta-makro.getKelurahan');
+    // Route::get('/peta-makro/filter', [PetaMacroController::class, 'filter'])->name('peta-makro.filter');
     Route::resource('/peta-microcell', PetaMicroController::class, ['parameters' => ['peta-microcell' => 'tower']]);
     //Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
     // Guest User

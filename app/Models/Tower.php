@@ -41,6 +41,25 @@ class Tower extends Model
 		}
 	}
 
+  public function scopeFilter($query, array $filters)
+	{
+		// if (isset($filters['kecamatan_id']) ? $filters['kecamatan_id'] : false) {
+		// 	return $query->where('kecamatan_id', '=', $filters['kecamatan_id']);
+		// }
+
+    $query->when($filters['kecamatan_id'] ?? false, function($query, $kecamatan_id){
+      return $query->where(function($query) use ($kecamatan_id){
+        $query->where('kecamatan_id', '=', $kecamatan_id);
+      });
+    });
+
+    $query->when($filters['kelurahan_id'] ?? false, function($query, $kelurahan_id){
+      return $query->where(function($query) use ($kelurahan_id){
+        $query->where('kelurahan_id', '=', $kelurahan_id);
+      });
+    });
+	}
+
 	public function pendaftaran()
 	{
 		return $this->hasOne(Pendaftaran::class, 'tower_id');
