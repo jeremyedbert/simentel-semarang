@@ -2,152 +2,6 @@
 @section('content')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}">
     </script>
-    {{-- <script>
-        let map;
-
-        function initialize() {
-            // Initialize json object from tower
-            let towers = @json($tower);
-
-            // Vector Icon Marker
-            const svgMark = {
-                url: "{{ url('/images/tower_marker.svg') }}",
-                scaledSize: new google.maps.Size(40, 40), // scaled size
-            };
-
-            // Make a new map
-            map = new google.maps.Map(document.getElementById("map_canvas"), {
-                zoom: 13,
-                center: new google.maps.LatLng(-6.977, 110.416664),
-            });
-
-            document.getElementById("submit").addEventListener("click", () => {
-                searchPos(map);
-                // setSam();
-            });
-
-            // Initialize InfoWindow
-            let infowindow = new google.maps.InfoWindow();
-
-            for (tower in towers) {
-                tower = towers[tower];
-                if (tower.latitude && tower.longitude) {
-                    let marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(tower.latitude, tower.longitude),
-                        icon: svgMark,
-                        map: map,
-                        title: "Klik untuk detail"
-                    });
-
-                    // InfoWindow
-                    google.maps.event.addListener(marker, 'click', (function(marker, tower) {
-                        return function() {
-                            infowindow.setContent(theContent(marker, tower))
-                            infowindow.open(map, marker);
-                        }
-                    })(marker, tower));
-                }
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
-
-            // You can use a LatLng literal in place of a google.maps.LatLng object when
-            // creating the Marker object. Once the Marker object is instantiated, its
-            // position will be available as a google.maps.LatLng object. In this case,
-            // we retrieve the marker's position using the
-            // google.maps.LatLng.getPosition() method.
-
-            document
-                .getElementById("delete")
-                .addEventListener("click", deleteMarkers);
-
-        }
-
-        function theContent(marker, tower) {
-            let kelurahan = @json($kelurahan);
-            let kecamatan = @json($kecamatan);
-            let tipesite = @json($tipesite);
-            let i = tower.kelurahan_id; // indeks kelurahan
-            let j = tower.kecamatan_id; // indeks kecamatan
-            let k = tower.tipe_site_id;
-
-            let content =
-                `
-            <style>
-            .bor{
-                border-bottom: 1px solid #aaaaaa
-            }
-            </style>
-            <div class="mx-1">
-                <div class="bor text-center"><b>
-                    <a href="/admin/menara/{{ $routes === 'macro' ? 'makro' : 'mikro' }}/` + tower.id +
-                `" style="text-decoration:none;">` + tower
-                .idMenara + `</a></b>
-                </div>
-                <div class="mt-2">
-                    Pemilik: ` + tower.pemilik +
-                `</div>
-                <div>
-                    Koordinat: ` + marker.getPosition() + `
-                </div>
-                <div>
-                    Tinggi: ` + tower.tinggi + ` meter
-                </div>
-                <div>
-                    Posisi: Kelurahan ` + kelurahan[i] + `, Kecamatan ` + kecamatan[j] + `
-                </div>
-                <div>
-                    Tipe Site: ` + tipesite[k] + `
-                </div>
-            </div>`;
-            return content
-        }
-
-        // array of markers
-        let markers = [];
-
-        function searchPos(map) {
-            const lat = document.getElementById("lat").value;
-            const lng = document.getElementById("lng").value;
-            // const latlngStr = input.split(",", 2);
-            const latlng = {
-                lat: parseFloat(lat),
-                lng: parseFloat(lng),
-            };
-            map.setZoom(15); // Zoom Map
-            const marker = new google.maps.Marker({
-                position: latlng,
-                map,
-                animation: google.maps.Animation.DROP,
-            });
-            deleteMarkers();
-            markers.push(marker);
-            map.setCenter(latlng); // set Center
-        }
-
-        function setMapOnAll(map) {
-            for (let i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
-            }
-        }
-        // Removes the markers from the map, but keeps them in the array.
-        function hideMarkers() {
-            setMapOnAll(null);
-        }
-
-        // Deletes all markers in the array by removing references to them.
-        function deleteMarkers() {
-            hideMarkers();
-            markers = [];
-        }
-
-        function keySuccess() {
-            if ((document.getElementById('lat').value === "") || (document.getElementById('lng').value === "")) {
-                document.getElementById('submit').disabled = true;
-            } else {
-                document.getElementById('submit').disabled = false;
-            }
-        }
-    </script> --}}
     <script type="text/javascript">
         // array of markers
         let markers = [];
@@ -236,10 +90,10 @@
             for (zone in zones) {
                 zone = zones[zone];
                 let zoneCircle = new google.maps.Circle({
-                    strokeColor: "#8AE2E5",
+                    strokeColor: "#fa9e52",
                     strokeOpacity: 0.8,
                     strokeWeight: 1,
-                    fillColor: "#8AE2E5",
+                    fillColor: "#fa9e52",
                     fillOpacity: 0.5,
                     map,
                     // center: new google.maps.LatLng(zone.latitude, zone.longitude),
@@ -291,7 +145,7 @@
                 };
 
                 // pos = new google.maps.LatLng(lat, lng);
-                map.setZoom(15); // Zoom Map
+                map.setZoom(14); // Zoom Map
                 vMarker.setPosition(pos);
                 map.setCenter(vMarker.position); // set Center
 
