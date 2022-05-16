@@ -10,9 +10,28 @@
 
             // Vector Icon Marker
             const svgMark = {
-                url: "{{ url('/images/tower_marker.svg') }}",
-                scaledSize: new google.maps.Size(40, 40), // scaled size
+                url: "{{ url('/images/tower_marker.png') }}",
+                scaledSize: new google.maps.Size(30, 38), // scaled size
             };
+            const towerRejected = {
+                url: "{{ url('/images/tower_rejected.png') }}",
+                scaledSize: new google.maps.Size(30, 34.9), // scaled size
+            };
+            const towerPending = {
+                url: "{{ url('/images/tower_pending.png') }}",
+                scaledSize: new google.maps.Size(30, 38), // scaled size
+            };
+
+            /* Passing blade variable to javascript */
+            let code = @json($data)
+
+            if (code['status_id'] == 2) {
+                icon = svgMark;
+            } else if (code['status_id'] == 1) {
+                icon = towerPending;
+            } else {
+                icon = towerRejected;
+            }
 
             map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 15,
@@ -22,7 +41,7 @@
             const marker = new google.maps.Marker({
                 // The below line is equivalent to writing:
                 // position: new google.maps.LatLng(-34.397, 150.644)
-                icon: svgMark,
+                icon: icon,
                 position: new google.maps.LatLng(lat, lng),
                 map: map,
                 title: "Klik untuk detail",
@@ -33,9 +52,24 @@
             // position will be available as a google.maps.LatLng object. In this case,
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
+            let tipe = {{ $tipe }};
+            if (tipe == 1){
+                url = 'makro';
+            } else{
+                url = 'mikro';
+            }
+
+            if (code['status_id'] == 1 || code['status_id'] == 3) {
+                    content = "<p>Koordinat: " + marker.getPosition() + "</p>";
+            } else {
+                content = `<div class="text-center"><b>
+                                <a href="/admin/menara/` + url +  `/` + code['tower_id'] + `">{{ $data->tower->idMenara }} (Klik di sini)</a></b>
+                                    <p>Koordinat: ` +
+                                        marker.getPosition() +
+                                    `</p></div>`;
+            }
             const infowindow = new google.maps.InfoWindow({
-                content: "<p>ID Menara: {{ $data->tower->idMenara }}</p>" +
-                    '<a href="/admin/menara/makro/{{ $data->tower->id }}">Info Tower </a> ',
+                content: content,
             });
 
             google.maps.event.addListener(marker, "click", () => {
@@ -68,14 +102,16 @@
                                             menyetujui
                                         @else
                                             menolak
-                                        @endif permohonan ini pada {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
+                                        @endif permohonan ini pada
+                                        {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
                                     @else
                                         Admin {{ $data->admin->name }}
                                         @if ($data->status->id === 2)
                                             menyetujui
                                         @else
                                             menolak
-                                        @endif pendaftaran ini pada {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
+                                        @endif pendaftaran ini pada
+                                        {{ ltrim($data->updated_at->translatedFormat('d F Y'), '0') }}
                                     @endif
                                 </i>
                             </div>

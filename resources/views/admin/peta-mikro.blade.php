@@ -158,11 +158,6 @@
             scaledSize: new google.maps.Size(22, 28), // scaled size
         };
 
-        const svgAvail = {
-            url: "{{ url('/images/tower_avail.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
-        }
-
         let pos = new google.maps.LatLng(-6.966667, 110.4381);
 
         function initialize() {
