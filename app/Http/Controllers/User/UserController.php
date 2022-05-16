@@ -14,17 +14,19 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required',
+            'name' => 'required|alpha',
             'email' => 'required|email|unique:users|email:dns',
-            'phone' => 'required|unique:users',
+            'phone' => 'required|unique:users|numeric',
             'password' => 'required|min:5',
             'cpassword' => 'required|same:password',
         ], [
             'name.required' => 'Kolom nama wajib diisi.',
+            'name.alpha' => 'Isi nama dengan alfabet.',
             'email.required' => 'Kolom email wajib diisi.',
             'email.unique' => 'Email sudah dipakai oleh pengguna lain.',
             'email.email' => 'Email tidak sesuai.',
             'phone.required' => 'Kolom nomor HP wajib diisi.',
+            'phone.numeric' => 'Isi nomor HP dengan angka.',
             'phone.unique' => 'Nomor HP sudah dipakai.',
             'password.required' => 'Kolom password wajib diisi',
             'password.min' => 'Password minimal 5 karakter.',

@@ -8,8 +8,8 @@
         let zonezones = [];
         // SVG Icon
         const svgMark = {
-            url: "{{ url('/images/tower_marker.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
+            url: "{{ url('/images/tower_marker.png') }}",
+            scaledSize: new google.maps.Size(22, 28), // scaled size
         };
 
         const svgAvail = {
@@ -351,7 +351,7 @@
                                     class="nav-link {{ Request::is('admin/peta*') ? 'active' : '' }}">Peta</a>
                             </li>
                         </ul>
-                        
+
                         {{-- <div class="row mb-3">
                             <div class="col-lg-6 ml-4">
                                 <button class="btn btn-primary btn-xs mt-3" disabled id="submit" type="button">Cari
