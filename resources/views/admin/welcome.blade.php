@@ -122,7 +122,7 @@
                                         <div class="col col-stats ml-3 ml-sm-0">
                                             <div class="numbers">
                                                 {{-- <p class="card-category">Sales</p> --}}
-                                                <h2 class="fw-bold">Menara Microcell</h2>
+                                                <h2 class="fw-bold">Menara Mikro</h2>
                                                 <h4>{{ $mikro->count() }} Menara</h4>
                                             </div>
                                         </div>

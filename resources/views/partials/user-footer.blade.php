@@ -62,7 +62,7 @@
                       <li><a href="{{ route('home') }}">Beranda </a></li>
                       <li><a href="/user/daftar-menara">Pendaftaran</a></li>
                       <li><a href="/user/peta-makro">Peta Menara Makro</a></li>
-                      <li><a href="/user/peta-microcell">Peta Menara Mikro</a></li>
+                      <li><a href="/user/peta-mikro">Peta Menara Mikro</a></li>
                       @auth
                         <li><a href="/user/riwayat">Riwayat Permohonan</a></li>
                         <li><a href="/user/edit">Edit Profil</a></li>

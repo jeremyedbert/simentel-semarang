@@ -18,7 +18,7 @@ class TipeMenaraSeeder extends Seeder
             'name' => 'Makro'
         ]);
         TipeMenara::create([
-            'name' => 'Microcell'
+            'name' => 'Mikro'
         ]);
     }
 }
