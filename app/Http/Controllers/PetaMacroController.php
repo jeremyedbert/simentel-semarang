@@ -33,7 +33,8 @@ class PetaMacroController extends Controller
         $kecamatan = DB::table('kecamatans')->pluck("name", "id");
         $kelurahan = DB::table('kelurahans')->pluck("name", "id");
         $tipesite = TipeSite::all()->pluck('name', 'id');
-        $zones = Zone::all();
+        // $zones = Zone::all();
+        $zones = Zone::filter(request(['kecamatan_id']))->get();
   
         return view('user.peta-menara', compact('towerMakro', 'kecamatan', 'kelurahan', 'tipesite', 'zones'),['active' => 'peta']);
       
@@ -42,7 +43,7 @@ class PetaMacroController extends Controller
     public function getKelurahan(Request $request)
     {
       $kelurahan = DB::table('kelurahans')
-        ->where("kecamatan_id", $request->kecamatan_id)
+        ->where("kecamatan_id","=", $request->kecamatan_id)
         ->pluck("name", "id");
       return response()->json($kelurahan);
     }
