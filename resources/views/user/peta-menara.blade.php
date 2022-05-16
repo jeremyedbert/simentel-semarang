@@ -439,9 +439,9 @@
                                     <th>Lokasi</th>
                                 </tr>
                             </thead>
-                            @if ($towerMakro->count())
+                            @if ($tabelMakro->count())
                                 <tbody>
-                                    @foreach ($towerMakro as $d)
+                                    @foreach ($tabelMakro as $d)
                                         <a href="">
                                             <tr class="clickable-row" data-href="/user/peta-makro/{{ $d->id }}">
                                                 <td>{{ $d->idMenara }}</td>
@@ -459,6 +459,8 @@
                             @endif
 
                         </table>
+                        {{-- paginate --}}
+                        {{ $tabelMakro->links() }}
                     </div>
                 </div>
             </div>
