@@ -57,8 +57,8 @@
         let zonezones = [];
         // SVG Icon
         const svgMark = {
-            url: "{{ url('/images/tower_marker.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
+            url: "{{ url('/images/tower_pending.png') }}",
+            scaledSize: new google.maps.Size(30, 38), // scaled size
         };
 
         // let data = @json($pendaftaran);

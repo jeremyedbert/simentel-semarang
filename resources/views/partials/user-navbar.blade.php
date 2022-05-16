@@ -41,7 +41,7 @@
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
                         <li><a class="dropdown-item" href="/user/peta-makro">Peta Menara Makro</a></li>
-                        <li><a class="dropdown-item" href="/user/peta-microcell">Peta Menara Mikro</a>
+                        <li><a class="dropdown-item" href="/user/peta-mikro">Peta Menara Mikro</a>
                         </li>
                     </ul>
                 </li>

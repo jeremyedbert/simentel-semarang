@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\Notifikasi;
+use App\Models\Tower;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,8 +22,8 @@ class DashboardRiwayatController extends Controller
             //     ->get(),
             // scopeSearching'
             'data' => Pendaftaran::whereIn('status_id', [2, 3])
-                                ->searching()
-                                ->orderBy('updated_at','desc')->get(),
+                ->searching()
+                ->orderBy('updated_at', 'desc')->get(),
             'notif' => Notifikasi::whereNull('mark_as_read')->get(),
             'countNotif' => DB::table('notifikasis')
                 ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
@@ -60,16 +61,20 @@ class DashboardRiwayatController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-        if($pendaftaran->admin_id != NULL){
+        if ($pendaftaran->admin_id != NULL) {
+            $data = $pendaftaran;
+            $towerId = $data['tower_id'];
+            $tower = Tower::where('id', $towerId)->get();
             return view('admin.detail-riwayat', [
                 'data' => $pendaftaran,
+                'tipe' => $tower[0]['tipe_menara_id'],
                 'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
                 'countNotif' => DB::table('notifikasis')
                     ->join('pendaftarans', 'notifikasis.pendaftaran_id', '=', 'pendaftarans.id')
                     ->whereNull('mark_as_read')->where('pendaftarans.status_id', 1)
                     ->count()
             ]);
-        } else{
+        } else {
             return view('admin.404', [
                 'notif' => Notifikasi::orderBy('mark_as_read', 'asc')->get(),
                 'countNotif' => DB::table('notifikasis')

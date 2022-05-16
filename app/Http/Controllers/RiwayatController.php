@@ -63,9 +63,15 @@ class RiwayatController extends Controller
      */
     public function show(Pendaftaran $pendaftaran)
     {
-        //
+        $data = $pendaftaran;
+        $towerId = $data['tower_id'];
+        $tower = Tower::where('id', $towerId)->get();
+        // return $tower[0]['tipe_menara_id'];
+        // return response()->json($tower);
+        // return dd(response()->json(compact('data', 'tower')));
         return view('user.detail', 
-          ['data' => $pendaftaran]
+          ['data' => $data,
+          'tipe' => $tower[0]['tipe_menara_id']]
         );
 
     }
@@ -79,7 +85,7 @@ class RiwayatController extends Controller
     public function edit(Pendaftaran $pendaftaran)
     {
         //
-        if($pendaftaran->status->id == 1){
+        if($pendaftaran->status->id == 1 && $pendaftaran->user->id == auth()->user()->id){
           $zones = Zone::all();
           $tipemenara = DB::table('tipe_menaras')->get();
           $kecamatan = DB::table('kecamatans')->pluck("name", "id");
@@ -100,6 +106,8 @@ class RiwayatController extends Controller
                     ['data' => $pendaftaran]
                   );
           // return dd($pendaftaran);
+        }else if ($pendaftaran->status->id == 1 && $pendaftaran->user->id != auth()->user()->id){
+          
         }else{
           return redirect("/user/riwayat/$pendaftaran->id");
         }

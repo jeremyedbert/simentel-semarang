@@ -1,6 +1,5 @@
 @extends('layouts.main-user')
 @section('content')
-
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ&callback=initialize&v=weekly"
         async>
@@ -15,9 +14,28 @@
 
             // Vector Icon Marker
             const svgMark = {
-                url: "{{ url('/images/tower_marker.svg') }}",
-                scaledSize: new google.maps.Size(40, 40), // scaled size
+                url: "{{ url('/images/tower_marker.png') }}",
+                scaledSize: new google.maps.Size(30, 38), // scaled size
             };
+            const towerRejected = {
+                url: "{{ url('/images/tower_rejected.png') }}",
+                scaledSize: new google.maps.Size(30, 34.9), // scaled size
+            };
+            const towerPending = {
+                url: "{{ url('/images/tower_pending.png') }}",
+                scaledSize: new google.maps.Size(30, 38), // scaled size
+            };
+
+            /* Passing blade variable to javascript */
+            let code = @json($data)
+
+            if (code['status_id'] == 2) {
+                icon = svgMark;
+            } else if (code['status_id'] == 1) {
+                icon = towerPending;
+            } else {
+                icon = towerRejected;
+            }
 
             map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 15,
@@ -27,7 +45,7 @@
             const marker = new google.maps.Marker({
                 // The below line is equivalent to writing:
                 // position: new google.maps.LatLng(-34.397, 150.644)
-                icon: svgMark,
+                icon: icon,
                 position: new google.maps.LatLng(lat, lng),
                 map: map,
             });
@@ -36,21 +54,30 @@
             // position will be available as a google.maps.LatLng object. In this case,
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
+            let tipe = {{ $tipe }};
+            if (tipe == 1){
+                url = 'peta-makro';
+            } else{
+                url = 'peta-mikro';
+            }
+
+            if (code['status_id'] == 1 || code['status_id'] == 3) {
+                    content = "<p>Koordinat: " + marker.getPosition() + "</p>";
+            } else {
+                content = `<div class="text-center"><b>
+                                <a href="/user/` + url + `/` + code['tower_id'] + `">{{ $data->tower->idMenara }} (Klik di sini)</a></b>
+                                    <p>Koordinat: ` +
+                                        marker.getPosition() +
+                                    `</p></div>`;
+            }
             const infowindow = new google.maps.InfoWindow({
-                content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+                content: content,
             });
 
             google.maps.event.addListener(marker, "click", () => {
                 infowindow.open(map, marker);
             });
         }
-
-        // function initialize() { // testing data type
-        //     const lat = {{ $data->tower->latitude }};
-        //     const lng = {{ $data->tower->longitude }};
-        //     var x = document.getElementById("txtLat").innerHTML;
-        //     document.getElementById("map_canvas").innerHTML = typeof(lat);
-        // }
     </script>
 
     <style>
@@ -131,17 +158,14 @@
                     </h6>
 
                     <div class="detail">
-                      <div class="col-lg-12 shadow py-4 mb-3" 
-                        @if ($data->status->id === 1)
-                            style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
+                        <div class="col-lg-12 shadow py-4 mb-3"
+                            @if ($data->status->id === 1) style="border-radius: 7px; border-left: rgba(255, 193, 7, 0.7) solid 7px"
                         @elseif ($data->status->id === 2) style="border-radius: 7px; border-left: rgba(40, 167, 69,
                             0.7) solid 7px"
-                        @else style="border-radius: 7px; border-left: rgba(220, 53, 69, 0.7) solid 7px"
-                            @endif
-                            >
+                        @else style="border-radius: 7px; border-left: rgba(220, 53, 69, 0.7) solid 7px" @endif>
                             <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
-                                    <h3>
+                                    <h3 id="getText">
                                         @if ($data->status->id === 1)
                                             <span class="badge bg-warning text-dark"
                                                 style="opacity: 0.7">{{ $data->status->name }}</span>
@@ -162,7 +186,7 @@
                                                 <b>{{ $data->updated_at->translatedFormat('d F Y') }}</b>
                                                 pukul
                                                 <b>{{ $data->updated_at->translatedFormat('h.m') }}</b>
-                                                </i>
+                                            </i>
                                         </p>
                                     @else
                                         <p style="color: black" class="mb-2"><i>Maaf, permohonan izin menara Anda
@@ -170,7 +194,7 @@
                                                 <b>{{ $data->updated_at->translatedFormat('d F Y') }}</b>
                                                 pukul
                                                 <b>{{ $data->updated_at->translatedFormat('h.m') }}</b>
-                                                </i>
+                                            </i>
                                         </p>
                                     @endif
 
@@ -274,80 +298,79 @@
                                 </div>
                             </div>
                             <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
-                              <div>
-                                  <h5>Lampiran/Dokumen</h5>
-                              </div>
-                              <div class="d-flex justify-content-center mx-md-3">
-                                <iframe
-                                  {{-- src="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('storage/' . $data->document) }}#toolbar=0&scrollbar=0" --}}
-                                  src="{{ asset('storage/documents/' . $data->document) }}"
-                                  frameBorder="0"
-                                  scrolling="auto"
-                                  height="400px"
-                                  width="100%"
-                                ></iframe>
-                              </div>
-                              <div class="d-flex justify-content-center p-1 mx-md-3">
-                                <a href="{{ asset('storage/documents/' . $data->document) }}" target="blank"><i class="icofont-ui-file"></i>&nbsp;Lihat Dokumen</a>
-                              </div>
+                                <div>
+                                    <h5>Lampiran/Dokumen</h5>
+                                </div>
+                                <div class="d-flex justify-content-center mx-md-3">
+                                    <iframe {{-- src="https://drive.google.com/viewerng/viewer?embedded=true&url={{ asset('storage/' . $data->document) }}#toolbar=0&scrollbar=0" --}}
+                                        src="{{ asset('storage/documents/' . $data->document) }}" frameBorder="0"
+                                        scrolling="auto" height="400px" width="100%"></iframe>
+                                </div>
+                                <div class="d-flex justify-content-center p-1 mx-md-3">
+                                    <a href="{{ asset('storage/documents/' . $data->document) }}" target="blank"><i
+                                            class="icofont-ui-file"></i>&nbsp;Lihat Dokumen</a>
+                                </div>
                             </div>
                             @if ($data->status->id === 2)
-                              <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
-                                <div>
-                                    <h5>Kondisi</h5>
+                                <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
+                                    <div>
+                                        <h5>Kondisi</h5>
+                                    </div>
+                                    <div class="p-1 mx-md-3">
+                                        {{ $data->tower->kondisi }}
+                                    </div>
                                 </div>
-                                <div class="p-1 mx-md-3">
-                                    {{ $data->tower->kondisi }}
-                                </div>
-                              </div>
                             @endif
-                      </div>
-                      @if ($data->status->id === 1)
-                        <div class="d-flex justify-content-lg-end">
-                            {{-- <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
+                        </div>
+                        @if ($data->status->id === 1)
+                            <div class="d-flex justify-content-lg-end">
+                                {{-- <a href="#" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2">
                               Batalkan
                             </a> --}}
-                            <button type="button" class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2"
-                              data-toggle="modal" data-target="#modalBatalkan">
-                              Batalkan
-                            </button>
-                            <a href="/user/riwayat/{{ $data->id }}/edit" 
-                              class="col-lg-3 btn btn-solid-border btn-round-full mt-1 mx-1 mx-md-2">
-                              Edit
-                            </a>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalBatalkan" 
-                          tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pembatalan</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                <button type="button"
+                                    class="col-lg-3 btn btn-solid-border-2 btn-round-full mt-1 mx-1 mx-md-2"
+                                    data-toggle="modal" data-target="#modalBatalkan">
+                                    Batalkan
                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                Pembatalan akan menghapus permohonan. 
-                                Apakah Anda yakin akan membatalkan permohonan izin menara? 
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-round-full btn-transparent" data-dismiss="modal">Kembali</button>
-                                <form action="/user/riwayat/{{ $data->id }}/destroy" method="post">
-                                  {{-- @method('delete') --}}
-                                  @csrf
-                                  <button class="btn btn-round-full btn-solid-border-2">
-                                    Ya, batalkan
-                                  </button>
-                                </form>
-                              </div>
+                                <a href="/user/riwayat/{{ $data->id }}/edit"
+                                    class="col-lg-3 btn btn-solid-border btn-round-full mt-1 mx-1 mx-md-2">
+                                    Edit
+                                </a>
                             </div>
-                          </div>
-                        </div>
 
-                        <!-- Modal -->
-                        {{-- <div class="modal fade" id="modalBatalkan" data-backdrop="static" 
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalBatalkan" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pembatalan</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Pembatalan akan menghapus permohonan.
+                                            Apakah Anda yakin akan membatalkan permohonan izin menara?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-round-full btn-transparent"
+                                                data-dismiss="modal">Kembali</button>
+                                            <form action="/user/riwayat/{{ $data->id }}/destroy" method="post">
+                                                {{-- @method('delete') --}}
+                                                @csrf
+                                                <button class="btn btn-round-full btn-solid-border-2">
+                                                    Ya, batalkan
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            {{-- <div class="modal fade" id="modalBatalkan" data-backdrop="static" 
                           data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
                           aria-hidden="true">
                           <div class="modal-dialog">
@@ -369,11 +392,10 @@
                             </div>
                           </div>
                         </div> --}}
-                      @endif
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 @endsection

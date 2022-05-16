@@ -15,8 +15,8 @@
 
             // Vector Icon Marker
             const svgMark = {
-                url: "{{ url('/images/tower_marker.svg') }}",
-                scaledSize: new google.maps.Size(40, 40), // scaled size
+                url: "{{ url('/images/tower_marker.png') }}",
+                scaledSize: new google.maps.Size(30, 38), // scaled size
             };
 
             map = new google.maps.Map(document.getElementById("map_canvas"), {
@@ -37,7 +37,7 @@
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
             const infowindow = new google.maps.InfoWindow({
-                content: "<p>Marker Location:" + marker.getPosition() + "</p>",
+                content: "<p>Koordinat: " + marker.getPosition() + "</p>",
             });
 
             google.maps.event.addListener(marker, "click", () => {
