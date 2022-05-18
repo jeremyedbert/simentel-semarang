@@ -327,8 +327,54 @@
             <h2 class="title-color mb-2">Peta Menara Makro</h2>
             <div class="divider mb-4"></div>
             <div class="col">
+              
+                <form >
+                  <div class="row form-group align-items-center">
+                    <div class="pl-3 pr-2">Cari Berdasarkan:</div>
+                    <div class="">
+                      <select class="form-control" name="pilihFilter" id="pilihFilter" onchange="filterPencarian()">
+                          <option value=""> -- Pilih -- </option>
+                          <option value="koordinat">Koordinat</option>
+                          <option value="idmenara">ID Menara</option>
+                          <option value="keckel">Kecamatan & Kelurahan</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+                <p id="demo"></p>
 
-                <form id="formCariPosisi" method="" action="#">
+                <script>
+                  function filterPencarian(){
+                    
+                    let filter = document.getElementById("pilihFilter").value;
+                    let cariKoordinat = document.getElementById("formCariPosisi");
+                    let cariID = document.getElementById("formCariID");
+                    let cariKecKel = document.getElementById("formCariKecKel");
+                    
+                    if(filter == ""){
+                      cariKoordinat.style.display='none';
+                      cariID.style.display='none';
+                      cariKecKel.style.display='none';
+                    }else if(filter == "koordinat"){
+                      cariKoordinat.style.display='block';
+                      cariID.style.display='none';
+                      cariKecKel.style.display='none';
+                    }else if(filter == "idmenara"){
+                      cariKoordinat.style.display='none';
+                      cariID.style.display='block';
+                      cariKecKel.style.display='none';
+                    }else{
+                      cariKoordinat.style.display='none';
+                      cariID.style.display='none';
+                      cariKecKel.style.display='block';
+                    }
+
+                    // document.getElementById("demo").innerHTML = "You selected: " + filter;
+                  }
+                </script>
+
+                
+                <form id="formCariPosisi" method="" action="#" style="display: none">
                     <div class="row">
                         <div class="col-md-4">
                             <p>Latitude</p>
@@ -344,31 +390,35 @@
                         </div>
                         <div class="col-md-2 align-self-end">
                             <input type="button" id="cariPosisi" class="btn btn-main btn-icon btn-round-full mb-3"
-                                value="Cari Posisi" />
+                                value="Cari" />
                         </div>
                     </div>
                 </form>
 
-                <form id="formCariID" action="/user/peta-makro">
+                <form id="formCariID" action="/user/peta-makro"
+                  @if (request('search')) style="display: block"  
+                  @else style="display: none"
+                  @endif>
                     <div class="row">
                         <div class="col-md-4">
                             <p>ID Menara</p>
-                            <div class="form-group mb-0">
+                            <div class="form-group">
                                 <input id="search" name="search" type="text" class="form-control"
                                     value="{{ request('search') }}">
                             </div>
-                            <small>Tekan <i>enter</i> untuk mencari</small>
+                            {{-- <small>Tekan <i>enter</i> untuk mencari</small> --}}
                             {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
                         </div>
-                        {{-- <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
-                                value="Cari ID Menara" />
-                            <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
-                        </div> --}}
+                        <div class="col-md-2 align-self-end">
+                            <button type="submit" class="btn btn-main btn-round-full mb-3">Cari</button>
+                        </div>
                     </div>
                 </form>
 
-                <form id="formCariKecKel" method="get" action="/user/peta-makro" enctype="multipart/form-data">
+                <form id="formCariKecKel" method="get" action="/user/peta-makro" enctype="multipart/form-data" 
+                  @if (request('kecamatan_id')) style="display: block"  
+                  @else style="display: none"
+                  @endif>
                   <div class="row">
                     <div class="form-group col-md-4">
                       <p>Kecamatan</p>
