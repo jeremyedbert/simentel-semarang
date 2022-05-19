@@ -10,8 +10,8 @@
         let zonezones = [];
         // SVG Icon
         const svgMark = {
-            url: "{{ url('/images/tower_marker.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
+            url: "{{ url('/images/tower_marker.png') }}",
+            scaledSize: new google.maps.Size(30, 38), // scaled size
         };
 
         let pos = new google.maps.LatLng(-6.966667, 110.4381);
