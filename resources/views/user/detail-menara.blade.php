@@ -79,7 +79,7 @@
         }
 
         #map_canvas {
-            height: 300px;
+            height: 400px;
         }
 
     </style>
