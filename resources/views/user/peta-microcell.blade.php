@@ -11,6 +11,7 @@
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=geometry"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
     <script type="text/javascript">
         let pos = new google.maps.LatLng(-6.966667, 110.4381);
 
@@ -37,7 +38,7 @@
                 map: map,
             });
 
-            document.getElementById("submit").addEventListener("click", () => {
+            document.getElementById("cariPosisi").addEventListener("click", () => {
                 // searchPos(map);
                 const lat = document.getElementById("lat").value;
                 const lng = document.getElementById("lng").value;
@@ -216,108 +217,207 @@
 
     </style>
     <section class="mt-4">
-        <div class="container">
-            @if (session('resent'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+      <div class="container">
+        {{-- @if (session('resent'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+            </div>
+        @endif --}}
+        <h2 class="title-color mb-2">Peta Menara Mikro</h2>
+        <div class="divider mb-4"></div>
+        <div class="col">
+          
+            <form >
+              <div class="row form-group align-items-center">
+                <div class="pl-3 pr-2">Cari Berdasarkan:</div>
+                <div class="">
+                  <select class="form-control" name="pilihFilter" id="pilihFilter" onchange="filterPencarian()">
+                      <option value=""> -- Pilih -- </option>
+                      <option value="koordinat">Koordinat</option>
+                      <option value="idmenara">ID Menara</option>
+                      <option value="keckel">Kecamatan & Kelurahan</option>
+                  </select>
                 </div>
-            @endif
-            <h2 class="title-color mb-2">Peta Menara Mikro</h2>
-            <div class="divider mb-4"></div>
-            <div class="col">
+              </div>
+            </form>
+            <p id="demo"></p>
 
-                <form id="#" method="post" action="#">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>Latitude</p>
-                            <div class="form-group">
-                                <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <p>Longitude</p>
-                            <div class="form-group">
-                                <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-3"
-                                value="Cari Posisi" />
+            <script>
+              function filterPencarian(){
+                
+                let filter = document.getElementById("pilihFilter").value;
+                let cariKoordinat = document.getElementById("formCariPosisi");
+                let cariID = document.getElementById("formCariID");
+                let cariKecKel = document.getElementById("formCariKecKel");
+                
+                if(filter == ""){
+                  cariKoordinat.style.display='none';
+                  cariID.style.display='none';
+                  cariKecKel.style.display='none';
+                }else if(filter == "koordinat"){
+                  cariKoordinat.style.display='block';
+                  cariID.style.display='none';
+                  cariKecKel.style.display='none';
+                }else if(filter == "idmenara"){
+                  cariKoordinat.style.display='none';
+                  cariID.style.display='block';
+                  cariKecKel.style.display='none';
+                }else{
+                  cariKoordinat.style.display='none';
+                  cariID.style.display='none';
+                  cariKecKel.style.display='block';
+                }
+
+                // document.getElementById("demo").innerHTML = "You selected: " + filter;
+              }
+            </script>
+
+            
+            <form id="formCariPosisi" method="" action="#" style="display: none">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Latitude</p>
+                        <div class="form-group">
+                            <input id="lat" name="latitude" type="text" value="-6.966667" class="form-control">
                         </div>
                     </div>
-                </form>
-
-                <form action="/user/peta-microcell">
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                            <p>ID Menara</p>
-                            <div class="form-group mb-0">
-                                <input id="search" name="search" type="text" class="form-control"
-                                    value="{{ request('search') }}">
-                            </div>
-                            <small>Tekan <i>enter</i> untuk mencari</small>
-                            {{-- <small style="padding-left">Klik enter untuk melanjutkan</small> --}}
+                    <div class="col-md-4">
+                        <p>Longitude</p>
+                        <div class="form-group">
+                            <input id="lng" name="longitude" type="text" value="110.4381" class="form-control">
                         </div>
-                        {{-- <div class="col-md-2 align-self-end">
-                            <input type="button" id="submit" class="btn btn-main btn-icon btn-round-full mb-4"
-                                value="Cari ID Menara" />
-                            <button type="submit" class="btn btn-main btn-icon btn-round-full mb-4">Cari ID Menara</button>
-                        </div> --}}
                     </div>
-                </form>
+                    <div class="col-md-2 align-self-end">
+                        <input type="button" id="cariPosisi" class="btn btn-main btn-icon btn-round-full mb-3"
+                            value="Cari" />
+                    </div>
+                </div>
+            </form>
 
-                <div class="form-group">
-                    <div id="map_canvas" style="width: auto; height: 600px;"></div>
+            <form id="formCariID" action="/user/peta-mikro"
+              @if (request('search')) style="display: block"  
+              @else style="display: none"
+              @endif>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>ID Menara</p>
+                        <div class="form-group">
+                            <input id="search" name="search" type="text" class="form-control"
+                                value="{{ request('search') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-end">
+                        <button type="submit" class="btn btn-main btn-round-full mb-3">Cari</button>
+                    </div>
+                </div>
+            </form>
+
+            <form id="formCariKecKel" method="get" action="/user/peta-mikro" enctype="multipart/form-data" 
+              @if (request('kecamatan_id')) style="display: block"  
+              @else style="display: none"
+              @endif>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <p>Kecamatan</p>
+                  <select class="form-control" name="kecamatan_id" id="kecamatan" data-dependent="kelurahan">
+                      <option value=""> -- Semua kecamatan -- </option>
+                      @foreach ($kecamatan as $key => $kec)
+                          <option value="{{ $key }}" {{ request('kecamatan_id') == $key ? 'selected' : '' }}>
+                              {{ $kec }}
+                          </option>
+                      @endforeach
+                  </select>
                 </div>
 
-                {{-- <p style="margin-bottom: 0; color: #e12454"><b>Sebelum submit, silakan cek kembali form yang telah Anda isi</b></p>
-                    <p class="mb-4" style="color: #e12454"><b>Apa yang telah Anda isi, tidak dapat diedit.</b></p>
-                    <a class="btn btn-main btn-round" href="#">Submit</a> --}}
-                <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-md-4">
-                            <h3 class="title-color mb-0">List Menara Mikro</h3>
-                            <small class="mb-3"><i>Klik baris untuk melihat detail</i></small>
-                        </div>
-                        {{-- <div class="col-md-4">
-                            <label for="search"><small>Cari ID Menara atau Pemilik</small></label>
-                            <input name="search" type="text" class="form-control input-sm" placeholder=""
-                                onkeyup="search()">
-                        </div> --}}
-                    </div>
-                    <div class="col-lg-12 px-0 px-md-3 table-responsive">
-                        <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th>ID Menara</th>
-                                    <th>Pemilik</th>
-                                    <th>Lokasi</th>
-                                </tr>
-                            </thead>
-                            @if ($towerMikro->count())
-                                <tbody>
-                                    @foreach ($towerMikro as $d)
-                                        <a href="">
-                                            <tr class="clickable-row" data-href="/user/peta-microcell/{{ $d->id }}">
-                                                <td>{{ $d->idMenara }}</td>
-                                                <td>{{ $d->pemilik }}</td>
-                                                <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
-                                            </tr>
-                                        </a>
-                                    @endforeach
-                                </tbody>
-                            @else
-                                <tbody>
-                                    <td colspan="3" class="text-center justify-content-center">Tidak ada data menara yang
-                                        ditemukan</td>
-                                </tbody>
-                            @endif
+                <div class="form-group col-md-4">
+                  <p>Kelurahan</p>
+                  <select class="form-control" name="kelurahan_id" id="kelurahan">
+                      <option value=""> -- Semua kelurahan -- </option>
+                      @foreach ($kelurahan->where('kecamatan_id','=', request('kecamatan_id')) as $key => $kel)
+                          <option value="{{ $key }}" {{ request('kelurahan_id') == $key ? 'selected' : '' }}> 
+                              {{ $kel }}
+                          </option>
+                      @endforeach
+                  </select>
+                </div>
 
-                        </table>
+                <div class="col-md-2 align-self-end">
+                  <button type="submit" id="cariKecKel" class="btn btn-main btn-icon btn-round-full mb-3">Cari</button>
+                </div>
+              </div>
+            </form>
+
+            {{-- <form class="row pl-3">
+              <div class="form-group form-check mr-3">
+                <input type="checkbox" class="form-check-input" id="checkboxTower" checked>
+                <label class="form-check-label" for="checkboxMenara">Tampilkan menara</label>
+              </div>
+              <div class="form-group form-check mr-3">
+                <input type="checkbox" class="form-check-input" id="checkboxZone" checked>
+                <label class="form-check-label" for="checkboxZone">Tampilkan zona</label>
+              </div>
+            </form> --}}
+
+            <div class="form-group">
+                <div id="map_canvas" style="width: auto; height: 600px;"></div>
+            </div>
+
+            <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+                <div class="row d-flex justify-content-between">
+                    <div class="col">
+                        <h3 class="title-color mb-0">List Menara Mikro di
+                          @if (request('kelurahan_id') && request('kecamatan_id')) 
+                              {{ $kelurahan[request('kelurahan_id')] }},
+                              {{ $kecamatan[request('kecamatan_id')] }}
+                          @elseif (request('kecamatan_id'))
+                              {{ $kecamatan[request('kecamatan_id')] }}
+                          @else
+                              Kota Semarang
+                          @endif 
+                          ({{ $towerMikro->count() }})</h3>
+                        <small class="mb-3"><i>Klik baris untuk melihat detail menara</i></small>
                     </div>
+                    {{-- <div class="col-md-4">
+                        <label for="search"><small>Cari ID Menara atau Pemilik</small></label>
+                        <input name="search" type="text" class="form-control input-sm" placeholder=""
+                            onkeyup="search()">
+                    </div> --}}
+                </div>
+                <div class="col-lg-12 px-0 px-md-3 table-responsive">
+                    <table class="table table-striped mt-3" id="tabel-menara" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID Menara</th>
+                                <th>Pemilik</th>
+                                <th>Lokasi</th>
+                            </tr>
+                        </thead>
+                        @if ($tabelMikro->count())
+                            <tbody>
+                                @foreach ($tabelMikro as $d)
+                                    <a href="">
+                                        <tr class="clickable-row" data-href="/user/peta-mikro/{{ $d->id }}">
+                                            <td>{{ $d->idMenara }}</td>
+                                            <td>{{ $d->pemilik }}</td>
+                                            <td>{{ $d->kelurahan->name }},&nbsp;{{ $d->kecamatan->name }}</td>
+                                        </tr>
+                                    </a>
+                                @endforeach
+                            </tbody>
+                        @else
+                            <tbody>
+                                <td colspan="3" class="text-center justify-content-center">Tidak ada data menara yang
+                                    ditemukan</td>
+                            </tbody>
+                        @endif
+
+                    </table>
+                    {{-- paginate --}}
+                    {{ $tabelMikro->links() }}
                 </div>
             </div>
         </div>
+    </div>
 
         </div>
     </section>
@@ -328,4 +428,64 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          if($('#kecamatan').val() == ""){
+            $('#kelurahan').empty();
+            $('#kelurahan').append('<option value=""> -- Semua kelurahan -- </option>');
+          }else{
+            var kecamatan_id = $('#kecamatan').val();
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" + kecamatan_id,
+                success: function(res) {
+                    if (res) {
+                        $('#kelurahan').empty();
+                        $('#kelurahan').append(
+                            '<option value=""> -- Semua kelurahan -- </option>');
+                        $.each(res, function(key, value) {
+                            // $('#kelurahan').append('<option value="' + key +
+                            //     '">' + value + '</option>');
+                            $('#kelurahan').append('<option value="' + key +
+                                '" {{ request('kelurahan_id') == ' + key + ' ? 'selected' : '' }}>' +
+                                value + '</option>');
+                        });
+                    } else {
+                        $('#kelurahan').empty();
+                    }
+                }
+            });
+          }
+          $('#kecamatan').change(function() {
+              var kecamatan_id = $(this).val();
+              if (kecamatan_id) {
+                  $.ajax({
+                      type: "GET",
+                      url: "{{ url('/user/daftar-menara/getKelurahan') }}?kecamatan_id=" + kecamatan_id,
+                      success: function(res) {
+                          if (res) {
+                              $('#kelurahan').empty();
+                              $('#kelurahan').append(
+                                  '<option value=""> -- Semua kelurahan -- </option>');
+                              $.each(res, function(key, value) {
+                                  // $('#kelurahan').append('<option value="' + key +
+                                  //     '">' + value + '</option>');
+                                  $('#kelurahan').append('<option value="' + key +
+                                      '" {{ request('kelurahan_id') == ' + key + ' ? 'selected' : '' }}>' +
+                                      value + '</option>');
+                              });
+                          } else {
+                              $('#kelurahan').empty();
+                          }
+                      }
+                  });
+              } else {
+                  $('#kelurahan').empty();
+                  $('#kelurahan').append('<option value=""> -- Semua kelurahan -- </option>');
+              }
+          });
+      });
+    </script>
+
 @endsection

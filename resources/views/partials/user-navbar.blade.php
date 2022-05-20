@@ -36,7 +36,7 @@
 
 
                 <li
-                    class="nav-item dropdown {{ (Request::is('user/peta-makro*') || Request::is('user/peta-microcell*')) ? 'active' : '' }}">
+                    class="nav-item dropdown {{ (Request::is('user/peta-makro*') || Request::is('user/peta-mikro*')) ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" id="dropdownpeta" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Peta<i class="icofont-thin-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownpeta">
