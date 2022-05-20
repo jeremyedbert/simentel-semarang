@@ -19,12 +19,36 @@ class PetaMicroController extends Controller
     public function index()
     {
         //
-      $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
+
+      $towerMikro = Tower::
+                    where('tipe_menara_id', 2)  
+                    ->whereNotNull('acc_date')
+                    ->searching()
+                    ->filter(request(['kecamatan_id','kelurahan_id']))
+                    ->get();
+
+      $tabelMikro = Tower::
+                    where('tipe_menara_id', 2)  
+                    ->whereNotNull('acc_date')
+                    ->searching()
+                    ->filter(request(['kecamatan_id','kelurahan_id']))
+                    ->paginate(30)
+                    ->withQueryString();
+
+      // $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
       $kecamatan = Kecamatan::all()->pluck('name', 'id');
       $kelurahan = Kelurahan::all()->pluck('name', 'id');
       $tipesite = TipeSite::all()->pluck('name', 'id');
       
-      return view('user.peta-microcell', compact('towerMikro', 'kecamatan', 'kelurahan', 'tipesite'),['active' => 'peta']);
+      return view('user.peta-microcell', 
+                  compact(
+                    'towerMikro',
+                    'tabelMikro', 
+                    'kecamatan', 
+                    'kelurahan', 
+                    'tipesite'),
+                    ['active' => 'peta']
+                  );
     }
 
     /**
