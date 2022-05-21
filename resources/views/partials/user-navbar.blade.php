@@ -19,6 +19,7 @@
 <nav class="navbar navbar-expand-lg shadow-sm navigation" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ url('images/logo-semarang.png') }}" alt="" class="img-fluid mr-1" style="max-height:48px;">
             <img src="{{ url('images/logosimentelblue.svg') }}" alt="" class="img-fluid" style="max-height:32px;">
         </a>
 
