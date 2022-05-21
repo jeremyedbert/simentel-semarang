@@ -2,7 +2,7 @@
 @section('content')
     <style>
         .background {
-            background-image: url("/images/tower-landing.jpg");
+            background-image: url("/images/tower-landing2.jpg");
             width: 100%;
         }
 
