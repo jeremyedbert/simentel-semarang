@@ -17,9 +17,9 @@
                 <div class="d-flex justify-content-between">
                     <a href="/admin/menara/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
                             class="fas fa-chevron-left"></i> Daftar menara</a>
-                    <a href="/admin/peta/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
+                    {{-- <a href="/admin/peta/{{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }} "> <i
                             class="fas fa-map-marked"></i> Peta menara
-                        {{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }}</a>
+                        {{ $data->tipe_menara_id === 1 ? 'makro' : 'mikro' }}</a> --}}
                 </div>
                 <div class="row">
                     <div class="col-md-12">
