@@ -28,9 +28,9 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <div class="card card-stats card-round">
-                            @if ($notif->count())
+                            {{-- @if ($notif->count())
                                 <span class="notif">{{ $notif->count() }}</span>
-                            @endif
+                            @endif --}}
                             <div class="card-body ">
                                 <div class="row align-items-center">
                                     <div class="col-icon">
@@ -100,7 +100,7 @@
                                     <a href="/admin/menara/makro" style="text-decoration: none; color: white">
                                         <div class="col col-stats ml-3 ml-sm-0">
                                             <div class="numbers">
-                                                <h2 class="fw-bold">Menara Macro</h2>
+                                                <h2 class="fw-bold">Menara Makro</h2>
                                                 <h4>{{ $makro->count() }} Menara</h4>
                                             </div>
                                         </div>
@@ -584,7 +584,7 @@
         let barChart = document.getElementById('barChart').getContext('2d');
         let towers = @json($tower);
         let data = []
-        for (tower in towers){
+        for (tower in towers) {
             tower = towers[tower];
             data.push(tower.c);
         }
@@ -592,17 +592,17 @@
             type: 'bar',
             data: {
                 labels: [
-                    "Smg Tengah", 
-                    "Smg Utara", 
-                    "Smg Timur", 
-                    "Gayamsari", 
-                    "Genuk", 
-                    "Pedurungan", 
-                    "Smg Selatan", 
-                    "Candisari", 
-                    "Gajahmungkur", 
-                    "Tembalang", 
-                    "Banyumanik", 
+                    "Smg Tengah",
+                    "Smg Utara",
+                    "Smg Timur",
+                    "Gayamsari",
+                    "Genuk",
+                    "Pedurungan",
+                    "Smg Selatan",
+                    "Candisari",
+                    "Gajahmungkur",
+                    "Tembalang",
+                    "Banyumanik",
                     "Gunungpati",
                     "Smg Barat",
                     "Mijen",
