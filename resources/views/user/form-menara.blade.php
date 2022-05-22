@@ -516,9 +516,10 @@
                         </script>
                     </div>
 
-                    <p style="color: #e12454"><b>Sebelum submit, silakan cek kembali
-                            form yang telah Anda isi. Anda tidak bisa melakukan perubahan pendaftaran setelah menekan
-                            "Ajukan Izin/Pendaftaran".</b></p>
+                    <p style="color: #e12454">
+                      <b>Sebelum submit, silakan cek kembali form yang telah Anda isi.
+                      Pastikan semua data dan dokumen pendukung sudah sesuai!</b>
+                    </p>
 
                     {{-- <p class="mb-4" style="color: #e12454"><b></b></p> --}}
                     <button class="btn btn-main btn-round-full" type="submit">Ajukan Izin/Pendaftaran</button>

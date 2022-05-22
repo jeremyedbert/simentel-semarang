@@ -64,6 +64,7 @@ class RiwayatController extends Controller
     public function show(Pendaftaran $pendaftaran)
     {
         $data = $pendaftaran;
+        $zones = Zone::all();
         $towerId = $data['tower_id'];
         $tower = Tower::where('id', $towerId)->get();
         // return $tower[0]['tipe_menara_id'];
@@ -71,7 +72,8 @@ class RiwayatController extends Controller
         // return dd(response()->json(compact('data', 'tower')));
         return view('user.detail', 
           ['data' => $data,
-          'tipe' => $tower[0]['tipe_menara_id']]
+          'tipe' => $tower[0]['tipe_menara_id'],
+          ], compact('zones')
         );
 
     }
@@ -107,11 +109,10 @@ class RiwayatController extends Controller
                   );
           // return dd($pendaftaran);
         }else if ($pendaftaran->status->id == 1 && $pendaftaran->user->id != auth()->user()->id){
-          
+          return redirect("/user/riwayat/");
         }else{
           return redirect("/user/riwayat/$pendaftaran->id");
-        }
-        
+        }       
     }
 
     /**
@@ -176,7 +177,6 @@ class RiwayatController extends Controller
       if($request->file('document') != ""){
 
         //hapus file lama
-        //Storage::delete($pendaftaran->document);
         Storage::delete('documents/'.$pendaftaran->document);
 
         //upload file baru
@@ -194,12 +194,6 @@ class RiwayatController extends Controller
       }
 
       //return dd($request);
-      // return dd(Pendaftaran::where('id', $pendaftaran->id));
-
-      // Pendaftaran::where('id', $pendaftaran->id)
-      //     ->update($validatedPendaftaran);
-
-      // $pendaftaran->update($validatedPendaftaran);
 
       Tower::where('id', $pendaftaran->tower->id)
           ->update($validatedTower);
