@@ -10,8 +10,8 @@
         let zonezones = [];
         // SVG Icon
         const svgMark = {
-            url: "{{ url('/images/tower_marker.svg') }}",
-            scaledSize: new google.maps.Size(40, 40), // scaled size
+            url: "{{ url('/images/tower_marker.png') }}",
+            scaledSize: new google.maps.Size(30, 38), // scaled size
         };
 
         let pos = new google.maps.LatLng(-6.966667, 110.4381);
@@ -528,9 +528,11 @@
                         </script>
                     </div>
 
-                    <p style="color: #e12454"><b>Sebelum submit, silakan cek kembali
-                            form yang telah Anda isi. Anda tidak bisa melakukan perubahan pendaftaran setelah menekan
-                            "Ajukan Izin/Pendaftaran".</b></p>
+                    <p style="color: #e12454">
+                      <b>Sebelum menyimpan perubahan, silakan cek kembali form yang telah Anda isi. 
+                        Pastikan semua data dan dokumen pendukung sudah sesuai!
+                      </b>
+                    </p>
 
                     {{-- <p class="mb-4" style="color: #e12454"><b></b></p> --}}
                     <button class="btn btn-main btn-round-full" type="submit">Simpan</button>

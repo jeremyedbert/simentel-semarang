@@ -10,6 +10,8 @@
     </script>
     <script>
         function initialize() {
+
+            let zones = @json($zones);
             const lat = document.getElementById('txtLat').innerHTML;
             const lng = document.getElementById('txtLng').innerHTML;
 
@@ -36,6 +38,24 @@
             // position will be available as a google.maps.LatLng object. In this case,
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
+
+            for (zone in zones) {
+                zone = zones[zone];
+                let buildCircle = {
+                    strokeColor: "#8AE2E5",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: "#8AE2E5",
+                    fillOpacity: 0.5,
+                    map: map,
+                    center: new google.maps.LatLng(zone.latitude, zone.longitude),
+                    radius: zone.radius,
+                    visible: true
+                };
+
+                zoneCircle = new google.maps.Circle(buildCircle);
+            }
+
             const infowindow = new google.maps.InfoWindow({
                 content: "<p>Koordinat: " + marker.getPosition() + "</p>",
             });
