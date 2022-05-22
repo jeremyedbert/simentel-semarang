@@ -95,9 +95,11 @@ class PetaMacroController extends Controller
     public function show(Tower $tower)
     {
         //
+        $zones = Zone::all();
         return view('user.detail-menara', [
           'data' => $tower
-        ]);
+          ], compact('zones')
+        );
     }
 
     /**

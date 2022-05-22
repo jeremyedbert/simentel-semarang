@@ -40,16 +40,11 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['verify' => true]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('user')->name('user.')->group(function () {
-    // Route::get('/peta-menara', [PetaMacroController::class, 'index'])->name('peta-menara');
-    // Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
-    Route::get('/peta-makro', [PetaMacroController::class, 'index'])->name('peta-makro');
-    Route::get('/peta-makro/{tower}', [PetaMacroController::class, 'show'])->name('peta-makro.show');
+    Route::resource('/peta-makro', PetaMacroController::class, ['parameters' => ['peta-makro' => 'tower']]);
+    Route::resource('/peta-mikro', PetaMicroController::class, ['parameters' => ['peta-mikro' => 'tower']]);
     Route::get('/daftar-menara/getKelurahan', [FormController::class, 'getKelurahan'])->name('daftar-menara.getKelurahan');
     // Route::get('/peta-makro/getKelurahan', [PetaMacroController::class, 'getKelurahan'])->name('peta-makro.getKelurahan');
-
-    // Route::get('/peta-makro/filter', [PetaMacroController::class, 'filter'])->name('peta-makro.filter');
-    Route::resource('/peta-mikro', PetaMicroController::class, ['parameters' => ['peta-mikro' => 'tower']]);
-    //Route::get('/peta-microcell', [PetaMicroController::class, 'index'])->name('peta-microcell');
+    
     // Guest User
     Route::middleware(['guest', 'PreventBackHistory'])->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -73,6 +68,7 @@ Route::prefix('user')->name('user.')->group(function () {
             Route::post('/riwayat/{pendaftaran}/destroy', [RiwayatController::class, 'destroy'])->name('riwayat/{pendaftaran}/destroy');
         });
         Route::post('/logout', [UserController::class, 'logout']);
+        
         // Edit Profil User
         Route::get('/edit', [UserController::class, 'edit']);
         Route::post('/update', [UserController::class, 'update']);
