@@ -12,7 +12,7 @@
             <div class="page-inner">
                 <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Menara
-                            {{ Request::is('admin/menara/makro') ? 'Utama' : 'Mikro' }}</b>
+                            {{ Request::is('admin/menara/makro') ? 'Makro' : 'Mikro' }}</b>
                     </h1>
                 </div>
                 @if (session()->has('success'))

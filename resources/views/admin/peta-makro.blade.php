@@ -321,7 +321,7 @@
             <div class="page-inner">
                 <div class="page-header">
                     <h1 style="color: black" class="pb-3"><b>Peta Menara
-                            {{ Request::is('admin/peta/makro') ? 'Utama' : 'Mikro' }}</b>
+                            {{ Request::is('admin/peta/makro') ? 'Makro' : 'Mikro' }}</b>
                     </h1>
                 </div>
                 @if (session()->has('success'))

@@ -97,13 +97,13 @@
                             </a>
                         </li> --}}
                         <li class="nav-item dropdown hidden-caret submenu">
-                            <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
+                            {{-- <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
                                 @if ($countNotif > 0)
                                     <span class="notification">{{ $countNotif }}</span>
                                 @endif
-                            </a>
+                            </a> --}}
                             <ul class="dropdown-menu notif-box" aria-labelledby="notifDropdown">
                                 {{-- <li>
                                     <div class="dropdown-title">You have 4 new notification</div>

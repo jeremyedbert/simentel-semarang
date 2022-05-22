@@ -71,30 +71,47 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-check d-flex">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         @for ($i = 0; $i < 8; $i++)
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    name="daftar[]" id="customCheck{{ $i+1 }}"
-                                                                    value="{{ $i+1 }}"
-                                                                    {{ is_array(old('daftar')) && in_array($i+1, old('daftar')) ? 'checked' : '' }}>
+                                                                    name="daftar[]" id="customCheck{{ $i + 1 }}"
+                                                                    value="{{ $i + 1 }}"
+                                                                    {{ is_array(old('daftar')) && in_array($i + 1, old('daftar')) ? 'checked' : '' }}>
                                                                 <label class="custom-control-label"
-                                                                    for="customCheck{{ $i+1 }}">{{ $kecamatan[$i]->name }}</label>
+                                                                    for="customCheck{{ $i + 1 }}">{{ $kecamatan[$i]->name }}</label>
                                                             </div><br>
                                                         @endfor
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         @for ($i = 8; $i < 16; $i++)
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input"
-                                                                    name="daftar[]" id="customCheck{{ $i+1 }}"
-                                                                    value="{{ $i+1 }}"
-                                                                    {{ is_array(old('daftar')) && in_array($i+1, old('daftar')) ? 'checked' : '' }}>
+                                                                    name="daftar[]" id="customCheck{{ $i + 1 }}"
+                                                                    value="{{ $i + 1 }}"
+                                                                    {{ is_array(old('daftar')) && in_array($i + 1, old('daftar')) ? 'checked' : '' }}>
                                                                 <label class="custom-control-label"
-                                                                    for="customCheck{{ $i+1 }}">{{ $kecamatan[$i]->name }}</label>
+                                                                    for="customCheck{{ $i + 1 }}">{{ $kecamatan[$i]->name }}</label>
                                                             </div><br>
                                                         @endfor
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="allChecked" onchange="semuaKecamatan(this)">
+                                                            <label class="custom-control-label" for="allChecked">Semua
+                                                                kecamatan</label>
+                                                        </div>
+                                                    </div>
+                                                    <script>
+                                                        function semuaKecamatan(source) {
+                                                            let daftar = document.getElementsByName('daftar[]');
+                                                            let n = daftar.length;
+                                                            for (let i = 0; i < n; i++) {
+                                                                daftar[i].checked = source.checked;
+                                                            }
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('daftar')
@@ -112,7 +129,8 @@
                                                     <select class="form-control input-square" id="squareSelect"
                                                         name="tipeMenara">
                                                         <option value=""> -- Pilih tipe menara -- </option>
-                                                        <option value="5" {{ old('tipeMenara') == 5 ? 'selected' : '' }}>Semua tipe</option>
+                                                        <option value="5" {{ old('tipeMenara') == 5 ? 'selected' : '' }}>
+                                                            Semua tipe</option>
                                                         @foreach ($tipeMenara as $t)
                                                             <option value="{{ $t->id }}"
                                                                 {{ old('tipeMenara') == $t->id ? 'selected' : '' }}>
@@ -148,7 +166,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"
         rel="stylesheet" />
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-
     <script type="text/javascript">
         $(function() {
             $('#datepicker').datepicker({
