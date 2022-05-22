@@ -7,6 +7,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\TipeSite;
 use App\Models\User;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 
 class PetaMicroController extends Controller
@@ -20,35 +21,35 @@ class PetaMicroController extends Controller
     {
         //
 
-      $towerMikro = Tower::
-                    where('tipe_menara_id', 2)  
-                    ->whereNotNull('acc_date')
-                    ->searching()
-                    ->filter(request(['kecamatan_id','kelurahan_id']))
-                    ->get();
+        $towerMikro = Tower::where('tipe_menara_id', 2)
+            ->whereNotNull('acc_date')
+            ->searching()
+            ->filter(request(['kecamatan_id', 'kelurahan_id']))
+            ->get();
 
-      $tabelMikro = Tower::
-                    where('tipe_menara_id', 2)  
-                    ->whereNotNull('acc_date')
-                    ->searching()
-                    ->filter(request(['kecamatan_id','kelurahan_id']))
-                    ->paginate(30)
-                    ->withQueryString();
+        $tabelMikro = Tower::where('tipe_menara_id', 2)
+            ->whereNotNull('acc_date')
+            ->searching()
+            ->filter(request(['kecamatan_id', 'kelurahan_id']))
+            ->paginate(30)
+            ->withQueryString();
 
-      // $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
-      $kecamatan = Kecamatan::all()->pluck('name', 'id');
-      $kelurahan = Kelurahan::all()->pluck('name', 'id');
-      $tipesite = TipeSite::all()->pluck('name', 'id');
-      
-      return view('user.peta-microcell', 
-                  compact(
-                    'towerMikro',
-                    'tabelMikro', 
-                    'kecamatan', 
-                    'kelurahan', 
-                    'tipesite'),
-                    ['active' => 'peta']
-                  );
+        // $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
+        $kecamatan = Kecamatan::all()->pluck('name', 'id');
+        $kelurahan = Kelurahan::all()->pluck('name', 'id');
+        $tipesite = TipeSite::all()->pluck('name', 'id');
+
+        return view(
+            'user.peta-microcell',
+            compact(
+                'towerMikro',
+                'tabelMikro',
+                'kecamatan',
+                'kelurahan',
+                'tipesite'
+            ),
+            ['active' => 'peta']
+        );
     }
 
     /**
@@ -81,9 +82,11 @@ class PetaMicroController extends Controller
     public function show(Tower $tower)
     {
         //
+        $zones = Zone::whereNotNull('id');
         return view('user.detail-menara', [
-          'data' => $tower
-        ]);
+            'data' => $tower,
+            // untuk tidak menampilkan zona
+        ], compact('zones'));
     }
 
     /**
