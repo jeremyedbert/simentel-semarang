@@ -1,6 +1,5 @@
 @extends('layouts.main-user')
 @section('content')
-
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvvsS4RB2Kj8LBp0t3yxRtMAhpzZxtKMQ&callback=initialize&v=weekly"
         async>
@@ -10,7 +9,6 @@
     </script>
     <script>
         function initialize() {
-
             let zones = @json($zones);
             const lat = document.getElementById('txtLat').innerHTML;
             const lng = document.getElementById('txtLng').innerHTML;
@@ -39,6 +37,7 @@
             // we retrieve the marker's position using the
             // google.maps.LatLng.getPosition() method.
 
+
             for (zone in zones) {
                 zone = zones[zone];
                 let buildCircle = {
@@ -64,8 +63,6 @@
                 infowindow.open(map, marker);
             });
         }
-
-        
     </script>
 
     <style>
@@ -110,7 +107,7 @@
                     <h2 class="title-color mb-2">Menara {{ $data->idMenara }}</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
-                        <a href="/user/{{ Request::is('user/peta-makro/*') ? 'peta-makro' : 'peta-microcell' }}">
+                        <a href="/user/{{ Request::is('user/peta-makro/*') ? 'peta-makro' : 'peta-mikro' }}">
                             <i class="icofont-simple-left"></i>
                             <i>Kembali ke halaman Peta</i>
                         </a>
@@ -251,5 +248,4 @@
             </div>
         </div>
     </section>
-
 @endsection

@@ -115,7 +115,7 @@
           </style>
           <div class="mx-1">
               <div class="bor text-center"><b>
-                  <a href="/user/peta-microcell/` + tower.id +
+                  <a href="/user/peta-mikro/` + tower.id +
                 `" style="text-decoration:none;">` + tower
                 .idMenara + `</a></b>
               </div>
