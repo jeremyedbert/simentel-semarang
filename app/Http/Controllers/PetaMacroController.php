@@ -37,16 +37,34 @@ class PetaMacroController extends Controller
                       ->paginate(30)
                       ->withQueryString();
                       // ->get();
-                
+
+        // $chartMakro = Tower::
+        //               where('tipe_menara_id', 1)
+        //               ->whereNotNull('acc_date')
+        //               ->get();
+
+        $chartMakro = Tower::
+                      selectRaw('kecamatan_id, COUNT(kecamatan_id) as jumlah')
+                      ->groupBy('kecamatan_id')
+                      ->where('tipe_menara_id', 1)
+                      ->whereNotNull('acc_date')
+                      ->get();
+
         $kecamatan = DB::table('kecamatans')->pluck("name", "id");
         $kelurahan = DB::table('kelurahans')->pluck("name", "id");
         $tipesite = TipeSite::all()->pluck('name', 'id');
         $zones = Zone::filter(request(['kecamatan_id']))->get();
+
+        // return response()->json($chartMakro);
+        // return response()->json($kecamatan);
+        // return response()->json($kec);
+        
   
         return view('user.peta-menara', 
                     compact(
                       'towerMakro', 
                       'tabelMakro',
+                      'chartMakro',
                       'kecamatan', 
                       'kelurahan',
                       'tipesite', 
