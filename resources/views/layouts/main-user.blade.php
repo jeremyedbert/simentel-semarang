@@ -43,6 +43,7 @@ FACEBOOK: https://www.facebook.com/themefisher
     <!-- footer Start -->
     @include('partials.user-footer')
     <!-- 
+      
     Essential Scripts
     =====================================-->
     <script src="{{ url('assets/user/plugins/jquery/jquery.js') }}"></script>

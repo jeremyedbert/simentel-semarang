@@ -58,6 +58,7 @@ class PetaMacroController extends Controller
         // return response()->json($chartMakro);
         // return response()->json($kecamatan);
         // return response()->json($kec);
+        
   
         return view('user.peta-menara', 
                     compact(
