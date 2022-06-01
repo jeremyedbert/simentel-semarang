@@ -27,7 +27,7 @@
             let map = new google.maps.Map(document.getElementById("map_canvas"), {
                 zoom: 12,
                 minZoom: 12,
-                maxZoom: 16,
+                // maxZoom: 16,
                 // center: new google.maps.LatLng(-6.966667, 110.4381),
                 center: pos,
             });
@@ -421,7 +421,7 @@
               }
             </script>
 
-            <div class="shadow px-3 px-md-4 py-4 my-5" id="towerTable"
+            <div class="shadow px-3 px-md-4 py-4 mt-4 mb-5" id="towerTable"
               style="border-radius: 7px; border-left: solid #223a66 7px">
                 <div class="row d-flex justify-content-between">
                     <div class="col">
