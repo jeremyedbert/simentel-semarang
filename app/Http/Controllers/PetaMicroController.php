@@ -34,7 +34,13 @@ class PetaMicroController extends Controller
             ->paginate(30)
             ->withQueryString();
 
-        // $towerMikro = Tower::where('tipe_menara_id', '=', 2)->whereNotNull('acc_date')->searching()->get();
+        $chartMikro = Tower::
+            selectRaw('kecamatan_id, COUNT(kecamatan_id) as jumlah')
+            ->groupBy('kecamatan_id')
+            ->where('tipe_menara_id', 2)
+            ->whereNotNull('acc_date')
+            ->get();
+
         $kecamatan = Kecamatan::all()->pluck('name', 'id');
         $kelurahan = Kelurahan::all()->pluck('name', 'id');
         $tipesite = TipeSite::all()->pluck('name', 'id');
@@ -44,6 +50,7 @@ class PetaMicroController extends Controller
             compact(
                 'towerMikro',
                 'tabelMikro',
+                'chartMikro',
                 'kecamatan',
                 'kelurahan',
                 'tipesite'
