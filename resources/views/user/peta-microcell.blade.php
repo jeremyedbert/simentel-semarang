@@ -205,6 +205,10 @@
             cursor: pointer;
         }
 
+        #linkTable:hover, #linkChart:hover{
+          cursor: pointer;
+        }
+
         .dtHorizontalExampleWrapper {
             max-width: 600px;
             margin: 0 auto;
@@ -362,7 +366,63 @@
                 <div id="map_canvas" style="width: auto; height: 600px;"></div>
             </div>
 
-            <div class="shadow px-3 px-md-4 py-4 my-5" style="border-radius: 7px; border-left: solid #223a66 7px">
+            <div class="d-flex navbarTableChart">
+              <div class="col-6 d-flex justify-content-center nav-item"
+                id="navTable" style="border-bottom: solid 4px #e12454;">
+                <a id="linkTable" class="nav-link" style="color: #e12454; font-weight: bold" onclick="showTable()">
+                  List
+                </a>
+              </div>
+              <div class="col-6 d-flex justify-content-center nav-item"
+                id="navChart" style="border-bottom: solid 1px #6F8BA4">
+                <a id="linkChart" class="nav-link" style="color: #6F8BA4;" onclick="showChart()">
+                  Statistik
+                </a>
+              </div>
+            </div>
+
+            <script>
+              function showTable(){
+                
+                let showTable = document.getElementById("towerTable");
+                let showChart= document.getElementById("towerChart");
+                
+                document.getElementById("navTable").style.borderBottom = 'solid 4px #e12454';
+                document.getElementById("linkTable").style.fontWeight='bold';
+                document.getElementById("linkTable").style.color='#e12454';
+                showTable.style.display='block';
+
+                document.getElementById("navChart").style.borderBottom = 'solid 1px #6F8BA4';
+                document.getElementById("linkChart").style.fontWeight='normal';
+                document.getElementById("linkChart").style.color='#6F8BA4';
+                showChart.style.display='none';
+
+              }
+
+              function showChart(){
+                
+                let showTable = document.getElementById("towerTable");
+                let showChart = document.getElementById("towerChart");
+
+                document.getElementById("navChart").style.borderBottom = 'solid 4px #e12454';
+                document.getElementById("linkChart").style.fontWeight='bold';
+                document.getElementById("linkChart").style.color='#e12454';
+                showChart.style.display='block';
+
+                document.getElementById("navTable").style.borderBottom = 'solid 1px #6F8BA4';
+                document.getElementById("linkTable").style.fontWeight='normal';
+                document.getElementById("linkTable").style.color='#6F8BA4';
+                showTable.style.display='none';
+
+                //menginisiasi ulang canvas, lalu membuat chart baru
+                document.querySelector("#chartContainer").innerHTML = '<canvas id="doughnutChart"></canvas>';
+                createChart();
+
+              }
+            </script>
+
+            <div class="shadow px-3 px-md-4 py-4 my-5" id="towerTable"
+              style="border-radius: 7px; border-left: solid #223a66 7px">
                 <div class="row d-flex justify-content-between">
                     <div class="col">
                         <h3 class="title-color mb-0">List Menara Mikro di
@@ -416,6 +476,150 @@
                     {{ $tabelMikro->links() }}
                 </div>
             </div>
+
+            <div class="shadow px-3 px-md-4 py-4 mt-4 mb-5" id="towerChart" 
+              style="display: none; border-radius: 7px; border-left: solid #223a66 7px">
+              <div class="row d-flex">
+                <div class="col mb-3">
+                  <h3 class="title-color mb-0">
+                    Diagram Persebaran Menara Mikro di Kota Semarang
+                  </h3>
+                  <small><i>Klik diagram untuk melihat jumlah menara</i></small>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <div id="chartContainer" style="min-width: 90%; min-height:480px">
+                  <canvas id='doughnutChart'></canvas>                          
+                </div>
+              </div>
+            </div>
+
+            <script>
+              function createChart(){
+
+                let doughnutChart = document.getElementById('doughnutChart').getContext('2d');
+                let myChart;
+                let towers = @json($chartMikro);
+                let data = [];
+                
+                //masukkan jumlah menara tiap kecamatan ke array data dengan mengecek dulu
+                //apakah kecamatan tersebut punya menara (cek kesamaan id kecamatan)
+                let i = 0;
+                let k = 0;
+                for (let kec=1; kec<=16; kec++) {
+                    t = towers[i];
+                    if(t.kecamatan_id == kec){
+                      data[k] = t.jumlah;
+                      i++;
+                    }else{
+                      data[k] = 0;
+                    }
+                    k++;
+                }
+
+                myChart = new Chart(doughnutChart, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [
+                            "Smg Tengah",
+                            "Smg Utara",
+                            "Smg Timur",
+                            "Gayamsari",
+                            "Genuk",
+                            "Pedurungan",
+                            "Smg Selatan",
+                            "Candisari",
+                            "Gajahmungkur",
+                            "Tembalang",
+                            "Banyumanik",
+                            "Gunungpati",
+                            "Smg Barat",
+                            "Mijen",
+                            "Ngaliyan",
+                            "Tugu"
+                        ],
+                        datasets: [{
+                            label: ["Jumlah menara"],
+                            backgroundColor: [
+                                'rgba(246, 242, 14, 0.5)',
+                                'rgba(0, 22, 251, 0.5)',
+                                'rgba(30, 155, 250, 0.5)',
+                                'rgba(215, 39, 57, 0.5)',
+                                'rgba(179, 182, 234, 0.5)',
+                                'rgba(55, 246, 6, 0.5)',
+                                'rgba(195, 114, 216, 0.5)',
+                                'rgba(88, 0, 240, 0.5)',
+                                'rgba(221, 167, 26, 0.5)',
+                                'rgba(124, 72, 21, 0.5)',
+                                'rgba(106, 188, 100, 0.5)',
+                                'rgba(195, 111, 112, 0.5)',
+                                'rgba(37, 80, 164, 0.5)',
+                                'rgba(254, 217, 30, 0.5)',
+                                'rgba(197, 58, 89, 0.5)',
+                                'rgba(39, 40, 143, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgb(246, 242, 14)',
+                                'rgb(0, 22, 251)',
+                                'rgb(30, 155, 250)',
+                                'rgb(215, 39, 57)',
+                                'rgb(179, 182, 234)',
+                                'rgb(55, 246, 6)',
+                                'rgb(195, 114, 216)',
+                                'rgb(88, 0, 240)',
+                                'rgb(221, 167, 26)',
+                                'rgb(124, 72, 21)',
+                                'rgb(106, 188, 100)',
+                                'rgb(195, 111, 112)',
+                                'rgb(37, 80, 164)',
+                                'rgb(254, 217, 30)',
+                                'rgb(197, 58, 89)',
+                                'rgb(39, 40, 143)',
+                            ],
+                            hoverOffset: 10,
+                            data: data,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                responsive: true,
+                                fullSize: true,
+                                display: true,
+                                position: 'right'
+                            }
+                        },
+                        layout: {
+                          padding: 5
+                        }
+                        
+                    }
+                });
+
+                if(window.innerWidth <= 425){
+                    myChart.options.plugins.legend.position = 'bottom';
+                    myChart.update();
+                }else{
+                    myChart.options.plugins.legend.position = 'right';
+                    myChart.update();
+                }
+
+                // window.addEventListener('resize', function(){
+                //   if(window.innerWidth <= 425){
+                //     myChart.options.plugins.legend.position = 'bottom';
+                //     myChart.update();
+                //   }else{
+                //     myChart.options.plugins.legend.position = 'right';
+                //     myChart.update();
+                //   }
+                // });
+                
+              }
+              
+            </script>
+
         </div>
     </div>
 
