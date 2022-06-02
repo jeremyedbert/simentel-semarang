@@ -104,7 +104,9 @@
                                         </span>
                                     </div>
                                     <div class="form-group">
-                                        <label>Password <span style="color: #e12454"><b> * </b></span></label>
+                                        <label><b>Masukkan password Anda sebelum menyimpan perubahan!</b> 
+                                          <span style="color: #e12454"><b> * </b></span>
+                                        </label>
                                         <input name="password" type="password"
                                             class="form-control input-sm @error('password') is-invalid @enderror
                                             {{ session()->has('error') ? 'is-invalid' : '' }}">
@@ -122,30 +124,7 @@
                                     <button class="btn btn-main btn-round-full" type="submit">Simpan</button>
                                 </form>
                             </div>
-                            {{-- <div class="mx-3 mb-4 pb-2">
-                                <div>
-                                    <h5>Lokasi Menara</h5>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
-                                    Kecamatan
-                                    <h6>{{ $data->kecamatan->name }}</h6>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
-                                    Kelurahan
-                                    <h6>{{ $data->kelurahan->name }}</h6>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center striped p-1 mx-md-3">
-                                    Latitude
-                                    <h6 id="txtLat" name="latitude">{{ $data->latitude }}</h6>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center p-1 mx-md-3">
-                                    Longitude
-                                    <h6 id="txtLng" name="longitude">{{ $data->longitude }}</h6>
-                                </div>
-                                <div class="mx-md-3 mt-3">
-                                    <div id="map_canvas"></div>
-                                </div>
-                            </div> --}}
+                            
                         </div>
                     </div>
                 </div>
