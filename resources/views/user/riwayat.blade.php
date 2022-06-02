@@ -57,12 +57,20 @@
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {!! session('success') !!}
                 </div>
-            @endif
-            @if (session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
+              @endif
+              @if (session()->has('error'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ session('error') }}
+                  </div>
+              @endif
+              @if (count($data) == 0)
+                  <div class="d-flex justify-content-center my-3">
+                    <img src="/images/empty.png" alt="" style="width: 60%; opacity: 0.8">
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <h6>Riwayat permohonan Anda masih kosong</h6>
+                  </div>
+              @endif
               @foreach ($data as $d)
                 <div class="permohonan">
                   <div class="col-lg-12 shadow py-4 mb-3" 
