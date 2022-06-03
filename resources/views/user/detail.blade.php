@@ -135,10 +135,11 @@
 
     </style>
     <section class="mt-4">
-        <div class="d-flex row d-inline-block mb-5">
-            <div class="col-lg-4 d-flex justify-content-lg-end ml-0" style="height:min-content">
+      <div class="container">
+        <div class="d-flex row mb-5">
 
-                <div class="col-lg-8 user-profile shadow px-3 py-4 mb-5 mx-4 bg-body" style="border-radius: 16px">
+            <div class="col-lg-4 d-flex" style="height:min-content">
+                <div class="col-lg-11 user-profile shadow px-3 py-4 mb-5 bg-body" style="border-radius: 16px">
                     <div class="material-icons-outlined user-icon d-flex justify-content-center mb-3" id="">account_circle
                     </div>
                     {{-- <i class="icofont-business-man-alt-1"></i> --}}
@@ -166,7 +167,7 @@
                 </div>
             </div>
             <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
-                <div class="col-lg-11 pl-lg-0">
+                <div class="col-lg-12 p-0 pr-lg-3">
                     <h2 class="title-color mb-2">Detail Permohonan</h2>
                     <div class="divider mb-4"></div>
                     <h6 class="mb-3">
@@ -416,5 +417,6 @@
                 </div>
             </div>
         </div>
+      </div>
     </section>
 @endsection
