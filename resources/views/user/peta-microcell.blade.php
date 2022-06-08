@@ -230,16 +230,17 @@
         <h2 class="title-color mb-2">Peta Menara Mikro</h2>
         <div class="divider mb-4"></div>
         <div class="col">
-          
+          <div class="shadow px-3 px-md-4 pt-4 pb-2 my-4" id="" 
+            style="border-radius: 7px; border-left: solid #223a66 7px">
             <form >
               <div class="row form-group align-items-center">
                 <div class="pl-3 pr-2">Cari Berdasarkan:</div>
-                <div class="">
+                <div class="ml-3 ml-md-0">
                   <select class="form-control" name="pilihFilter" id="pilihFilter" onchange="filterPencarian()">
                       <option value=""> -- Pilih -- </option>
                       <option value="koordinat">Koordinat</option>
-                      <option value="idmenara">ID Menara</option>
-                      <option value="keckel">Kecamatan & Kelurahan</option>
+                      <option value="idmenara" {{ request('search') ? 'selected' : '' }}>ID Menara</option>
+                      <option value="keckel" {{ request('kecamatan_id') ? 'selected' : '' }}>Kecamatan & Kelurahan</option>
                   </select>
                 </div>
               </div>
@@ -350,6 +351,7 @@
                 </div>
               </div>
             </form>
+          </div>
 
             {{-- <form class="row pl-3">
               <div class="form-group form-check mr-3">
