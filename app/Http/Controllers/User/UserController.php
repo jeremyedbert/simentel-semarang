@@ -94,6 +94,7 @@ class UserController extends Controller
             return back()->with('success', 'Data Anda sudah diperbarui');
         }
     }
+    
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
