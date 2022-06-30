@@ -13,10 +13,10 @@
 
     </style>
     <section class="mt-4">
+      <div class="container" style="min-height: 80vh">
         <div class="d-flex row h-100 d-inline-block">
-            <div class="col-lg-6 d-flex justify-content-center">
-
-                <div class="col-lg-8 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
+            <div class="col-lg-5 d-flex justify-content-center">
+                <div class="col-lg-12 shadow px-3 py-4 mb-5 mx-4 mt-3 bg-body" style="border-radius: 20px">
                     <h2 class="title-color mb-3 mx-3">Login sebagai Admin</h2>
                     <form id="#" class="mx-3 mb-3" method="post" action="{{ route('admin.check') }}">
                         @csrf
@@ -49,10 +49,11 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6 img-login" style="height: 100%">
-                <img src="/images/login-2.png" alt="" class="img-fluid mx-auto my-5 d-block" style="max-width: 67%">
+            <div class="col-lg-7 img-login" style="height: 100%">
+                <img src="/images/login-2.png" alt="" class="img-fluid mx-auto my-4 d-block" style="max-width: 67%">
             </div>
         </div>
+      </div>
     </section>
 
 @endsection

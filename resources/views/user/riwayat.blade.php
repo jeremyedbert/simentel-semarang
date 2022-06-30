@@ -20,10 +20,11 @@
   }
 </style>
 <section class="mt-4">
-    <div class="d-flex row d-inline-block mb-5">
-        <div class="col-lg-4 d-flex justify-content-lg-end ml-0" style="height:min-content">
-
-            <div class="col-lg-8 user-profile shadow px-3 py-4 mb-5 mx-4 bg-body" style="border-radius: 16px">
+  <div class="container">
+    <div class="d-flex row mb-5">
+      
+        <div class="col-lg-4 d-flex" style="height:min-content">
+            <div class="col-lg-11 user-profile shadow px-3 py-4 mb-5 bg-body" style="border-radius: 16px">
                 <div class="material-icons-outlined user-icon d-flex justify-content-center mb-3" id="">account_circle</div>
               {{-- <i class="icofont-business-man-alt-1"></i> --}}
                 <div class="col px-auto">
@@ -49,20 +50,29 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-8 mx-auto" style=" min-height: 80vh ">
-            <div class="col-lg-11 pl-lg-0">
+            <div class="col-lg-12 p-0 pr-lg-3">
               <h2 class="title-color mb-2">Riwayat Permohonan</h2>
               <div class="divider mb-4"></div>
               @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {!! session('success') !!}
                 </div>
-            @endif
-            @if (session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                </div>
-            @endif
+              @endif
+              @if (session()->has('error'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ session('error') }}
+                  </div>
+              @endif
+              @if (count($data) == 0)
+                  <div class="d-flex justify-content-center my-3">
+                    <img src="/images/empty.png" alt="" style="width: 60%; opacity: 0.8">
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <h6>Riwayat permohonan Anda masih kosong</h6>
+                  </div>
+              @endif
               @foreach ($data as $d)
                 <div class="permohonan">
                   <div class="col-lg-12 shadow py-4 mb-3" 
@@ -89,7 +99,7 @@
                       </div>
                       <h3 class="title-color">{{ $d->tower->pemilik }}</h3>
                       <div class="mb-2 d-flex row justify-content-between">
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                           <i class="icofont-location-pin"></i>
                           <span>{{ $d->tower->kelurahan->name }},&nbsp;</span>
                           <span>{{ $d->tower->kecamatan->name }}</span>
@@ -106,6 +116,7 @@
             </div>
         </div>
     </div>
+  </div>
 </section>
   
 @endsection
