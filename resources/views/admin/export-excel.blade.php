@@ -149,7 +149,7 @@
 
                                 </div>
                                 <div class="card-action">
-                                    <button class="btn btn-link" type="submit">
+                                    <button class="btn btn-primary" type="submit">
                                         <span class="btn-label">
                                             <i class="fas fa-file-download"></i>
                                         </span>

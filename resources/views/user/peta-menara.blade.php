@@ -18,12 +18,6 @@
         function initialize() {
             let towers = @json($towerMakro);
             let zones = @json($zones);
-            // let zones = {
-            //   semarang: {
-            //     center: { lat: -6.966667, lng: 110.4381 },
-            //     rad: 1000,
-            //   },
-            // };
 
             // Vector Icon Marker
             const svgMark = {
