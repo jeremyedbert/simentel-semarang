@@ -123,7 +123,7 @@
                             Lihat Peta Menara Makro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
-                        <a href="/user/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                        <a href="/user/peta-mikro" class="btn btn-main-2 btn-round-full btn-icon my-1">
                             Lihat Peta Menara Mikro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
