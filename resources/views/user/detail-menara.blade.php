@@ -218,7 +218,7 @@
                                     </h6>
                                 </div>
                             </div>
-                            <div class="mx-3 mb-4 pb-2">
+                            <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
                                 <div>
                                     <h5>Lokasi Menara</h5>
                                 </div>
@@ -240,6 +240,18 @@
                                 </div>
                                 <div class="mx-md-3 mt-3">
                                     <div id="map_canvas"></div>
+                                </div>
+                            </div>
+                            <div class="mx-3 mb-4 pb-2" style="border-bottom: #bac6d1 solid 1px">
+                                <div>
+                                    <h5>Kondisi</h5>
+                                </div>
+                                <div class="p-1 mx-md-3">
+                                    @if ($data->kondisi === null)
+                                        -
+                                    @else
+                                        {{ $data->kondisi }}
+                                    @endif
                                 </div>
                             </div>
                         </div>

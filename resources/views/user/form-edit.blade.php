@@ -272,6 +272,11 @@
             padding: 5px 0;
         }
 
+        .form-control::placeholder{
+          color: #9e9e9e;
+          opacity: 1;
+        }
+
         .form-document{
           border: 1px solid #ced4da; 
           height: 45px
@@ -294,7 +299,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <h2 class="title-color mb-2">Edit Pendaftaran Menara</h2>
+            <h2 class="title-color mb-2">Edit Permohonan</h2>
             <div class="divider mb-4"></div>
             <h6 class="mb-3">
               <a href="/user/riwayat/{{ $data->id }}">

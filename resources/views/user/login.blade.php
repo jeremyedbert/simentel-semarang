@@ -34,7 +34,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                        <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="contoh: johndoe@example.com" autofocus
+                        <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="contoh: johnindo@email.com" autofocus
                             value='{{ old('email') }}' autocomplete="off">
                         <span class="text-danger">
                           @error('email')
