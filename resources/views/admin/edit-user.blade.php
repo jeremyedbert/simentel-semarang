@@ -4,7 +4,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Data Pengguna</h4>
+                    <h4 class="page-title">Edit Pengguna</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
