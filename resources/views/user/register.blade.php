@@ -24,7 +24,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="name" id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="contoh: John Doe" autofocus
+                            <input name="name" id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="contoh: John Indosatriyo" autofocus
                                 value='{{ old('name') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('name')
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email<span style="color: #e12454"><b> * </b></span></label>
-                            <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="contoh: johndoe@example.com"
+                            <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="contoh: johnindo@email.com"
                                 value='{{ old('email') }}' autocomplete="off">
                             <span class="text-danger">
                                 @error('email')

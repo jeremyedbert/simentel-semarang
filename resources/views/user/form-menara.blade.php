@@ -270,6 +270,11 @@
             padding: 5px 0;
         }
 
+        .form-control::placeholder{
+          color: #9e9e9e;
+          opacity: 1;
+        }
+
         .form-document{
           border: 1px solid #ced4da; 
           height: 45px
