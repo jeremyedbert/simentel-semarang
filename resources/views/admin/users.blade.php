@@ -20,7 +20,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
-                                                <th>Pemilik</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
