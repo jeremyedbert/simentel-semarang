@@ -73,11 +73,11 @@ p {
   background: #223a66;
 }
 
-input[type=email], input[type=password], input[type=text], input[type=tel] {
+input[type=email], input[type=password], input[type=text], input[type=tel], input[type=file] {
   box-shadow: none;
   height: 45px;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
 }
 input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus {
   box-shadow: none;
@@ -87,7 +87,9 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 .form-control {
   box-shadow: none;
   border-radius: 0;
+  height: 45px;
 }
+
 .form-control:focus {
   box-shadow: none;
   border: 1px solid #223a66;
@@ -158,9 +160,20 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   border-left: 1px solid rgba(0, 0, 0, 0.09);
 }
 
+.btn-solid-border-2 {
+  border: 2px solid #e12454;
+  background: transparent;
+  color: #e12454;
+}
+.btn-solid-border-2:hover {
+  border: 2px solid #e12454;
+  color: #fff;
+  background: #e12454;
+}
+
 .btn-transparent {
   background: transparent;
-  color: #222;
+  color: #6F8BA4;
   border-color: #6F8BA4;
 }
 .btn-transparent:hover {
@@ -392,7 +405,7 @@ a:focus {
 }
 
 .navbar-brand {
-  margin-top: 10px;
+  margin: 0;
 }
 
 .header-top-bar {
@@ -629,7 +642,7 @@ a:focus {
 }
 
 .appoinment-form {
-  margin-top: 40px;
+  margin-top: 36px;
 }
 .appoinment-form .form-control {
   background: #f4f9fc;
@@ -664,7 +677,7 @@ a:focus {
   color: #223a66;
 }
 .feature-item p {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .feature-section.border-top {
@@ -805,6 +818,7 @@ a:focus {
   margin-bottom: 10px;
   color: #222;
 }
+
 .doctor-info li i {
   margin-right: 20px;
   color: #e12454;
@@ -839,7 +853,7 @@ a:focus {
   }
 }
 .cta {
-  background: url("../images/bg/bg-4.jpg") no-repeat 50% 50%;
+  background: url("../images/bg/bg-5.png") no-repeat 50% 50%;
   background-size: cover;
   position: relative;
 }

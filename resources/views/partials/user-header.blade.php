@@ -12,15 +12,21 @@
 <meta name="generator" content="Themefisher Novena HTML Template v1.0">
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="assets/user/images/favicon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/user/images/tower.svg') }}" />
+
+<!-- Material icon-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
 <!-- 
   Essential stylesheets
   =====================================-->
-<link rel="stylesheet" href="assets/user/plugins/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="assets/user/plugins/icofont/icofont.min.css">
-<link rel="stylesheet" href="assets/user/plugins/slick-carousel/slick/slick.css">
-<link rel="stylesheet" href="assets/user/plugins/slick-carousel/slick/slick-theme.css">
+<link rel="stylesheet" href="{{ url('assets/user/plugins/bootstrap/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url('assets/user/plugins/icofont/icofont.min.css') }}">
+<link rel="stylesheet" href="{{ url('assets/user/plugins/slick-carousel/slick/slick.css') }}">
+<link rel="stylesheet" href="{{ url('assets/user/plugins/slick-carousel/slick/slick-theme.css') }}">
 
 <!-- Main Stylesheet -->
-<link rel="stylesheet" href="assets/user/css/style.css">
+<link rel="stylesheet" href="{{ url('assets/user/css/style.css') }}">
+
+<!-- File Pond -->
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />

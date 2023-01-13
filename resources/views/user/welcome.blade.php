@@ -2,31 +2,41 @@
 @section('content')
     <style>
         .background {
-            background-image: url("/images/tower-landing.jpg");
+            background-image: url("/images/tower-landing2.jpg");
             width: 100%;
+        }
+
+        .w-hours{
+          font-size: 16px;
         }
 
     </style>
     <section class="banner background">
         <div class="container">
+            @if (session('resent'))
+                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    Pesan verifikasi sudah dikirimkan. Silakan lihat kotak masuk Anda.
+
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="block">
                         <div class="divider mb-3"></div>
-                        <span class="text-uppercase text-sm letter-spacing ">Selamat datang di</span>
+                        <span class="text-uppercase letter-spacing" style="color: #e12454"><b>Selamat datang di</b></span>
                         <h1 class="mb-3 mt-2">Sistem Informasi<br> Menara Telekomunikasi<br> Kota Semarang</h1>
 
                         {{-- <p class="mb-4 pr-5">Tentukan lokasi. Daftar. Selesai.</p> --}}
                         <div class="btn-container ">
                             {{-- <div class="mb-2"> --}}
-                                <a href="/peta-menara" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
-                                    Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
-                                </a>
+                            <a href="/user/peta-makro" class="btn btn-main-2 btn-icon btn-round-full mr-2 my-2">
+                                Lihat Peta Menara<i class="icofont-simple-right ml-2"></i>
+                            </a>
                             {{-- </div>
                             <div> --}}
-                                <a href="/pendaftaran" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
-                                    Daftarkan Menara<i class="icofont-simple-right ml-2  "></i>
-                                </a>
+                            <a href="/user/daftar-menara" class="btn btn-main btn-icon btn-round-full mr-2 my-2">
+                                Daftarkan Menara<i class="icofont-simple-right ml-2  "></i>
+                            </a>
                             {{-- </div> --}}
                         </div>
                     </div>
@@ -45,7 +55,8 @@
                             </div>
                             <span>Kantor Pelayanan</span>
                             <h4 class="mb-3">Diskominfo Kota Semarang</h4>
-                            <p class="mb-4">Jl. Pemuda No.148 Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132</p>
+                            <p class="mb-4">Jl. Pemuda No.148 Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa
+                                Tengah 50132</p>
                             <a href="https://www.google.com/maps/place/Dinas+Kominfo+Kota+Semarang/@-6.9837516,110.4118455,17z/data=!4m5!3m4!1s0x2e708b4fd277d06b:0x4056bfa9e8303c06!8m2!3d-6.9836393!4d110.413617"
                                 target="blank" class="btn btn-main btn-round-full">
                                 <i class="icofont-search-map"></i>
@@ -77,8 +88,7 @@
                                 <br>
                                 <i class="icofont-ui-call mr-2"></i>(024) 3513366
                             </p>
-                            <a href="https://api.whatsapp.com/send?phone=6281222810002"
-                                href="https://wa.me/6281222810002"
+                            <a href="https://api.whatsapp.com/send?phone=6281222810002" href="https://wa.me/6281222810002"
                                 target="blank" class="btn btn-main btn-round-full align-middle">
                                 <i class="icofont-brand-whatsapp mr-1"></i>
                                 Hubungi via WhatsApp
@@ -94,7 +104,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-3 col-sm-4">
                     <div class="about-img">
-                        <img src="/images/tower-1.jpg" alt="" class="img-fluid tower-img mx-auto d-block">
+                        <img src="/images/tower-3.jpeg" alt="" class="img-fluid tower-img mx-auto d-block">
                         <img src="/images/microcell-2.jpg" alt="" class="img-fluid mt-4 tower-img mx-auto d-block">
                     </div>
                 </div>
@@ -105,16 +115,16 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="about-content pl-4 mt-4 mt-lg-0">
-                        <h2 class="title-color">Persebaran Lokasi Menara & Microcell</h2>
-                        <p class="mt-3 mb-4">Temukan lokasi menara utama dan menara microcell di Kota Semarang. 
-                            Anda juga dapat melihat titik radius yang diperbolehkan untuk pendirian menara.
+                        <h2 class="title-color">Persebaran Lokasi Menara Makro & Mikro</h2>
+                        <p class="mt-3 mb-4">Temukan lokasi menara makro dan menara mikro di Kota Semarang.
+                            Anda juga dapat melihat radius zona yang diperbolehkan untuk pendirian menara.
                         </p>
-                        <a href="/peta-menara" class="btn btn-main-2 btn-round-full btn-icon my-1">
-                            Lihat Peta Menara
+                        <a href="/user/peta-makro" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                            Lihat Peta Menara Makro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
-                        <a href="/peta-microcell" class="btn btn-main-2 btn-round-full btn-icon my-1">
-                            Lihat Peta Microcell
+                        <a href="/user/peta-mikro" class="btn btn-main-2 btn-round-full btn-icon my-1">
+                            Lihat Peta Menara Mikro
                             {{-- <i class="icofont-simple-right ml-3"></i> --}}
                         </a>
                     </div>
@@ -126,27 +136,27 @@
         <div class="container">
             <div class="cta position-relative">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
-                            <i class="icofont-doctor"></i>
-                            <span class="h3 counter" data-count="58">0</span>
-                            <p>Menara Utama</p>
+                            <i class="icofont-network-tower"></i>
+                            <span class="h3 counter" data-count="{{ $macro }}">0</span>
+                            <p>Menara Makro</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="counter-stat">
-                            <i class="icofont-flag"></i>
-                            <span class="h3 counter" data-count="700">0</span>
-                            <p>Menara Microcell</p>
+                            <i class="icofont-network-tower"></i>
+                            <span class="h3 counter" data-count="{{ $micro }}">0</span>
+                            <p>Menara Mikro</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
+                    {{-- <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="counter-stat">
                             <i class="icofont-flag"></i>
                             <span class="h3 counter" data-count="10">0</span>
                             <p>Provider</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -165,16 +175,21 @@
                 </div>
                 <div class="col-lg-6 col-md-10 ">
                     <div class="appoinment-wrap mt-5 mt-lg-0">
-                        <h2 class="mb-4 title-color">Pengajuan Izin dan Pendaftaran Menara/Microcell</h2>
-                        <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara/microcell
+                        <h2 class="mb-4 title-color">Pengajuan Izin dan Pendaftaran Menara Makro atau Mikro</h2>
+                        <p class="mb-2">SI MenTel menjadikan pengajuan izin dan pendaftaran menara
                             menjadi lebih mudah. Cukup ikuti beberapa langkah berikut.</p>
                         <ol class="mb-4">
-                            <li><a href="/login-pemohon"><b>Login</b></a> sebagai pemohon atau <a href="register-pemohon"><b>buat akun</b></a>  terlebih dahulu bila belum memilikinya</li>
-                            <li>Pilih tab <a href="/pendaftaran"><b>"Pendaftaran"</b></a>, lalu isi formulir. Anda dapat mengisi detail menara, 
-                                menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung</li>
-                            <li>Klik "Ajukan Izin/Pendaftaran", kami akan segera melakukan tinjauan lokasi dan kelayakan</li>
-                            <li>Tunggu verifikasi dari kami. Notifikasi akan kami kirimkan melalui email Anda</li>
-                            <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li>
+                            <li><a href="{{ route('user.login') }}"><b>Login</b></a> sebagai pemohon atau 
+                              <a href="{{ route('user.register') }}"><b>buat akun</b></a> terlebih dahulu bila belum
+                                memilikinya. Pastikan email dan nomor telepon yang Anda masukkan sudah benar.</li>
+                            {{-- <li>Verifikasi email Anda</li> --}}
+                            <li>Pilih tab <a href="{{ route('user.daftar-menara') }}"><b>Pendaftaran</b></a>, 
+                                lalu isi formulir. Anda dapat mengisi detail menara,
+                                menentukan koordinat lokasinya, hingga mengunggah dokumen pendukung.</li>
+                            <li>Klik Ajukan Izin/Pendaftaran, kami akan segera melakukan tinjauan lokasi 
+                              dan kelayakan.</li>
+                            <li>Tunggu verifikasi dari kami. Status pendaftaran dapat Anda lihat di halaman <a href="user/riwayat"><b>Riwayat Permohonan</b></a>.</li>
+                            {{-- <li>Surat izin pendirian menara dapat Anda unduh setelah kami verifikasi</li> --}}
                         </ol>
                         {{-- <form id="#" class="appoinment-form" method="post" action="#">
                             <div class="row">
@@ -240,26 +255,14 @@
 
                             
                         </form> --}}
-                        <a class="btn btn-main btn-round-full" href="appoinment.html">Daftarkan Menara <i
-                            class="icofont-simple-right ml-2"></i></a>
+                        <a class="btn btn-main btn-round-full" href="/user/daftar-menara">Daftarkan Menara <i
+                                class="icofont-simple-right ml-2"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section testimonial-2 gray-bg">
-        {{-- <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="section-title text-center">
-                        <h2>We served over 5000+ Patients</h2>
-                        <div class="divider mx-auto my-4"></div>
-                        <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt
-                            molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+    {{-- <section class="section testimonial-2 gray-bg">
 
         <div class="container">
             <div class="row align-items-center">
@@ -275,7 +278,7 @@
                             <h4>5000 Dogecoins for SI MenTel</h4>
                             <span>Elon Mas</span>
                             <p>
-                                SI MenTel amazed me with great service, so I gave them 5000 Dogecoin to built new system 
+                                SI MenTel amazed me with great service, so I gave them 5000 Dogecoin to built new system
                                 for Tesla communication tower. Oh, dont't forget about SpaceX! We're working together now.
                             </p>
                         </div>
@@ -290,7 +293,8 @@
                             <h4>We are closer to the metaverse</h4>
                             <span>Mark Suckerbergzhjkl</span>
                             <p>
-                                Since Meta was still Facebook. I've used SI MenTel for registering the towers. They have best service 
+                                Since Meta was still Facebook. I've used SI MenTel for registering the towers. They have
+                                best service
                                 to support telecommunication. With SI MenTel, we are closer to the metaverse!
                             </p>
                         </div>
@@ -308,8 +312,10 @@
                             <span>Uzumaki Naruto</span>
                             <p>
                                 Sejak SI MenTel hadir, jumlah menara telekomunikasi di Desa Konoha meningkat pesat.
-                                Hal ini membuat komunikasi kami dengan desa sekitar semakin baik, begitu pun dengan Kota Semarang.
-                                SI MenTel sudah mendukung terwujudnya perdamaian keempat desa dan membantu mengakhiri Perang Dunia Ninja 
+                                Hal ini membuat komunikasi kami dengan desa sekitar semakin baik, begitu pun dengan Kota
+                                Semarang.
+                                SI MenTel sudah mendukung terwujudnya perdamaian keempat desa dan membantu mengakhiri Perang
+                                Dunia Ninja
                             </p>
                         </div>
                         <i class="icofont-quote-right"></i>
@@ -317,6 +323,5 @@
                 </div>
             </div>
         </div>
-    </section>
-
+    </section> --}}
 @endsection
